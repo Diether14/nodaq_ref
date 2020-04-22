@@ -29,23 +29,29 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `users` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `firstname` varchar(255) NOT NULL,
-  `lastname` varchar(255) NOT NULL,
+  `pk` int(10) UNSIGNED NOT NULL,
+  'id' varchar(30) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  'status' smallint(1) NOT NULL DEFAULT 0,
+  'auth' smallint(1) NOT NULL DEFAULT 0,
+  'prof' int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
+/*status 0=normal 1= banned 2=sleep*/
+/*auth 0 = none auth <= account will be removed in 3 days) , 1= email auth,2 phone auth,3 admin*/
+/*id and pk should be unique*/
+/*prof = address for blockies (search if you don't know what is it)*/
 
-INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `created_at`, `updated_at`) VALUES
-(14, 'test', 'test', 'test123@gmail.com', '$2y$10$pX/IaSwNGgs92jAe21zblOB1cVXTw4h51iAlH1NLGdTTT6egEw2yS', '2020-04-22 12:11:01', '2020-04-22 12:11:01'),
-(15, 'testt', 'test', 'test123213@gmail.com', '$2y$10$9Pw33WKnIZgsaWFlL9Rleez6gvhnBydZtO2PuS28/6Y/11gu1YUVe', '2020-04-22 17:07:38', '2020-04-22 17:07:38'),
-(16, 'test', 'test', 'test@gmail.com', '$2y$10$uXJKPTkQ7yJ7uhM8jnWt8.fJRyHDx0gX8i6S9dpVtc2zmPIvCYhtK', '2020-04-22 17:17:53', '2020-04-22 17:17:53');
+INSERT INTO `users` ('pk',`id`, `firstname`, `lastname`, `email`, `password`, `updated_at`,'prof') VALUES
+(14, 'test','test123@gmail.com', '$2y$10$pX/IaSwNGgs92jAe21zblOB1cVXTw4h51iAlH1NLGdTTT6egEw2yS', '2020-04-22 12:11:01',14),
+(15, 'testt','test123213@gmail.com', '$2y$10$9Pw33WKnIZgsaWFlL9Rleez6gvhnBydZtO2PuS28/6Y/11gu1YUVe', '2020-04-22 17:07:38',15),
+(16, 'test1', 'test@gmail.com', '$2y$10$uXJKPTkQ7yJ7uhM8jnWt8.fJRyHDx0gX8i6S9dpVtc2zmPIvCYhtK', '2020-04-22 17:17:53',16);
 
 --
 -- Indexes for dumped tables
@@ -55,7 +61,7 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `password`, `create
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`pk`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -65,7 +71,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `pk` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
