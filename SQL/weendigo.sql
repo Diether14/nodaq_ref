@@ -31,6 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `users` (
   `pk` int(10) UNSIGNED NOT NULL,
   'id' varchar(30) NOT NULL,
+  'nick' varchar(20) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -48,10 +49,10 @@ CREATE TABLE `users` (
 /*id and pk should be unique*/
 /*prof = address for blockies (search if you don't know what is it)*/
 
-INSERT INTO `users` ('pk',`id`, `firstname`, `lastname`, `email`, `password`, `updated_at`,'prof') VALUES
-(14, 'test','test123@gmail.com', '$2y$10$pX/IaSwNGgs92jAe21zblOB1cVXTw4h51iAlH1NLGdTTT6egEw2yS', '2020-04-22 12:11:01',14),
-(15, 'testt','test123213@gmail.com', '$2y$10$9Pw33WKnIZgsaWFlL9Rleez6gvhnBydZtO2PuS28/6Y/11gu1YUVe', '2020-04-22 17:07:38',15),
-(16, 'test1', 'test@gmail.com', '$2y$10$uXJKPTkQ7yJ7uhM8jnWt8.fJRyHDx0gX8i6S9dpVtc2zmPIvCYhtK', '2020-04-22 17:17:53',16);
+INSERT INTO `users` ('pk',`id`,'nick', `email`, `password`, `updated_at`,'prof') VALUES
+(14, 'test','test','test123@gmail.com', '$2y$10$pX/IaSwNGgs92jAe21zblOB1cVXTw4h51iAlH1NLGdTTT6egEw2yS', '2020-04-22 12:11:01',14),
+(15, 'testt','test','test123213@gmail.com', '$2y$10$9Pw33WKnIZgsaWFlL9Rleez6gvhnBydZtO2PuS28/6Y/11gu1YUVe', '2020-04-22 17:07:38',15),
+(16, 'test1','test', 'test@gmail.com', '$2y$10$uXJKPTkQ7yJ7uhM8jnWt8.fJRyHDx0gX8i6S9dpVtc2zmPIvCYhtK', '2020-04-22 17:17:53',16);
 
 --
 -- Indexes for dumped tables
