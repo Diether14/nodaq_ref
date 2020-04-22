@@ -1,0 +1,47 @@
+body{
+    background-color: #ffffff;
+    
+}
+html,
+body {
+  height: 100%;
+}
+#page-content {
+    flex: 1 0 auto;
+  }
+  
+  #sticky-footer {
+    flex-shrink: none;
+  }
+
+.bg-custom{
+    background-color: #E0E0E0 !important;
+}
+.form-wrapper{
+    border-radius: 7px;
+}
+.form-wrapper label{
+    font-weight: bold;
+}
+.errors li{
+    list-style: none;
+    width: 100%;
+    text-align: center;
+}
+.errors ul{
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px){
+    .form-wrapper  .text-right{
+        text-align: center !important;
+    }
+
+    .form-wrapper .btn-primary{
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+
