@@ -9,6 +9,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="http://yui.yahooapis.com/3.18.1/build/yui/yui-min.js"></script>
+    <!-- <script src="public/assets/js/editor.js"></script> -->
     <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/assets/skins/sam/skin.css">
     <!-- Utility Dependencies -->
     <script src="http://yui.yahooapis.com/2.9.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>
@@ -19,32 +21,9 @@
     <script src="http://yui.yahooapis.com/2.9.0/build/button/button-min.js"></script>
     <!-- Source file for Rich Text Editor-->
     <script src="http://yui.yahooapis.com/2.9.0/build/editor/editor-min.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
-    <style>
-      #sortable { list-style-type: none; margin: 0; padding: 0; width: 100%; }
-       }
-       .btn-circle.btn-xl { 
-            width: 70px; 
-            height: 70px; 
-            padding: 10px 16px; 
-            border-radius: 35px; 
-            font-size: 12px; 
-            text-align: center; 
-        } 
-        .scrollb {
-          height:600px;
-          overflow-y: scroll;
-        }
-     
-      </style>
-      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-
-
+    
 </head>
-<body>
+<body class="yui-skin-sam">
     <?php 
       $uri = service('uri');
     ?>

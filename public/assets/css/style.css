@@ -44,4 +44,6 @@ body {
     }
 }
 
-
+.bg-white {
+    box-sizing: border-box none !important;
+}

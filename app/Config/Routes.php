@@ -37,13 +37,14 @@ $routes->match(['get','post'],'login', 'Users::login', ['filter' => 'noauth']);
 $routes->match(['get','post'],'profile', 'Users::profile', ['filter' => 'auth']);
 // $routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth']);
 $routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth']);
-
-
-// $routes->group('crud', function($routes)
+$routes->get('blog', 'Users::blog', ['filter' => 'auth']);
+$routes->get('cafe', 'Users::cafe', ['filter' => 'auth']);
+$routes->get('cartoon-novel', 'Users::cartoonnovel', ['filter' => 'auth']);
+// $routes->group('users', function($routes)
 // {
-//         $routes->add('users/create', 'Crud\Users::create');
-//         $routes->add('users', 'Crud\Users::index');
-//         $routes->add('users/test', 'Crud\Users::test');
+//         // $routes->add('users/create', 'Crud\Users::create');
+//         $routes->add('test', 'UserInterface\Users::index');
+//         // $routes->add('users/test', 'Crud\Users::test');
         
 // });
 

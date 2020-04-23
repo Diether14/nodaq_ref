@@ -158,6 +158,37 @@ class Users extends BaseController
         return redirect()->to('/weendigo');
     }
 
+    public function blog(){
+        $data = [];
+        helper(['form']);
+
+        echo view('templates/editor-header', $data);
+        echo view('users/blog', $data);
+        echo view('templates/editor-footer', $data);
+      
+        
+    }
+
+    public function cafe(){
+        $data = [];
+        helper(['form']);
+
+        echo view('templates/editor-header', $data);
+        echo view('users/cafe', $data);
+        echo view('templates/editor-footer', $data);
+
+    }
+
+    public function cartoonnovel(){
+        $data = [];
+        helper(['form']);
+
+        echo view('templates/editor-header', $data);
+        echo view('users/cartoonnovel', $data);
+        echo view('templates/editor-footer', $data);
+       
+    }
+
 	//--------------------------------------------------------------------
 
 }
