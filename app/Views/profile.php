@@ -3,7 +3,7 @@
         <div class="col-12  col-sm-8 offset-sm-2 col-md-6 offset-md-3 mt-5 pt-3 pb-3 bg-white form-wrapper"> 
             <div class="card">
                 <div class="card-header">
-                <h3><?= $user['firstname'].' ' .$user['lastname'] ?></h3>
+                <h3>Update Profile</h3>
                 </div>
                 <div class="card-body">
                 <?php if(session()->get('success')): ?>
@@ -13,16 +13,10 @@
                 <?php endif; ?>
                 <form class="" action="/weendigo/profile" method="post">
                     <div class="row">
-                    <div class="col-12 col-sm-6">
+                    <div class="col-12 col-sm-12">
                     <div class="form-group">
-                        <label for="firstname">First Name</label>
-                        <input type="text" class="form-control" name="firstname" id="firstname" value="<?= set_value('firstname', $user['firstname']); ?>">
-                    </div>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                    <div class="form-group">
-                        <label for="lastname">Last Name</label>
-                        <input type="text" class="form-control" name="lastname" id="lastname" value="<?= set_value('lastname', $user['lastname']); ?>">
+                        <label for="nickname">Nickname</label>
+                        <input type="text" class="form-control" name="nickname" id="nickname" value="<?= $user['nickname']; ?>">
                     </div>
                     </div>
                     <div class="col-12">

@@ -40,6 +40,13 @@ $routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth']);
 $routes->get('blog', 'Users::blog', ['filter' => 'auth']);
 $routes->get('cafe', 'Users::cafe', ['filter' => 'auth']);
 $routes->get('cartoon-novel', 'Users::cartoonnovel', ['filter' => 'auth']);
+
+$routes->get('article', 'Users::article', ['filter' => 'auth']);
+$routes->get('article-publish', 'Users::article_publish', ['filter' => 'auth']);
+
+$routes->get('category-create', 'Category::categoryCreate', ['filter' => 'auth']);
+$routes->get('cafe-style', 'Category::cafeStyle', ['filter' => 'auth']);
+
 // $routes->group('users', function($routes)
 // {
 //         // $routes->add('users/create', 'Crud\Users::create');

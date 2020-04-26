@@ -51,8 +51,7 @@ class Users extends BaseController
     private function setUserSession($user){
         $data = [
             'id' => $user['id'],
-            'firstname' => $user['firstname'],
-            'lastname' => $user['lastname'],
+            'nickname' => $user['nickname'],
             'email' => $user['email'],
             'isLoggedIn' => true,
         ];
@@ -61,19 +60,15 @@ class Users extends BaseController
         return true;
     }
 
-    public function test(){
-        var_dump('test');exit;
-    }
 
     public function register(){
-        // ini_set('display_errors', 1);
+        ini_set('display_errors', 1);
         $data = [];
         helper(['form']);
 
         if ($this->request->getMethod() == 'post') {
             $rules = [
-                'firstname' => 'required|min_length[3]|max_length[20]',
-                'lastname' => 'required|min_length[3]|max_length[20]',
+                'nickname' => 'required|min_length[3]|max_length[20]',
                 'email' => 'required|min_length[6]|max_length[50]|valid_email|is_unique[users.email]',
                 'password' => 'required|min_length[8]|max_length[255]',
                 'password_confirm' => 'matches[password]',
@@ -86,8 +81,7 @@ class Users extends BaseController
                 $model = new UserModel();
 
                 $newData = [
-                    'firstname' => $this->request->getVar('firstname'),
-                    'lastname' => $this->request->getVar('lastname'),
+                    'nickname' => $this->request->getVar('nickname'),
                     'email' => $this->request->getVar('email'),
                     'password' => $this->request->getVar('password')
                 ];
@@ -115,8 +109,7 @@ class Users extends BaseController
 
         if ($this->request->getMethod() == 'post') {
             $rules = [
-                'firstname' => 'required|min_length[3]|max_length[20]',
-                'lastname' => 'required|min_length[3]|max_length[20]',
+                'nickname' => 'required|min_length[3]|max_length[20]',
             ];
             
             if($this->request->getPost('password') != ''){
@@ -131,8 +124,7 @@ class Users extends BaseController
 
                 $newData = [
                     'id' => session()->get('id'),
-                    'firstname' => $this->request->getPost('firstname'),
-                    'lastname' => $this->request->getPost('lastname'),
+                    'nickname' => $this->request->getPost('nickname'),
                 ];
 
                 if($this->request->getPost('password') != ''){
@@ -187,6 +179,25 @@ class Users extends BaseController
         echo view('users/cartoonnovel', $data);
         echo view('templates/editor-footer', $data);
        
+    }
+
+    public function article(){
+        $data = [];
+        helper(['form']);
+
+        echo view('templates/header', $data);
+        echo view('users/article', $data);
+        echo view('templates/footer', $data);
+       
+    }
+
+    public function article_publish(){
+        $data = [];
+        helper(['form']);
+
+        echo view('templates/header', $data);
+        echo view('users/article-publish', $data);
+        echo view('templates/footer', $data);
     }
 
 	//--------------------------------------------------------------------

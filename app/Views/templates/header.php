@@ -6,20 +6,25 @@
     <link rel="stylesheet" href="public/assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title></title>
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/assets/skins/sam/skin.css"> -->
+    
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/assets/skins/sam/skin.css">
+    
     <!-- Utility Dependencies -->
-    <script src="http://yui.yahooapis.com/2.9.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>
-    <script src="http://yui.yahooapis.com/2.9.0/build/element/element-min.js"></script>
+    <!-- <script src="http://yui.yahooapis.com/2.9.0/build/yahoo-dom-event/yahoo-dom-event.js"></script> -->
+    <!-- <script src="http://yui.yahooapis.com/2.9.0/build/element/element-min.js"></script> -->
     <!-- Needed for Menus, Buttons and Overlays used in the Toolbar -->
-    <script src="http://yui.yahooapis.com/2.9.0/build/container/container_core-min.js"></script>
-    <script src="http://yui.yahooapis.com/2.9.0/build/menu/menu-min.js"></script>
-    <script src="http://yui.yahooapis.com/2.9.0/build/button/button-min.js"></script>
+    <!-- <script src="http://yui.yahooapis.com/2.9.0/build/container/container_core-min.js"></script> -->
+    <!-- <script src="http://yui.yahooapis.com/2.9.0/build/menu/menu-min.js"></script> -->
+    <!-- <script src="http://yui.yahooapis.com/2.9.0/build/button/button-min.js"></script> -->
     <!-- Source file for Rich Text Editor-->
-    <script src="http://yui.yahooapis.com/2.9.0/build/editor/editor-min.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- <script src="http://yui.yahooapis.com/2.9.0/build/editor/editor-min.js"></script> -->
+    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
     <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
     <style>
       #sortable { list-style-type: none; margin: 0; padding: 0; width: 100%; }

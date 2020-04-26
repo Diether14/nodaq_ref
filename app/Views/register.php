@@ -7,18 +7,13 @@
               
                 <form class="" action="/weendigo/register" method="post">
                     <div class="row">
-                    <div class="col-12 col-sm-6">
+                    <div class="col-12 col-sm-12">
                     <div class="form-group">
-                        <label for="firstname">First Name</label>
-                        <input type="text" class="form-control" name="firstname" id="firstname" value="<?= set_value('firstname'); ?>">
+                        <label for="nickname">Nickname</label>
+                        <input type="text" class="form-control" name="nickname" id="nickname" value="<?= set_value('nickname'); ?>">
                     </div>
                     </div>
-                    <div class="col-12 col-sm-6">
-                    <div class="form-group">
-                        <label for="lastname">Last Name</label>
-                        <input type="text" class="form-control" name="lastname" id="lastname" value="<?= set_value('lastname'); ?>">
-                    </div>
-                    </div>
+                  
                     <div class="col-12">
                     <div class="form-group">
                         <label for="email">Email Address</label>
