@@ -1,24 +1,26 @@
-<div class="container py-4 px-4">
-<div class="row rounded-lg overflow-hidden shadow">
-    <!-- Users box-->
-    <div class="col-5 px-0">
-      <div class="card">
-      <textarea name="msgpost" id="msgpost" cols="50" rows="10">
-        <strong>Your</strong> HTML <em>code</em> goes here.<br>
-        This text will be pre-loaded in the editor when it is rendered.
-      </textarea>
-      </div>
-    </div>
 
+<main>
+
+<div class="" style="margin-top: 20px; height:500px;">
+  <div class="grid-container">
+    <div class="grid-width-100">
+      <div id="editor">
+        
+      </div>
+      <button class="btn btn-primary save mt-3">Save Changes</button>
+    </div>
+  </div>
 </div>
-</div>
+
+</main>
 
 <script>
-var myEditor = new YAHOO.widget.Editor('msgpost', {
-    height: '300px',
-    width: '522px',
-    dompath: true, //Turns on the bar at the bottom
-    animate: true //Animates the opening, closing and moving of Editor windows
+initSample();
+$(document).ready(function(){
+  $(".save").click(function(){
+    var data = CKEDITOR.instances.editor.getData();
+    console.log(data);
+  });
 });
-myEditor.render();
+ 
 </script>

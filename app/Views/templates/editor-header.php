@@ -9,21 +9,19 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="http://yui.yahooapis.com/3.18.1/build/yui/yui-min.js"></script>
-    <!-- <script src="public/assets/js/editor.js"></script> -->
-    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/assets/skins/sam/skin.css">
-    <!-- Utility Dependencies -->
-    <script src="http://yui.yahooapis.com/2.9.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>
-    <script src="http://yui.yahooapis.com/2.9.0/build/element/element-min.js"></script>
-    <!-- Needed for Menus, Buttons and Overlays used in the Toolbar -->
-    <script src="http://yui.yahooapis.com/2.9.0/build/container/container_core-min.js"></script>
-    <script src="http://yui.yahooapis.com/2.9.0/build/menu/menu-min.js"></script>
-    <script src="http://yui.yahooapis.com/2.9.0/build/button/button-min.js"></script>
-    <!-- Source file for Rich Text Editor-->
-    <script src="http://yui.yahooapis.com/2.9.0/build/editor/editor-min.js"></script>
     
+    <script src="public/assets/ckeditor/ckeditor.js"></script>
+	  <script src="public/assets/ckeditor/samples/js/sample.js"></script>
+    <link rel="stylesheet" href="public/assets/ckeditor/samples/css/samples.css">
+    <link rel="stylesheet" href="public/assets/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css">
+<!-- 
+    <script src="public/ckeditor.js"></script>
+	  <script src="js/sample.js"></script>
+	  <link rel="stylesheet" href="css/samples.css">
+	  <link rel="stylesheet" href="toolbarconfigurator/lib/codemirror/neo.css">
+     -->
 </head>
-<body class="yui-skin-sam">
+<body>
     <?php 
       $uri = service('uri');
     ?>

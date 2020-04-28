@@ -39,6 +39,60 @@ class Category extends BaseController
         echo view('templates/footer', $data);
     }
 
+    public function cafeStyleView(){
+        $data = [];
+        helper(['form']);
+
+        echo view('templates/header', $data);
+        echo view('cafe-style-view', $data);
+        echo view('templates/footer', $data);
+    }
+
+    public function blogStyle(){
+        $data = [];
+        helper(['form']);
+
+        echo view('templates/header', $data);
+        echo view('blog-style', $data);
+        echo view('templates/footer', $data);
+    }
+
+    public function cartoonStyle(){
+        $data = [];
+        helper(['form']);
+
+        echo view('templates/header', $data);
+        echo view('cartoon-style', $data);
+        echo view('templates/footer', $data); 
+    }
+
+    public function meetingStyle(){
+        $data = [];
+        helper(['form']);
+
+        echo view('templates/header', $data);
+        echo view('meeting-style', $data);
+        echo view('templates/footer', $data); 
+    }
+
+    public function settingsGallery(){
+        $data = [];
+        helper(['form']);
+
+        echo view('templates/header', $data);
+        echo view('settings-gallery', $data);
+        echo view('templates/footer', $data); 
+    }
+
+    public function settingsGallery1(){
+        $data = [];
+        helper(['form']);
+
+        echo view('templates/header', $data);
+        echo view('settings-gallery1', $data);
+        echo view('templates/footer', $data); 
+    }
+
 }
 
 

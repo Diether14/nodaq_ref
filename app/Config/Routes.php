@@ -46,7 +46,12 @@ $routes->get('article-publish', 'Users::article_publish', ['filter' => 'auth']);
 
 $routes->get('category-create', 'Category::categoryCreate', ['filter' => 'auth']);
 $routes->get('cafe-style', 'Category::cafeStyle', ['filter' => 'auth']);
-
+$routes->get('cafe-view', 'Category::cafeStyleView', ['filter' => 'auth']);
+$routes->get('blog-style', 'Category::blogStyle', ['filter' => 'auth']);
+$routes->get('cartoon-style', 'Category::cartoonStyle', ['filter' => 'auth']);
+$routes->get('meeting-style', 'Category::meetingStyle', ['filter' => 'auth']);
+$routes->get('settings-gallery', 'Category::settingsGallery', ['filter' => 'auth']);
+$routes->get('gallery-settings', 'Category::settingsGallery1', ['filter' => 'auth']);
 // $routes->group('users', function($routes)
 // {
 //         // $routes->add('users/create', 'Crud\Users::create');
