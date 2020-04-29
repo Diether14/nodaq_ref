@@ -1,5 +1,5 @@
 body{
-    background-color: #ffffff;
+    background-color: #E2E7EE;
     
 }
 html,
@@ -47,3 +47,30 @@ body {
 .bg-white {
     box-sizing: border-box none !important;
 }
+
+#sortable { list-style-type: none; margin: 0; padding: 0; width: 100%; }
+       
+       .btn-circle.btn-xl { 
+            width: 70px; 
+            height: 70px; 
+            padding: 10px 16px; 
+            border-radius: 35px; 
+            font-size: 12px; 
+            text-align: center; 
+        } 
+        .scrollb {
+          height:600px;
+          overflow-y: scroll;
+        }
+
+.card {
+ 
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  

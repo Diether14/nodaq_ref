@@ -52,6 +52,7 @@ $routes->get('cartoon-style', 'Category::cartoonStyle', ['filter' => 'auth']);
 $routes->get('meeting-style', 'Category::meetingStyle', ['filter' => 'auth']);
 $routes->get('settings-gallery', 'Category::settingsGallery', ['filter' => 'auth']);
 $routes->get('gallery-settings', 'Category::settingsGallery1', ['filter' => 'auth']);
+
 // $routes->group('users', function($routes)
 // {
 //         // $routes->add('users/create', 'Crud\Users::create');

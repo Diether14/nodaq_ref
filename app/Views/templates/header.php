@@ -2,122 +2,91 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <link rel="stylesheet" href="public/assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title></title>
-    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/assets/skins/sam/skin.css"> -->
-    
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
-    <!-- Utility Dependencies -->
-    <!-- <script src="http://yui.yahooapis.com/2.9.0/build/yahoo-dom-event/yahoo-dom-event.js"></script> -->
-    <!-- <script src="http://yui.yahooapis.com/2.9.0/build/element/element-min.js"></script> -->
-    <!-- Needed for Menus, Buttons and Overlays used in the Toolbar -->
-    <!-- <script src="http://yui.yahooapis.com/2.9.0/build/container/container_core-min.js"></script> -->
-    <!-- <script src="http://yui.yahooapis.com/2.9.0/build/menu/menu-min.js"></script> -->
-    <!-- <script src="http://yui.yahooapis.com/2.9.0/build/button/button-min.js"></script> -->
-    <!-- Source file for Rich Text Editor-->
-    <!-- <script src="http://yui.yahooapis.com/2.9.0/build/editor/editor-min.js"></script> -->
-    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
-    <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
-    <style>
-      #sortable { list-style-type: none; margin: 0; padding: 0; width: 100%; }
-       }
-       .btn-circle.btn-xl { 
-            width: 70px; 
-            height: 70px; 
-            padding: 10px 16px; 
-            border-radius: 35px; 
-            font-size: 12px; 
-            text-align: center; 
-        } 
-        .scrollb {
-          height:600px;
-          overflow-y: scroll;
-        }
-     
-      </style>
-      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <title>weendigo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="public/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
+    <link href="public/dist/css/flat-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap 4 requires Popper.js -->
+    <script src="https://unpkg.com/popper.js@1.14.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="http://vjs.zencdn.net/6.6.3/video.js"></script>
+    <script src="public/dist/scripts/flat-ui.js"></script>
 
 
 
 </head>
-<body>
+<body  style="background-color:#F0F0F0">
     <?php 
       $uri = service('uri');
     ?>
-    
-<nav class="navbar navbar-expand-lg navbar-light bg-dark bg-custom">
-  <div class="container ">
-  <a class="navbar-brand" href="/weendigo" style="font-weight:bold;font-size:36px;">WEENDI</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-  <?php if(session()->get('isLoggedIn')): ?>
-
-    <ul class="navbar-nav mr-auto">
-      <!-- <li class="nav-item <?= ($uri->getSegment(1) ==  'dashboard' ? 'active': null) ?>" >
-        <a class="nav-link" href="/weendigo/dashboard">Dashboard </a>
-      </li>
-      <li class="nav-item <?= ($uri->getSegment(1) ==  'profile' ? 'active': null) ?>" > 
-        <a class="nav-link" href="/weendigo/profile"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
-      </li> -->
-      <!-- <form class="ml-5 form-inline">
-        <input class="form-control mr-sm-1" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-light my-2 my-sm-0" type="submit"><i  class="fa fa-search" ></i></button>
-      </form>
-       -->
-    </ul>
-    <ul class="navbar-nav">
-    <!-- <a href="#"></a></li> -->
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <img class="img-responsive" src="https://www.stickpng.com/assets/images/588a64f5d06f6719692a2d13.png" width="50" height="50" alt="Contact customer">
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="/weendigo/profile">Settings</a>
-          <a class="dropdown-item" href="/weendigo/logout">Guest Book</a>
-          <a class="dropdown-item" href="/weendigo/logout">Authentication</a>
-          <a class="dropdown-item" href="/weendigo/logout">Emoticon Store</a>
-          
-        </div>
-      </li>
-    </ul>
-    <ul class="navbar-nav">
-    <!-- <a href="#"></a></li> -->
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <img class="img-responsive" src="https://img.pngio.com/deafult-profile-icon-png-image-free-download-searchpngcom-profile-icon-png-673_673.png" width="50" height="45" alt="Contact customer">
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="/weendigo/profile">Profile</a>
-          <a class="dropdown-item" href="/weendigo/logout">Logout</a>
-        </div>
-      </li>
-    </ul>
-    
-
-
-  <?php else: ?>
   
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item <?= ($uri->getSegment(1) ==  '' ? 'active': null) ?>" >
-        <a class="nav-link" href="/weendigo">Login </a>
-      </li>
-      <li class="nav-item <?= ($uri->getSegment(1) ==  'register' ? 'active': null) ?>">
-        <a class="nav-link" href="/weendigo/register">Register</a>
-      </li>
-      
+  <!-- <nav class="navbar navbar-default bg-white navbar-lg navbar-expand-lg" role="navigation"> -->
+  <nav class="navbar navbar-inverse navbar-embossed navbar-expand-lg" role="navigation">
+  <div class="container">
+  <a class="navbar-brand" href="/weendigo">Weendigo</a>
+  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-01"></button>
+  <div class="collapse navbar-collapse" id="navbar-collapse-01">
+
+  <?php if(session()->get('isLoggedIn')): ?>
+    <ul class="nav navbar-nav mr-auto">
+    <li class="<?= ($uri->getSegment(2) ==  'dashboard' ? 'active': null)?>"><a href="/weendigo">Home</a></li>
+    <li class="<?= ($uri->getSegment(2) ==  'register' ? 'active': null) ?>"><a href="/weendigo">Emoticon Store</a></li>
+    <li class="<?= ($uri->getSegment(2) ==  'register' ? 'active': null) ?>"><a href="/weendigo">Authentication</a></li>
+    <li class="<?= ($uri->getSegment(2) ==  'register' ? 'active': null) ?>"><a href="/weendigo">Guest Book</a></li>
+    <!-- <form class="navbar-form form-inline my-2 my-lg-0 " action="#" role="search" >
+      <div class="form-group">
+        <div class="input-group">
+          <input class="form-control border" id="navbarInput-01" type="search" placeholder="Search">
+          <span class="input-group-btn">
+            <button type="submit" class="btn border"><span class="fui-search"></span></button>
+          </span>
+        </div>
+      </div>
+    </form> -->
+      </ul>
+      <div class="collapse navbar-collapse justify-content-end">
+
+<div class="btn-group">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+    Profile
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="/weendigo/profile">Profile</a></li>
+    <li><a href="#">Settings</a></li>
+    <li class="divider"></li>
+    <li><a href="/weendigo/logout">Logout</a></li>
+  </ul>
+</div>
+
+</div>   
+   <?php else: ?>
+
+  
+<ul class="nav navbar-nav mr-auto">
+      <li class="<?= ($uri->getSegment(2) ==  '' ? 'active': null)?>"><a href="/weendigo">Login</a></li>
+      <li class="<?= ($uri->getSegment(2) ==  'register' ? 'active': null) ?>"><a href="/weendigo/register">Register</a></li>
     </ul>
+
+                          
+    <div class="collapse navbar-collapse justify-content-end">
+
+<div class="btn-group">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+    English
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="#">Profile</a></li>
+    <li><a href="#">Settings</a></li>
+    <li class="divider"></li>
+    <li><a href="/weendigo/logout">Logout</a></li>
+  </ul>
+</div>
+
+</div>    
     <?php endif; ?>
-    </div>
+  </div>
   </div>
 </nav>

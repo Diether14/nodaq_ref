@@ -1,8 +1,9 @@
 <div class="container">
+
     <div class="row">
-        <div class="col-12  col-sm-8 offset-sm-2 col-md-6 offset-md-3 mt-5 pt-3 pb-3 bg-white form-wrapper"> 
-        <div class="card mx-5 my-5">    
-        <h3 class="card-header">Login</h3>
+        <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3  form-wrapper"> 
+        <div class="card mx-5 my-5">
+            <div class="card-header">Login</div>
             <div class="card-body">
                 
                 <?php if(session()->get('success')): ?>
@@ -41,5 +42,5 @@
             </div>
         </div>
     </div>
-    <br><br><br><br><br><br>
+  <br><br><br>
 </div>

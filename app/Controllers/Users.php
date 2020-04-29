@@ -13,7 +13,7 @@ class Users extends BaseController
 
         echo view('templates/header', $data);
         echo view('login', $data);
-        echo view('templates/footer', $data);
+        // echo view('templates/footer', $data);
 
     }
     
@@ -96,7 +96,7 @@ class Users extends BaseController
 
         echo view('templates/header', $data);
         echo view('register', $data);
-        echo view('templates/footer', $data);
+        // echo view('templates/footer', $data);
     }
 
     public function profile(){
