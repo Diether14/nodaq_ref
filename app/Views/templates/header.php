@@ -4,38 +4,36 @@
     <meta charset="UTF-8">
 
     <link rel="stylesheet" href="public/assets/css/style.css">
-    <title>weendigo</title>
+    <title>Weendi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="public/dist/css/vendor/bootstrap.min.css" rel="stylesheet">
-    <link href="public/dist/css/flat-ui.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 
-    <!-- Bootstrap 4 requires Popper.js -->
-    <script src="https://unpkg.com/popper.js@1.14.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
-    <script src="http://vjs.zencdn.net/6.6.3/video.js"></script>
-    <script src="public/dist/scripts/flat-ui.js"></script>
+    <link href="public/user/assets/css/material-kit.css?v=2.0.7" rel="stylesheet" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="public/user/assets/demo/demo.css" rel="stylesheet" />
 
-
-
-</head>
-<body  style="background-color:#F0F0F0">
+<!-- <body  style="background-color:#F0F0F0">
     <?php 
-      $uri = service('uri');
+       $uri = service('uri');
     ?>
   
-  <!-- <nav class="navbar navbar-default bg-white navbar-lg navbar-expand-lg" role="navigation"> -->
-  <nav class="navbar navbar-inverse navbar-embossed navbar-expand-lg" role="navigation">
-  <div class="container">
-  <a class="navbar-brand" href="/weendigo">Weendigo</a>
-  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-01"></button>
-  <div class="collapse navbar-collapse" id="navbar-collapse-01">
 
   <?php if(session()->get('isLoggedIn')): ?>
-    <ul class="nav navbar-nav mr-auto">
-    <li class="<?= ($uri->getSegment(2) ==  'dashboard' ? 'active': null)?>"><a href="/weendigo">Home</a></li>
-    <li class="<?= ($uri->getSegment(2) ==  'register' ? 'active': null) ?>"><a href="/weendigo">Emoticon Store</a></li>
-    <li class="<?= ($uri->getSegment(2) ==  'register' ? 'active': null) ?>"><a href="/weendigo">Authentication</a></li>
-    <li class="<?= ($uri->getSegment(2) ==  'register' ? 'active': null) ?>"><a href="/weendigo">Guest Book</a></li>
+      <!-- <nav class="navbar navbar-default bg-white navbar-lg navbar-expand-lg" role="navigation"> -->
+    <!-- <nav class="navbar navbar-inverse navbar-embossed navbar-expand-lg" role="navigation">
+    <div class="container">
+    <a class="navbar-brand" href="/weendi">Weendi</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-01"></button>
+    <div class="collapse navbar-collapse" id="navbar-collapse-01"> -->
+
+
+    <!-- <ul class="nav navbar-nav mr-auto">
+    <li class="< ($uri->getSegment(2) ==  'dashboard' ? 'active': null)?>"><a href="/weendi">Home</a></li>
+    <li class="< ($uri->getSegment(2) ==  'register' ? 'active': null) ?>"><a href="/weendi">Emoticon Store</a></li>
+    <li class="< ($uri->getSegment(2) ==  'register' ? 'active': null) ?>"><a href="/weendi">Authentication</a></li>
+    <li class="< ($uri->getSegment(2) ==  'register' ? 'active': null) ?>"><a href="/weendi">Guest Book</a></li> -->
     <!-- <form class="navbar-form form-inline my-2 my-lg-0 " action="#" role="search" >
       <div class="form-group">
         <div class="input-group">
@@ -46,7 +44,7 @@
         </div>
       </div>
     </form> -->
-      </ul>
+      <!-- </ul>
       <div class="collapse navbar-collapse justify-content-end">
 
 <div class="btn-group">
@@ -54,20 +52,18 @@
     Profile
   </button>
   <ul class="dropdown-menu" role="menu">
-    <li><a href="/weendigo/profile">Profile</a></li>
+    <li><a href="/weendi/profile">Profile</a></li>
     <li><a href="#">Settings</a></li>
     <li class="divider"></li>
-    <li><a href="/weendigo/logout">Logout</a></li>
+    <li><a href="/weendi/logout">Logout</a></li>
   </ul>
 </div>
 
-</div>   
-   <?php else: ?>
+</div>    -->
 
-  
+<!--  
 <ul class="nav navbar-nav mr-auto">
-      <li class="<?= ($uri->getSegment(2) ==  '' ? 'active': null)?>"><a href="/weendigo">Login</a></li>
-      <li class="<?= ($uri->getSegment(2) ==  'register' ? 'active': null) ?>"><a href="/weendigo/register">Register</a></li>
+     
     </ul>
 
                           
@@ -85,8 +81,75 @@
   </ul>
 </div>
 
-</div>    
+</div>     -->
     <?php endif; ?>
+  <!-- </div>
   </div>
-  </div>
-</nav>
+</nav> --> 
+
+
+
+  <?php if(session()->get('isLoggedIn')): ?>
+
+    <body class="profile-page sidebar-collapse">
+<?php 
+      $uri = service('uri');
+    ?>
+
+
+   <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg" color-on-scroll="100">
+    <div class="container">
+      <div class="navbar-translate">
+        <a class="navbar-brand" href="/weendi/dashboard">
+          Weendi </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="sr-only">Weendi</span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+                    <a href="javascript:;" class="nav-link">
+                      Simple SNS
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="javascript:;" class="nav-link">
+                      Authentication
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="javascript:;" class="nav-link">
+                      Emoticon Store
+                    </a>
+                  </li>
+        <li class="dropdown nav-item">
+                    <a href="javascript:;" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown">
+                      <div class="profile-photo-small">
+                      <?php if(!empty($profile_photo['name'])): ?>  
+
+                        <img src="public/user/uploads/profiles/<?= $profile_photo['name'] ?>" alt="Circle Image" class="rounded-circle img-fluid">           
+          
+                        <?php else: ?>
+                        <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image" class="img-raised rounded-circle img-fluid" alt="avatar">
+                      
+                      <?php endif; ?>
+                       
+                      </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                    <!-- <a href="javascript:;" class="dropdown-item">John Smith</a> -->
+                      <a href="/weendi/profile" class="dropdown-item">Profile</a>
+                      <a href="/weendi/settings" class="dropdown-item">Settings</a>
+                     
+                      <a href="#"  data-toggle="modal" data-target="#logoutModal" class="dropdown-item">Sign out</a>
+                    </div>
+                  </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <?php endif; ?>

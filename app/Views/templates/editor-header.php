@@ -1,95 +1,161 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <link rel="stylesheet" href="public/assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title></title>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
+    <title>Weendi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+
+    <link href="public/user/assets/css/material-kit.css?v=2.0.7" rel="stylesheet" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="public/user/assets/demo/demo.css" rel="stylesheet" />
     <script src="public/assets/ckeditor/ckeditor.js"></script>
 	  <script src="public/assets/ckeditor/samples/js/sample.js"></script>
     <link rel="stylesheet" href="public/assets/ckeditor/samples/css/samples.css">
     <link rel="stylesheet" href="public/assets/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css">
-<!-- 
-    <script src="public/ckeditor.js"></script>
-	  <script src="js/sample.js"></script>
-	  <link rel="stylesheet" href="css/samples.css">
-	  <link rel="stylesheet" href="toolbarconfigurator/lib/codemirror/neo.css">
-     -->
-</head>
-<body>
+
+<!-- <body  style="background-color:#F0F0F0">
     <?php 
-      $uri = service('uri');
+       $uri = service('uri');
     ?>
-    
-<nav class="navbar navbar-expand-lg navbar-light bg-dark bg-custom">
-  <div class="container ">
-  <a class="navbar-brand" href="/weendigo" style="font-weight:bold;font-size:36px;">WEENDI</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+  
+
+  <?php if(session()->get('isLoggedIn')): ?>
+      <!-- <nav class="navbar navbar-default bg-white navbar-lg navbar-expand-lg" role="navigation"> -->
+    <!-- <nav class="navbar navbar-inverse navbar-embossed navbar-expand-lg" role="navigation">
+    <div class="container">
+    <a class="navbar-brand" href="/weendi">Weendi</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-01"></button>
+    <div class="collapse navbar-collapse" id="navbar-collapse-01"> -->
+
+
+    <!-- <ul class="nav navbar-nav mr-auto">
+    <li class="< ($uri->getSegment(2) ==  'dashboard' ? 'active': null)?>"><a href="/weendi">Home</a></li>
+    <li class="< ($uri->getSegment(2) ==  'register' ? 'active': null) ?>"><a href="/weendi">Emoticon Store</a></li>
+    <li class="< ($uri->getSegment(2) ==  'register' ? 'active': null) ?>"><a href="/weendi">Authentication</a></li>
+    <li class="< ($uri->getSegment(2) ==  'register' ? 'active': null) ?>"><a href="/weendi">Guest Book</a></li> -->
+    <!-- <form class="navbar-form form-inline my-2 my-lg-0 " action="#" role="search" >
+      <div class="form-group">
+        <div class="input-group">
+          <input class="form-control border" id="navbarInput-01" type="search" placeholder="Search">
+          <span class="input-group-btn">
+            <button type="submit" class="btn border"><span class="fui-search"></span></button>
+          </span>
+        </div>
+      </div>
+    </form> -->
+      <!-- </ul>
+      <div class="collapse navbar-collapse justify-content-end">
+
+<div class="btn-group">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+    Profile
   </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="/weendi/profile">Profile</a></li>
+    <li><a href="#">Settings</a></li>
+    <li class="divider"></li>
+    <li><a href="/weendi/logout">Logout</a></li>
+  </ul>
+</div>
+
+</div>    -->
+
+<!--  
+<ul class="nav navbar-nav mr-auto">
+     
+    </ul>
+
+                          
+    <div class="collapse navbar-collapse justify-content-end">
+
+<div class="btn-group">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+    English
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="#">Profile</a></li>
+    <li><a href="#">Settings</a></li>
+    <li class="divider"></li>
+    <li><a href="/weendigo/logout">Logout</a></li>
+  </ul>
+</div>
+
+</div>     -->
+    <?php endif; ?>
+  <!-- </div>
+  </div>
+</nav> --> 
+
+
+
   <?php if(session()->get('isLoggedIn')): ?>
 
-    <ul class="navbar-nav mr-auto">
-      <!-- <li class="nav-item <?= ($uri->getSegment(1) ==  'dashboard' ? 'active': null) ?>" >
-        <a class="nav-link" href="/weendigo/dashboard">Dashboard </a>
-      </li>
-      <li class="nav-item <?= ($uri->getSegment(1) ==  'profile' ? 'active': null) ?>" > 
-        <a class="nav-link" href="/weendigo/profile"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
-      </li> -->
-      <!-- <form class="ml-5 form-inline">
-        <input class="form-control mr-sm-1" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-light my-2 my-sm-0" type="submit"><i  class="fa fa-search" ></i></button>
-      </form>
-       -->
-    </ul>
-    <ul class="navbar-nav">
-    <!-- <a href="#"></a></li> -->
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <img class="img-responsive" src="https://www.stickpng.com/assets/images/588a64f5d06f6719692a2d13.png" width="50" height="50" alt="Contact customer">
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="/weendigo/profile">Settings</a>
-          <a class="dropdown-item" href="/weendigo/logout">Guest Book</a>
-          <a class="dropdown-item" href="/weendigo/logout">Authentication</a>
-          <a class="dropdown-item" href="/weendigo/logout">Emoticon Store</a>
+    <body class="profile-page sidebar-collapse">
+<?php 
+      $uri = service('uri');
+    ?>
+
+
+   <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg" color-on-scroll="100">
+    <div class="container">
+      <div class="navbar-translate">
+        <a class="navbar-brand" href="/weendi/dashboard">
+          Weendi </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="sr-only">Weendi</span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+                    <a href="javascript:;" class="nav-link">
+                      Simple SNS
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="javascript:;" class="nav-link">
+                      Authentication
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="javascript:;" class="nav-link">
+                      Emoticon Store
+                    </a>
+                  </li>
+        <li class="dropdown nav-item">
+                    <a href="javascript:;" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown">
+                      <div class="profile-photo-small">
+                      <?php if(!empty($profile_photo['name'])): ?>  
+
+                        <img src="public/user/uploads/profiles/<?= $profile_photo['name'] ?>" alt="Circle Image" class="rounded-circle img-fluid">           
           
-        </div>
-      </li>
-    </ul>
-    <ul class="navbar-nav">
-    <!-- <a href="#"></a></li> -->
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <img class="img-responsive" src="https://img.pngio.com/deafult-profile-icon-png-image-free-download-searchpngcom-profile-icon-png-673_673.png" width="50" height="45" alt="Contact customer">
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="/weendigo/profile">Profile</a>
-          <a class="dropdown-item" href="/weendigo/logout">Logout</a>
-        </div>
-      </li>
-    </ul>
-    
-
-
-  <?php else: ?>
-  
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item <?= ($uri->getSegment(1) ==  '' ? 'active': null) ?>" >
-        <a class="nav-link" href="/weendigo">Login </a>
-      </li>
-      <li class="nav-item <?= ($uri->getSegment(1) ==  'register' ? 'active': null) ?>">
-        <a class="nav-link" href="/weendigo/register">Register</a>
-      </li>
-      
-    </ul>
-    <?php endif; ?>
+                        <?php else: ?>
+                        <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image" class="img-raised rounded-circle img-fluid" alt="avatar">
+                      
+                      <?php endif; ?>
+                       
+                      </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                    <!-- <a href="javascript:;" class="dropdown-item">John Smith</a> -->
+                      <a href="/weendi/profile" class="dropdown-item">Profile</a>
+                      <a href="/weendi/settings" class="dropdown-item">Settings</a>
+                     
+                      <a href="#"  data-toggle="modal" data-target="#logoutModal" class="dropdown-item">Sign out</a>
+                    </div>
+                  </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+  <?php endif; ?>

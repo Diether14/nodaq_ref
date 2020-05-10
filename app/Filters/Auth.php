@@ -7,7 +7,7 @@ use CodeIgniter\Filters\FilterInterface;
 class Auth implements FilterInterface{
     public function before(RequestInterface $request){
         if(! session()->get('isLoggedIn')){
-            return redirect()->to('/weendigo');
+            return redirect()->to('/weendi');
         }
         
     }

@@ -35,11 +35,23 @@ $routes->get('logout', 'Users::logout');
 $routes->match(['get','post'],'register', 'Users::register', ['filter' => 'noauth']);
 $routes->match(['get','post'],'login', 'Users::login', ['filter' => 'noauth']);
 $routes->match(['get','post'],'profile', 'Users::profile', ['filter' => 'auth']);
+$routes->match(['get','post'],'settings', 'Users::settings', ['filter' => 'auth']);
+$routes->match(['get','post'],'update_profile', 'Users::update_profile', ['filter' => 'auth']);
+$routes->match(['get','post'],'update_mode', 'Users::update_mode', ['filter' => 'auth']);
+$routes->match(['get','post'],'save_post', 'Users::save_post', ['filter' => 'auth']);
+$routes->match(['get','post'],'add_comment', 'Users::add_comment', ['filter' => 'auth']);
+
+
+
 // $routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth']);
-$routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth']);
-$routes->get('blog', 'Users::blog', ['filter' => 'auth']);
+$routes->get('dashboard', 'Users::dashboard', ['filter' => 'auth']);
+$routes->get('post', 'Users::post', ['filter' => 'auth']);
+$routes->get('blog-view', 'Users::blog_view', ['filter' => 'auth']);
+$routes->get('blog-view/(:num)', 'Users::blog_view/$1', ['filter' => 'auth']);
 $routes->get('cafe', 'Users::cafe', ['filter' => 'auth']);
 $routes->get('cartoon-novel', 'Users::cartoonnovel', ['filter' => 'auth']);
+$routes->get('settings', 'Users::settings', ['filter' => 'auth']);
+
 
 $routes->get('article', 'Users::article', ['filter' => 'auth']);
 $routes->get('article-publish', 'Users::article_publish', ['filter' => 'auth']);
@@ -53,6 +65,36 @@ $routes->get('meeting-style', 'Category::meetingStyle', ['filter' => 'auth']);
 $routes->get('settings-gallery', 'Category::settingsGallery', ['filter' => 'auth']);
 $routes->get('gallery-settings', 'Category::settingsGallery1', ['filter' => 'auth']);
 
+
+//administrator
+$routes->get('/admin', 'Admin::index', ['filter' => 'auth']);
+$routes->get('/create-community', 'Admin::create_community', ['filter' => 'auth']);
+$routes->get('/community-table', 'Admin::community_table', ['filter' => 'auth']);
+
+//admin functions
+$routes->match(['get','post'],'save_community', 'Admin::save_community', ['filter' => 'auth']);
+$routes->match(['get','post'],'update_community', 'Admin::update_community', ['filter' => 'auth']);
+$routes->get('delete_community/(:num)', 'Admin::delete_community/$1', ['filter' => 'auth']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//picture
+$routes->match(['get','post'],'change_profile', 'Users::change_profile');
+$routes->match(['get','post'],'change_cover', 'Users::change_cover');
 // $routes->group('users', function($routes)
 // {
 //         // $routes->add('users/create', 'Crud\Users::create');

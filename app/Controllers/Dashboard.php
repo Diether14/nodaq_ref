@@ -8,7 +8,7 @@ class Dashboard extends BaseController
 {
     public function index()
     {
-        // ini_set('display_errors', 1);
+        ini_set('display_errors', 1);
         $data = [];
         helper(['form']);
 

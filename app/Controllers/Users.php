@@ -1,13 +1,27 @@
 <?php namespace App\Controllers;
 
+use CodeIgniter\HTTP\RequestInterface;
+use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\UserModel;
+use App\Models\UseripModel;
+use App\Models\ProfilephotoModel;
+use App\Models\CoverphotoModel;
+use App\Models\UsersettingsModel;
+use App\Models\UserspostModel;
+use App\Models\PostcommentsModel;
+
 
 class Users extends BaseController
 {
+    public function __construct(){
+        helper('iptracker');
+    }
+    
 	public function index()
 	{
-        // ini_set('display_errors', 1);
-
+        ini_set('display_errors', 1);
+        // get_ip_address();
+        
         $data = [];
         helper(['form']);
 
@@ -16,7 +30,7 @@ class Users extends BaseController
         // echo view('templates/footer', $data);
 
     }
-    
+
     public function login(){
         // if ($this->request->getMethod() == 'post') {
         // }
@@ -33,19 +47,51 @@ class Users extends BaseController
         
         if (! $this->validate($rules, $errors)) {
             $data['validation'] = $this->validator;
-            return redirect()->to('weendigo/');
+            return redirect()->to('weendi/');
         }else{
             $model = new UserModel();
 
             $user = $model->where('email', $this->request->getVar('email'))
                           ->first();
+            
+           
+            
+            $ip_model = new UseripModel();
+          
+            $user_ip = $ip_model->select(['ip'])->where('user_id',  $user['id'])
+            ->findAll();
 
-            $this->setUserSession($user);
+            if(count($user_ip) <= '10'){
+    
+                $users_ip = flatten($user_ip);
 
-            return redirect()->to('/weendigo/dashboard');
+                if( get_ip_address() != in_array(get_ip_address(), $users_ip, TRUE)){
+                    $data = [
+                        'user_id' => $user['id'],
+                        'ip'  => get_ip_address(),
+                        ];
+            
+                        $save =$ip_model->insert($data);
+                }
+                $this->setUserSession($user);
+                if($user['user_type'] == '3'){
+                    return redirect()->to('admin');
+                }elseif($user['user_type'] == '0'){
+                    return redirect()->to('/weendi/dashboard');
+                }else{
+                    return redirect()->to('weendi/');
+                }
 
+                
+            }else{
+                return redirect()->to('weendi/');
+            }
+            
         }
+
+
     }
+
 
     
     private function setUserSession($user){
@@ -68,6 +114,8 @@ class Users extends BaseController
 
         if ($this->request->getMethod() == 'post') {
             $rules = [
+                // 'firstname' => 'required|min_length[3]|max_length[20]',
+                // 'lastname' => 'required|min_length[3]|max_length[20]',
                 'nickname' => 'required|min_length[3]|max_length[20]',
                 'email' => 'required|min_length[6]|max_length[50]|valid_email|is_unique[users.email]',
                 'password' => 'required|min_length[8]|max_length[255]',
@@ -81,6 +129,8 @@ class Users extends BaseController
                 $model = new UserModel();
 
                 $newData = [
+                    // 'firstname' => $this->request->getVar('firstname'),
+                    // 'lastname' => $this->request->getVar('lastname'),
                     'nickname' => $this->request->getVar('nickname'),
                     'email' => $this->request->getVar('email'),
                     'password' => $this->request->getVar('password')
@@ -88,7 +138,7 @@ class Users extends BaseController
                 $model->save($newData);
                 $session = session();
                 $session->setFlashdata('success', 'Successful Registration');
-                return redirect()->to('/weendigo');
+                return redirect()->to('/weendi');
             
             }
         }
@@ -99,14 +149,14 @@ class Users extends BaseController
         // echo view('templates/footer', $data);
     }
 
-    public function profile(){
+	public function settings()
+	{
         ini_set('display_errors', 1);
-
+        // get_ip_address();
         
         $data = [];
         helper(['form']);
         $model = new UserModel();
-
         if ($this->request->getMethod() == 'post') {
             $rules = [
                 'nickname' => 'required|min_length[3]|max_length[20]',
@@ -134,31 +184,157 @@ class Users extends BaseController
                 $model->save($newData);
                 // $session = session();
                 session()->setFlashdata('success', 'Successful Updated');
-                return redirect()->to('/weendigo/profile');
+                return redirect()->to('/weendi/settings');
             
             }
         }
 
+        $profile_photo = new ProfilephotoModel();
+        $data['profile_photo'] = $profile_photo->where('user_id', session()->get('id'))
+            ->first();
+
+        $user_settings = new UsersettingsModel();
+
+        $data['user_settings'] = $user_settings->where('user_id', session()->get('id'))
+            ->first();
+
+        echo view('templates/header', $data);
+        echo view('settings', $data);
+        echo view('templates/footer', $data);
+
+    }
+    public function profile(){
+        ini_set('display_errors', 1);
+
+
+        $data = [];
+        helper(['form']);
+        $model = new UserModel();
+
+        // if ($this->request->getMethod() == 'post') {
+        //     $rules = [
+        //         'nickname' => 'required|min_length[3]|max_length[20]',
+        //     ];
+            
+        //     if($this->request->getPost('password') != ''){
+        //         $rules['password'] = 'required|min_length[8]|max_length[255]';
+        //         $rules['password_confirm'] = 'matches[password]';
+                
+        //     }
+
+        //     if (! $this->validate($rules)) {
+        //         $data['validation'] = $this->validator;
+        //     }else{
+
+        //         $newData = [
+        //             'id' => session()->get('id'),
+        //             'nickname' => $this->request->getPost('nickname'),
+        //         ];
+
+        //         if($this->request->getPost('password') != ''){
+        //             $newData['password'] = $this->request->getPost('password');
+        //         }
+
+        //         $model->save($newData);
+        //         // $session = session();
+        //         session()->setFlashdata('success', 'Successful Updated');
+        //         return redirect()->to('/weendi/profile');
+            
+        //     }
+        // }
+        $profile_photo = new ProfilephotoModel();
+        $cover_photo = new CoverphotoModel();
+        $users_setting = new UsersettingsModel();
+        $users_post = new UserspostModel();
+
+
+        $data['profile_photo'] = $profile_photo->where('user_id', session()->get('id'))
+            ->first();
+        $data['cover_photo'] = $cover_photo->where('user_id', session()->get('id'))
+            ->first();
+        
+        $data['users_settings'] = $users_setting->where('user_id', session()->get('id'))
+            ->first();
+
+        $data['users_post'] = $users_post->where('user_id', session()->get('id'))
+            ->findAll();
+
+        // test($data['users_post']);
+
         $data['user'] = $model->where('id', session()->get('id'))->first();
+
         echo view('templates/header', $data);
         echo view('profile');
         echo view('templates/footer');
     }
 
-    public function logout(){
-        session()->destroy();
-        return redirect()->to('/weendigo');
+    public function update_profile(){
+        ini_set('display_errors', 1);
+
+
+        $data = [];
+        helper(['form']);
+        $model = new UserModel();
+
+        if ($this->request->getMethod() == 'post') {
+            $rules = [
+                // 'firstname' => 'required|min_length[3]|max_length[20]',
+                // 'lastname' => 'required|min_length[3]|max_length[20]',
+                'nickname' => 'required|min_length[3]|max_length[20]',
+            ];
+  
+            if (! $this->validate($rules)) {
+                $data['validation'] = $this->validator;
+            }else{
+
+                $newData = [
+                    'id' => session()->get('id'),
+                    // 'firstname' => $this->request->getPost('firstname'),
+                    // 'lastname' => $this->request->getPost('lastname'),
+                    'nickname' => $this->request->getPost('nickname'),
+                ];
+
+                $model->save($newData);
+                // $session = session();
+                session()->setFlashdata('success', 'Successful Updated');
+                return redirect()->to('/weendi/profile');
+            
+            }
+        }        
     }
 
-    public function blog(){
+    public function logout(){
+        session()->destroy();
+        return redirect()->to('/weendi');
+    }
+
+    public function post(){
         $data = [];
         helper(['form']);
 
+        $profile_photo = new ProfilephotoModel();
+        $data['profile_photo'] = $profile_photo->where('user_id', session()->get('id'))
+            ->first();
         echo view('templates/editor-header', $data);
-        echo view('users/blog', $data);
+        echo view('post', $data);
         echo view('templates/editor-footer', $data);
-      
         
+    }
+
+    public function save_post(){
+        ini_set('display_errors', 1);
+        helper(['form', 'url']);
+        $model = new UserspostModel();
+
+        $data = array(
+            'user_id' => session()->get('id'),
+            'title' => $this->request->getPost('title'),
+            'content' => $this->request->getPost('content'),
+ 
+        );
+
+        $insert = $model->save($data);
+        echo json_encode(array("status" => TRUE));
     }
 
     public function cafe(){
@@ -200,6 +376,253 @@ class Users extends BaseController
         echo view('templates/footer', $data);
     }
 
+    public function form(){
+        ini_set('display_errors', 1);
+        $data = [];
+        helper(['form']);
+
+    
+        echo view("users/form");
+        
+    }
+
+    public function change_profile()
+    {  
+        ini_set('display_errors', 1);
+
+        helper(['form', 'url']);
+         
+     $db      = \Config\Database::connect();
+         $builder = $db->table('profile_photo');
+ 
+         $validated = $this->validate([
+            'file' => [
+                'uploaded[file]',
+                'mime_in[file,image/jpg,image/jpeg,image/gif,image/png]',
+                'max_size[file,4096]',
+            ],
+        ]);
+
+        $msg = 'Please select a valid file';
+  
+        if ($validated) {
+            $avatar = $this->request->getFile('file');
+            $avatar->move('public/user/uploads/profiles');
+ 
+            $model = new UserModel();
+
+
+          $data = [
+            'user_id' => session()->get('id'),
+            'name' =>  $avatar->getClientName(),
+            'type'  => $avatar->getClientMimeType()
+          ];
+          
+          $profile_photo = new ProfilephotoModel();
+  
+          $profile_datas = $profile_photo->where('user_id', session()->get('id'))
+              ->first();
+
+          if(!empty($profile_datas)){
+            $save = $builder->where('user_id', session()->get('id'))->update($data);
+            $msg = 'File has been updated';
+
+          }else{
+            $save = $builder->insert($data);
+            $msg = 'File has been uploaded';
+          }
+
+       
+        }
+ 
+       return redirect()->to( base_url('/profile') )->with('msg', $msg);
+ 
+    }
+
+    public function change_cover()
+    {  
+        ini_set('display_errors', 1);
+
+        helper(['form', 'url']);
+         
+     $db      = \Config\Database::connect();
+         $builder = $db->table('cover_photo');
+ 
+        $validated = $this->validate([
+            'file' => [
+                'uploaded[file]',
+                'mime_in[file,image/jpg,image/jpeg,image/gif,image/png]',
+                'max_size[file,4096]',
+            ],
+        ]);
+ 
+        $msg = 'Please select a valid file';
+  
+        if ($validated) {
+            $avatar = $this->request->getFile('file');
+            $avatar->move('public/user/uploads/covers');
+ 
+            $model = new UserModel();
+
+
+          $data = [
+            'user_id' => session()->get('id'),
+            'name' =>  $avatar->getClientName(),
+            'type'  => $avatar->getClientMimeType()
+          ];
+ 
+         
+          $cover_photo = new CoverphotoModel();
+  
+          $cover_datas = $cover_photo->where('user_id', session()->get('id'))
+              ->first();
+          
+              if(!empty($cover_datas)){
+                $save = $builder->where('user_id', session()->get('id'))->update($data);
+                $msg = 'File has been updated';
+              }else{
+                $save = $builder->insert($data);
+                $msg = 'File has been uploaded';
+              }
+
+        }
+ 
+       return redirect()->to( base_url('/profile') )->with('msg', $msg);
+ 
+    }
+
+    public function update_mode(){
+        ini_set('display_errors', 1);
+
+        helper(['form', 'url']);
+        if($this->request->getPost('mode') == 'on'){
+            $mode = '1';
+        }else{
+            $mode = '0';
+        }
+        
+        if($this->request->getPost('nickname') == 'on'){
+            $nickname = '1';
+        }else{
+            $nickname = '0';
+        }
+        
+        $model = new UsersettingsModel();
+
+        $data = [
+            'user_id' => session()->get('id'),
+            'user_mode' => $mode,
+            'user_nickname' => $nickname
+        ];
+        
+        $user_settings = $model->where('user_id', session()->get('id'))
+        ->first();
+
+        if($user_settings){
+            if($model
+            ->where('user_id', [session()->get('id')])
+            ->set($data )
+            ->update()){
+                session()->setFlashdata('success_nickname', 'Successfully Updated');
+            }
+        }else{
+            if($model->save($data)){
+                 session()->setFlashdata('success_nickname', 'Successfully Updated');
+            }
+        }
+     
+         return redirect()->to( base_url('/settings') );
+ 
+    }
+
+    public function dashboard(){
+        ini_set('display_errors', 1);
+       
+        $data = [];
+        helper(['form']);
+
+        $model = new UserspostModel();
+          
+        $data['blog'] = $model->where('user_id',  session()->get('id'))
+        ->findAll();
+
+        $profile_photo = new ProfilephotoModel();
+        $data['profile_photo'] = $profile_photo->where('user_id', session()->get('id'))
+            ->first();
+
+        $db      = \Config\Database::connect();
+        $builder = $db->table('community');
+    
+        $builder->select('*');
+        $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
+    
+        $query   = $builder->get();
+        $data['community_list'] = $query->getResult();
+
+        echo view('templates/header', $data);
+        echo view('dashboard', $data);
+        echo view('templates/footer', $data);
+
+    }
+
+    public function blog_view($id = NULL){
+        ini_set('display_errors', 1);
+
+        $data = [];
+        helper(['form', 'url']);
+        // $db      = \Config\Database::connect();
+        // $builder = $db->table('profile_photo');
+        // $query   = $builder->get(); 
+
+        // test($query);
+
+        $model = new UserspostModel();
+    
+
+        $data['blog'] = $model->where('id', $id)->first();
+    
+        $profile_photo = new ProfilephotoModel();
+        $data['profile_photo'] = $profile_photo->where('user_id', session()->get('id'))
+            ->first();
+        // $user_model = new UserModel();
+        
+
+        $post_model = new PostcommentsModel();
+        
+        $data['post_comments'] = $post_model->where('post_id', $id)->findAll();
+
+        
+         
+        
+  
+      
+        echo view('blog-view', $data);
+
+
+    }
+
+    public function add_comment(){
+        ini_set('display_errors', 1);
+
+        $data = [];
+        helper(['form']);
+
+        $model = new PostcommentsModel;
+
+        $data = [
+            'user_id' => session()->get('id'),
+            'post_id' => $this->request->getPost('post_id'),
+            'content' => $this->request->getPost('content')
+        ];
+
+        $msg = 'Successfully Added';
+
+        if($model->save($data)){
+            return redirect()->to( base_url("/blog-view/".$data['post_id']) )->with('msg', $msg);
+        }
+
+ 
+    }
 	//--------------------------------------------------------------------
 
 }
