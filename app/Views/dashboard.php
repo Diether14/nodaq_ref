@@ -16,29 +16,30 @@
     <div class="container">
       
       <div class="section text-center">
-        <h2 class="title">Category</h2>
+        <h2 class="title">Select Community</h2>
         <div class="team">
           <div class="row">
             <?php foreach ($community_list as $key => $value): ?>
-            <div class="col-md-4">
+           
+              <div class="col-md-4">
               <div class="team-player">
                 
                 <div class="card card-plain">
+      
+                    <h4 class="card-title">
                   
-                  <h4 class="card-title">
+                    <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-bars pl-3" style="float:left;"></i></a>
+                    <a href="community-join/<?= $value->id;  ?>"><?= $value->title ?> </a></h4>
                     
-                  <a data-toggle="modal" data-target="#myModal"><i class="fa fa-bars pl-3" style="float:left;"></i></a>
-                  <?= $value->title ?></h4>
-
-                  <div class="view overlay">
-                  <img class="card-img-top rounded-0" src="public/admin/uploads/community/<?= $value->name ?>" alt="Card image cap">
-                  <a href="#!">
-                    <div class="mask rgba-white-slight"></div>
-                  </a>
-                </div>
+                    <div class="view overlay">
+                    <img class="card-img-top rounded-0" src="public/admin/uploads/community/<?= $value->name ?>" alt="Card image cap">
+                    <a href="#!">
+                      <div class="mask rgba-white-slight"></div>
+                    </a>
+                  </div>
 
 
-                  <div class="card-body">
+                  <div class="card-body" >
                     <p class="card-description"><?= $value->content ?>
                       </p>
                   </div>
@@ -54,6 +55,7 @@
                 </div>
               </div>
             </div>
+           
             <?php endforeach; ?>
             
           </div>

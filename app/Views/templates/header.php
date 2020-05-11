@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
 
-    <link rel="stylesheet" href="public/assets/css/style.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>/public/assets/css/style.css">
     <title>Weendi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 
-    <link href="public/user/assets/css/material-kit.css?v=2.0.7" rel="stylesheet" />
+    <link href="<?= base_url(); ?>/public/user/assets/css/material-kit.css?v=2.0.7" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="public/user/assets/demo/demo.css" rel="stylesheet" />
+    <link href="<?= base_url(); ?>/public/user/assets/demo/demo.css" rel="stylesheet" />
 
 <!-- <body  style="background-color:#F0F0F0">
     <?php 
@@ -131,7 +131,7 @@
                       <div class="profile-photo-small">
                       <?php if(!empty($profile_photo['name'])): ?>  
 
-                        <img src="public/user/uploads/profiles/<?= $profile_photo['name'] ?>" alt="Circle Image" class="rounded-circle img-fluid">           
+                        <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $profile_photo['name'] ?>" alt="Circle Image" class="rounded-circle img-fluid">           
           
                         <?php else: ?>
                         <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image" class="img-raised rounded-circle img-fluid" alt="avatar">

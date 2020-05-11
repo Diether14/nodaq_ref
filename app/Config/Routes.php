@@ -40,7 +40,7 @@ $routes->match(['get','post'],'update_profile', 'Users::update_profile', ['filte
 $routes->match(['get','post'],'update_mode', 'Users::update_mode', ['filter' => 'auth']);
 $routes->match(['get','post'],'save_post', 'Users::save_post', ['filter' => 'auth']);
 $routes->match(['get','post'],'add_comment', 'Users::add_comment', ['filter' => 'auth']);
-
+$routes->match(['get','post'],'join_community', 'Category::join_community', ['filter' => 'auth']);
 
 
 // $routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth']);
@@ -64,7 +64,7 @@ $routes->get('cartoon-style', 'Category::cartoonStyle', ['filter' => 'auth']);
 $routes->get('meeting-style', 'Category::meetingStyle', ['filter' => 'auth']);
 $routes->get('settings-gallery', 'Category::settingsGallery', ['filter' => 'auth']);
 $routes->get('gallery-settings', 'Category::settingsGallery1', ['filter' => 'auth']);
-
+$routes->get('community-join/(:num)', 'Category::community_join/$1', ['filter' => 'auth']);
 
 //administrator
 $routes->get('/admin', 'Admin::index', ['filter' => 'auth']);
@@ -74,6 +74,7 @@ $routes->get('/community-table', 'Admin::community_table', ['filter' => 'auth'])
 //admin functions
 $routes->match(['get','post'],'save_community', 'Admin::save_community', ['filter' => 'auth']);
 $routes->match(['get','post'],'update_community', 'Admin::update_community', ['filter' => 'auth']);
+$routes->match(['get','post'],'update_community_photo', 'Admin::update_community_photo', ['filter' => 'auth']);
 $routes->get('delete_community/(:num)', 'Admin::delete_community/$1', ['filter' => 'auth']);
 
 

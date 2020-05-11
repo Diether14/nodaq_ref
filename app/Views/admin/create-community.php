@@ -39,7 +39,10 @@
                     <span class="toggle"></span>
                     Private Community
                   </label>
-                </div>
+            </div>
+
+            <label for="color">Select your theme color:</label>
+            <input type="color" name="color" value="#FFFFFF">
             <hr>
             <button type="submit" class="btn btn-primary">Save Community</button>
 

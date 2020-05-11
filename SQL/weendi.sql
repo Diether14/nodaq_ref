@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2020 at 05:47 PM
+-- Generation Time: May 11, 2020 at 06:10 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -35,6 +35,7 @@ CREATE TABLE `community` (
   `title` varchar(255) NOT NULL,
   `community_type` int(11) NOT NULL COMMENT '0 = public, 1 = private',
   `content` varchar(255) NOT NULL,
+  `color` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -43,10 +44,11 @@ CREATE TABLE `community` (
 -- Dumping data for table `community`
 --
 
-INSERT INTO `community` (`id`, `user_id`, `com_photo_id`, `title`, `community_type`, `content`, `created_at`, `updated_at`) VALUES
-(23, 26, 24, 'Test Community', 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', '2020-05-10 23:29:08', '2020-05-10 23:29:08'),
-(24, 26, 25, 'Test Community 2', 0, 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book', '2020-05-10 23:29:38', '2020-05-10 23:29:38'),
-(25, 26, 26, 'Test Private', 1, 'It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged', '2020-05-10 23:30:22', '2020-05-10 23:30:22');
+INSERT INTO `community` (`id`, `user_id`, `com_photo_id`, `title`, `community_type`, `content`, `color`, `created_at`, `updated_at`) VALUES
+(23, 26, 24, 'Test Community', 1, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', '#11309b', '2020-05-10 23:29:08', '2020-05-10 23:29:08'),
+(24, 26, 25, 'Test Community', 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', '#ffffff', '2020-05-10 23:29:38', '2020-05-10 23:29:38'),
+(25, 26, 26, 'Test Community', 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', '#f08e91', '2020-05-10 23:30:22', '2020-05-10 23:30:22'),
+(26, 26, 27, 'Test Community', 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', '#f08e91', '2020-05-11 18:40:25', '2020-05-11 18:40:25');
 
 -- --------------------------------------------------------
 
@@ -67,9 +69,10 @@ CREATE TABLE `community_photo` (
 --
 
 INSERT INTO `community_photo` (`id`, `name`, `type`, `created_at`, `updated_at`) VALUES
-(24, 'Chrysanthemum.jpg', '', '2020-05-10 23:29:08', '2020-05-10 23:29:08'),
+(24, 'Koala.jpg', '', '2020-05-10 23:29:08', '2020-05-10 23:29:08'),
 (25, 'Desert.jpg', '', '2020-05-10 23:29:38', '2020-05-10 23:29:38'),
-(26, 'Jellyfish.jpg', '', '2020-05-10 23:30:21', '2020-05-10 23:30:21');
+(26, 'Jellyfish.jpg', '', '2020-05-10 23:30:21', '2020-05-10 23:30:21'),
+(27, 'Tulips.jpg', '', '2020-05-11 18:40:25', '2020-05-11 18:40:25');
 
 -- --------------------------------------------------------
 
@@ -214,6 +217,28 @@ INSERT INTO `users` (`id`, `pk`, `firstname`, `lastname`, `nickname`, `email`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `users_community`
+--
+
+CREATE TABLE `users_community` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `community_id` int(11) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users_community`
+--
+
+INSERT INTO `users_community` (`id`, `user_id`, `community_id`, `created_at`, `updated_at`) VALUES
+(2, 18, 26, '2020-05-11 23:10:32', '2020-05-11 23:10:32'),
+(3, 18, 23, '2020-05-12 00:07:02', '2020-05-12 00:07:02');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users_ip`
 --
 
@@ -334,6 +359,12 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users_community`
+--
+ALTER TABLE `users_community`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users_ip`
 --
 ALTER TABLE `users_ip`
@@ -359,13 +390,13 @@ ALTER TABLE `user_settings`
 -- AUTO_INCREMENT for table `community`
 --
 ALTER TABLE `community`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `community_photo`
 --
 ALTER TABLE `community_photo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `cover_photo`
@@ -402,6 +433,12 @@ ALTER TABLE `profile_photo`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT for table `users_community`
+--
+ALTER TABLE `users_community`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users_ip`

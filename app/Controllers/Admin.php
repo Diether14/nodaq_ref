@@ -45,7 +45,7 @@ class Admin extends BaseController
 
         $rules = [
             'title' => 'required|min_length[3]|max_length[20]',
-            'content' => 'required|min_length[3]|max_length[500]',
+            'content' => 'required|min_length[3]|max_length[500]'
         ];
 
         $msg = 'Please select a valid file';
@@ -79,7 +79,8 @@ class Admin extends BaseController
                     'user_id' => session()->get('id'),
                     'title' => $this->request->getPost('title'),
                     'content' => $this->request->getPost('content'),
-                    'community_type' => $community_type
+                    'community_type' => $community_type,
+                    'color' => $this->request->getPost('color')
                     ];
                 
                 if($model->insert($newData)){
@@ -138,7 +139,7 @@ class Admin extends BaseController
         $db      = \Config\Database::connect();
         $builder = $db->table('community');
 
-        $builder->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.updated_at, community_photo.name');
+        $builder->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.updated_at, community.color, community_photo.name');
         $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
 
         $query   = $builder->get();
@@ -159,6 +160,7 @@ class Admin extends BaseController
             'content' => 'required|min_length[3]|max_length[500]',
         ];
 
+
         if(! $this->validate($rules)){
             $msg = $this->validator;
         }else{
@@ -176,12 +178,45 @@ class Admin extends BaseController
                     'user_id' => session()->get('id'),
                     'title' => $this->request->getPost('title'),
                     'content' => $this->request->getPost('content'),
-                    'community_type' => $community_type
+                    'community_type' => $community_type,
+                    'color' => $this->request->getPost('color'),
                     ];
                 
                 if($model->update($id,$newData)){
-                    $msg = 'Successfully added!';   
+                    $msg = 'Successfully updated!';   
                 }
+        }
+
+        return redirect()->to( 'community-table')->with('msg', $msg);
+    }
+
+    public function update_community_photo(){
+        ini_set('display_errors', 1);
+        helper(['form', 'url']);
+
+        $community_photo = new CommunityphotoModel;
+        $photo_id = $this->request->getPost('com_photo_id');
+
+        
+        $validated = $this->validate([
+           'file' => [
+               'uploaded[file]',
+               'mime_in[file,image/jpg,image/jpeg,image/gif,image/png]',
+               'max_size[file,4096]',
+           ],
+       ]);
+       $msg = 'Please select a valid file';
+
+       if ($validated ) {
+        $avatar = $this->request->getFile('file');
+        $avatar->move('public/admin/uploads/community');
+
+        $data = [
+            'name' =>  $avatar->getClientName(),
+            'type'  => $avatar->getClientMimeType()
+        ];
+        $community_photo->update($photo_id ,$data);
+        $msg = 'Update Successfuly!';
         }
 
         return redirect()->to( 'community-table')->with('msg', $msg);

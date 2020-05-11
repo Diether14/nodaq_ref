@@ -553,7 +553,7 @@ class Users extends BaseController
         $db      = \Config\Database::connect();
         $builder = $db->table('community');
     
-        $builder->select('*');
+        $builder->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.updated_at, community.color, community_photo.name');
         $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
     
         $query   = $builder->get();
@@ -623,6 +623,8 @@ class Users extends BaseController
 
  
     }
+
+
 	//--------------------------------------------------------------------
 
 }
