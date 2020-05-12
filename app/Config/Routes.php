@@ -41,7 +41,7 @@ $routes->match(['get','post'],'update_mode', 'Users::update_mode', ['filter' => 
 $routes->match(['get','post'],'save_post', 'Users::save_post', ['filter' => 'auth']);
 $routes->match(['get','post'],'add_comment', 'Users::add_comment', ['filter' => 'auth']);
 $routes->match(['get','post'],'join_community', 'Category::join_community', ['filter' => 'auth']);
-
+$routes->match(['get','post'],'report_post', 'Category::report_post', ['filter' => 'auth']);
 
 // $routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth']);
 $routes->get('dashboard', 'Users::dashboard', ['filter' => 'auth']);

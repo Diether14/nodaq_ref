@@ -7,6 +7,7 @@
     <title>Weendi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 
@@ -14,10 +15,27 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="<?= base_url(); ?>/public/user/assets/demo/demo.css" rel="stylesheet" />
 
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <script src="<?= base_url(); ?>/public/assets/ckeditor/ckeditor.js"></script>
+	  <script src="<?= base_url(); ?>/public/assets/ckeditor/samples/js/sample.js"></script>
+    <!-- <link rel="stylesheet" href="<?= base_url(); ?>/public/assets/ckeditor/samples/css/samples.css"> -->
+    <link rel="stylesheet" href="<?= base_url(); ?>/public/assets/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css">
+
+    <style>
+    .rounded-circle {
+    border-radius: 50% !important;
+    width: 50px;
+    height: 39px;
+    background-position: center center;
+    background-size: cover;
+}
+
+    </style>
 <!-- <body  style="background-color:#F0F0F0">
     <?php 
        $uri = service('uri');
-    ?>
+    ?>  
   
 
   <?php if(session()->get('isLoggedIn')): ?>

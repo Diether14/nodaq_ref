@@ -20,7 +20,7 @@
             <div class="form-group ">
             <div class="input-group">
                 <input type="text" id="title" name="title" class="form-control" placeholder="Blog title..."
-                  value="<?=  $user['nickname']; ?>" required>
+                  value="" required>
               </div>
             </div>
         </div>

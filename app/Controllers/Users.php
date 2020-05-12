@@ -330,6 +330,7 @@ class Users extends BaseController
             'user_id' => session()->get('id'),
             'title' => $this->request->getPost('title'),
             'content' => $this->request->getPost('content'),
+            'community_id' => $this->request->getPost('community_id'),
  
         );
 
@@ -594,9 +595,11 @@ class Users extends BaseController
         
          
         
-  
-      
+        echo view('templates/header', $data);
         echo view('blog-view', $data);
+        echo view('templates/footer', $data);
+      
+
 
 
     }

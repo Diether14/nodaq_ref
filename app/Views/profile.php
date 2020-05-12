@@ -17,6 +17,26 @@
     opacity: 0.9;
     cursor: pointer;
   }
+
+  .img-circle {
+    border-radius: 50%;
+}
+.img-circle {
+    border-radius: 0;
+}
+.profile-page .profile img {
+    max-width: 200px !important;
+    width: 100%;
+    margin: 0 auto;
+    
+    transform: translate3d(0, -50%, 0);
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background-position: center center;
+    background-size: cover;
+}
+
 </style>
 <?php if(!empty($cover_photo['name'])): ?>
 
@@ -39,15 +59,15 @@
                 <?php if(!empty($profile_photo['name'])): ?>
 
                 <img src="public/user/uploads/profiles/<?= $profile_photo['name'] ?>" alt="Circle Image"
-                  class="img-raised rounded-circle img-fluid" alt="avatar">
+                  class="img-raised rounded-circle img-fluid img-thumbnail" alt="avatar">
 
                 <?php else: ?>
                 <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image"
-                  class="img-raised rounded-circle img-fluid" alt="avatar">
+                  class="img-raised rounded-circle img-fluid img-thumbnail" alt="avatar" width="304" height="236">
 
                 <?php endif; ?>
                 <!-- <div class="img-circle"><img src="http://placehold.it/200x200" /></div> -->
-              </div>
+              </div><br>
 
               <div class="name">
                 <div class="text-center">

@@ -4,19 +4,21 @@ $(document).ready(function(){
     $( "#save_post" ).click(function() {
         
         var title = $("input[name=title]").val();
+        var community_id = $("input[name=community_id]").val();
         var content = CKEDITOR.instances.editor.getData();
         
         var data = {
             'title': title,
-            'content': content
+            'content': content,
+            'community_id': community_id
         }
-        
+
         if(title == ''  || content == ''){
             alert('Please fill out the fields!')
         }else{
             $.ajax({
                 type: "POST",
-                url  : "save_post",
+                url  : "../save_post",
                 data: data,
                 dataType: "JSON",
                 success: function(data)

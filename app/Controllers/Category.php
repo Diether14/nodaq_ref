@@ -7,6 +7,7 @@ use App\Models\ProfilephotoModel;
 use App\Models\CommunityModel;
 use App\Models\CommunityphotoModel;
 use App\Models\UserscommunityModel;
+use App\Models\UserspostModel;
 
 class Category extends BaseController
 {
@@ -121,6 +122,10 @@ class Category extends BaseController
         $model = new UserscommunityModel;
 
         $data['users_community'] = $model->where(['user_id' => session()->get('id'), 'community_id' => $id])->first();
+
+        $post = new UserspostModel();
+
+        $data['posts'] = $post->where('community_id', $id)->findAll();
 
         echo view('templates/header', $data);
         echo view('community-join', $data);
