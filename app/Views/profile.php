@@ -191,7 +191,7 @@
               <button class="btn btn-primary">Create Post</button></a>
         </div>
           <?php foreach ($users_post as $key => $value): ?> 
-          <a href="/weendi/blog-view/<?= $value['id']; ?>">
+          <a href="/weendi/post-view/<?= $value['id']; ?>">
           <div class="card promoting-card card-plain">
             <!-- Card content -->
             <div class="card-body d-flex flex-row">

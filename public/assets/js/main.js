@@ -6,11 +6,13 @@ $(document).ready(function(){
         var title = $("input[name=title]").val();
         var community_id = $("input[name=community_id]").val();
         var content = CKEDITOR.instances.editor.getData();
+        var desc = $("textarea[name=description]").val();
         
         var data = {
             'title': title,
             'content': content,
-            'community_id': community_id
+            'community_id': community_id,
+            'description': desc
         }
 
         if(title == ''  || content == ''){

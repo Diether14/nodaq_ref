@@ -98,7 +98,7 @@
 
                   <div class="row">
                     <?php foreach ($blog as $key => $value): ?>
-                    <a href="/weendi/blog-view/<?= $value['id']; ?>">
+                    <a href="/weendi/post-view/<?= $value['id']; ?>">
                       <div class="col-lg-4 mb-4">
                         <div class="card h-100 text-center">
                           <img class="card-img-top" src="http://placehold.it/750x450" alt="">

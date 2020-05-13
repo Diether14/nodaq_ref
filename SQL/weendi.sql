@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2020 at 06:14 PM
+-- Generation Time: May 13, 2020 at 06:09 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -270,6 +270,7 @@ CREATE TABLE `users_post` (
   `user_id` int(11) NOT NULL,
   `community_id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
   `content` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -279,11 +280,32 @@ CREATE TABLE `users_post` (
 -- Dumping data for table `users_post`
 --
 
-INSERT INTO `users_post` (`id`, `user_id`, `community_id`, `title`, `content`, `created_at`, `updated_at`) VALUES
-(3, 18, 0, 'test', '<h1>Hello world!</h1>\n\n<p>I&#39;m an instance of <a href=\"https://ckeditor.com\">CKEditor</a>.</p>\n', '2020-05-05 23:56:51', '2020-05-05 23:56:51'),
-(4, 18, 0, 'test blog', '<h1>Hello world!</h1>\n\n<p>Lorem lorem ipsum ampis telemis tals mons lorem lorem ipslam ipsum&nbsp;telemis tals mons lorem lorem ipslam ipsum&nbsp;telemis tals mons lorem lorem ipslam ipsum&nbsp;telemis tals mons lorem lorem ipslam ipsum&nbsp;telemis tals ', '2020-05-06 22:53:51', '2020-05-06 22:53:51'),
-(7, 18, 0, 'test', '<h1>Hello world!</h1>\n\n<p>I&#39;m an instance of <a href=\"https://ckeditor.com\">CKEditor</a>.</p>\n', '2020-05-09 23:12:36', '2020-05-09 23:12:36'),
-(8, 18, 23, 'test', '<h1>Hello world!</h1>\n\n<p>I&#39;m an instance of <a href=\"https://ckeditor.com\">CKEditor</a>.</p>\n', '2020-05-12 23:14:03', '2020-05-12 23:14:03');
+INSERT INTO `users_post` (`id`, `user_id`, `community_id`, `title`, `description`, `content`, `created_at`, `updated_at`) VALUES
+(9, 18, 23, 'Test Post', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', '<h1>Hello world!</h1>\n\n<p>I&#39;m an instance of <a href=\"https://ckeditor.com\">CKEditor</a>.</p>\n', '2020-05-13 21:07:47', '2020-05-13 21:07:47');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_report`
+--
+
+CREATE TABLE `users_report` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `community_id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `report_content` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users_report`
+--
+
+INSERT INTO `users_report` (`id`, `user_id`, `community_id`, `post_id`, `report_content`, `created_at`, `updated_at`) VALUES
+(1, 18, 23, 8, 'This post is spamming', '2020-05-13 19:14:41', '2020-05-13 19:14:41'),
+(2, 18, 23, 9, 'Test report content!', '2020-05-13 23:42:27', '2020-05-13 23:42:27');
 
 -- --------------------------------------------------------
 
@@ -379,6 +401,12 @@ ALTER TABLE `users_post`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users_report`
+--
+ALTER TABLE `users_report`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user_settings`
 --
 ALTER TABLE `user_settings`
@@ -452,7 +480,13 @@ ALTER TABLE `users_ip`
 -- AUTO_INCREMENT for table `users_post`
 --
 ALTER TABLE `users_post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `users_report`
+--
+ALTER TABLE `users_report`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user_settings`

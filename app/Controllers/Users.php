@@ -9,6 +9,7 @@ use App\Models\CoverphotoModel;
 use App\Models\UsersettingsModel;
 use App\Models\UserspostModel;
 use App\Models\PostcommentsModel;
+use App\Models\UsersreportModel;
 
 
 class Users extends BaseController
@@ -331,7 +332,7 @@ class Users extends BaseController
             'title' => $this->request->getPost('title'),
             'content' => $this->request->getPost('content'),
             'community_id' => $this->request->getPost('community_id'),
- 
+            'description' => $this->request->getPost('description')
         );
 
         $insert = $model->save($data);
@@ -566,7 +567,7 @@ class Users extends BaseController
 
     }
 
-    public function blog_view($id = NULL){
+    public function post_view($id = NULL){
         ini_set('display_errors', 1);
 
         $data = [];
@@ -592,11 +593,13 @@ class Users extends BaseController
         
         $data['post_comments'] = $post_model->where('post_id', $id)->findAll();
 
-        
+        $report = new UsersreportModel();
+
+        $data['report'] = $report->where(['user_id' => session()->get('id'),  'post_id' => $id])->first();
          
-        
+
         echo view('templates/header', $data);
-        echo view('blog-view', $data);
+        echo view('post-view', $data);
         echo view('templates/footer', $data);
       
 
@@ -621,7 +624,7 @@ class Users extends BaseController
         $msg = 'Successfully Added';
 
         if($model->save($data)){
-            return redirect()->to( base_url("/blog-view/".$data['post_id']) )->with('msg', $msg);
+            return redirect()->to( base_url("/post-view/".$data['post_id']) )->with('msg', $msg);
         }
 
  

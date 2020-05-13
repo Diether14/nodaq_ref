@@ -61,7 +61,7 @@
 
               </td>
               <td><a href="#" class="community_photo" data-toggle="modal" data-target="#update_photo<?= $key ?>"><img
-                    src="public/admin/uploads/community/<?= $value->name; ?>" alt="" height="120" width="120"></a></td>
+                    src="public/admin/uploads/community/<?= $value->name; ?>" alt="" height="100" width="120"></a></td>
               <td>
                 <div class="card p-4" style="background-color:<?= $value->color; ?>"></div><?= $value->color; ?>
               </td>

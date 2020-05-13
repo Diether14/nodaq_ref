@@ -46,8 +46,8 @@ $routes->match(['get','post'],'report_post', 'Category::report_post', ['filter' 
 // $routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth']);
 $routes->get('dashboard', 'Users::dashboard', ['filter' => 'auth']);
 $routes->get('post', 'Users::post', ['filter' => 'auth']);
-$routes->get('blog-view', 'Users::blog_view', ['filter' => 'auth']);
-$routes->get('blog-view/(:num)', 'Users::blog_view/$1', ['filter' => 'auth']);
+$routes->get('post-view', 'Users::post_view', ['filter' => 'auth']);
+$routes->get('post-view/(:num)', 'Users::post_view/$1', ['filter' => 'auth']);
 $routes->get('cafe', 'Users::cafe', ['filter' => 'auth']);
 $routes->get('cartoon-novel', 'Users::cartoonnovel', ['filter' => 'auth']);
 $routes->get('settings', 'Users::settings', ['filter' => 'auth']);
@@ -70,6 +70,7 @@ $routes->get('community-join/(:num)', 'Category::community_join/$1', ['filter' =
 $routes->get('/admin', 'Admin::index', ['filter' => 'auth']);
 $routes->get('/create-community', 'Admin::create_community', ['filter' => 'auth']);
 $routes->get('/community-table', 'Admin::community_table', ['filter' => 'auth']);
+$routes->get('/reports-list', 'Admin::reports_list', ['filter' => 'auth']);
 
 //admin functions
 $routes->match(['get','post'],'save_community', 'Admin::save_community', ['filter' => 'auth']);

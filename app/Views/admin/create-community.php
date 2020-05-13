@@ -27,6 +27,7 @@
             <div class="form-group">
               <input type="text" name="title" class="form-control" placeholder="Title">
             </div>
+          
             <div class="form-group">
               <textarea name="content" class="form-control" cols="30" rows="10" placeholder="Content"></textarea>
             </div>

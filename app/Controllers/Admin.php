@@ -3,13 +3,25 @@
 use App\Models\UserModel;
 use App\Models\CommunityModel;
 use App\Models\CommunityphotoModel;
+use App\Models\UserspostModel;
+use App\Models\UsersreportModel;
 
 class Admin extends BaseController
 {
 	public function index()
 	{
+        ini_set('display_errors', 1);
         $data = [];
         helper(['form']);
+
+        $community = new CommunityModel;
+        $posts = new UserspostModel;
+        $reports = new UsersreportModel();
+
+        $data['community'] = $community->countAll();
+        $data['posts'] = $posts->countAll();
+        $data['reports'] = $reports->countAll();
+
 
         echo view('admin/templates/header', $data);
         echo view('admin/index', $data);
@@ -241,6 +253,26 @@ class Admin extends BaseController
         }
         
         return redirect()->to( '/weendi/community-table')->with('msg', $msg);
+    }
+
+    public function reports_list(){
+        ini_set('display_errors', 1);
+        $data = [];
+        helper(['form']);
+
+
+        $db      = \Config\Database::connect();
+        $builder = $db->table('users_report');
+        
+        $builder->select('users_report.id, users_report.user_id, users_report.community_id, users_report.post_id, users_report.report_content, users.nickname, users_report.updated_at, users_post.title');
+        $builder->join('users', 'users_report.user_id = users.id');
+        $builder->join('users_post', 'users_report.post_id = users_post.id');
+        $query   = $builder->get();
+        $data['reports_list'] = $query->getResult();
+
+        echo view('admin/templates/header', $data);
+        echo view('admin/post-reports-table', $data);
+        echo view('admin/templates/footer', $data);
     }
 
 

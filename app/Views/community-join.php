@@ -59,7 +59,7 @@
       <hr>
       <div class="row">
         <div class="col-md-12">
-          <div class="card card-nav-tabs card-plain">
+          <div class="card">
             <div class="card-header card-header-primary">
               <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
               <div class="nav-tabs-navigation">
@@ -95,7 +95,7 @@
                     <div class="col-md-7">
                       <div class="card ">
                         <div class="card-body d-flex">
-                          <div class="profile-photo-small p-1">
+                          <div class="profile-photo-small p-1 ">
                             <?php if(!empty($profile_photo['name'])): ?>
 
                             <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $profile_photo['name'] ?>"
@@ -112,40 +112,31 @@
                           <button class="btn btn-block btn-primary" data-toggle="modal" data-target="#myModal">
                             Create Post</button>
                         </div>
-                      </div>
+                      </div><hr>
 
+                 
                       <?php foreach($posts as $key => $value): ?>
-                      <a href="/weendi/blog-view/<?= $value['id']; ?>">
+                      <a href="/weendi/post-view/<?= $value['id']; ?>">
                       <div class="team-player">
-
-                        <div class="card card-plain">
-
-                          <h4 class="card-title p-2">
-
-                            <!-- <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image"
-                              class="img-raised rounded-circle img-fluid" alt="avatar"> -->
-                                <?= $value['title']; ?></h4>
-                               
-                            </p>
-                          <div class="view overlay">
-                            <img class="card-img-top rounded-0" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
-                              alt="Card image cap">
-                            <a href="#!">
-                              <div class="mask rgba-white-slight"></div>
-                            </a>
-                          </div>
-
-
-                          <div class="card-body">
-                          <p class="card-description"><?= $value['content'] ?>
-                          </div>
-                          <div class="card-footer justify-content-center">
-                            
-                          </div>
+                        <div class="card p-3">
+          
+                          <h4 class="card-title"><?= $value['title']; ?>
+                            <br>
+                            <small class="card-description text-muted">Posted By:</small>
+                          </h4>
+                          
+                            <p class="card-description"><?= $value['description'] ?></p>
+                         
+                          <div class="justify-content-left">
+                            <a href="#" class="btn btn-link btn-just-icon"><i class="fa fa-eye"></i></a>
+                            <a href="#" class="btn btn-link btn-just-icon"><i class="fa fa-comment"></i></a>
+                            <a href="#" class="btn btn-link btn-just-icon"><i class="fa fa-share"></i></a>
+                         
                         </div>
                       </div>
-                      <?php endforeach; ?>
-                      </a>
+                      </div>
+                              </a>
+                              <?php endforeach; ?>
                     </div>
 
                   </div>
@@ -188,19 +179,26 @@
         <div class="card container">
           <div class="form-group ">
             <div class="input-group">
-              <input type="text" id="title" name="title" class="form-control" placeholder="Blog title..." value=""
+              <input type="text" id="title" name="title" class="form-control" placeholder="Title..." value=""
                 required>
             </div>
           </div>
         </div>
+        <div class="card container">
+        <div class="form-group">
+              <textarea  name="description" class="form-control" placeholder="Description..." cols="30" rows="5"></textarea>
+          </div>
+        </div>
+
         <div class="card my-auto mx-auto">
+        <h4 class="h4 p-3">Post Content</h4>
           <div id="editor">
             <h1>Hello world!</h1>
             <p>I'm an instance of <a href="https://ckeditor.com">CKEditor</a>.</p>
           </div>
 
         </div>
-        <div>
+        <!-- <div> -->
           <!-- <div class="card container p-3">
         <div class="input-group">
               <input type="file" name="file" class="text-center center-block file-upload" accept=".png, .jpg, .jpeg">
