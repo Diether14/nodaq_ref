@@ -71,6 +71,9 @@ $routes->get('/admin', 'Admin::index', ['filter' => 'auth']);
 $routes->get('/create-community', 'Admin::create_community', ['filter' => 'auth']);
 $routes->get('/community-table', 'Admin::community_table', ['filter' => 'auth']);
 $routes->get('/reports-list', 'Admin::reports_list', ['filter' => 'auth']);
+$routes->get('/users-list', 'Admin::users_list', ['filter' => 'auth']);
+$routes->get('/community-users/(:num)', 'Admin::community_users/$1', ['filter' => 'auth']);
+
 
 //admin functions
 $routes->match(['get','post'],'save_community', 'Admin::save_community', ['filter' => 'auth']);

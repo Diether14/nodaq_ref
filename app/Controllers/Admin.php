@@ -5,6 +5,8 @@ use App\Models\CommunityModel;
 use App\Models\CommunityphotoModel;
 use App\Models\UserspostModel;
 use App\Models\UsersreportModel;
+use App\Models\ProfilephotoModel;
+use App\Models\UserscommunityModel;
 
 class Admin extends BaseController
 {
@@ -273,6 +275,51 @@ class Admin extends BaseController
         echo view('admin/templates/header', $data);
         echo view('admin/post-reports-table', $data);
         echo view('admin/templates/footer', $data);
+    }
+
+    public function users_list(){
+        ini_set('display_errors', 1);
+        $data = [];
+        helper(['form']);
+
+        $users = new UserModel;
+        $data['users'] = $users->where('user_type', 0)->findAll();
+
+        $profile_photo = new ProfilephotoModel;
+        $data['profile_photo'] = $profile_photo->findAll();
+        // echo '<pre>';
+        // var_dump($data['profile_photo']);exit;
+
+        echo view('admin/templates/header', $data);
+        echo view('admin/users', $data);
+        echo view('admin/templates/footer', $data);
+        
+    }
+
+
+
+    public function community_users($id = null){
+        ini_set('display_errors', 1);
+        
+        $data = [];
+        helper(['form']);
+
+        $community = new CommunityModel;
+
+        $data['community'] = $community->where('id', $id)->first();
+         
+        $model = new UserscommunityModel;
+        $data['users_community'] = $model->select('user_id')->where('community_id', $id)->findAll();
+
+        
+        //should use whereIN
+        $users = new UserModel;
+        $data['users'] = $users->where('id', $data['users_community'][0]['user_id'])->first();
+
+        echo view('admin/templates/header', $data);
+        echo view('admin/community-users', $data);
+        echo view('admin/templates/footer', $data);
+
     }
 
 
