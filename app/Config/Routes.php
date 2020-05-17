@@ -42,6 +42,8 @@ $routes->match(['get','post'],'save_post', 'Users::save_post', ['filter' => 'aut
 $routes->match(['get','post'],'add_comment', 'Users::add_comment', ['filter' => 'auth']);
 $routes->match(['get','post'],'join_community', 'Category::join_community', ['filter' => 'auth']);
 $routes->match(['get','post'],'report_post', 'Category::report_post', ['filter' => 'auth']);
+$routes->match(['get','post'],'share_post', 'Category::share_post', ['filter' => 'auth']);
+
 
 // $routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth']);
 $routes->get('dashboard', 'Users::dashboard', ['filter' => 'auth']);
@@ -80,6 +82,7 @@ $routes->match(['get','post'],'save_community', 'Admin::save_community', ['filte
 $routes->match(['get','post'],'update_community', 'Admin::update_community', ['filter' => 'auth']);
 $routes->match(['get','post'],'update_community_photo', 'Admin::update_community_photo', ['filter' => 'auth']);
 $routes->get('delete_community/(:num)', 'Admin::delete_community/$1', ['filter' => 'auth']);
+$routes->match(['get', 'post'], 'community_ban_user', 'Admin::community_ban_user', ['filter' => 'auth']);
 
 
 

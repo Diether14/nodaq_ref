@@ -9,6 +9,7 @@ use App\Models\CommunityphotoModel;
 use App\Models\UserscommunityModel;
 use App\Models\UserspostModel;
 use App\Models\UsersreportModel;
+use App\Models\UserssharedpostModel;
 
 class Category extends BaseController
 {
@@ -171,6 +172,28 @@ class Category extends BaseController
             'post_id' => $this->request->getPost('post_id'),
             'community_id' => $community_id,
             'report_content' => $this->request->getPost('report_content')
+        ];
+
+        if($model->insert($data)){
+            $msg = 'Reported!';
+            return redirect()->to( base_url().'/post-view/'.$community_id)->with('msg', $msg);
+        }
+
+    }
+
+    public function share_post(){
+        ini_set('display_errors', 1);
+        $data = [];
+        helper(['form', 'url']);
+
+        $model = new UserssharedpostModel;
+
+        $community_id = $this->request->getPost('community_id');
+        $data = [
+            'user_id' => session()->get('id'),
+            'post_id' => $this->request->getPost('post_id'),
+            'community_id' => $community_id,
+            'content' => $this->request->getPost('share_content')
         ];
 
         if($model->insert($data)){

@@ -7,6 +7,7 @@ use App\Models\UserspostModel;
 use App\Models\UsersreportModel;
 use App\Models\ProfilephotoModel;
 use App\Models\UserscommunityModel;
+use App\Models\CommunitybannedusersModel;
 
 class Admin extends BaseController
 {
@@ -319,6 +320,29 @@ class Admin extends BaseController
         echo view('admin/templates/header', $data);
         echo view('admin/community-users', $data);
         echo view('admin/templates/footer', $data);
+
+    }
+
+    public function community_ban_user(){
+        ini_set('display_errors', 1);
+        
+        $data = [];
+        helper(['form']);
+
+        $data = [
+            'user_id' => $this->request->getPost('user_id'),
+            'community_id' => $this->request->getPost('community_id'), 
+            'reason' => $this->request->getPost('reason')
+        ];
+
+        $model = new CommunitybannedusersModel();
+
+        
+        if($model->insert($data)){
+            $msg = 'User has been banned!';
+        }
+
+        return redirect()->to( '/weendi/community-table')->with('msg', $msg);
 
     }
 

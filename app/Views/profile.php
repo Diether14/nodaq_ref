@@ -20,23 +20,24 @@
 
   .img-circle {
     border-radius: 50%;
-}
-.img-circle {
+  }
+
+  .img-circle {
     border-radius: 0;
-}
-.profile-page .profile img {
+  }
+
+  .profile-page .profile img {
     max-width: 200px !important;
     width: 100%;
     margin: 0 auto;
-    
+
     transform: translate3d(0, -50%, 0);
     width: 180px;
     height: 180px;
     border-radius: 50%;
     background-position: center center;
     background-size: cover;
-}
-
+  }
 </style>
 <?php if(!empty($cover_photo['name'])): ?>
 
@@ -83,14 +84,13 @@
                 </div>
                 <?php endif ?>
                 <div class="text-center profile-name mt-3 mb-3" data-toggle="modal" data-target="#profilename">
-                  <span class="h3 title"><?php echo $user['nickname']  ?></span><br><span class="small"
-                    class="h3"> 
-                      <?php if($user_settings['user_mode'] == '1'): ?>
-                        (Anonymous)
-                      <?php else: ?>
+                  <span class="h3 title"><?php echo $user['nickname']  ?></span><br><span class="small" class="h3">
+                    <?php if($user_settings['user_mode'] == '1'): ?>
+                    (Anonymous)
+                    <?php else: ?>
 
-                      <?php endif; ?>
-                    </span>
+                    <?php endif; ?>
+                  </span>
                   <?php if(session()->get('success')): ?>
                   <div class="alert alert-success" role="alert">
                     <?= session()->get('success') ?>
@@ -106,285 +106,293 @@
             </div>
 
           </div>
-<!-- 
           <div class="card">
-            <div class="text-center">
-              <h1>Side</h1>
+            <div class="row ">
+              <div class="col-md-12 ml-auto mr-auto">
+                <div class="profile-tabs">
+                  <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" href="#studio" role="tab" data-toggle="tab">
+                        <i class="material-icons">camera</i> Lorem
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#works" role="tab" data-toggle="tab">
+                        <i class="material-icons">palette</i> Lorem
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#favorite" role="tab" data-toggle="tab">
+                        <i class="material-icons">favorite</i> Lorem
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
-          </div> -->
+            <div class="tab-content tab-space">
+              <div class="tab-pane active text-center gallery" id="studio">
+                <div class="row">
+                  <div class="col-md-3 ml-auto">
+                    <img src="public/user/assets/img/examples/studio-1.jpg" class="rounded">
+                    <img src="public/user/assets/img/examples/studio-2.jpg" class="rounded">
+                  </div>
+                  <div class="col-md-3 mr-auto">
+                    <img src="public/user/assets/img/examples/studio-5.jpg" class="rounded">
+                    <img src="public/user/assets/img/examples/studio-4.jpg" class="rounded">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane text-center gallery" id="works">
+                <div class="row">
+                  <div class="col-md-3 ml-auto">
+                    <img src="public/user/assets/img/examples/olu-eletu.jpg" class="rounded">
+                    <img src="public/user/assets/img/examples/clem-onojeghuo.jpg" class="rounded">
+                    <img src="public/user/assets/img/examples/cynthia-del-rio.jpg" class="rounded">
+                  </div>
+                  <div class="col-md-3 mr-auto">
+                    <img src="public/user/assets/img/examples/mariya-georgieva.jpg" class="rounded">
+                    <img src="public/user/assets/img/examples/clem-onojegaw.jpg" class="rounded">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane text-center gallery" id="favorite">
+                <div class="row">
+                  <div class="col-md-3 ml-auto">
+                    <img src="public/user/assets/img/examples/mariya-georgieva.jpg" class="rounded">
+                    <img src="public/user/assets/img/examples/studio-3.jpg" class="rounded">
+                  </div>
+                  <div class="col-md-3 mr-auto">
+                    <img src="public/user/assets/img/examples/clem-onojeghuo.jpg" class="rounded">
+                    <img src="public/user/assets/img/examples/olu-eletu.jpg" class="rounded">
+                    <img src="public/user/assets/img/examples/studio-1.jpg" class="rounded">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
         </div>
 
         <div class="col-md-8 ">
-        <div class="card">
-        <div class="row ">
-            <div class="col-md-6 ml-auto mr-auto">
-              <div class="profile-tabs">
-                <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
-                  <li class="nav-item">
-                    <a class="nav-link active" href="#studio" role="tab" data-toggle="tab">
-                      <i class="material-icons">camera</i> Lorem
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#works" role="tab" data-toggle="tab">
-                      <i class="material-icons">palette</i> Lorem
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#favorite" role="tab" data-toggle="tab">
-                      <i class="material-icons">favorite</i> Lorem
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="tab-content tab-space">
-            <div class="tab-pane active text-center gallery" id="studio">
-              <div class="row">
-                <div class="col-md-3 ml-auto">
-                  <img src="public/user/assets/img/examples/studio-1.jpg" class="rounded">
-                  <img src="public/user/assets/img/examples/studio-2.jpg" class="rounded">
+          <h2 class="title">Community Joined</h1>
+          <div class="row">
+          <?php foreach ($community_list as $key => $value): ?>
+
+          <div class="col-md-4">
+            <div class="team-player">
+
+              <div class="card card-plain">
+
+                <h4 class="card-title">
+
+                  <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-bars pl-3"
+                      style="float:left;"></i></a>
+                  <a href="community-join/<?= $value->id;  ?>"><?= $value->title ?> </a></h4>
+
+                <div class="view overlay">
+                  <img class="card-img-top rounded-0" src="public/admin/uploads/community/<?= $value->name ?>"
+                    alt="Card image cap">
+                  <a href="#!">
+                    <div class="mask rgba-white-slight"></div>
+                  </a>
                 </div>
-                <div class="col-md-3 mr-auto">
-                  <img src="public/user/assets/img/examples/studio-5.jpg" class="rounded">
-                  <img src="public/user/assets/img/examples/studio-4.jpg" class="rounded">
-                </div>
-              </div>
-            </div>
-            <div class="tab-pane text-center gallery" id="works">
-              <div class="row">
-                <div class="col-md-3 ml-auto">
-                  <img src="public/user/assets/img/examples/olu-eletu.jpg" class="rounded">
-                  <img src="public/user/assets/img/examples/clem-onojeghuo.jpg" class="rounded">
-                  <img src="public/user/assets/img/examples/cynthia-del-rio.jpg" class="rounded">
-                </div>
-                <div class="col-md-3 mr-auto">
-                  <img src="public/user/assets/img/examples/mariya-georgieva.jpg" class="rounded">
-                  <img src="public/user/assets/img/examples/clem-onojegaw.jpg" class="rounded">
-                </div>
-              </div>
-            </div>
-            <div class="tab-pane text-center gallery" id="favorite">
-              <div class="row">
-                <div class="col-md-3 ml-auto">
-                  <img src="public/user/assets/img/examples/mariya-georgieva.jpg" class="rounded">
-                  <img src="public/user/assets/img/examples/studio-3.jpg" class="rounded">
-                </div>
-                <div class="col-md-3 mr-auto">
-                  <img src="public/user/assets/img/examples/clem-onojeghuo.jpg" class="rounded">
-                  <img src="public/user/assets/img/examples/olu-eletu.jpg" class="rounded">
-                  <img src="public/user/assets/img/examples/studio-1.jpg" class="rounded">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> 
-        </div>
 
 
-
-        <div class="col-md-12 card">
-        <div class="card card-plain">
-          <a href="/weendi/post">
-              <button class="btn btn-primary">Create Post</button></a>
-        </div>
-          <?php foreach ($users_post as $key => $value): ?> 
-          <a href="/weendi/post-view/<?= $value['id']; ?>">
-          <div class="card promoting-card card-plain">
-            <!-- Card content -->
-            <div class="card-body d-flex flex-row">
-              <!-- Avatar -->
-              <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" class="rounded-circle mr-3" height="50px" width="50px" alt="avatar">
-              <!-- Content -->
-              <div>
-                <!-- Title -->
-                <?php if($users_settings['user_nickname'] == '1' && $users_settings['user_mode'] == '1'): ?> 
-                  
-                  <h4 class="card-title font-weight-bold mb-2">Anonymous</h4>
-                
-                <?php else: ?>
-                
-                  <h4 class="card-title font-weight-bold mb-2"><?= $user['nickname'] ?></h4>
-                
-                <?php endif;?>
-                <!-- Subtitle -->
-       
-                <p class="card-text small"><i class="far fa-clock pr-2"></i>07/24/2018</p>
-                </div>
-            </div>
-            <!-- Card image -->
-            <div class="view overlay">
-              <img class="card-img-top rounded-0" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/full page/2.jpg" alt="Card image cap">
-              <a href="#!">
-                <div class="mask rgba-white-slight"></div>
-              </a>
-            </div>
-            <!-- Card content -->
-            <div class="card-body">
-              <div class="collapse-content">
-                <!-- Text -->
                 <div class="card-body">
-                  <h4 class="card-title"><?= $value['title'] ?></h4>
-                  <h6 class="card-subtitle mb-2 text-muted">Position</h6>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum ipsum fugiat odio officiis odit.</p>
+                  <p class="card-description"><?= $value->content ?>
+                  </p>
                 </div>
-                <!-- Button -->
-                <!-- <a class="btn btn-flat red-text p-1 my-1 mr-0 mml-1 collapsed" data-toggle="collapse" href="#collapseContent" aria-expanded="false" aria-controls="collapseContent"></a>
-                <i class="fas fa-share-alt text-muted float-right p-1 my-1" data-toggle="tooltip" data-placement="top" title="Share this post"></i>
-                <i class="fas fa-heart text-muted float-right p-1 my-1 mr-3" data-toggle="tooltip" data-placement="top" title="I like it"></i> -->
+                <div class="card-footer justify-content-center">
+                  <div class="togglebutton">
+                    <label>
+                      <input type="checkbox" checked="">
+                      <span class="toggle"></span>
+                      Toggle is on
+                    </label>
+                  </div>
+                </div>
               </div>
             </div>
-            </div>
-            </a>
-            <!-- Card -->
-            <?php endforeach; ?>
           </div>
+
+          <?php endforeach; ?>
+
         </div>
+
+            <h2 class="title">Recent Posts</h1>
+            <?php foreach($posts as $key => $value): ?>
+            <a href="/weendi/post-view/<?= $value['id']; ?>">
+              <div class="team-player">
+                <div class="card p-3">
+
+                  <h4 class="card-title"><?= $value['title']; ?>
+                    <br>
+                    <small class="card-description text-muted">Posted By:</small>
+                  </h4>
+
+                  <p class="card-description"><?= $value['description'] ?></p>
+
+                  <div class="justify-content-left">
+                    <a href="#" class="btn btn-link btn-just-icon"><i class="fa fa-eye"></i></a>
+                    <a href="#" class="btn btn-link btn-just-icon"><i class="fa fa-comment"></i></a>
+                    <a href="#" class="btn btn-link btn-just-icon"><i class="fa fa-share"></i></a>
+
+                  </div>
+                </div>
+              </div>
+            </a>
+            <?php endforeach; ?>
+
+        </div>
+
+
+
+
       </div>
     </div>
   </div>
 </div>
-  <!-- Classic Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Update Profile Picture</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <i class="material-icons">clear</i>
-          </button>
-        </div>
-
-        <div class="modal-body">
-          <div class="text-center">
-            <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"
-              alt="avatar">
-            <h6>Upload a different photo...</h6>
-            <form class="contact-form" action="/weendi/change_profile"  method="post"
-              accept-charset="utf-8" enctype="multipart/form-data">
-
-              <input type="file" name="file" class="text-center center-block file-upload" accept=".png, .jpg, .jpeg">
-              <div class="form-group"><br>
-                <hr>
-                <button type="submit" id="send_form" class="btn btn-primary">Submit</button>
-              </div>
-            </form>
-
-          </div>
-          </hr><br>
-        </div>
-
+</div>
+<!-- Classic Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Update Profile Picture</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <i class="material-icons">clear</i>
+        </button>
       </div>
+
+      <div class="modal-body">
+        <div class="text-center">
+          <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"
+            alt="avatar">
+          <h6>Upload a different photo...</h6>
+          <form class="contact-form" action="/weendi/change_profile" method="post" accept-charset="utf-8"
+            enctype="multipart/form-data">
+
+            <input type="file" name="file" class="text-center center-block file-upload" accept=".png, .jpg, .jpeg">
+            <div class="form-group"><br>
+              <hr>
+              <button type="submit" id="send_form" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+
+        </div>
+        </hr><br>
+      </div>
+
     </div>
   </div>
-  <!--  End Modal -->
+</div>
+<!--  End Modal -->
 
-  <!-- Classic Modal -->
-  <div class="modal fade" id="cover" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Update Cover Picture</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <i class="material-icons">clear</i>
-          </button>
-        </div>
-
-        <div class="modal-body">
-          <div class="text-center">
-            <img src="" class="avatar img-circle img-thumbnail">
-            <h6>Upload a different photo...</h6>
-            <form action="<?php echo base_url('/change_cover');?>" name="ajax_form" id="ajax_form" method="post"
-              accept-charset="utf-8" enctype="multipart/form-data">
-
-              <input type="file" name="file" class="text-center center-block file-upload" accept=".png, .jpg, .jpeg">
-              <div class="form-group"><br>
-                <hr>
-                <button type="submit" id="send_form" class="btn btn-primary">Submit</button>
-              </div>
-            </form>
-
-          </div>
-          </hr><br>
-        </div>
-
+<!-- Classic Modal -->
+<div class="modal fade" id="cover" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Update Cover Picture</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <i class="material-icons">clear</i>
+        </button>
       </div>
+
+      <div class="modal-body">
+        <div class="text-center">
+          <img src="" class="avatar img-circle img-thumbnail">
+          <h6>Upload a different photo...</h6>
+          <form action="<?php echo base_url('/change_cover');?>" name="ajax_form" id="ajax_form" method="post"
+            accept-charset="utf-8" enctype="multipart/form-data">
+
+            <input type="file" name="file" class="text-center center-block file-upload" accept=".png, .jpg, .jpeg">
+            <div class="form-group"><br>
+              <hr>
+              <button type="submit" id="send_form" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+
+        </div>
+        </hr><br>
+      </div>
+
     </div>
   </div>
-  <!--  End Modal -->
+</div>
+<!--  End Modal -->
 
 
-  <!-- Classic Modal -->
-  <div class="modal fade" id="profilename" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Update Profile</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <i class="material-icons">clear</i>
-          </button>
-        </div>
+<!-- Classic Modal -->
+<div class="modal fade" id="profilename" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Update Profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <i class="material-icons">clear</i>
+        </button>
+      </div>
 
-        <div class="modal-body">
-          <div class="text-center">
-            <form class="contact-form" action="/weendi/update_profile" method="post">
-              <!-- <h2 class="text-center title">Update Profile</h2> -->
+      <div class="modal-body">
+        <div class="text-center">
+          <form class="contact-form" action="/weendi/update_profile" method="post">
+            <!-- <h2 class="text-center title">Update Profile</h2> -->
 
-            
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <!-- <span class="input-group-text">
+
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <!-- <span class="input-group-text">
                       <i class="material-icons">mail</i>
                     </span> -->
-                </div>
-                <input type="text" name="nickname" class="form-control" placeholder="Nickname..."
-                  value="<?=  $user['nickname']; ?>">
               </div>
-              <?php if(isset($validation)): ?>
-              <div class="col-12">
-                <div class="alert alert-danger" role="alert">
-                  <?= $validation->listErrors() ?>
-                </div>
+              <input type="text" name="nickname" class="form-control" placeholder="Nickname..."
+                value="<?=  $user['nickname']; ?>">
+            </div>
+            <?php if(isset($validation)): ?>
+            <div class="col-12">
+              <div class="alert alert-danger" role="alert">
+                <?= $validation->listErrors() ?>
               </div>
-              <?php endif; ?>
-              <div class="form-group"><br>
-                <hr>
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-            </form>
+            </div>
+            <?php endif; ?>
+            <div class="form-group"><br>
+              <hr>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
 
-          </div>
-          </hr><br>
         </div>
-
+        </hr><br>
       </div>
+
     </div>
   </div>
-  <!--  End Modal -->
-  <script>
-    $(document).ready(function () {
+</div>
+<!--  End Modal -->
+<script>
+  $(document).ready(function () {
 
 
-      var readURL = function (input) {
-        if (input.files && input.files[0]) {
-          var reader = new FileReader();
+    var readURL = function (input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
-          reader.onload = function (e) {
-            $('.avatar').attr('src', e.target.result);
-          }
-
-          reader.readAsDataURL(input.files[0]);
+        reader.onload = function (e) {
+          $('.avatar').attr('src', e.target.result);
         }
+
+        reader.readAsDataURL(input.files[0]);
       }
+    }
 
 
-      $(".file-upload").on('change', function () {
-        readURL(this);
-      });
-
+    $(".file-upload").on('change', function () {
+      readURL(this);
     });
+
+  });
 
 
 // function readURL(input, id) {
@@ -402,4 +410,4 @@
 //         reader.readAsDataURL(input.files[0]);
 //     }
 //  }
-  </script>
+</script>

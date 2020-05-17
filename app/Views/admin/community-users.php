@@ -50,7 +50,7 @@
               <td><?= $users['updated_at'] ?></td>
               <td>
               <a href="#" class="btn btn-primary btn-circle btn-sm" data-toggle="modal"
-                  data-target="#view">
+                  data-target="#view<?= $key?>">
                   <i class="fas fa-eye"></i>
               </a>
               <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal"
@@ -60,7 +60,44 @@
               </td>
             </tr>
 
+            <div class="modal fade" id="ban<?= $key ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ban User</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                  <form class="contact-form" action="<?= base_url(); ?>/community_ban_user" method="post">
 
+                      <h4>Nickname: <b><?= $users['nickname'] ?></b></h4>
+
+                      <input type="hidden" name="user_id" value="<?= $users['id'] ?>">
+                      <input type="hidden" name="community_id" value="<?= $community['id'] ?>">
+                      <div class="form-group">
+                        <textarea name="reason" class="form-control" cols="30" rows="10"
+                          placeholder="Content"></textarea>
+                      </div>
+
+                      
+                     
+                      <button type="submit" class="btn btn-danger">Ban User</button>
+
+                    </form>
+                    
+                  </div>
+
+
+                  <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
 
 
           </tbody>

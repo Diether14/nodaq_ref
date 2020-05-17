@@ -10,6 +10,8 @@ use App\Models\UsersettingsModel;
 use App\Models\UserspostModel;
 use App\Models\PostcommentsModel;
 use App\Models\UsersreportModel;
+use App\Models\CommunityModel;
+use App\Models\UserscommunityModel;
 
 
 class Users extends BaseController
@@ -259,11 +261,23 @@ class Users extends BaseController
 
         $data['users_post'] = $users_post->where('user_id', session()->get('id'))
             ->findAll();
-
-        // test($data['users_post']);
-
         $data['user'] = $model->where('id', session()->get('id'))->first();
 
+        $posts = new UserspostModel();
+        
+        $data['posts'] = $posts->where('user_id',  session()->get('id'))
+        ->findAll();
+        
+        $db      = \Config\Database::connect();
+        $builder = $db->table('community');
+    
+        $builder->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.updated_at, community.color, community_photo.name');
+        $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
+        $builder->join('users_community', 'users_community.community_id = community.id');
+
+        $query   = $builder->get();
+        $data['community_list'] = $query->getResult();
+        
         echo view('templates/header', $data);
         echo view('profile');
         echo view('templates/footer');
@@ -596,7 +610,6 @@ class Users extends BaseController
         $report = new UsersreportModel();
 
         $data['report'] = $report->where(['user_id' => session()->get('id'),  'post_id' => $id])->first();
-         
 
         echo view('templates/header', $data);
         echo view('post-view', $data);
