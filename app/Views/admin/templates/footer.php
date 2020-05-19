@@ -40,25 +40,25 @@
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="<?= base_url(); ?>/public/admin/vendor/jquery/jquery.min.js"></script>
-  <script src="<?= base_url(); ?>/public/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="<?= base_url(); ?>/public/admin/template/jquery/jquery.min.js"></script>
+  <script src="<?= base_url(); ?>/public/admin/template/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="<?= base_url(); ?>/public/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="<?= base_url(); ?>/public/admin/template/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
   <script src="<?= base_url(); ?>/public/admin/js/sb-admin-2.min.js"></script>
 
   <!-- Page level plugins -->
-  <script src="<?= base_url(); ?>/public/admin/vendor/chart.js/Chart.min.js"></script>
+  <script src="<?= base_url(); ?>/public/admin/template/chart.js/Chart.min.js"></script>
 
   <!-- Page level custom scripts -->
   <script src="<?= base_url(); ?>/public/admin/js/demo/chart-area-demo.js"></script>
   <script src="<?= base_url(); ?>/public/admin/js/demo/chart-pie-demo.js"></script>
   
     <!-- Page level plugins -->
-  <script src="<?= base_url(); ?>/public/admin/vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="<?= base_url(); ?>/public/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <script src="<?= base_url(); ?>/public/admin/template/datatables/jquery.dataTables.min.js"></script>
+  <script src="<?= base_url(); ?>/public/admin/template/datatables/dataTables.bootstrap4.min.js"></script>
 
   <!-- Page level custom scripts -->
   <script src="<?= base_url(); ?>/public/admin/js/demo/datatables-demo.js"></script>
