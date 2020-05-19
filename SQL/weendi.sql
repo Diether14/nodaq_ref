@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 13, 2020 at 06:09 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.2.12
+-- Generation Time: May 19, 2020 at 07:31 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -36,19 +35,43 @@ CREATE TABLE `community` (
   `community_type` int(11) NOT NULL COMMENT '0 = public, 1 = private',
   `content` varchar(255) NOT NULL,
   `color` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `text_color` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `community`
 --
 
-INSERT INTO `community` (`id`, `user_id`, `com_photo_id`, `title`, `community_type`, `content`, `color`, `created_at`, `updated_at`) VALUES
-(23, 26, 24, 'Test Community', 1, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', '#11309b', '2020-05-10 23:29:08', '2020-05-10 23:29:08'),
-(24, 26, 25, 'Test Community', 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', '#ffffff', '2020-05-10 23:29:38', '2020-05-10 23:29:38'),
-(25, 26, 26, 'Test Community', 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', '#f08e91', '2020-05-10 23:30:22', '2020-05-10 23:30:22'),
-(26, 26, 27, 'Test Community', 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', '#f08e91', '2020-05-11 18:40:25', '2020-05-11 18:40:25');
+INSERT INTO `community` (`id`, `user_id`, `com_photo_id`, `title`, `community_type`, `content`, `color`, `text_color`, `created_at`, `updated_at`) VALUES
+(23, 26, 24, 'Test Community', 1, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', '#11309b', '#ffffff', '2020-05-10 23:29:08', '2020-05-10 23:29:08'),
+(24, 26, 25, 'Test Community', 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', '#ffffff', '#000000', '2020-05-10 23:29:38', '2020-05-10 23:29:38'),
+(25, 26, 26, 'Test Community', 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', '#f08e91', '#ffffff', '2020-05-10 23:30:22', '2020-05-10 23:30:22'),
+(26, 26, 27, 'Test Community', 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', '#f08e91', '', '2020-05-11 18:40:25', '2020-05-11 18:40:25'),
+(27, 26, 28, 'Test text Color', 0, 'test test', '#ffffff', '#555555', '2020-05-18 19:39:08', '2020-05-18 19:39:08');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `community_banned_users`
+--
+
+CREATE TABLE `community_banned_users` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `community_id` int(11) NOT NULL,
+  `reason` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `community_banned_users`
+--
+
+INSERT INTO `community_banned_users` (`id`, `user_id`, `community_id`, `reason`, `created_at`, `updated_at`) VALUES
+(1, 18, 23, 'test community user', '2020-05-15 03:47:28', '2020-05-15 03:47:28');
 
 -- --------------------------------------------------------
 
@@ -60,8 +83,8 @@ CREATE TABLE `community_photo` (
   `id` int(11) NOT NULL COMMENT 'Primary Key',
   `name` varchar(100) NOT NULL COMMENT 'Name',
   `type` varchar(255) NOT NULL COMMENT 'file type',
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created date',
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'Created date',
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='demo table';
 
 --
@@ -69,10 +92,11 @@ CREATE TABLE `community_photo` (
 --
 
 INSERT INTO `community_photo` (`id`, `name`, `type`, `created_at`, `updated_at`) VALUES
-(24, 'Koala.jpg', '', '2020-05-10 23:29:08', '2020-05-10 23:29:08'),
+(24, 'xmFj7k.png', '', '2020-05-10 23:29:08', '2020-05-10 23:29:08'),
 (25, 'Desert.jpg', '', '2020-05-10 23:29:38', '2020-05-10 23:29:38'),
 (26, 'Jellyfish.jpg', '', '2020-05-10 23:30:21', '2020-05-10 23:30:21'),
-(27, 'Tulips.jpg', '', '2020-05-11 18:40:25', '2020-05-11 18:40:25');
+(27, 'Tulips.jpg', '', '2020-05-11 18:40:25', '2020-05-11 18:40:25'),
+(28, 'web-development-minimalism-bl-1920x1080.jpg', '', '2020-05-18 19:39:07', '2020-05-18 19:39:07');
 
 -- --------------------------------------------------------
 
@@ -85,7 +109,7 @@ CREATE TABLE `cover_photo` (
   `user_id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL COMMENT 'Name',
   `type` varchar(255) NOT NULL COMMENT 'file type',
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created date'
+  `created_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'Created date'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='demo table';
 
 --
@@ -107,7 +131,7 @@ CREATE TABLE `files` (
   `user_id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL COMMENT 'Name',
   `type` varchar(255) NOT NULL COMMENT 'file type',
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created date'
+  `created_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'Created date'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='demo table';
 
 --
@@ -129,8 +153,8 @@ CREATE TABLE `post_comments` (
   `user_id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
   `content` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -155,7 +179,7 @@ CREATE TABLE `post_photo` (
   `post_id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL COMMENT 'Name',
   `type` varchar(255) NOT NULL COMMENT 'file type',
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created date'
+  `created_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'Created date'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='demo table';
 
 -- --------------------------------------------------------
@@ -170,7 +194,7 @@ CREATE TABLE `profile_photo` (
   `post_id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL COMMENT 'Name',
   `type` varchar(255) NOT NULL COMMENT 'file type',
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created date'
+  `created_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'Created date'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='demo table';
 
 --
@@ -198,8 +222,8 @@ CREATE TABLE `users` (
   `status` int(11) NOT NULL,
   `auth` int(11) NOT NULL,
   `prof` int(11) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -224,8 +248,8 @@ CREATE TABLE `users_community` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `community_id` int(11) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -246,8 +270,8 @@ CREATE TABLE `users_ip` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `ip` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -257,7 +281,8 @@ CREATE TABLE `users_ip` (
 INSERT INTO `users_ip` (`id`, `user_id`, `ip`, `created_at`, `updated_at`) VALUES
 (4, 18, '::1', '2020-05-02 18:26:26', '2020-05-02 18:26:26'),
 (5, 24, '::1', '2020-05-06 22:51:27', '2020-05-06 22:51:27'),
-(6, 26, '::1', '2020-05-10 01:51:48', '2020-05-10 01:51:48');
+(6, 26, '::1', '2020-05-10 01:51:48', '2020-05-10 01:51:48'),
+(7, 21, '::1', '2020-05-18 21:28:24', '2020-05-18 21:28:24');
 
 -- --------------------------------------------------------
 
@@ -272,8 +297,8 @@ CREATE TABLE `users_post` (
   `title` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `content` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -295,8 +320,8 @@ CREATE TABLE `users_report` (
   `community_id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
   `report_content` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -310,6 +335,29 @@ INSERT INTO `users_report` (`id`, `user_id`, `community_id`, `post_id`, `report_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `users_shared_posts`
+--
+
+CREATE TABLE `users_shared_posts` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `community_id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `content` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users_shared_posts`
+--
+
+INSERT INTO `users_shared_posts` (`id`, `user_id`, `community_id`, `post_id`, `content`, `created_at`, `updated_at`) VALUES
+(1, 18, 23, 9, 'test share post', '0000-00-00 00:00:00', '2020-05-19 22:29:54');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user_settings`
 --
 
@@ -318,8 +366,8 @@ CREATE TABLE `user_settings` (
   `user_id` int(11) NOT NULL,
   `user_mode` int(11) NOT NULL COMMENT '0 = static, 1 = anonoymous',
   `user_nickname` int(11) NOT NULL COMMENT '1 = hide nickname, 0 show nickname',
-  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -338,6 +386,12 @@ INSERT INTO `user_settings` (`id`, `user_id`, `user_mode`, `user_nickname`, `cre
 -- Indexes for table `community`
 --
 ALTER TABLE `community`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `community_banned_users`
+--
+ALTER TABLE `community_banned_users`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -407,6 +461,12 @@ ALTER TABLE `users_report`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users_shared_posts`
+--
+ALTER TABLE `users_shared_posts`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user_settings`
 --
 ALTER TABLE `user_settings`
@@ -420,13 +480,19 @@ ALTER TABLE `user_settings`
 -- AUTO_INCREMENT for table `community`
 --
 ALTER TABLE `community`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `community_banned_users`
+--
+ALTER TABLE `community_banned_users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `community_photo`
 --
 ALTER TABLE `community_photo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `cover_photo`
@@ -474,7 +540,7 @@ ALTER TABLE `users_community`
 -- AUTO_INCREMENT for table `users_ip`
 --
 ALTER TABLE `users_ip`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users_post`
@@ -486,6 +552,12 @@ ALTER TABLE `users_post`
 -- AUTO_INCREMENT for table `users_report`
 --
 ALTER TABLE `users_report`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `users_shared_posts`
+--
+ALTER TABLE `users_shared_posts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
