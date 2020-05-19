@@ -104,7 +104,7 @@
                       <div class="card-title text-center" style="background-color: <?= $value->color ?>; color:#ffffff;">
                         <div class="pt-3">
                           <span><i class="fa fa-bars pl-3" style="float:left;"></i></span>
-                          <div class="">
+                          <div class="" style="color: <?= $value->text_color; ?>">
                             <h4 href="#"><?= $value->title ?> </h4>
                           </div>
                         </div>
@@ -150,7 +150,7 @@
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title">Update Community</h5>
+                    <h5 class="modal-title">Update Community </h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">×</span>
                     </button>
@@ -180,8 +180,12 @@
                           Private Community
                         </label>
                       </div>
-                      <label for="color">Select your theme color:</label>
+                      <label for="color">Select your theme color: </label>
                       <input type="color" name="color" value="<?= $value->color; ?>"><br>
+                      <label for="color">Select your text color:</label>
+                      <input type="color" name="text_color" value="<?= $value->text_color; ?>" >
+                      <br>
+
                       <button type="submit" class="btn btn-primary">Save Community</button>
 
                     </form>

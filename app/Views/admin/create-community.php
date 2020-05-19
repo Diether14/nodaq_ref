@@ -44,6 +44,8 @@
 
             <label for="color">Select your theme color:</label>
             <input type="color" name="color" value="#FFFFFF">
+            <label for="color">Select your text color:</label>
+            <input type="color" name="text_color" value="#555555">
             <hr>
             <button type="submit" class="btn btn-primary">Save Community</button>
 

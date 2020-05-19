@@ -95,7 +95,8 @@ class Admin extends BaseController
                     'title' => $this->request->getPost('title'),
                     'content' => $this->request->getPost('content'),
                     'community_type' => $community_type,
-                    'color' => $this->request->getPost('color')
+                    'color' => $this->request->getPost('color'),
+                    'text_color' => $this->request->getPost('text_color')
                     ];
                 
                 if($model->insert($newData)){
@@ -154,7 +155,7 @@ class Admin extends BaseController
         $db      = \Config\Database::connect();
         $builder = $db->table('community');
 
-        $builder->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.updated_at, community.color, community_photo.name');
+        $builder->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.updated_at, community.color , community.text_color, community_photo.name');
         $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
 
         $query   = $builder->get();
@@ -195,6 +196,7 @@ class Admin extends BaseController
                     'content' => $this->request->getPost('content'),
                     'community_type' => $community_type,
                     'color' => $this->request->getPost('color'),
+                    'text_color' => $this->request->getPost('text_color')
                     ];
                 
                 if($model->update($id,$newData)){

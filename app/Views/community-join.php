@@ -3,9 +3,9 @@
     max-width: 80% !important;
   }
 
-  .rounded-circle {
+  /* .rounded-circle1 {
     height: 42px !important;
-  }
+  } */
 </style>
 
 <div class="page-header header-filter" data-parallax="true"
@@ -60,8 +60,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="card">
-            <div class="card-header card-header-primary">
-              <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+            <!-- <div class="card-header card-header-primary">
               <div class="nav-tabs-navigation">
                 <div class="nav-tabs-wrapper">
                   <ul class="nav nav-tabs" data-tabs="tabs">
@@ -77,12 +76,12 @@
                   </ul>
                 </div>
               </div>
-            </div>
+            </div> -->
             <div class="card-body ">
               <div class="tab-content">
                 <div class="tab-pane active" id="home">
                   <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-3">
                       <div class="card card-body p-5">
                         <h4><b>Sample Content</b></h4>
 
@@ -92,11 +91,11 @@
 
                       </div>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-9">
                       <div class="card ">
                         <div class="card-body d-flex">
                           <div class="profile-photo-small p-1 ">
-                            <?php if(!empty($profile_photo['name'])): ?>
+                            <!-- <?php if(!empty($profile_photo['name'])): ?>
 
                             <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $profile_photo['name'] ?>"
                               alt="Circle Image" class="rounded-circle img-fluid ">
@@ -105,7 +104,7 @@
                             <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image"
                               class="img-raised rounded-circle img-fluid" alt="avatar">
 
-                            <?php endif; ?>
+                            <?php endif; ?> -->
 
                           </div>
 
@@ -114,30 +113,51 @@
                         </div>
                       </div><hr>
 
-                 
+                             
+
                       <?php foreach($posts as $key => $value): ?>
-                      <a href="/weendi/post-view/<?= $value['id']; ?>">
                       <div class="team-player">
                         <div class="card p-3">
           
-                          <h4 class="card-title"><?= $value['title']; ?>
+                          <h4 class="card-title"><?= $value->title; ?>
                             <br>
-                            <small class="card-description text-muted">Posted By:</small>
+                            <small class="card-description text-muted">Posted By: <?= $value->nickname ?></small>
                           </h4>
                           
-                            <p class="card-description"><?= $value['description'] ?></p>
+                            <p class="card-description"><?= $value->description ?></p>
                          
                           <div class="justify-content-left">
-                            <a href="#" class="btn btn-link btn-just-icon"><i class="fa fa-eye"></i></a>
-                            <a href="#" class="btn btn-link btn-just-icon"><i class="fa fa-comment"></i></a>
-                            <a href="#" class="btn btn-link btn-just-icon"><i class="fa fa-share"></i></a>
+                          <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="card-link">Read More </a>
                          
                         </div>
                       </div>
                       </div>
-                              </a>
-                              <?php endforeach; ?>
+                      <?php endforeach; ?>
+
+                      <?php foreach($shared as $key => $value): ?>
+                      <h1>Test Shared Post</h1>
+                  
+                      <div class="team-player">
+                        <div class="card p-3">
+          
+                          <h4 class="card-title"><?= $value->title; ?>
+                            <br>
+                            <small class="card-description text-muted">Shared By: <?= $value->nickname ?></small>
+                          </h4>
+                          
+                            <p class="card-description"><?= $value->description ?></p>
+                         
+                          <div class="justify-content-left">
+                          <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="card-link">Read More </a>
+                         
+                        </div>
+                      </div>
+                
+                      </div>
+                      <?php endforeach; ?>
                     </div>
+
+                    
 
                   </div>
                 </div>

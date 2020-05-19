@@ -234,14 +234,35 @@
                   <p class="card-description"><?= $value['description'] ?></p>
 
                   <div class="justify-content-left">
-                    <a href="#" class="btn btn-link btn-just-icon"><i class="fa fa-eye"></i></a>
-                    <a href="#" class="btn btn-link btn-just-icon"><i class="fa fa-comment"></i></a>
-                    <a href="#" class="btn btn-link btn-just-icon"><i class="fa fa-share"></i></a>
+                  <a href="<?= base_url(); ?>/post-view/<?= $value['id'] ?>" class="card-link">Read More </a>
 
                   </div>
                 </div>
               </div>
             </a>
+            <?php endforeach; ?>
+
+            <h2 class="title">Shared Posts</h1>
+            <?php foreach($shared as $key => $value): ?>
+                     
+                  
+                      <div class="team-player">
+                        <div class="card p-3">
+          
+                          <h4 class="card-title"><?= $value->title; ?>
+                            <br>
+                            <small class="card-description text-muted">Shared By: <?= $value->nickname ?></small>
+                          </h4>
+                          
+                            <p class="card-description"><?= $value->description ?></p>
+                         
+                          <div class="justify-content-left">
+                          <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="card-link">Read More </a>
+                         
+                        </div>
+                      </div>
+                
+                      </div>
             <?php endforeach; ?>
 
         </div>

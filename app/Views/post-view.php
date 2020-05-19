@@ -6,6 +6,7 @@
         <div class="brand">
           <h1 class="title"><?= $blog['title']; ?></h1>
           <h4 class="small-description"><?= $blog['description'] ?></h4>
+          <a href="<?= base_url(); ?>/community-join/<?= $blog['community_id'] ?>"><button class="btn btn-primary btn-raised btn-lg">View Community</button></a>
         </div>
       </div>
     </div>
@@ -121,7 +122,17 @@
         <form class="form" action="<?= base_url(); ?>/share_post" method="post">
           <input type="hidden" name="post_id" value="<?= $blog['id']?>">
           <input type="hidden" name="community_id" value="<?= $blog['community_id']?>">
-          <textarea name="share_content" class="form-control" cols="30" rows="10" placeholder="Reason..."></textarea>
+          <textarea name="share_content" class="form-control" cols="30" rows="10" placeholder="share post"></textarea>
+
+          <select class="custom-select mb-2" id="inputGroupSelect01">
+
+            <option selected>Select Community</option>
+          <?php foreach ($community as $key => $value):?>
+            <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
+          <?php endforeach; ?>
+          </select>
+ 
+                  
           <button class="btn btn-primary" type="submit">Share Post</button>
         </form>
       </div>
