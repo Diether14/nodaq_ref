@@ -11,6 +11,7 @@ use App\Models\UserspostModel;
 use App\Models\UsersreportModel;
 use App\Models\UserssharedpostModel;
 
+
 class Category extends BaseController
 {
     public function __construct(){
@@ -129,6 +130,7 @@ class Category extends BaseController
 
         $db1      = \Config\Database::connect();
         $builder1 = $db1->table('users_post');
+        $builder1->where('users_post.community_id', $id);
         $builder1->select('users_post.id,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.updated_at, users.nickname');
         $builder1->join('users', 'users.id = users_post.user_id');
         
@@ -221,7 +223,38 @@ class Category extends BaseController
         }
 
     }
+    
+    public function delete_shared_post($id = null){
 
+        ini_set('display_errors', 1);
+        $data = [];
+        helper(['form', 'url']);
+       
+        $model = new UserssharedpostModel();
+
+        $query = $model->where('id', $id)->delete();
+
+        if($query){
+            $msg = 'Post Deleted!';
+            return redirect()->to( base_url().'/profile')->with('msg', $msg);
+        }
+    }
+
+    public function delete_post($id = null){
+
+        ini_set('display_errors', 1);
+        $data = [];
+        helper(['form', 'url']);
+       
+        $model = new UserspostModel();
+
+        $query = $model->where('id', $id)->delete();
+
+        if($query){
+            $msg = 'Post Deleted!';
+            return redirect()->to( base_url().'/profile')->with('msg', $msg);
+        }
+    }
 }
 
 

@@ -1,3 +1,13 @@
+<style>
+.rounded-circle1 {
+    border-radius: 50% !important;
+    width: 40px;
+    height: 40px;
+    background-position: center center;
+    background-size: cover;
+}
+</style>
+
 <div class="page-header header-filter" data-parallax="true"
   style="background-image: url(<?= base_url(); ?>/public/admin/uploads/community/<?= $profile_photo['name']; ?>)">
   <div class="container">
@@ -46,11 +56,7 @@
         </div>
         <div class="card my-4">
           <h5 class="card-title ml-3">Leave a Comment:</h5>
-          <?php if (session('msg')) : ?>
-          <div class="alert alert-success" role="alert">
-            <?= session('msg') ?>
-          </div>
-          <?php endif ?>
+  
           <div class="card-body">
             <form class="contact-form" action="/weendi/add_comment" method="post">
               <div class="form-group">
@@ -60,20 +66,42 @@
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>
           </div>
-
+        </div>
+        <div class="ml-5 title">
+        <?php if (session('msg')) : ?>
+          <div class="alert alert-success" role="alert">
+            <?= session('msg') ?>
+          </div>
+          <?php endif ?>
+            <h5 class="title">Comments</h5>
+            
+          </div>
+          <?php if(empty($post_comments)): ?>
+            <p class="text-center">No comment yet</p>
+          <?php else: ?>
           <?php foreach ($post_comments as $key => $value): ?>
-          <div class="media mb-4 ml-3">
-            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+          <div class="media ml-5 mr-5 mb-5">
+          <div class="profile-photo-small mr-2">
+                <?php if(!empty($value->name)): ?>
+
+                <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $value->name ?>"
+                  alt="Circle Image" class="rounded-circle1 img-fluid z-depth-2">
+
+                <?php else: ?>
+                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image"
+                  class="img-raised rounded-circle1 img-fluid  z-depth-2" alt="avatar">
+
+                <?php endif; ?>
+          
+              </div>
             <div class="media-body">
 
-              <h5 class="mt-0">Commenter Name</h5>
-              <?= $value['content']; ?>
+              <h5 class="mt-0"><?= $value->nickname; ?></h5>
+              <?= $value->content; ?>
             </div>
           </div>
           <?php endforeach; ?>
-
-        </div>
-
+          <?php endif; ?>
       </div>
 
     </div>

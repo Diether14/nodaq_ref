@@ -28,8 +28,9 @@
   <style>
     .rounded-circle {
       border-radius: 50% !important;
-      width: 50px;
-      height: 39px;
+      width: 40px;
+      max-width: 100%;
+      height: 40px;
       background-position: center center;
       background-size: cover;
     }
@@ -158,11 +159,11 @@
                 <?php if(!empty($profile_photo['name'])): ?>
 
                 <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $profile_photo['name'] ?>"
-                  alt="Circle Image" class="rounded-circle img-fluid">
+                  alt="Circle Image" class="rounded-circle img-fluid z-depth-2">
 
                 <?php else: ?>
                 <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image"
-                  class="img-raised rounded-circle img-fluid" alt="avatar">
+                  class="img-raised rounded-circle img-fluid  z-depth-2" alt="avatar">
 
                 <?php endif; ?>
 

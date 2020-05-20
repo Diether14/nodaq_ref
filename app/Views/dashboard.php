@@ -18,7 +18,7 @@
   <div class="container">
 
     <div class="section text-center">
-      <h2 class="title">Select Community</h2>
+      <h2 class="title">Communities</h2>
       <div class="team">
         <div class="row">
           <?php foreach ($community_list as $key => $value): ?>
@@ -28,7 +28,7 @@
 
               <div class="card card-plain" >
 
-                <h4 class="card-title p-3 mb-0" style="background-color: <?= $value->color; ?>">
+                <h4 class="card-title p-3 my-0" style="background-color: <?= $value->color; ?>">
               
                   <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-bars pl-3"
                       style="float:left;"></i></a>
@@ -70,7 +70,7 @@
       </div>
     </div>
 
-    <div class="section text-center">
+    <!-- <div class="section text-center">
       <div class="row">
         <div class="col-md-12 ml-auto mr-auto">
           <h2 class="title">Articles</h2>
@@ -119,11 +119,7 @@
                       </div>
                     </a>
                     <?php endforeach; ?>
-
                   </div>
-
-
-
                 </div>
                 <div class="tab-pane text-center" id="works">
 
@@ -141,9 +137,6 @@
               </div>
 
               <ul class="pagination pagination-primary ">
-                <!--
-                            color-classes: "pagination-primary", "pagination-info", "pagination-success", "pagination-warning", "pagination-danger"
-                        -->
                 <li class="page-item"><a href="javascript:void(0);" class="page-link">1</a></li>
                 <li class="page-item"><a href="javascript:void(0);" class="page-link">...</a></li>
                 <li class="page-item"><a href="javascript:void(0);" class="page-link">5</a></li>
@@ -165,7 +158,7 @@
 
 
 
-    </div>
+    </div> -->
   </div>
 
 </div>

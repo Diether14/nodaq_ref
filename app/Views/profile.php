@@ -3,7 +3,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <style>
-  .img-raised:hover {
+  .rounded-circle:hover {
     opacity: 0.9;
     cursor: pointer;
   }
@@ -59,12 +59,16 @@
                 title="Click to update" data-container="body">
                 <?php if(!empty($profile_photo['name'])): ?>
 
-                <img src="public/user/uploads/profiles/<?= $profile_photo['name'] ?>" alt="Circle Image"
-                  class="img-raised rounded-circle img-fluid img-thumbnail" alt="avatar">
+                <!-- <img src="public/user/uploads/profiles/<?= $profile_photo['name'] ?>" alt="Circle Image"
+                  class="img-raised rounded-circle img-fluid img-thumbnail" alt="avatar"> -->
+
+                  <img class="img-raised rounded-circle z-depth-2" alt="100x100" src="public/user/uploads/profiles/<?= $profile_photo['name'] ?>"
+                  data-holder-rendered="true">
+
 
                 <?php else: ?>
-                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image"
-                  class="img-raised rounded-circle img-fluid img-thumbnail" alt="avatar" width="304" height="236">
+                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="100x100" 
+                  class="img-raised rounded-circle z-depth-2" alt="avatar" data-holder-rendered="true">
 
                 <?php endif; ?>
                 <!-- <div class="img-circle"><img src="http://placehold.it/200x200" /></div> -->
@@ -97,6 +101,7 @@
                   </div>
                   <?php endif; ?>
                 </div>
+
 
                 <a href="#" class="btn btn-just-icon btn-link btn-dribbble"><i class="fa fa-dribbble"></i></a>
                 <a href="#" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
@@ -219,7 +224,7 @@
           <?php endforeach; ?>
 
         </div>
-
+            <?php if($posts): ?>
             <h2 class="title">Recent Posts</h1>
             <?php foreach($posts as $key => $value): ?>
             <a href="/weendi/post-view/<?= $value['id']; ?>">
@@ -228,12 +233,14 @@
 
                   <h4 class="card-title"><?= $value['title']; ?>
                     <br>
-                    <small class="card-description text-muted">Posted By:</small>
+                    <small class="card-description text-muted">Posted By: <?= $value['nickname'] ?></small>
                   </h4>
 
                   <p class="card-description"><?= $value['description'] ?></p>
 
                   <div class="justify-content-left">
+                  <a href="<?= base_url(); ?>/delete-post/<?= $value['id'] ?>" class="card-link">Delete Post </a>
+                         
                   <a href="<?= base_url(); ?>/post-view/<?= $value['id'] ?>" class="card-link">Read More </a>
 
                   </div>
@@ -241,7 +248,8 @@
               </div>
             </a>
             <?php endforeach; ?>
-
+            <?php endif; ?>
+            <?php if($shared): ?>
             <h2 class="title">Shared Posts</h1>
             <?php foreach($shared as $key => $value): ?>
                      
@@ -257,6 +265,8 @@
                             <p class="card-description"><?= $value->description ?></p>
                          
                           <div class="justify-content-left">
+                          <a href="<?= base_url(); ?>/delete-shared-post/<?= $value->id ?>" class="card-link">Delete Post </a>
+                         
                           <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="card-link">Read More </a>
                          
                         </div>
@@ -264,7 +274,7 @@
                 
                       </div>
             <?php endforeach; ?>
-
+            <?php endif; ?>
         </div>
 
 

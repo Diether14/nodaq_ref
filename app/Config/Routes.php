@@ -30,7 +30,7 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Users::index', ['filter' => 'noauth']);
+$routes->get('/', 'Users::login', ['filter' => 'noauth']);
 $routes->get('logout', 'Users::logout');
 $routes->match(['get','post'],'register', 'Users::register', ['filter' => 'noauth']);
 $routes->match(['get','post'],'login', 'Users::login', ['filter' => 'noauth']);
@@ -44,6 +44,9 @@ $routes->match(['get','post'],'join_community', 'Category::join_community', ['fi
 $routes->match(['get','post'],'report_post', 'Category::report_post', ['filter' => 'auth']);
 $routes->match(['get','post'],'share_post', 'Category::share_post', ['filter' => 'auth']);
 
+
+$routes->get('delete-shared-post/(:num)', 'Category::delete_shared_post/$1', ['filter' => 'auth']);
+$routes->get('delete-post/(:num)', 'Category::delete_post/$1', ['filter' => 'auth']);
 
 // $routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth']);
 $routes->get('dashboard', 'Users::dashboard', ['filter' => 'auth']);

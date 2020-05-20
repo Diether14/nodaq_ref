@@ -35,8 +35,11 @@ class Users extends BaseController
     }
 
     public function login(){
-        // if ($this->request->getMethod() == 'post') {
-        // }
+        $data = [];
+        helper(['form']);
+
+        if ($this->request->getMethod() == 'post') {
+    
         $rules = [
             'email' => 'required|min_length[6]|max_length[50]|valid_email',
             'password' => 'required|min_length[8]|max_length[255]|validateUser[email,password]'
@@ -50,7 +53,8 @@ class Users extends BaseController
         
         if (! $this->validate($rules, $errors)) {
             $data['validation'] = $this->validator;
-            return redirect()->to('weendi/');
+
+            
         }else{
             $model = new UserModel();
 
@@ -76,12 +80,15 @@ class Users extends BaseController
             
                         $save =$ip_model->insert($data);
                 }
+                $session = session();
                 $this->setUserSession($user);
                 if($user['user_type'] == '3'){
                     return redirect()->to('admin');
                 }elseif($user['user_type'] == '0'){
+                    $session->setFlashdata('success', 'Login Successfully!');
                     return redirect()->to('/weendi/dashboard');
                 }else{
+                    $session->setFlashdata('success', 'Invalid Username or Password!');
                     return redirect()->to('weendi/');
                 }
 
@@ -91,8 +98,10 @@ class Users extends BaseController
             }
             
         }
+            }
 
-
+        echo view('templates/header', $data);
+        echo view('login', $data);
     }
 
 
@@ -613,9 +622,19 @@ class Users extends BaseController
         // $user_model = new UserModel();
         
 
-        $post_model = new PostcommentsModel();
+        // $post_model = new PostcommentsModel();
         
-        $data['post_comments'] = $post_model->where('post_id', $id)->findAll();
+        $db = \Config\Database::connect();
+        $builder = $db->table('post_comments');
+        $builder->where('post_comments.post_id', $id);
+        $builder->select('post_comments.id, post_comments.user_id, post_comments.post_id, post_comments.content, post_comments.updated_at, users.nickname, profile_photo.name');
+        $builder->join('users', 'users.id = post_comments.user_id');
+        $builder->join('profile_photo', 'users.id = profile_photo.user_id');
+        $query = $builder->get();
+        $data['post_comments'] = $query->getResult();
+
+  
+
 
         $report = new UsersreportModel();
 
@@ -647,7 +666,7 @@ class Users extends BaseController
             'content' => $this->request->getPost('content')
         ];
 
-        $msg = 'Successfully Added';
+        $msg = 'Commented';
 
         if($model->save($data)){
             return redirect()->to( base_url("/post-view/".$data['post_id']) )->with('msg', $msg);
