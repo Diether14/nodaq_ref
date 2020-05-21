@@ -59,5 +59,12 @@ $(document).ready(function(){
         readURL(this);
     });
 
+    console.log($("input").val());
+    
+
+    // $("input").val();
+    // $("input").tagsinput('items');
+
+
 
 });

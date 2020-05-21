@@ -150,13 +150,13 @@
         <form class="form" action="<?= base_url(); ?>/share_post" method="post">
           <input type="hidden" name="post_id" value="<?= $blog['id']?>">
           <input type="hidden" name="community_id" value="<?= $blog['community_id']?>">
-          <textarea name="share_content" class="form-control" cols="30" rows="10" placeholder="share post"></textarea>
+          <textarea name="share_content" class="form-control" cols="30" rows="10" placeholder="Type Something..."></textarea>
 
           <select class="custom-select mb-2" id="inputGroupSelect01">
 
             <option selected>Select Community</option>
           <?php foreach ($community as $key => $value):?>
-            <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
+            <option value="<?= $value->id ?>"><?= $value->title ?></option>
           <?php endforeach; ?>
           </select>
  

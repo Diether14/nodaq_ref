@@ -265,10 +265,10 @@
                             <p class="card-description"><?= $value->description ?></p>
                          
                           <div class="justify-content-left">
-                          <a href="<?= base_url(); ?>/delete-shared-post/<?= $value->id ?>" class="card-link">Delete Post </a>
-                         
+             
                           <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="card-link">Read More </a>
-                         
+                          <a href="<?= base_url(); ?>/delete-shared-post/<?= $value->id ?>" class="card-link">Delete Post </a>
+             
                         </div>
                       </div>
                 

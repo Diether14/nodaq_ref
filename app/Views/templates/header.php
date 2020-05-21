@@ -16,6 +16,13 @@
   <link href="<?= base_url(); ?>/public/user/assets/css/material-kit.css?v=2.0.7" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="<?= base_url(); ?>/public/user/assets/demo/demo.css" rel="stylesheet" />
+  <!-- tags input plugin -->
+ 
+<link href="<?= base_url(); ?>/public/assets/taginput/tagsinput.css" rel="stylesheet" type="text/css">
+
+
+<!-- <link href="<?= base_url(); ?>/public/assets/taginput/tagsinput.css" rel="stylesheet" type="text/css"> -->
+  <!-- end of tagas input -->
 
 
   <!-- CSS Just for demo purpose, don't include it in your project -->

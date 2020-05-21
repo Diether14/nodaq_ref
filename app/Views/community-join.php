@@ -2,6 +2,20 @@
   .modal-lg {
     max-width: 80% !important;
   }
+  .label-info {
+  background-color: #5bc0de;
+  display: inline-block;
+  padding: 0.2em 0.6em 0.3em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25em;
+}
+
 
   /* .rounded-circle1 {
     height: 42px !important;
@@ -216,7 +230,10 @@
             <h1>Hello world!</h1>
             <p>I'm an instance of <a href="https://ckeditor.com">CKEditor</a>.</p>
           </div>
-
+        </div>
+        <div class="card container p-3 ">
+        <label for="">Tag People</label>
+        <input type="text" data-role="tagsinput" class="form-control" >
         </div>
         <!-- <div> -->
           <!-- <div class="card container p-3">

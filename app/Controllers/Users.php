@@ -633,15 +633,17 @@ class Users extends BaseController
         $query = $builder->get();
         $data['post_comments'] = $query->getResult();
 
-  
-
-
         $report = new UsersreportModel();
 
         $data['report'] = $report->where(['user_id' => session()->get('id'),  'post_id' => $id])->first();
 
-        $community = new CommunityModel();
-        $data['community'] = $community->findAll();
+        $db1 = \Config\Database::connect();
+        $builder1 = $db1->table('community');
+        $builder1->select('*');
+        $builder1->join('users_community', 'users_community.community_id = community.id');
+        $query1 = $builder1->get();
+        $data['community'] = $query1->getResult();
+  
 
         echo view('templates/header', $data);
         echo view('post-view', $data);
