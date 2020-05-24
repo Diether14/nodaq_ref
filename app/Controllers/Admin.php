@@ -24,7 +24,7 @@ class Admin extends BaseController
         $data['community'] = $community->countAll();
         $data['posts'] = $posts->countAll();
         $data['reports'] = $reports->countAll();
-
+  
 
         echo view('admin/templates/header', $data);
         echo view('admin/index', $data);
@@ -154,7 +154,7 @@ class Admin extends BaseController
 
         $db      = \Config\Database::connect();
         $builder = $db->table('community');
-
+        $builder->where('community.user_id', session()->get('id'));
         $builder->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.updated_at, community.color , community.text_color, community_photo.name');
         $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
 
@@ -270,6 +270,7 @@ class Admin extends BaseController
         $builder = $db->table('users_report');
         
         $builder->select('users_report.id, users_report.user_id, users_report.community_id, users_report.post_id, users_report.report_content, users.nickname, users_report.updated_at, users_post.title');
+        $builder->where('users_report.user_id', session()->get('id'));
         $builder->join('users', 'users_report.user_id = users.id');
         $builder->join('users_post', 'users_report.post_id = users_post.id');
         $query   = $builder->get();
@@ -348,6 +349,95 @@ class Admin extends BaseController
 
     }
 
+    public function community_admins(){
+        ini_set('display_errors', 1);
+
+        $data = [];
+
+        $model = new UserModel();
+
+        $data['community_admins'] = $model->whereIn('user_type', [1,2,3])->findAll();
+  
+
+        echo view('admin/templates/header', $data);
+        echo view('admin/community-admins', $data);
+        echo view('admin/templates/footer', $data);
+    }
+
+    public function community_create_admin(){
+        ini_set('display_errors', 1);
+
+        $data = [];
+
+
+        if ($this->request->getMethod() == 'post') {
+            $rules = [
+                // 'firstname' => 'required|min_length[3]|max_length[20]',
+                'nickname' => 'required|min_length[3]|max_length[20]',
+                'user_type' => 'required',
+                'email' => 'required|min_length[6]|max_length[50]|valid_email|is_unique[users.email]',
+                'password' => 'required|min_length[8]|max_length[255]',
+                'password_confirm' => 'matches[password]',
+            ];
+            
+            if (! $this->validate($rules)) {
+                $data['validation'] = $this->validator;
+            }else{
+                
+                $model = new UserModel();
+
+                $newData = [
+                    // 'firstname' => $this->request->getVar('firstname'),
+                    'user_type' => $this->request->getVar('user_type'),
+                    'nickname' => $this->request->getVar('nickname'),
+                    'email' => $this->request->getVar('email'),
+                    'password' => $this->request->getVar('password')
+                ];
+
+                $model->save($newData);
+                $session = session();
+                $session->setFlashdata('success', 'Successful Registration');
+                return redirect()->to('/weendi/community-create-admin');
+            
+            }
+        }
+
+        echo view('admin/templates/header', $data);
+        echo view('admin/community-create-admin', $data);
+        echo view('admin/templates/footer', $data);
+           
+    }
+
+    public function update_admin_user(){
+        ini_set('display_errors', 1);
+        
+        $data = [];
+        helper(['form']);
+
+        $rules = [
+            'user_type' => 'required',
+        ];
+
+        if (! $this->validate($rules)) {
+            $data['validation'] = $this->validator;
+        }else{
+            $newData = [
+                'user_type' => $this->request->getPost('user_type')
+            ];
+
+            // var_dump($newData);exit;
+            $model = new UserModel();
+
+            if($model->update($this->request->getPost('user_id'), $newData)){
+                $session = session();
+                $session->setFlashdata('success', 'Update Successfully');
+                return redirect()->to('/weendi/users-list');
+            }
+        }
+
+
+
+    }
 
 
 }

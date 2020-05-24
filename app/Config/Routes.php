@@ -78,7 +78,9 @@ $routes->get('/community-table', 'Admin::community_table', ['filter' => 'auth'])
 $routes->get('/reports-list', 'Admin::reports_list', ['filter' => 'auth']);
 $routes->get('/users-list', 'Admin::users_list', ['filter' => 'auth']);
 $routes->get('/community-users/(:num)', 'Admin::community_users/$1', ['filter' => 'auth']);
-
+$routes->get('/community-admins', 'Admin::community_admins', ['filter' => 'auth']);
+// $routes->get('/community-create-admin', 'Admin::community_create_admin', ['filter' => 'auth']);
+$routes->match(['get','post'],'community-create-admin', 'Admin::community_create_admin', ['filter' => 'auth']);
 
 //admin functions
 $routes->match(['get','post'],'save_community', 'Admin::save_community', ['filter' => 'auth']);
@@ -86,9 +88,7 @@ $routes->match(['get','post'],'update_community', 'Admin::update_community', ['f
 $routes->match(['get','post'],'update_community_photo', 'Admin::update_community_photo', ['filter' => 'auth']);
 $routes->get('delete_community/(:num)', 'Admin::delete_community/$1', ['filter' => 'auth']);
 $routes->match(['get', 'post'], 'community_ban_user', 'Admin::community_ban_user', ['filter' => 'auth']);
-
-
-
+$routes->match(['get', 'post'], 'update_admin_user', 'Admin::update_admin_user', ['filter' => 'auth']);
 
 
 

@@ -25,6 +25,7 @@ class Users extends BaseController
         ini_set('display_errors', 1);
         // get_ip_address();
         
+
         $data = [];
         helper(['form']);
 
@@ -61,7 +62,6 @@ class Users extends BaseController
             $user = $model->where('email', $this->request->getVar('email'))
                           ->first();
             
-           
             
             $ip_model = new UseripModel();
           
@@ -82,7 +82,7 @@ class Users extends BaseController
                 }
                 $session = session();
                 $this->setUserSession($user);
-                if($user['user_type'] == '3'){
+                if($user['user_type'] == '3' || $user['user_type'] == '1' || $user['user_type'] == '2'){
                     return redirect()->to('admin');
                 }elseif($user['user_type'] == '0'){
                     $session->setFlashdata('success', 'Login Successfully!');
@@ -111,6 +111,7 @@ class Users extends BaseController
             'id' => $user['id'],
             'nickname' => $user['nickname'],
             'email' => $user['email'],
+            'user_type' => $user['user_type'],
             'isLoggedIn' => true,
         ];
 

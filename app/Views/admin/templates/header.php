@@ -90,7 +90,7 @@
           </div>
         </div>
       </li>
-
+     <?php if(session()->get('user_type') == '3'): ?>
       <div class="sidebar-heading">
         Users
       </div>
@@ -102,12 +102,15 @@
         <div id="users" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+            <a class="collapse-item" href="community-create-admin">Create Admin</a>
+            <a class="collapse-item" href="community-admins">Admin list</a>
             <a class="collapse-item" href="users-list">Users List</a>
           </div>
         </div>
       </li>
 
-      
+     <?php endif; ?>
+
       <hr class="sidebar-divider d-none d-md-block">
 
       <!-- Sidebar Toggler (Sidebar) -->
