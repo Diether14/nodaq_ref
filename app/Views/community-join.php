@@ -231,10 +231,10 @@
             <p>I'm an instance of <a href="https://ckeditor.com">CKEditor</a>.</p>
           </div>
         </div>
-        <div class="card container p-3 ">
+        <!-- <div class="card container p-3 ">
         <label for="">Tag People</label>
         <input type="text" data-role="tagsinput" class="form-control" >
-        </div>
+        </div> -->
         <!-- <div> -->
           <!-- <div class="card container p-3">
         <div class="input-group">

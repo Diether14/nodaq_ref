@@ -12,10 +12,10 @@
           <h6 class="m-0 font-weight-bold text-primary">Create Community</h6>
         </div>
         <div class="card-body">
-        <?php if (session('msg')) : ?>
+        <?php if ($msg) : ?>
         <div class="card bg-info text-white shadow">
                     <div class="card-body">
-                    <?= session('msg') ?>
+                    <?= $msg ?>
             
                     </div>
                   </div>
@@ -46,6 +46,20 @@
             <input type="color" name="color" value="#FFFFFF">
             <label for="color">Select your text color:</label>
             <input type="color" name="text_color" value="#555555">
+
+            <div class="form-group row">
+              <div class="col-lg-6">
+                <label>Upvote Name</label>
+                <input type="text" name="upvote" class="form-control">
+              </div> 
+              
+              <div class="col-lg-6">
+                <label>Devote Name</label>
+                <input type="text" name="devote" class="form-control">
+              </div>  
+
+            </div>
+
             <hr>
             <button type="submit" class="btn btn-primary">Save Community</button>
 

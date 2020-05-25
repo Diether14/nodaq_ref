@@ -127,8 +127,8 @@ class Users extends BaseController
 
         if ($this->request->getMethod() == 'post') {
             $rules = [
-                // 'firstname' => 'required|min_length[3]|max_length[20]',
-                // 'lastname' => 'required|min_length[3]|max_length[20]',
+                'birthdate' => 'required',
+                'gender' => 'required',
                 'nickname' => 'required|min_length[3]|max_length[20]',
                 'email' => 'required|min_length[6]|max_length[50]|valid_email|is_unique[users.email]',
                 'password' => 'required|min_length[8]|max_length[255]',
@@ -142,12 +142,13 @@ class Users extends BaseController
                 $model = new UserModel();
 
                 $newData = [
-                    // 'firstname' => $this->request->getVar('firstname'),
-                    // 'lastname' => $this->request->getVar('lastname'),
+                    'birthdate' => $this->request->getVar('birthdate'),
+                    'gender' => $this->request->getVar('gender'),
                     'nickname' => $this->request->getVar('nickname'),
                     'email' => $this->request->getVar('email'),
                     'password' => $this->request->getVar('password')
                 ];
+
                 $model->save($newData);
                 $session = session();
                 $session->setFlashdata('success', 'Successful Registration');
@@ -569,6 +570,51 @@ class Users extends BaseController
      
          return redirect()->to( base_url('/settings') );
  
+    }
+
+    public function update_profile_info(){
+        ini_set('display_errors', 1);
+
+        helper(['form', 'url']);
+        
+
+        $rules = [
+            'birthdate' => 'required',
+            'gender' => 'required',
+            'nickname' => 'required|min_length[3]|max_length[20]',
+            'email' => 'required|min_length[6]|max_length[50]|valid_email|is_unique[users.email]',
+        ];
+        
+        if (! $this->validate($rules)) {
+            $data['validation'] = $this->validator;
+        }else{
+            
+            $model = new UserModel();
+
+            $newData = [
+                'birthdate' => $this->request->getVar('birthdate'),
+                'gender' => $this->request->getVar('gender'),
+                'nickname' => $this->request->getVar('nickname'),
+                'email' => $this->request->getVar('email')
+            ];
+
+
+
+            if($model
+            ->where('id', [session()->get('id')])
+            ->set($newData)
+            ->update()){
+                $session = session();
+                $session->setFlashdata('success', 'Update Successfully!');
+            }else{
+                $session = session();
+                $session->setFlashdata('success', 'Update Failed!');
+            }
+
+           
+            return redirect()->to('/weendi/settings');
+        
+        }
     }
 
     public function dashboard(){

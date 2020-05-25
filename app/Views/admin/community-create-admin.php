@@ -26,23 +26,18 @@
 
             <div class="form-group row">
               <div class="col-lg-6">
+               <div class="form-">
+                    <p for="nickname" class="mb-0">Nickname</p>
+ 
+                  <input type="text" name="nickname" class="form-control" placeholder="Enter Nickname" value="">
 
-
-                <div class="input-group">
-                  <div class="input-group-prepend">
-
-                  </div>
-                  <input type="text" name="nickname" class="form-control" placeholder="Nickname..." value="">
-
-
-                </div>
+              </div>
               </div>
               <div class="col-lg-6">
 
-                <div class="input-group">
-                <div class="input-group-prepend">
-
-                </div>
+              <div class="form-group">
+                    <p for="user_type" class="mb-0">User Type</p>
+ 
                   <select name="user_type" class="form-control" id="exampleFormControlSelect1">
                     <option>Select User Type</option>
                     <!-- <option>Community</option> -->
@@ -56,29 +51,49 @@
             </div>
 
 
-            <div class="input-group">
-              <div class="input-group-prepend">
-
-                </span> 
-              </div>
-              <input type="email" name="email" class="form-control" placeholder="Email..." value="">
+                    <div class="form-group">
+                    <p for="email" class="mb-0">Email</p>
+ 
+              <input type="email" name="email" class="form-control" placeholder="Enter Email" value="">
+          
             </div>
+            <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0 mt-2">
+                    <div class="form-group">
+                    <p for="birthdate" class="mb-0">Birthdate</p>
+                    <input type="date" name="birthdate" class="form-control" id="birthdate">
+                   </div>
+
+                    </div>
+                    <div class="col-sm-6">
+
+                      <div class="form-group">
+                       <p for="gender" class="mb-0 mt-2">Gender</p>
+                        <select name="gender" class="form-control" id="exampleFormControlSelect1">
+                          <option>Select Gender</option>
+                          <option value="1">Male</option>
+                          <option value="2">Female</option>
+                        </select>
+           
+                      </div>
+
+
+                    </div>
+                  </div>
 
             <div class="form-group row mt-3">
               <div class="col-sm-6 mb-3 mb-sm-0">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-
-                  </div>
-                  <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+              <div class="form-group">
+                    <p for="password" class="mb-0">Password</p>
+ 
+                  <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password">
                 </div>
 
               </div>
               <div class="col-sm-6">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-
-                  </div>
+              <div class="form-group">
+                    <p for="birthdate" class="mb-0">Confirm Password</p>
+ 
                   <input type="password" class="form-control" name="password_confirm" id="password_confirm" value=""
                     placeholder="Repeat Password">
                 </div>

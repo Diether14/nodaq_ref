@@ -38,6 +38,7 @@ $routes->match(['get','post'],'profile', 'Users::profile', ['filter' => 'auth'])
 $routes->match(['get','post'],'settings', 'Users::settings', ['filter' => 'auth']);
 $routes->match(['get','post'],'update_profile', 'Users::update_profile', ['filter' => 'auth']);
 $routes->match(['get','post'],'update_mode', 'Users::update_mode', ['filter' => 'auth']);
+$routes->match(['get','post'],'update_profile_info', 'Users::update_profile_info', ['filter' => 'auth']);
 $routes->match(['get','post'],'save_post', 'Users::save_post', ['filter' => 'auth']);
 $routes->match(['get','post'],'add_comment', 'Users::add_comment', ['filter' => 'auth']);
 $routes->match(['get','post'],'join_community', 'Category::join_community', ['filter' => 'auth']);

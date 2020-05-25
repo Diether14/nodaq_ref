@@ -19,11 +19,17 @@
         <div class="row">
           <div class="col-md-3">
             <ul class="nav nav-pills nav-pills-icons flex-column" role="tablist">
-  
+
               <li class="nav-item">
                 <a class="nav-link active" href="#personal" role="tab" data-toggle="tab">
                   <i class="material-icons">person</i>
                   Personal Settings
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#profile" role="tab" data-toggle="tab">
+                  <i class="material-icons">info</i>
+                  Profile Settings
                 </a>
               </li>
               <li class="nav-item">
@@ -38,47 +44,109 @@
             <div class="tab-content">
               <div class="tab-pane active" id="personal">
                 <div class="card p-3">
-                <div class="card-title">
-                  <h4>Nickname Settings</h4>
+                  <div class="card-title">
+                    <h4>Nickname Settings</h4>
+                  </div>
+                  <?php if(session()->get('success_nickname')): ?>
+                  <div class="alert alert-success" role="alert">
+                    <?= session()->get('success_nickname') ?>
+                  </div>
+                  <?php endif; ?>
+
+                  <form class="contact-form" action="/weendi/update_mode" method="post">
+
+                    <div class="togglebutton">
+                      <label>
+
+                        <input type="checkbox" name="mode" <?= ($user_settings['user_mode'] == '1' ? 'checked': null)?>>
+
+                        <span class="toggle"></span>
+                        Anonymous mode
+                      </label>
+                    </div>
+
+                    <div class="togglebutton">
+                      <label>
+
+                        <input type="checkbox" name="nickname"
+                          <?= ($user_settings['user_nickname'] == '1' ? 'checked': null)?>>
+
+                        <span class="toggle"></span>
+                        Show Nickname
+                      </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-raised mt-3" id="btnSubmit">
+                      Save
+                    </button>
+
+                  </form>
                 </div>
-                <?php if(session()->get('success_nickname')): ?>
+              </div>
+
+
+              <div class="tab-pane" id="profile">
+
+                <h2 class="text-center title">Update Profile Information</h2>
+                <?php if(session()->get('success')): ?>
                 <div class="alert alert-success" role="alert">
-                  <?= session()->get('success_nickname') ?>
+                  <?= session()->get('success') ?>
                 </div>
                 <?php endif; ?>
-                
-                <form class="contact-form" action="/weendi/update_mode" method="post">
+                <form class="contact-form" action="<?php base_url(); ?>/weendi/update_profile_info" method="post">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="bmd-label-floating">Nickname</label>
+                        <input type="text" name="nickname" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="bmd-label-floating">Email</label>
+                        <input type="email" name="email" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="bmd-label-floating">Birthdate</label>
+                        <input type="date" name="birthdate" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label class="bmd-label-floating">Gender</label>
+                        <select name="gender" class="form-control" id="exampleFormControlSelect1">
+                          <option>Select Gender</option>
+                          <option value="1">Male</option>
+                          <option value="2">Female</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
 
-                <div class="togglebutton">
-                  <label>
-            
-                    <input type="checkbox" name="mode" <?= ($user_settings['user_mode'] == '1' ? 'checked': null)?>>
- 
-                    <span class="toggle"></span>
-                    Anonymous mode
-                  </label>
-                </div>
 
-                <div class="togglebutton">
-                  <label>
-            
-                    <input type="checkbox" name="nickname" <?= ($user_settings['user_nickname'] == '1' ? 'checked': null)?>>
- 
-                    <span class="toggle"></span>
-                    Show Nickname
-                  </label>
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-raised mt-3" id="btnSubmit">
-                  Save
-                </button>
-
+                  <?php if(isset($validation)): ?>
+                  <div class="col-12">
+                    <div class="alert alert-danger" role="alert">
+                      <?= $validation->listErrors() ?>
+                    </div>
+                  </div>
+                  <?php endif; ?>
+                  <div class="row">
+                    <div class="col-md-4 ml-auto mr-auto text-center">
+                      <button type="submit" class="btn btn-primary btn-raised">
+                        Update
+                      </button>
+                    </div>
+                  </div>
                 </form>
               </div>
-              </div>
+
+
               <div class="tab-pane" id="password">
-                
-              <h2 class="text-center title">Update Password</h2>
+
+                <h2 class="text-center title">Update Password</h2>
                 <?php if(session()->get('success')): ?>
                 <div class="alert alert-success" role="alert">
                   <?= session()->get('success') ?>
@@ -195,8 +263,8 @@
 </div>
 </div>
 <script>
-$('document').ready(function(){
-  $("#btnSubmit").attr("disabled", true);
+  $('document').ready(function () {
+    $("#btnSubmit").attr("disabled", true);
 
-});
+  });
 </script>

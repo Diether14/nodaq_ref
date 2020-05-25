@@ -60,7 +60,9 @@ class Admin extends BaseController
 
         $rules = [
             'title' => 'required|min_length[3]|max_length[20]',
-            'content' => 'required|min_length[3]|max_length[500]'
+            'content' => 'required|min_length[3]|max_length[500]',
+            'upvote' => 'required|min_length[3]|max_length[12]',
+            'devote' => 'required|min_length[3]|max_length[12]',   
         ];
 
         $msg = 'Please select a valid file';
@@ -96,7 +98,9 @@ class Admin extends BaseController
                     'content' => $this->request->getPost('content'),
                     'community_type' => $community_type,
                     'color' => $this->request->getPost('color'),
-                    'text_color' => $this->request->getPost('text_color')
+                    'text_color' => $this->request->getPost('text_color'),
+                    'upvote_name' => $this->request->getPost('upvote'),
+                    'devote_name' => $this->request->getPost('devote')
                     ];
                 
                 if($model->insert($newData)){
@@ -372,7 +376,8 @@ class Admin extends BaseController
 
         if ($this->request->getMethod() == 'post') {
             $rules = [
-                // 'firstname' => 'required|min_length[3]|max_length[20]',
+                'gender' => 'required',
+                'birthdate' => 'required',
                 'nickname' => 'required|min_length[3]|max_length[20]',
                 'user_type' => 'required',
                 'email' => 'required|min_length[6]|max_length[50]|valid_email|is_unique[users.email]',
@@ -387,7 +392,8 @@ class Admin extends BaseController
                 $model = new UserModel();
 
                 $newData = [
-                    // 'firstname' => $this->request->getVar('firstname'),
+                    'gender' => $this->request->getVar('gender'),
+                    'birthdate' => $this->request->getVar('birthdate'),
                     'user_type' => $this->request->getVar('user_type'),
                     'nickname' => $this->request->getVar('nickname'),
                     'email' => $this->request->getVar('email'),
