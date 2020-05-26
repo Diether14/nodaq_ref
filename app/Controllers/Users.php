@@ -635,9 +635,11 @@ class Users extends BaseController
         $db      = \Config\Database::connect();
         $builder = $db->table('community');
     
-        $builder->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.updated_at, community.color , community.text_color, community_photo.name');
+        $builder->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.updated_at, community.color , community.text_color, community_photo.name, users.nickname');
         $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
-    
+        $builder->join('users', 'community.user_id = users.id');
+        
+
         $query   = $builder->get();
         $data['community_list'] = $query->getResult();
 
@@ -690,7 +692,11 @@ class Users extends BaseController
         $builder1->join('users_community', 'users_community.community_id = community.id');
         $query1 = $builder1->get();
         $data['community'] = $query1->getResult();
-  
+
+        $com = new CommunityModel();
+        $data['com'] = $com->where('id', $data['blog']['community_id'])->first();
+   
+
 
         echo view('templates/header', $data);
         echo view('post-view', $data);

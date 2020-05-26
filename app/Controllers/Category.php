@@ -131,18 +131,20 @@ class Category extends BaseController
         $db1      = \Config\Database::connect();
         $builder1 = $db1->table('users_post');
         $builder1->where('users_post.community_id', $id);
-        $builder1->select('users_post.id,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.updated_at, users.nickname');
+        $builder1->select('users_post.id,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.updated_at, users.nickname, profile_photo.name' );
         $builder1->join('users', 'users.id = users_post.user_id');
+        $builder1->join('profile_photo', 'users.id = profile_photo.user_id');
         
         $query1  = $builder1->get();
         $data['posts'] = $query1->getResult();  
     
         $db2      = \Config\Database::connect();
         $builder2 = $db2->table('users_shared_posts');
-        $builder2->select('users_shared_posts.id, users_shared_posts.content ,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.updated_at, users.nickname');
+        $builder2->select('users_shared_posts.id, users_shared_posts.content ,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.updated_at, users.nickname,profile_photo.name');
         $builder2->join('users', 'users.id = users_shared_posts.user_id');
         $builder2->join('users_post', 'users_post.id = users_shared_posts.post_id');
-        
+        $builder2->join('profile_photo', 'users.id = profile_photo.user_id');
+
         $query2  = $builder2->get();
         $data['shared'] = $query2->getResult();  
 

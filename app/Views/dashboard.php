@@ -56,8 +56,9 @@
                     <label>
                       <input type="checkbox" checked="">
                       <span class="toggle"></span>
-                      Toggle is on
-                    </label>
+                      label here
+                    </label><br>
+                    <div style="float-right"><p class="text">Created By: <b><?= $value->nickname ?></b></p></div>
                   </div>
                 </div>
               </div>
