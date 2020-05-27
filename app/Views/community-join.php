@@ -137,10 +137,11 @@
                         <p class="card-description"><?= $value->description ?></p>
 
                         <div class="d-flex justify-content-center">
-                          <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link "><i
-                              class="fa fa-eye pr-1"></i> </a>
-                          <a href="#" class="btn btn-link"><i class="fa fa-share m-0 p-0"></i> </a>
-                          <a href="#" class="btn btn-link"><i class="fa fa-exclamation m-0 p-0"></i> </a>
+                          <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-2"><i
+                              class="fa fa-eye m-0 p-0"></i> 10 Views </a>
+                          <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-comments m-0 p-0"></i> 50 Comments</a>    
+                          <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-share m-0 p-0"></i> 2 Shares</a>
+              
                         </div>
                       </div>
                     </div>
@@ -153,9 +154,9 @@
                   <div class="col-md-4">
                     <div class="card">
 
-
+                    
                       <div class="profile-photo-small m-2 d-flex">
-
+                       
                         <?php if(!empty($value->name)): ?>
 
                         <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $value->name ?>"
@@ -165,12 +166,14 @@
                         <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image"
                           class="img-raised rounded-circle img-fluid  z-depth-2" alt="avatar">
 
-                        <?php endif; ?>
+                        <?php endif; ?> 
 
                         <div class="m-0 p-0">
+                          
                           <h4 class="card-title pl-2 mt-0 mb-0"><?= $value->nickname; ?>
+                          <span class="fa fa-share small" style="float-right"></span>
                           </h4>
-                          <p class="small pl-2 m-0">1 hour ago</p><br>
+                          <p class="small pl-2 m-0">1 hour ago </p>
                           <p class="text p-0 m-0">
                             <?= $value->content ?>
 
@@ -180,43 +183,14 @@
 
                       </div>
 
-                      <div class="team-player">
-                      <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>">
-                        <div class="card p-2 mt-0">
-                          <div class="profile-photo-small m-2 d-flex">
-                            <?php if(!empty($value->name)): ?>
-
-                            <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $value->name ?>"
-                              alt="Circle Image" class="rounded-circle img-fluid z-depth-2">
-
-                            <?php else: ?>
-                            <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image"
-                              class="img-raised rounded-circle img-fluid  z-depth-2" alt="avatar">
-
-                            <?php endif; ?>
-
-                            <div class="m-0 p-0">
-                              <h4 class="card-title pl-2 mt-0 mb-0"><?= $value->nickname; ?>
-                              </h4>
-                              <p class="small pl-2 m-0">1 hour ago</p><br>
-                              <p class="text p-0 m-0">
-                                <?= $value->description ?>
-
-                              </p>
-
-                            </div>
-                          </div>
-
-                         
-                          
-                        </div></a>
+                    
 
                         <div class="d-flex justify-content-center">
 
-                          <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link "><i
-                              class="fa fa-eye pr-1"></i> </a>
-                          <a href="#" class="btn btn-link"><i class="fa fa-share m-0 p-0"></i> </a>
-                          <a href="#" class="btn btn-link"><i class="fa fa-exclamation m-0 p-0"></i> </a>
+                        <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-2"><i
+                              class="fa fa-eye m-0 p-0"></i> 10 Views </a>
+                              <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-comments m-0 p-0"></i> 50 Comments</a>  
+                          <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-share m-0 p-0"></i> 2 Shares</a>
 
                         </div>
                       </div>

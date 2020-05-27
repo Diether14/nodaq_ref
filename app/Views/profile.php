@@ -52,9 +52,9 @@
   <div class="profile-content">
     <div class="container">
       <div class="row">
-        <div class="col-md-4">
-          <div class="card">
-            <div class="profile ">
+        <div class="col-md-12">
+          <div class="">
+            <div class="profile">
               <div class="avatar" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top"
                 title="Click to update" data-container="body">
                 <?php if(!empty($profile_photo['name'])): ?>
@@ -62,12 +62,12 @@
                 <!-- <img src="public/user/uploads/profiles/<?= $profile_photo['name'] ?>" alt="Circle Image"
                   class="img-raised rounded-circle img-fluid img-thumbnail" alt="avatar"> -->
 
-                  <img class="img-raised rounded-circle z-depth-2" alt="100x100" src="public/user/uploads/profiles/<?= $profile_photo['name'] ?>"
-                  data-holder-rendered="true">
+                <img class="img-raised rounded-circle z-depth-2" alt="100x100"
+                  src="public/user/uploads/profiles/<?= $profile_photo['name'] ?>" data-holder-rendered="true">
 
 
                 <?php else: ?>
-                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="100x100" 
+                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="100x100"
                   class="img-raised rounded-circle z-depth-2" alt="avatar" data-holder-rendered="true">
 
                 <?php endif; ?>
@@ -102,179 +102,169 @@
                   <?php endif; ?>
                 </div>
 
+                <p></p>
 
-                <a href="#" class="btn btn-just-icon btn-link btn-dribbble"><i class="fa fa-dribbble"></i></a>
+                <!-- <a href="#" class="btn btn-just-icon btn-link btn-dribbble"><i class="fa fa-"></i></a>
                 <a href="#" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
-                <a href="#" class="btn btn-just-icon btn-link btn-pinterest"><i class="fa fa-pinterest"></i></a>
+                <a href="#" class="btn btn-just-icon btn-link btn-pinterest"><i class="fa fa-pinterest"></i></a> -->
               </div>
-
             </div>
+            <br>
+            <hr>
+            <h2 class="title">Community Joined</h2>
+            <div class="row">
+              <?php foreach ($community_list as $key => $value): ?>
 
-          </div>
-          <div class="card">
-            <div class="row ">
-              <div class="col-md-12 ml-auto mr-auto">
-                <div class="profile-tabs">
-                  <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
-                    <li class="nav-item">
-                      <a class="nav-link active" href="#studio" role="tab" data-toggle="tab">
-                        <i class="material-icons">camera</i> Lorem
+              <div class="col-md-4">
+                <div class="team-player">
+
+                  <div class="card card-plain">
+
+                    <h6 class="card-title p-3 my-0" style="background-color: <?= $value->color; ?>">
+
+                      <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-bars pl-3"
+                          style="float:left;"></i></a>
+                      <a href="community-join/<?= $value->id;  ?>" style="color: <?= $value->text_color; ?>"><span
+                          class="p-3"><?= $value->title ?> </span></a>
+
+                    </h6>
+                    <div class="view overlay">
+                      <img class="card-img-top rounded-0" src="public/admin/uploads/community/<?= $value->name ?>"
+                        alt="Card image cap">
+                      <a href="#!">
+                        <div class="mask rgba-white-slight"></div>
                       </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#works" role="tab" data-toggle="tab">
-                        <i class="material-icons">palette</i> Lorem
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#favorite" role="tab" data-toggle="tab">
-                        <i class="material-icons">favorite</i> Lorem
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="tab-content tab-space">
-              <div class="tab-pane active text-center gallery" id="studio">
-                <div class="row">
-                  <div class="col-md-3 ml-auto">
-                    <img src="public/user/assets/img/examples/studio-1.jpg" class="rounded">
-                    <img src="public/user/assets/img/examples/studio-2.jpg" class="rounded">
-                  </div>
-                  <div class="col-md-3 mr-auto">
-                    <img src="public/user/assets/img/examples/studio-5.jpg" class="rounded">
-                    <img src="public/user/assets/img/examples/studio-4.jpg" class="rounded">
-                  </div>
-                </div>
-              </div>
-              <div class="tab-pane text-center gallery" id="works">
-                <div class="row">
-                  <div class="col-md-3 ml-auto">
-                    <img src="public/user/assets/img/examples/olu-eletu.jpg" class="rounded">
-                    <img src="public/user/assets/img/examples/clem-onojeghuo.jpg" class="rounded">
-                    <img src="public/user/assets/img/examples/cynthia-del-rio.jpg" class="rounded">
-                  </div>
-                  <div class="col-md-3 mr-auto">
-                    <img src="public/user/assets/img/examples/mariya-georgieva.jpg" class="rounded">
-                    <img src="public/user/assets/img/examples/clem-onojegaw.jpg" class="rounded">
-                  </div>
-                </div>
-              </div>
-              <div class="tab-pane text-center gallery" id="favorite">
-                <div class="row">
-                  <div class="col-md-3 ml-auto">
-                    <img src="public/user/assets/img/examples/mariya-georgieva.jpg" class="rounded">
-                    <img src="public/user/assets/img/examples/studio-3.jpg" class="rounded">
-                  </div>
-                  <div class="col-md-3 mr-auto">
-                    <img src="public/user/assets/img/examples/clem-onojeghuo.jpg" class="rounded">
-                    <img src="public/user/assets/img/examples/olu-eletu.jpg" class="rounded">
-                    <img src="public/user/assets/img/examples/studio-1.jpg" class="rounded">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="col-md-8 ">
-          <h2 class="title">Community Joined</h1>
-          <div class="row">
-          <?php foreach ($community_list as $key => $value): ?>
-
-          <div class="col-md-4">
-            <div class="team-player">
-
-              <div class="card card-plain">
-
-                <h4 class="card-title">
-
-                  <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-bars pl-3"
-                      style="float:left;"></i></a>
-                  <a href="community-join/<?= $value->id;  ?>"><?= $value->title ?> </a></h4>
-
-                <div class="view overlay">
-                  <img class="card-img-top rounded-0" src="public/admin/uploads/community/<?= $value->name ?>"
-                    alt="Card image cap">
-                  <a href="#!">
-                    <div class="mask rgba-white-slight"></div>
-                  </a>
-                </div>
+                    </div>
 
 
-                <div class="card-body">
-                  <p class="card-description"><?= $value->content ?>
-                  </p>
-                </div>
-                <div class="card-footer justify-content-center">
-                  <div class="togglebutton">
-                    <label>
-                      <input type="checkbox" checked="">
-                      <span class="toggle"></span>
-                      Toggle is on
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <?php endforeach; ?>
+                    <div class="card-body">
 
-        </div>
-            <?php if($posts): ?>
-            <h2 class="title">Recent Posts</h1>
-            <?php foreach($posts as $key => $value): ?>
-            <a href="/weendi/post-view/<?= $value['id']; ?>">
-              <div class="team-player">
-                <div class="card p-3">
 
-                  <h4 class="card-title"><?= $value['title']; ?>
-                    <br>
-                    <small class="card-description text-muted">Posted By: <?= $value['nickname'] ?></small>
-                  </h4>
-
-                  <p class="card-description"><?= $value['description'] ?></p>
-
-                  <div class="justify-content-left">
-                  <a href="<?= base_url(); ?>/delete-post/<?= $value['id'] ?>" class="card-link">Delete Post </a>
-                         
-                  <a href="<?= base_url(); ?>/post-view/<?= $value['id'] ?>" class="card-link">Read More </a>
-
-                  </div>
-                </div>
-              </div>
-            </a>
-            <?php endforeach; ?>
-            <?php endif; ?>
-            <?php if($shared): ?>
-            <h2 class="title">Shared Posts</h1>
-            <?php foreach($shared as $key => $value): ?>
-                     
-                  
-                      <div class="team-player">
-                        <div class="card p-3">
-          
-                          <h4 class="card-title"><?= $value->title; ?>
-                            <br>
-                            <small class="card-description text-muted">Shared By: <?= $value->nickname ?></small>
-                          </h4>
-                          
-                            <p class="card-description"><?= $value->description ?></p>
-                         
-                          <div class="justify-content-left">
-             
-                          <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="card-link">Read More </a>
-                          <a href="<?= base_url(); ?>/delete-shared-post/<?= $value->id ?>" class="card-link">Delete Post </a>
-             
+                      <p class="card-description"><?= $value->content ?>
+                      </p>
+                    </div>
+                    <div class="card-footer justify-content-center">
+                      <div class="togglebutton">
+                        <label>
+                          <input type="checkbox" checked="">
+                          <span class="toggle"></span>
+                          label here
+                        </label><br>
+                        <div style="float-right">
+                          <p class="text">Created By: <b><?= $value->nickname ?></b></p>
                         </div>
                       </div>
-                
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <?php endforeach; ?>
+
+            </div>
+            <hr>
+
+            <h2 class="title mb-0">Recent Post</h2>
+            <div class="row">
+              <?php foreach($posts as $key => $value): ?>
+              <div class="col-md-4">
+
+                <div class="team-player">
+                  <div class="card p-3">
+
+                    <div class="profile-photo-small d-flex">
+
+                      <?php if(!empty($value->name)): ?>
+
+                      <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $value->name ?>" alt="Circle Image"
+                        class="rounded-circle img-fluid z-depth-2">
+
+                      <?php else: ?>
+                      <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image"
+                        class="img-raised rounded-circle img-fluid  z-depth-2" alt="avatar">
+
+                      <?php endif; ?>
+                     
+                      <div class="m-0 p-0">
+                        <h4 class="card-title pl-2 mt-0 mb-0"><?= $value->nickname; ?>
+                        </h4>
+                        <p class="small pl-2 m-0">1 hour ago</p><br>
+                        
+                        <p class="text p-0 m-0">
+                          <?= $value->content ?>
+
+                        </p>
+
                       </div>
+
+                    </div>
+
+
+                    <p class="card-description"><?= $value->description ?></p>
+
+                    <div class="d-flex justify-content-center">
+                      <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-2"><i
+                          class="fa fa-eye m-0 p-0"></i> 10 Views </a>
+                      <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-share m-0 p-0"></i> 2 Shares</a>
+                      <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-exclamation m-0 p-0"></i> Reports</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <?php endforeach; ?>
+
+
+              <?php foreach($shared as $key => $value): ?>
+
+              <div class="col-md-4">
+                <div class="card">
+
+
+                  <div class="profile-photo-small m-2 d-flex">
+
+                    <?php if(!empty($value->name)): ?>
+
+                    <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $value->name ?>" alt="Circle Image"
+                      class="rounded-circle img-fluid z-depth-2">
+
+                    <?php else: ?>
+                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image"
+                      class="img-raised rounded-circle img-fluid  z-depth-2" alt="avatar">
+
+                    <?php endif; ?>
+
+                    <div class="m-0 p-0">
+
+                      <h4 class="card-title pl-2 mt-0 mb-0"><?= $value->nickname; ?>
+                        <span class="fa fa-share small" style="float-right"></span>
+                      </h4>
+                      <p class="small pl-2 m-0">1 hour ago </p>
+                      <p class="text p-0 m-0">
+                        <?= $value->content ?>
+
+                      </p>
+
+                    </div>
+
+                  </div>
+
+
+
+                  <div class="d-flex justify-content-center">
+
+                    <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-2"><i
+                        class="fa fa-eye m-0 p-0"></i> 10 Views </a>
+                    <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-comments m-0 p-0"></i> 50 Comments</a>
+                    <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-share m-0 p-0"></i> 2 Shares</a>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
             <?php endforeach; ?>
-            <?php endif; ?>
+          </div>
         </div>
 
 

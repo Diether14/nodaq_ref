@@ -276,29 +276,42 @@ class Users extends BaseController
 
         $posts = new UserspostModel();
         
-        $data['posts'] = $posts->where('user_id',  session()->get('id'))
-        ->findAll();
+
+        $db1      = \Config\Database::connect();
+        $builder1 = $db1->table('users_post');
+        $builder1->where('users_post.user_id', session()->get('id'));
+        $builder1->select('users_post.id,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.updated_at, users.nickname, profile_photo.name' );
+        $builder1->join('users', 'users.id = users_post.user_id');
+        $builder1->join('profile_photo', 'users.id = profile_photo.user_id');
+        
+        $query1  = $builder1->get();
+        $data['posts'] = $query1->getResult();  
+
         
         $db      = \Config\Database::connect();
         $builder = $db->table('community');
     
-        $builder->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.updated_at, community.color, community_photo.name');
+        $builder->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.updated_at, community.color, community.text_color, community_photo.name, users.nickname');
         $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
         $builder->join('users_community', 'users_community.community_id = community.id');
-
+        $builder->join('users', 'users.id = users_community.user_id');
         $query   = $builder->get();
         $data['community_list'] = $query->getResult();
+  
 
+        
         $db2      = \Config\Database::connect();
         $builder2 = $db2->table('users_shared_posts');
-        $builder2->select('users_shared_posts.id, users_shared_posts.content ,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.updated_at, users.nickname');
+        $builder2->select('users_post.id, users_shared_posts.content ,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.updated_at, users.nickname,profile_photo.name');
+        $builder2->where('users_shared_posts.user_id', session()->get('id'));
+       
         $builder2->join('users', 'users.id = users_shared_posts.user_id');
         $builder2->join('users_post', 'users_post.id = users_shared_posts.post_id');
-        
+        $builder2->join('profile_photo', 'users.id = profile_photo.user_id');
+
         $query2  = $builder2->get();
         $data['shared'] = $query2->getResult();  
 
-        
         echo view('templates/header', $data);
         echo view('profile');
         echo view('templates/footer');
@@ -661,13 +674,19 @@ class Users extends BaseController
         // test($query);
 
         $model = new UserspostModel();
+        $user = new UserModel();
     
 
         $data['blog'] = $model->where('id', $id)->first();
     
         $profile_photo = new ProfilephotoModel();
-        $data['profile_photo'] = $profile_photo->where('user_id', session()->get('id'))
+        $data['profile_photo'] = $profile_photo->where('user_id',$data['blog']['user_id'])
             ->first();
+
+        $data['user'] = $user->where('id',$data['blog']['user_id'])
+            ->first();
+
+
         // $user_model = new UserModel();
         
 
@@ -688,11 +707,22 @@ class Users extends BaseController
 
         $db1 = \Config\Database::connect();
         $builder1 = $db1->table('community');
-        $builder1->select('*');
+        $builder1->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.updated_at, community_photo.name');
+        
         $builder1->join('users_community', 'users_community.community_id = community.id');
+        $builder1->join('community_photo', 'community_photo.id = community.com_photo_id');
         $query1 = $builder1->get();
         $data['community'] = $query1->getResult();
 
+
+        $db2 = \Config\Database::connect();
+        $builder2 = $db1->table('community');
+        $builder2->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.updated_at, community_photo.name');
+        $builder2->where('community.id', $data['blog']['community_id']);
+        $builder2->join('community_photo', 'community_photo.id = community.com_photo_id');
+        $query2 = $builder2->get();
+        $data['community_current'] = $query2->getResult();
+   
         $com = new CommunityModel();
         $data['com'] = $com->where('id', $data['blog']['community_id'])->first();
    

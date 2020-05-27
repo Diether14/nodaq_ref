@@ -44,13 +44,13 @@
 </style>
 
 <div class="page-header header-filter" data-parallax="true"
-  style="background-image: url(<?= base_url(); ?>/public/admin/uploads/community/<?= $profile_photo['name']; ?>)">
+  style="background-image: url(<?= base_url(); ?>/public/admin/uploads/community/<?= $community_current[0]->name; ?>)">
   <div class="container">
     <div class="row">
       <div class="col-md-12 ml-auto mr-auto">
         <div class="brand">
-          <h1 class="title"><?= $blog['title']; ?></h1>
-          <h4 class="small-description"><?= $blog['description'] ?></h4>
+          <h1 class="title"><?= $community_current[0]->title; ?></h1>
+          <h4 class="small-description"><?= $community_current[0]->content ?></h4>
           <a href="<?= base_url(); ?>/community-join/<?= $blog['community_id'] ?>"><button
               class="btn btn-primary btn-raised btn-lg">View Community</button></a>
         </div>
@@ -64,7 +64,36 @@
   <div class="container">
     <div class="section">
       <div class="col-lg-12 col-md-12">
+        <h2 class="title"><?= $blog['title'] ?> </h2><br>
 
+        <div style="float:right">
+            <p class="text mt-0 pt-2 "><?php 
+ 
+              echo date('Y-m-d H:i:s', $blog['updated_at']); ?>
+            </p>
+            </div>
+        <div class="media m-0 ">
+          <div class="profile-photo-small mr-2">
+            <?php if(!empty($profile_photo['name'])): ?>
+
+            <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $profile_photo['name'] ?>" alt="Circle Image"
+              class="rounded-circle1 img-fluid z-depth-2">
+
+            <?php else: ?>
+            <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image"
+              class="img-raised rounded-circle1 img-fluid  z-depth-2" alt="avatar">
+
+            <?php endif; ?>
+
+          </div>
+   
+            <h5 class="mt-0 pt-2"><?= $user['nickname']; ?></h5>
+            
+        </div> 
+        
+
+        <hr class="mt-0">
+        <p class="text"><?= $blog['description'] ?></p>
         <div class="card">
 
           <!-- Card content -->
@@ -95,7 +124,7 @@
        
         <div class="col-12 mb-5">
     <div class="row">
-        <div class="col-3">
+        <div class="col-12">
         <div class="bg-white pl-4 rounded shadow-sm h-100 text-center">
             <button class="btn btn-danger btn-circle btn-circle-xl" style="background-color:#E74C3C;"><i class="fa fa-chevron-up"></i></button>
             <p class="lead  mb-0 small"><b><?= $com['upvote_name'] ?></b></p>
@@ -105,24 +134,6 @@
         </div>
         </div>
 
-        <div class="col-3">
-        <div class="bg-white pl-4 rounded shadow-sm h-100 text-center">
-            <button class="btn btn-danger btn-circle btn-circle-xl" style="background-color:#2980B9;"><i class="fa fa-chevron-up"></i></button>
-            <p class="lead mb-0 small"><b><?= $com['upvote_name'] ?></b></p>
-            <h1 class="m-0">200</h1>
-            <button class="btn btn-danger btn-circle btn-circle-xl" style="background-color:#2C3E50;"><i class="fa fa-chevron-down"></i></button>
-            <p class="lead mb-0 small"><b><?= $com['devote_name'] ?></b></p>                      
-        </div>
-        </div>
-        <div class="col-3">
-        <div class="bg-white pl-4 rounded shadow-sm h-100 text-center">
-            <button class="btn btn-danger btn-circle btn-circle-xl" style="background-color:#1ABC9C;"><i class="fa fa-chevron-up"></i></button>
-            <p class="lead  mb-0 small"><b><?= $com['upvote_name'] ?></b></p>
-            <h1 class="m-0">30</h1>
-            <button class="btn btn-danger btn-circle btn-circle-xl" style="background-color:#2D7C6D;"><i class="fa fa-chevron-down"></i></button>
-            <p class="lead  mb-0 small"><b><?= $com['devote_name'] ?></b></p>                      
-        </div>
-        </div>
     
     </div>
     </div>
