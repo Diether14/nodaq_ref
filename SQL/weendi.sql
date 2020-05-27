@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2020 at 07:31 PM
+-- Generation Time: May 27, 2020 at 07:36 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -36,6 +36,8 @@ CREATE TABLE `community` (
   `content` varchar(255) NOT NULL,
   `color` varchar(255) NOT NULL,
   `text_color` varchar(255) NOT NULL,
+  `upvote_name` varchar(255) NOT NULL,
+  `devote_name` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -44,12 +46,11 @@ CREATE TABLE `community` (
 -- Dumping data for table `community`
 --
 
-INSERT INTO `community` (`id`, `user_id`, `com_photo_id`, `title`, `community_type`, `content`, `color`, `text_color`, `created_at`, `updated_at`) VALUES
-(23, 26, 24, 'Test Community', 1, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', '#11309b', '#ffffff', '2020-05-10 23:29:08', '2020-05-10 23:29:08'),
-(24, 26, 25, 'Test Community', 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', '#ffffff', '#000000', '2020-05-10 23:29:38', '2020-05-10 23:29:38'),
-(25, 26, 26, 'Test Community', 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', '#f08e91', '#ffffff', '2020-05-10 23:30:22', '2020-05-10 23:30:22'),
-(26, 26, 27, 'Test Community', 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', '#f08e91', '', '2020-05-11 18:40:25', '2020-05-11 18:40:25'),
-(27, 26, 28, 'Test text Color', 0, 'test test', '#ffffff', '#555555', '2020-05-18 19:39:08', '2020-05-18 19:39:08');
+INSERT INTO `community` (`id`, `user_id`, `com_photo_id`, `title`, `community_type`, `content`, `color`, `text_color`, `upvote_name`, `devote_name`, `created_at`, `updated_at`) VALUES
+(23, 26, 24, 'Test Community', 1, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', '#11309b', '#ffffff', 'Like', 'Dislike', '2020-05-10 23:29:08', '2020-05-10 23:29:08'),
+(24, 26, 25, 'Test Community', 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', '#ffffff', '#000000', '', '', '2020-05-10 23:29:38', '2020-05-10 23:29:38'),
+(25, 26, 26, 'Test Community', 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', '#f08e91', '#ffffff', '', '', '2020-05-10 23:30:22', '2020-05-10 23:30:22'),
+(26, 26, 27, 'Test Community', 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', '#f08e91', '', '', '', '2020-05-11 18:40:25', '2020-05-11 18:40:25');
 
 -- --------------------------------------------------------
 
@@ -95,8 +96,7 @@ INSERT INTO `community_photo` (`id`, `name`, `type`, `created_at`, `updated_at`)
 (24, 'xmFj7k.png', '', '2020-05-10 23:29:08', '2020-05-10 23:29:08'),
 (25, 'Desert.jpg', '', '2020-05-10 23:29:38', '2020-05-10 23:29:38'),
 (26, 'Jellyfish.jpg', '', '2020-05-10 23:30:21', '2020-05-10 23:30:21'),
-(27, 'Tulips.jpg', '', '2020-05-11 18:40:25', '2020-05-11 18:40:25'),
-(28, 'web-development-minimalism-bl-1920x1080.jpg', '', '2020-05-18 19:39:07', '2020-05-18 19:39:07');
+(27, 'Tulips.jpg', '', '2020-05-11 18:40:25', '2020-05-11 18:40:25');
 
 -- --------------------------------------------------------
 
@@ -165,7 +165,12 @@ INSERT INTO `post_comments` (`id`, `user_id`, `post_id`, `content`, `created_at`
 (2, 18, 3, 'test comment', '2020-05-07 23:14:46', '2020-05-07 23:14:46'),
 (3, 18, 3, 'test 2 comment', '2020-05-07 23:17:29', '2020-05-07 23:17:29'),
 (4, 18, 3, 'test comment', '2020-05-07 23:18:52', '2020-05-07 23:18:52'),
-(5, 18, 3, 'Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\r\n', '2020-05-07 23:26:24', '2020-05-07 23:26:24');
+(5, 18, 3, 'Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\r\n', '2020-05-07 23:26:24', '2020-05-07 23:26:24'),
+(6, 18, 9, 'Test Comment', '2020-05-20 01:43:01', '2020-05-20 01:43:01'),
+(7, 18, 9, 'test comments', '2020-05-20 21:13:15', '2020-05-20 21:13:15'),
+(8, 18, 9, 'tset', '2020-05-20 21:24:37', '2020-05-20 21:24:37'),
+(9, 18, 9, 'test test', '2020-05-20 22:26:07', '2020-05-20 22:26:07'),
+(10, 21, 10, 'Test Comment', '2020-05-21 00:16:48', '2020-05-21 00:16:48');
 
 -- --------------------------------------------------------
 
@@ -202,7 +207,8 @@ CREATE TABLE `profile_photo` (
 --
 
 INSERT INTO `profile_photo` (`id`, `user_id`, `post_id`, `name`, `type`, `created_at`) VALUES
-(1, 18, 0, 'Koala.jpg', 'image/jpeg', '2020-05-09 23:30:09');
+(1, 18, 0, 'Koala.jpg', 'image/jpeg', '2020-05-09 23:30:09'),
+(2, 21, 0, 'clark-tibbs-oqStl2L5oxI-unsplash.jpg', 'image/jpeg', '2020-05-20 16:36:52');
 
 -- --------------------------------------------------------
 
@@ -217,6 +223,8 @@ CREATE TABLE `users` (
   `lastname` varchar(255) NOT NULL,
   `nickname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `birthdate` varchar(255) NOT NULL,
+  `gender` varchar(255) NOT NULL COMMENT '1 = male, 2 = female',
   `password` varchar(255) NOT NULL,
   `user_type` int(11) NOT NULL COMMENT '0 = users | 1 = manager | 2 assistant manager | 3 = admin',
   `status` int(11) NOT NULL,
@@ -230,13 +238,15 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `pk`, `firstname`, `lastname`, `nickname`, `email`, `password`, `user_type`, `status`, `auth`, `prof`, `created_at`, `updated_at`) VALUES
-(18, 0, 'John', 'Smith', 'John Smith', 'test@gmail.com', '$2y$10$vAxwPXIwhwY6ntzC2I.WROqgUyWSiUiJAoq6aPNSOjWKNsl9WzrEe', 0, 0, 0, 0, '2020-04-26 23:34:03', '2020-04-26 23:34:03'),
-(21, 0, 'test', 'user', 'tset', 'test@test.com', '$2y$10$rcvnM8zG.b1U5qxukG6pO.82v7X.NYZBFU9CsEI/ki1gQUNvhlpSW', 0, 0, 0, 0, '2020-05-04 18:38:55', '2020-05-04 18:38:55'),
-(22, 0, 'firstname', 'lastname', 'manager', 'manager@weendi.com', '$2y$10$rcvnM8zG.b1U5qxukG6pO.82v7X.NYZBFU9CsEI/ki1gQUNvhlpSW', 1, 0, 0, 0, '2020-05-04 18:38:55', '2020-05-04 18:38:55'),
-(23, 0, 'firstname', 'lastname', 'assistant manager', 'assistant_manager@weendi.com', '$2y$10$rcvnM8zG.b1U5qxukG6pO.82v7X.NYZBFU9CsEI/ki1gQUNvhlpSW', 2, 0, 0, 0, '2020-05-04 18:38:55', '2020-05-04 18:38:55'),
-(24, 0, 'test_user', 'test_user', 'test_user', 'test_user@gmail.com', '$2y$10$VMCm9olTym6fLoqWUTIByO23/Zy.WjlyRzYHrUttlEPEG53jp79Ym', 0, 0, 0, 0, '2020-05-06 22:51:17', '2020-05-06 22:51:17'),
-(26, 0, '', '', 'admin', 'admin@weendi.com', '$2y$10$LJ.xc4KwoR9xfNhrmtdZnOq/53G3b4c7MfFULeVU2pS3but75Zv2G', 3, 0, 0, 0, '2020-05-10 01:41:29', '2020-05-10 01:41:29');
+INSERT INTO `users` (`id`, `pk`, `firstname`, `lastname`, `nickname`, `email`, `birthdate`, `gender`, `password`, `user_type`, `status`, `auth`, `prof`, `created_at`, `updated_at`) VALUES
+(18, 0, 'John', 'Smith', 'John Smith', 'test@gmail.com', '', '', '$2y$10$vAxwPXIwhwY6ntzC2I.WROqgUyWSiUiJAoq6aPNSOjWKNsl9WzrEe', 0, 0, 0, 0, '2020-04-26 23:34:03', '2020-04-26 23:34:03'),
+(21, 0, 'test', 'user', 'tset', 'test@test.com', '', '', '$2y$10$rcvnM8zG.b1U5qxukG6pO.82v7X.NYZBFU9CsEI/ki1gQUNvhlpSW', 0, 0, 0, 0, '2020-05-04 18:38:55', '2020-05-04 18:38:55'),
+(22, 0, 'firstname', 'lastname', 'manager', 'manager@weendi.com', '', '', '$2y$10$rcvnM8zG.b1U5qxukG6pO.82v7X.NYZBFU9CsEI/ki1gQUNvhlpSW', 1, 0, 0, 0, '2020-05-04 18:38:55', '2020-05-04 18:38:55'),
+(23, 0, 'firstname', 'lastname', 'assistant manager', 'assistant_manager@weendi.com', '', '', '$2y$10$rcvnM8zG.b1U5qxukG6pO.82v7X.NYZBFU9CsEI/ki1gQUNvhlpSW', 2, 0, 0, 0, '2020-05-04 18:38:55', '2020-05-04 18:38:55'),
+(24, 0, 'test_user', 'test_user', 'test_user', 'test_user@gmail.com', '', '', '$2y$10$VMCm9olTym6fLoqWUTIByO23/Zy.WjlyRzYHrUttlEPEG53jp79Ym', 0, 0, 0, 0, '2020-05-06 22:51:17', '2020-05-06 22:51:17'),
+(26, 0, '', '', 'admin', 'admin@weendi.com', '', '', '$2y$10$LJ.xc4KwoR9xfNhrmtdZnOq/53G3b4c7MfFULeVU2pS3but75Zv2G', 3, 0, 0, 0, '2020-05-10 01:41:29', '2020-05-10 01:41:29'),
+(30, 0, '', '', 'test manager', 'test_manager@weendi.com', '', '', '$2y$10$tF1oZV7ZI7gQTLDUQiLXA.T2sNAUJkxRdmxUMlPWtmn.KtHtHLQl.', 1, 0, 0, 0, '2020-05-24 19:20:15', '2020-05-24 19:20:15'),
+(31, 0, '', '', 'testings ', 'test123@weendi.com', '1995-12-31', '2', '$2y$10$B8ec0KaXXxONX.mvsfrXDOdQNlOyQE44A8zbly6foAbA1v05JdIDi', 0, 0, 0, 0, '2020-05-25 19:41:50', '2020-05-25 19:41:50');
 
 -- --------------------------------------------------------
 
@@ -263,6 +273,21 @@ INSERT INTO `users_community` (`id`, `user_id`, `community_id`, `created_at`, `u
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `users_deleted_post`
+--
+
+CREATE TABLE `users_deleted_post` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `community_id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users_ip`
 --
 
@@ -282,7 +307,9 @@ INSERT INTO `users_ip` (`id`, `user_id`, `ip`, `created_at`, `updated_at`) VALUE
 (4, 18, '::1', '2020-05-02 18:26:26', '2020-05-02 18:26:26'),
 (5, 24, '::1', '2020-05-06 22:51:27', '2020-05-06 22:51:27'),
 (6, 26, '::1', '2020-05-10 01:51:48', '2020-05-10 01:51:48'),
-(7, 21, '::1', '2020-05-18 21:28:24', '2020-05-18 21:28:24');
+(7, 21, '::1', '2020-05-18 21:28:24', '2020-05-18 21:28:24'),
+(8, 30, '::1', '2020-05-24 19:30:35', '2020-05-24 19:30:35'),
+(9, 31, '::1', '2020-05-25 19:50:29', '2020-05-25 19:50:29');
 
 -- --------------------------------------------------------
 
@@ -306,7 +333,8 @@ CREATE TABLE `users_post` (
 --
 
 INSERT INTO `users_post` (`id`, `user_id`, `community_id`, `title`, `description`, `content`, `created_at`, `updated_at`) VALUES
-(9, 18, 23, 'Test Post', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.', '<h1>Hello world!</h1>\n\n<p>I&#39;m an instance of <a href=\"https://ckeditor.com\">CKEditor</a>.</p>\n', '2020-05-13 21:07:47', '2020-05-13 21:07:47');
+(10, 21, 23, 'test', 'tset', '<h1>Hello world!</h1>\n\n<p>I&#39;m an instance of <a href=\"https://ckeditor.com\">CKEditor</a>.</p>\n', '2020-05-21 00:13:13', '2020-05-21 00:13:13'),
+(11, 18, 23, 'Test Post', 'This is a test Post DID U KNOW THAT A LONG TIME AGO THERE ONCE WAS A YOUNG HOT WING HE WAS A VERY NICE HOT WING EXCEPT HE WANTED TO HE TOMATO\'S NOT JUST NORMAL TAMATO\'S BUT TOMATO\'S FROM A CLOWNS NOSE.', '<h1>Hello world!</h1>\n\n<p>I&#39;m an instance of <a href=\"https://ckeditor.com\">CKEditor</a>.</p>\n', '2020-05-28 00:45:11', '2020-05-28 00:45:11');
 
 -- --------------------------------------------------------
 
@@ -353,7 +381,7 @@ CREATE TABLE `users_shared_posts` (
 --
 
 INSERT INTO `users_shared_posts` (`id`, `user_id`, `community_id`, `post_id`, `content`, `created_at`, `updated_at`) VALUES
-(1, 18, 23, 9, 'test share post', '0000-00-00 00:00:00', '2020-05-19 22:29:54');
+(3, 21, 23, 10, 'test', '2020-05-21 00:13:39', '2020-05-21 00:13:39');
 
 -- --------------------------------------------------------
 
@@ -443,6 +471,12 @@ ALTER TABLE `users_community`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users_deleted_post`
+--
+ALTER TABLE `users_deleted_post`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users_ip`
 --
 ALTER TABLE `users_ip`
@@ -480,7 +514,7 @@ ALTER TABLE `user_settings`
 -- AUTO_INCREMENT for table `community`
 --
 ALTER TABLE `community`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `community_banned_users`
@@ -492,7 +526,7 @@ ALTER TABLE `community_banned_users`
 -- AUTO_INCREMENT for table `community_photo`
 --
 ALTER TABLE `community_photo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `cover_photo`
@@ -510,7 +544,7 @@ ALTER TABLE `files`
 -- AUTO_INCREMENT for table `post_comments`
 --
 ALTER TABLE `post_comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `post_photo`
@@ -522,13 +556,13 @@ ALTER TABLE `post_photo`
 -- AUTO_INCREMENT for table `profile_photo`
 --
 ALTER TABLE `profile_photo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `users_community`
@@ -537,16 +571,22 @@ ALTER TABLE `users_community`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `users_deleted_post`
+--
+ALTER TABLE `users_deleted_post`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `users_ip`
 --
 ALTER TABLE `users_ip`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users_post`
 --
 ALTER TABLE `users_post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `users_report`
@@ -558,7 +598,7 @@ ALTER TABLE `users_report`
 -- AUTO_INCREMENT for table `users_shared_posts`
 --
 ALTER TABLE `users_shared_posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user_settings`
