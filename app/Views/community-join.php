@@ -184,10 +184,9 @@
                       </div>
 
                     
-
+                      <!-- chevron-up -->
                         <div class="d-flex justify-content-center">
-
-                        <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-2"><i
+                        <a href="<?= base_url(); ?>/post-share/<?= $value->id ?>/<?= $community_id ?>" class="btn btn-link m-0 p-2"><i
                               class="fa fa-eye m-0 p-0"></i> 10 Views </a>
                               <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-comments m-0 p-0"></i> 50 Comments</a>  
                           <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-share m-0 p-0"></i> 2 Shares</a>

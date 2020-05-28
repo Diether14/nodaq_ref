@@ -122,11 +122,11 @@ class Category extends BaseController
         $query   = $builder->get();
         $data['community_list'] = $query->getResult();
 
-        
+
         $model = new UserscommunityModel;
 
         $data['users_community'] = $model->where(['user_id' => session()->get('id'), 'community_id' => $id])->first();
-
+        $data['community_id'] = $id;
 
         $db1      = \Config\Database::connect();
         $builder1 = $db1->table('users_post');
@@ -141,6 +141,7 @@ class Category extends BaseController
         $db2      = \Config\Database::connect();
         $builder2 = $db2->table('users_shared_posts');
         $builder2->select('users_post.id, users_shared_posts.content ,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.updated_at, users.nickname,profile_photo.name');
+        $builder2->where('users_shared_posts.community_id', $id );
         $builder2->join('users', 'users.id = users_shared_posts.user_id');
         $builder2->join('users_post', 'users_post.id = users_shared_posts.post_id');
         $builder2->join('profile_photo', 'users.id = profile_photo.user_id');

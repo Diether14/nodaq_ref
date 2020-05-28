@@ -12,6 +12,8 @@ use App\Models\PostcommentsModel;
 use App\Models\UsersreportModel;
 use App\Models\CommunityModel;
 use App\Models\UserscommunityModel;
+use App\Models\UserssharedpostModel;
+use App\Models\SharedcommentsModel;
 
 
 class Users extends BaseController
@@ -675,13 +677,19 @@ class Users extends BaseController
 
         $model = new UserspostModel();
         $user = new UserModel();
+        $share = new UserssharedpostModel();
     
 
         $data['blog'] = $model->where('id', $id)->first();
-    
+        $data['shared'] = $share->where('post_id', $id)->where('community_id', $data['blog']['community_id'])->first();
+
+
         $profile_photo = new ProfilephotoModel();
-        $data['profile_photo'] = $profile_photo->where('user_id',$data['blog']['user_id'])
+        $data['profile_photo1'] = $profile_photo->where('user_id',$data['blog']['user_id'])
             ->first();
+
+            $data['profile_photo'] = $profile_photo->where('user_id', session()->get('id'))
+                ->first();
 
         $data['user'] = $user->where('id',$data['blog']['user_id'])
             ->first();
@@ -726,14 +734,90 @@ class Users extends BaseController
         $com = new CommunityModel();
         $data['com'] = $com->where('id', $data['blog']['community_id'])->first();
    
-
-
         echo view('templates/header', $data);
         echo view('post-view', $data);
         echo view('templates/footer', $data);
+    }
+
+    public function post_share($id = NULL, $community_id = NULL){
+        ini_set('display_errors', 1);
+ 
+
+        $data = [];
+        helper(['form', 'url']);
+        // $db      = \Config\Database::connect();
+        // $builder = $db->table('profile_photo');
+        // $query   = $builder->get(); 
+
+        // test($query);
+
+        $model = new UserspostModel();
+        $user = new UserModel();
+        $share = new UserssharedpostModel();
+    
+
+        $data['blog'] = $model->where('id', $id)->first();
+        $data['shared'] = $share->where('post_id', $id)->where('community_id', $community_id)->first();
+
+
+        $profile_photo = new ProfilephotoModel();
+        $data['profile_photo1'] = $profile_photo->where('user_id', $data['blog']['user_id'])
+            ->first();
+
+
+            $data['profile_photo'] = $profile_photo->where('user_id', session()->get('id'))
+                ->first();
+
+        $data['user'] = $user->where('id',$data['blog']['user_id'])
+            ->first();
+
+
+        // $user_model = new UserModel();
+        
+
+        // $post_model = new PostcommentsModel();
+        
+        $db = \Config\Database::connect();
+        $builder = $db->table('shared_comments');
+        $builder->where('shared_comments.post_id', $id);
+        $builder->select('shared_comments.id, shared_comments.user_id, shared_comments.post_id, shared_comments.content, shared_comments.updated_at, users.nickname, profile_photo.name');
+        $builder->join('users', 'users.id = shared_comments.user_id');
+        $builder->join('profile_photo', 'users.id = profile_photo.user_id');
+        $query = $builder->get();
+        $data['shared_comments'] = $query->getResult();
+
+        $report = new UsersreportModel();
+
+        $data['report'] = $report->where(['user_id' => session()->get('id'),  'post_id' => $id])->first();
+
+        $db1 = \Config\Database::connect();
+        $builder1 = $db1->table('community');
+        $builder1->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.updated_at, community_photo.name');
+        
+        $builder1->join('users_community', 'users_community.community_id = community.id');
+        $builder1->join('community_photo', 'community_photo.id = community.com_photo_id');
+        $query1 = $builder1->get();
+        $data['community'] = $query1->getResult();
+
+
+        $db2 = \Config\Database::connect();
+        $builder2 = $db1->table('community');
+        $builder2->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.updated_at, community_photo.name');
+        $builder2->where('community.id', $community_id);
+        $builder2->join('community_photo', 'community_photo.id = community.com_photo_id');
+        $query2 = $builder2->get();
+        $data['community_current'] = $query2->getResult();;
+
       
 
+        $com = new CommunityModel();
+        $data['com'] = $com->where('id', $community_id)->first();
 
+
+        echo view('templates/header', $data);
+        echo view('post-shared', $data);
+        echo view('templates/footer', $data);
+      
 
     }
 
@@ -758,6 +842,29 @@ class Users extends BaseController
         }
 
  
+    }
+
+    public function add_shared_comment(){
+        ini_set('display_errors', 1);
+
+        $data = [];
+        helper(['form']);
+
+        $model = new SharedcommentsModel;
+
+        $data = [
+            'user_id' => session()->get('id'),
+            'post_id' => $this->request->getPost('post_id'),
+            'content' => $this->request->getPost('content')
+        ];
+        $community_id = $this->request->getPost('community_id');
+
+        $msg = 'Commented';
+    
+        if($model->save($data)){
+
+            return redirect()->to( base_url("/post-share/".$data['post_id'] ."/". $community_id  ) )->with('msg', $msg);
+        }
     }
 
 

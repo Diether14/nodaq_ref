@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2020 at 07:36 PM
+-- Generation Time: May 28, 2020 at 06:00 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -209,6 +209,28 @@ CREATE TABLE `profile_photo` (
 INSERT INTO `profile_photo` (`id`, `user_id`, `post_id`, `name`, `type`, `created_at`) VALUES
 (1, 18, 0, 'Koala.jpg', 'image/jpeg', '2020-05-09 23:30:09'),
 (2, 21, 0, 'clark-tibbs-oqStl2L5oxI-unsplash.jpg', 'image/jpeg', '2020-05-20 16:36:52');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shared_comments`
+--
+
+CREATE TABLE `shared_comments` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `content` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `shared_comments`
+--
+
+INSERT INTO `shared_comments` (`id`, `user_id`, `post_id`, `content`, `created_at`, `updated_at`) VALUES
+(11, 18, 10, 'Test shared Comment', '2020-05-28 23:18:02', '2020-05-28 23:18:02');
 
 -- --------------------------------------------------------
 
@@ -459,6 +481,12 @@ ALTER TABLE `profile_photo`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `shared_comments`
+--
+ALTER TABLE `shared_comments`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -559,6 +587,12 @@ ALTER TABLE `profile_photo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `shared_comments`
+--
+ALTER TABLE `shared_comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -598,7 +632,7 @@ ALTER TABLE `users_report`
 -- AUTO_INCREMENT for table `users_shared_posts`
 --
 ALTER TABLE `users_shared_posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user_settings`

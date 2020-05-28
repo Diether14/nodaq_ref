@@ -24,7 +24,7 @@
                   </a>
                 </div> -->
               <!-- </div> -->
-              <div class="h3 text-center mt-5">Create an Account!</div>
+              <div class="h3 text-center mt-5">Welcome to Weendi</div>
               <div class="card-body">
               <?php if(session()->get('success')): ?>
                 <div class="alert alert-success" role="alert">
