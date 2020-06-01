@@ -8,39 +8,39 @@
   }
 
   .btn-circle {
-  width: 45px;
-  height: 45px;
-  line-height: 45px;
-  text-align: center;
-  padding: 0;
-  border-radius: 50%;
-}
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    padding: 0;
+    border-radius: 50%;
+  }
 
-.btn-circle i {
-  position: relative;
-  top: -1px;
-}
+  .btn-circle i {
+    position: relative;
+    top: -1px;
+  }
 
-.btn-circle-sm {
-  width: 35px;
-  height: 35px;
-  line-height: 35px;
-  font-size: 0.9rem;
-}
+  .btn-circle-sm {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 0.9rem;
+  }
 
-.btn-circle-lg {
-  width: 55px;
-  height: 55px;
-  line-height: 55px;
-  font-size: 1.1rem;
-}
+  .btn-circle-lg {
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    font-size: 1.1rem;
+  }
 
-.btn-circle-xl {
-  width: 70px;
-  height: 70px;
-  line-height: 70px;
-  font-size: 1.3rem;
-}
+  .btn-circle-xl {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 1.3rem;
+  }
 </style>
 
 <div class="page-header header-filter" data-parallax="true"
@@ -67,11 +67,11 @@
         <h2 class="title"><?= $blog['title'] ?> </h2><br>
 
         <div style="float:right">
-            <p class="text mt-0 pt-2 "><?php 
+          <p class="text mt-0 pt-2 "><?php 
  
               echo date('Y-m-d H:i:s', $blog['updated_at']); ?>
-              
-            </div>
+
+        </div>
         <div class="media m-0 ">
           <div class="profile-photo-small mr-2">
             <?php if(!empty($profile_photo1['name'])): ?>
@@ -86,11 +86,11 @@
             <?php endif; ?>
 
           </div>
-   
-            <h5 class="mt-0 pt-2"><?= $user['nickname']; ?></h5>
-            
-        </div> 
-        
+
+          <h5 class="mt-0 pt-2"><?= $user['nickname']; ?></h5>
+
+        </div>
+
 
         <hr class="mt-0">
         <p class="text"><?= $blog['description'] ?></p>
@@ -121,35 +121,57 @@
 
           </div>
         </div>
-       
-        <div class="col-12 mb-5">
-    <div class="row">
-        <div class="col-12">
-        <div class="bg-white pl-4 rounded shadow-sm h-100 text-center">
-            
-            <?php if(!empty($com)): ?> 
-              <button class="btn btn-danger btn-circle btn-circle-xl" style="background-color:#E74C3C;"><i class="fa fa-chevron-up"></i></button>
-            <p class="lead  mb-0 small"><b><?= $com['upvote_name'] ?></b></p>
-            
-            <h1 class="m-0">1334</h1>
-            <button class="btn btn-danger btn-circle btn-circle-xl" style="background-color:#8E44AD;"><i class="fa fa-chevron-down"></i></button>
-            
-            <p class="lead mb-0 small"><b><?= $com['devote_name'] ?></b></p>   
-            <?php else: ?>
-              <button class="btn btn-danger btn-circle btn-circle-xl" style="background-color:#E74C3C;"><i class="fa fa-chevron-up"></i></button>
-            <p class="lead  mb-0 small"><b>Upvote</b></p>
-            
-            <h1 class="m-0">1334</h1>
-            <button class="btn btn-danger btn-circle btn-circle-xl" style="background-color:#8E44AD;"><i class="fa fa-chevron-down"></i></button>
-            
-            <p class="lead mb-0 small"><b>Devote</b></p>   
-            <?php endif; ?>
-        </div>
-        </div>
 
-    
-    </div>
-    </div>
+        <div class="col-12 mb-5">
+          <div class="row">
+            <div class="col-12">
+              <div class="bg-white pl-4 rounded shadow-sm h-100 text-center">
+              <?php if (session('vote')) : ?>
+              <div class="alert alert-success" role="alert">
+                <?= session('vote') ?>
+              </div>
+              <?php endif ?>
+
+                <?php if(!empty($com)): ?>
+         
+                <form action="<?= base_url(); ?>/add_upvote" method="post">
+                  <input type="hidden" name="post_id" value="<?= $blog['id'] ?>">
+                  <input type="hidden" name="community_id" value="<?= $blog['community_id'] ?>">
+
+                  <button class="btn btn-danger btn-circle btn-circle-xl <?= ($vote['status'] ==  '1' ? 'disabled': null)?>" type="submit"
+                    style="background-color:#E74C3C;"><i class="fa fa-chevron-up"></i></button>
+                  <p class="lead  mb-0 small"><b><?= $com['upvote_name'] ?></b></p>
+                </form>
+                <h1 class="m-0">1334</h1>
+                <form action="<?= base_url(); ?>/add_devote" method="post">
+                  <input type="hidden" name="post_id" value="<?= $blog['id'] ?>">
+                  <input type="hidden" name="community_id" value="<?= $blog['community_id'] ?>">
+                  <button class="btn btn-danger btn-circle btn-circle-xl <?= ($vote['status'] ==  '0' ? 'disabled': null)?>" style="background-color:#8E44AD;"><i
+                      class="fa fa-chevron-down"></i></button>
+
+                  <p class="lead mb-0 small"><b><?= $com['devote_name'] ?></b></p>
+                </form>
+                <?php else: ?>
+                <form action="<?= base_url(); ?>/c" method="post">
+                  <button class="btn btn-danger btn-circle btn-circle-xl" style="background-color:#E74C3C;"><i
+                      class="fa fa-chevron-up"></i></button>
+                  <p class="lead  mb-0 small"><b>Upvote</b></p>
+                </form>
+                <h1 class="m-0">1334</h1>
+                <form action="<?= base_url(); ?>/add_devote" method="post">
+                  <button class="btn btn-danger btn-circle btn-circle-xl" style="background-color:#8E44AD;"><i
+                      class="fa fa-chevron-down"></i></button>
+
+                  <p class="lead mb-0 small"><b>Devote</b></p>
+                </form>
+                <?php endif; ?>
+
+              </div>
+            </div>
+
+
+          </div>
+        </div>
 
         <div class="card my-4">
           <h5 class="card-title ml-3">Leave a Comment:</h5>

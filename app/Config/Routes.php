@@ -45,7 +45,8 @@ $routes->match(['get','post'],'add_shared_comment', 'Users::add_shared_comment',
 $routes->match(['get','post'],'join_community', 'Category::join_community', ['filter' => 'auth']);
 $routes->match(['get','post'],'report_post', 'Category::report_post', ['filter' => 'auth']);
 $routes->match(['get','post'],'share_post', 'Category::share_post', ['filter' => 'auth']);
-
+$routes->match(['get','post'],'add_upvote', 'Category::add_upvote', ['filter' => 'auth']);
+$routes->match(['get', 'post'], 'add_devote', 'Category::add_devote', ['filter' => 'auth']);
 
 $routes->get('delete-shared-post/(:num)', 'Category::delete_shared_post/$1', ['filter' => 'auth']);
 $routes->get('delete-post/(:num)', 'Category::delete_post/$1', ['filter' => 'auth']);
@@ -78,12 +79,20 @@ $routes->get('community-join/(:num)', 'Category::community_join/$1', ['filter' =
 $routes->get('/admin', 'Admin::index', ['filter' => 'auth']);
 $routes->get('/create-community', 'Admin::create_community', ['filter' => 'auth']);
 $routes->get('/community-table', 'Admin::community_table', ['filter' => 'auth']);
+
+$routes->get('/vote-list/(:num)', 'Admin::vote_list/$1', ['filter' => 'auth']);
+$routes->get('/post-list/(:num)', 'Admin::post_list/$1', ['filter' => 'auth']);
+
+
+
 $routes->get('/reports-list', 'Admin::reports_list', ['filter' => 'auth']);
 $routes->get('/users-list', 'Admin::users_list', ['filter' => 'auth']);
 $routes->get('/community-users/(:num)', 'Admin::community_users/$1', ['filter' => 'auth']);
 $routes->get('/community-admins', 'Admin::community_admins', ['filter' => 'auth']);
 // $routes->get('/community-create-admin', 'Admin::community_create_admin', ['filter' => 'auth']);
 $routes->match(['get','post'],'community-create-admin', 'Admin::community_create_admin', ['filter' => 'auth']);
+
+
 
 //admin functions
 $routes->match(['get','post'],'save_community', 'Admin::save_community', ['filter' => 'auth']);

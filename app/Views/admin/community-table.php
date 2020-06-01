@@ -66,6 +66,13 @@
                 <div class="card p-4" style="background-color:<?= $value->color; ?>"></div><?= $value->color; ?>
               </td>
               <td class="d-flex">
+              <a href="post-list/<?= $value->id; ?>" class="btn btn-primary btn-circle btn-sm">
+                  <i class="fas fa-newspaper"></i>
+                </a>
+            
+                <span class="pl-1"></span>
+              
+
               <a href="community-users/<?= $value->id; ?>" class="btn btn-primary btn-circle btn-sm">
                   <i class="fas fa-users"></i>
                 </a>

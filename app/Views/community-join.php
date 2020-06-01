@@ -154,7 +154,7 @@
                   <div class="col-md-4">
                     <div class="card">
 
-                    
+                     <div class="team-player">
                       <div class="profile-photo-small m-2 d-flex">
                        
                         <?php if(!empty($value->name)): ?>

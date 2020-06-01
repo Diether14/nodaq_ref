@@ -8,6 +8,7 @@ use App\Models\UsersreportModel;
 use App\Models\ProfilephotoModel;
 use App\Models\UserscommunityModel;
 use App\Models\CommunitybannedusersModel;
+use App\Models\UsersvoteModel;
 
 class Admin extends BaseController
 {
@@ -441,8 +442,60 @@ class Admin extends BaseController
             }
         }
 
+    }
+
+    public function vote_list($id = NULL){
+        ini_set('display_errors', 1);
+
+        $data = [];
+
+        $model = new UserModel();
+        $data['community_admins'] = $model->whereIn('user_type', [1,2,3])->findAll();
+        
+        // $db      = \Config\Database::connect();
+        // $builder = $db->table('users_report');
+        
+        // $builder->select('users_report.id, users_report.user_id, users_report.community_id, users_report.post_id, users_report.report_content, users.nickname, users_report.updated_at, users_post.title');
+        // $builder->where('users_report.user_id', session()->get('id'));
+        // $builder->join('users', 'users_report.user_id = users.id');
+        // $builder->join('users_post', 'users_report.post_id = users_post.id');
+        // $query   = $builder->get();
+        // $data['reports_list'] = $query->getResult();
 
 
+        echo view('admin/templates/header', $data);
+        echo view('admin/vote-list', $data);
+        echo view('admin/templates/footer', $data);
+    }
+
+    public function post_list($id = NULL){
+        ini_set('display_errors', 1);
+
+        $data = [];
+
+        $db      = \Config\Database::connect();
+        $builder = $db->table('users_post');
+        
+        $builder->select('users_post.id, users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.content, users_post.updated_at, users.nickname');
+        $builder->where('users_post.community_id', $id);
+        $builder->join('users', 'users.id = users_post.user_id');
+        $query   = $builder->get();
+        $data['post_list'] = $query->getResult();
+
+
+        // foreach ($data['post_list'] as $key => $value) {
+            
+        // }
+
+
+        // $builder1 = $db->table('users_vote');
+        // $builder1->where('users_vote.post_id', $data['post_list']->id);
+        // echo $builder1->countAllResults();
+        // var_dump($data['post_list'][]);
+        // exit;
+        echo view('admin/templates/header', $data);
+        echo view('admin/post-list', $data);
+        echo view('admin/templates/footer', $data);
     }
 
 

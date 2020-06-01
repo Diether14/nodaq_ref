@@ -10,7 +10,7 @@ use App\Models\UserscommunityModel;
 use App\Models\UserspostModel;
 use App\Models\UsersreportModel;
 use App\Models\UserssharedpostModel;
-
+use App\Models\UsersvoteModel;
 
 class Category extends BaseController
 {
@@ -141,7 +141,7 @@ class Category extends BaseController
         $db2      = \Config\Database::connect();
         $builder2 = $db2->table('users_shared_posts');
         $builder2->select('users_post.id, users_shared_posts.content ,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.updated_at, users.nickname,profile_photo.name');
-        $builder2->where('users_shared_posts.community_id', $id );
+        // $builder2->where('users_shared_posts.community_id', $id );
         $builder2->join('users', 'users.id = users_shared_posts.user_id');
         $builder2->join('users_post', 'users_post.id = users_shared_posts.post_id');
         $builder2->join('profile_photo', 'users.id = profile_photo.user_id');
@@ -253,6 +253,112 @@ class Category extends BaseController
             $msg = 'Post Deleted!';
             return redirect()->to( base_url().'/profile')->with('msg', $msg);
         }
+    }
+
+    public function add_upvote(){
+        ini_set('display_errors', 1);
+
+        $data = [];
+        helper(['form', 'url']);
+
+        $post_id = $this->request->getPost('post_id');
+        $community_id = $this->request->getPost('community_id');
+        $user_id = session()->get('id');
+        $status = "1";
+
+        $model =  new UsersvoteModel();
+        
+        $user_vote = $model->where('user_id', $user_id)->where('community_id', $community_id)->where('post_id', $post_id)->first();
+     
+
+        if($user_vote == NULL){
+            
+        $data = [
+            'user_id' => $user_id,
+            'post_id' => $post_id,
+            'community_id' => $community_id,
+            'status' => '1'
+        ];
+
+        $insert = $model->insert($data);
+
+            if($insert){
+                $msg = 'Upvoted';
+                return redirect()->to( base_url(). '/post-view/'. $post_id)->with('vote', $msg);
+            }else{
+                $msg = 'Failed to Upvote';
+                return redirect()->to( base_url(). '/post-view/'. $post_id)->with('vote', $msg);
+            }
+        
+        }else{
+                
+            $data = [
+                'user_id' => $user_id,
+                'post_id' => $post_id,
+                'community_id' => $community_id,
+                'status' => '1'
+            ];
+
+            $update = $model->update($user_vote['id'], $data);
+
+            $msg = 'Upvoted';
+            return redirect()->to( base_url(). '/post-view/'. $post_id)->with('vote', $msg);
+
+        }
+    }
+
+    public function add_devote(){
+        ini_set('display_errors', 1);
+
+        $data = [];
+        helper(['form', 'url']);
+
+
+        $post_id = $this->request->getPost('post_id');
+        $community_id = $this->request->getPost('community_id');
+        $user_id = session()->get('id');
+        $status = "0";
+        
+
+        $data = [
+            'user_id' => $user_id,
+            'post_id' => $post_id,
+            'community_id' => $community_id,
+            'status' => '0'
+        ];
+
+        $model =  new UsersvoteModel();
+        
+        $user_vote = $model->where('user_id', $user_id)->where('community_id', $community_id)->where('post_id', $post_id)->first();
+
+
+        if($user_vote == NULL){
+            $insert = $model->insert($data);
+
+            if($insert){
+                $msg = 'Devoted';
+                return redirect()->to( base_url(). '/post-view/'. $post_id)->with('vote', $msg);
+            }else{
+                $msg = 'Failed to Upvote';
+                return redirect()->to( base_url(). '/post-view/'. $post_id)->with('vote', $msg);
+            }
+        
+        }else{
+
+            $data = [
+                'user_id' => $user_id,
+                'post_id' => $post_id,
+                'community_id' => $community_id,
+                'status' => '0'
+            ];
+
+            $update = $model->update($user_vote['id'], $data);
+
+            $msg = 'Devoted';
+            return redirect()->to( base_url(). '/post-view/'. $post_id)->with('vote', $msg);
+
+        }
+
     }
 }
 

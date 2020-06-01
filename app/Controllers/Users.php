@@ -14,6 +14,7 @@ use App\Models\CommunityModel;
 use App\Models\UserscommunityModel;
 use App\Models\UserssharedpostModel;
 use App\Models\SharedcommentsModel;
+use App\Models\UsersvoteModel;
 
 
 class Users extends BaseController
@@ -734,6 +735,10 @@ class Users extends BaseController
         $com = new CommunityModel();
         $data['com'] = $com->where('id', $data['blog']['community_id'])->first();
    
+        $voteModel = new UsersvoteModel(); 
+
+        $data['vote'] = $voteModel->where('user_id', $data['blog']['user_id'])->where('community_id', $data['blog']['community_id'])->first();
+
         echo view('templates/header', $data);
         echo view('post-view', $data);
         echo view('templates/footer', $data);
