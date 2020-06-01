@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2020 at 06:00 PM
+-- Generation Time: Jun 01, 2020 at 05:45 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -230,7 +230,8 @@ CREATE TABLE `shared_comments` (
 --
 
 INSERT INTO `shared_comments` (`id`, `user_id`, `post_id`, `content`, `created_at`, `updated_at`) VALUES
-(11, 18, 10, 'Test shared Comment', '2020-05-28 23:18:02', '2020-05-28 23:18:02');
+(11, 18, 10, 'Test shared Comment', '2020-05-28 23:18:02', '2020-05-28 23:18:02'),
+(12, 18, 11, 'Test share comment', '2020-05-29 00:31:37', '2020-05-29 00:31:37');
 
 -- --------------------------------------------------------
 
@@ -403,7 +404,31 @@ CREATE TABLE `users_shared_posts` (
 --
 
 INSERT INTO `users_shared_posts` (`id`, `user_id`, `community_id`, `post_id`, `content`, `created_at`, `updated_at`) VALUES
-(3, 21, 23, 10, 'test', '2020-05-21 00:13:39', '2020-05-21 00:13:39');
+(3, 21, 23, 10, 'test', '2020-05-21 00:13:39', '2020-05-21 00:13:39'),
+(5, 18, 23, 11, 'Sample share post', '2020-05-29 00:27:23', '2020-05-29 00:27:23');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_vote`
+--
+
+CREATE TABLE `users_vote` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `community_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL COMMENT '0 = devote, 1 = upvote',
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users_vote`
+--
+
+INSERT INTO `users_vote` (`id`, `user_id`, `post_id`, `community_id`, `status`, `created_at`, `updated_at`) VALUES
+(8, 18, 11, 23, 1, '2020-05-29 09:53:14', '2020-05-29 09:53:14');
 
 -- --------------------------------------------------------
 
@@ -529,6 +554,12 @@ ALTER TABLE `users_shared_posts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users_vote`
+--
+ALTER TABLE `users_vote`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user_settings`
 --
 ALTER TABLE `user_settings`
@@ -590,7 +621,7 @@ ALTER TABLE `profile_photo`
 -- AUTO_INCREMENT for table `shared_comments`
 --
 ALTER TABLE `shared_comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -632,7 +663,13 @@ ALTER TABLE `users_report`
 -- AUTO_INCREMENT for table `users_shared_posts`
 --
 ALTER TABLE `users_shared_posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `users_vote`
+--
+ALTER TABLE `users_vote`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `user_settings`
