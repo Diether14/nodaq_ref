@@ -75,6 +75,12 @@ $routes->get('settings-gallery', 'Category::settingsGallery', ['filter' => 'auth
 $routes->get('gallery-settings', 'Category::settingsGallery1', ['filter' => 'auth']);
 $routes->get('community-join/(:num)', 'Category::community_join/$1', ['filter' => 'auth']);
 
+
+//community
+$routes->get('community', 'Category::community', ['filter' => 'auth']);
+$routes->match(['get','post'],'user_save_community', 'Category::save_community', ['filter' => 'auth']);
+
+
 //administrator
 $routes->get('/admin', 'Admin::index', ['filter' => 'auth']);
 $routes->get('/create-community', 'Admin::create_community', ['filter' => 'auth']);
@@ -91,6 +97,8 @@ $routes->get('/community-users/(:num)', 'Admin::community_users/$1', ['filter' =
 $routes->get('/community-admins', 'Admin::community_admins', ['filter' => 'auth']);
 // $routes->get('/community-create-admin', 'Admin::community_create_admin', ['filter' => 'auth']);
 $routes->match(['get','post'],'community-create-admin', 'Admin::community_create_admin', ['filter' => 'auth']);
+// $routes->match(['get','post'],'save_community', 'Admin::save_community', ['filter' => 'auth']);
+
 
 
 

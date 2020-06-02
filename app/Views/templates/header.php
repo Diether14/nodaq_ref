@@ -179,9 +179,11 @@
             <div class="dropdown-menu dropdown-menu-right">
               <!-- <a href="javascript:;" class="dropdown-item">John Smith</a> -->
               <a href="/weendi/profile" class="dropdown-item">Profile</a>
+
               <a href="/weendi/settings" class="dropdown-item">Settings</a>
 
               <a href="#" data-toggle="modal" data-target="#logoutModal" class="dropdown-item">Sign out</a>
+              <hr><a href="<?= base_url() ?>/community" class="dropdown-item">My Community</a>
             </div>
           </li>
         </ul>

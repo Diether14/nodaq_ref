@@ -120,32 +120,6 @@ class Admin extends BaseController
 
        
 
-        
-        // if (! $this->validate($rules)) {
-        //     $data['validation'] = $this->validator;
-        // }else{
-        //     $model = new CommunityModel;
-
-        //     $newData = [
-        //         'user_id' => session()->get('id'),
-        //         'title' => $this->request->getPost('title'),
-        //         'content' => $this->request->getPost('content')
-        //         ];
-            
-        //     if($model->insert($newData)){
-        //         $last_id = $model->insertID();
-                
-
-        //         $msg = 'Successfully added!';
-                
-        //     }else{
-        //         $msg = 'There is an error!';
-        //     }
-        // }
-
-
-        
-        // var_dump($last_id); exit;
 
         return redirect()->to( 'create-community')->with('msg', $msg);
  

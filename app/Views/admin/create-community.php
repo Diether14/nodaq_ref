@@ -22,7 +22,7 @@
                   <br>
     <?php endif; ?>
 
-        <form class="contact-form" action="save_community"  method="post" accept-charset="utf-8" enctype="multipart/form-data">
+        <form class="contact-form" action="<?= base_url(); ?>/save_community"  method="post" accept-charset="utf-8" enctype="multipart/form-data">
 
             <div class="form-group">
               <input type="text" name="title" class="form-control" placeholder="Title">
