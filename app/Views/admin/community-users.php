@@ -50,7 +50,7 @@
               <td><?= $value->email ?></td>
               <td><?= $value->updated_at ?></td>
               <td>
-              <a href="<?= base_url(); ?>/add_assistant_manager/<?= $users->id; ?>/<?= $community_id; ?>" class="btn btn-primary btn-circle btn-sm">
+              <a href="<?= base_url(); ?>/add_assistant_manager/<?= $value->id; ?>/<?= $community_id; ?>" class="btn btn-primary btn-circle btn-sm">
                   <i class="fas fa-user"></i>
               </a>
               <a href="#" class="btn btn-primary btn-circle btn-sm" data-toggle="modal"
