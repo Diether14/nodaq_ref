@@ -18,9 +18,10 @@
   }
 
   .custom-card{
-    min-height: 300px;
-
+    min-height: 400px;
+    max-height: 600px;    
   }
+ 
 
 
   /* .rounded-circle1 {
@@ -152,7 +153,7 @@
                   <?php foreach($shared as $key => $value): ?>
 
                   <div class="col-md-4">
-                    <div class="card">
+                    <div class="card ">
 
                      <div class="team-player">
                       <div class="profile-photo-small m-2 d-flex">

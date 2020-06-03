@@ -1,9 +1,9 @@
 <style>
   .custom-card{
-    min-height: 300px;
-
+    min-height: 400px;
+    max-height: 600px;    
   }
-
+ 
 </style>
 
 <div class="page-header header-filter" data-parallax="true"
@@ -48,16 +48,17 @@
 
         <?php foreach ($community_list as $key => $value): ?>
 
+
 <div class="col-md-4">
   <div class="team-player">
 
-    <div class="card card-plain" >
+    <div class="card card-plain custom-card" >
 
       <h4 class="card-title p-3 my-0" style="background-color: <?= $value->color; ?>">
     
-        <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-bars pr-3"
-            style="float:left;"></i></a>
-        <a href="community-join/<?= $value->id;  ?>" class="text-center" style="color: <?= $value->text_color; ?>"><?= $value->title ?> </a>
+        <a href="<?= base_url(); ?>/community-table" ><i class="fa fa-cog "
+            ></i></a>
+        <a href="community-join/<?= $value->id;  ?>"  style="color: <?= $value->text_color; ?>; "><span class="pl-2"><?= $value->title ?> </span></a>
       
       </h4>
       <div class="view overlay" >
@@ -91,6 +92,7 @@
 </div>
 
 <?php endforeach; ?>
+
 
         </div>
       </div>

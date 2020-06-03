@@ -9,6 +9,7 @@ use App\Models\ProfilephotoModel;
 use App\Models\UserscommunityModel;
 use App\Models\CommunitybannedusersModel;
 use App\Models\UsersvoteModel;
+use App\Models\CommunityassistantmanagersModel;
 
 class Admin extends BaseController
 {
@@ -289,15 +290,34 @@ class Admin extends BaseController
 
         $community = new CommunityModel;
 
+        $data['community_id'] = $id;
+
         $data['community'] = $community->where('id', $id)->first();
          
         $model = new UserscommunityModel;
-        $data['users_community'] = $model->select('user_id')->where('community_id', $id)->findAll();
+        $data['users_community'] = $model->where('community_id', $id)->findAll();
+        $new_arr = [];
+        foreach ($data['users_community'] as $key => $value) {
+            $new_arr[] = $value['user_id'];
+            // echo $value['user_id'];
+        }
 
-        
+
+        // echo '<pre>';
+        // var_dump(array_values($new_arr));exit;
+
         //should use whereIN
-        $users = new UserModel;
-        $data['users'] = $users->where('id', $data['users_community'][0]['user_id'])->first();
+        
+        $db      = \Config\Database::connect();
+        $builder = $db->table('users');
+
+        $builder->whereIn('id', $new_arr);
+        $query   = $builder->get();
+        $data['users'] = $query->getResult();
+        // $users = new UserModel;
+        // $data['users'] = $users->whereIn('id',  $new_arr)->first();
+        // echo '<pre>';
+        // var_dump($data['users']);exit;
 
         echo view('admin/templates/header', $data);
         echo view('admin/community-users', $data);
@@ -470,6 +490,38 @@ class Admin extends BaseController
         echo view('admin/templates/header', $data);
         echo view('admin/post-list', $data);
         echo view('admin/templates/footer', $data);
+    }
+
+    public function add_assistant_manager($id = null, $community_id = null){
+        ini_set('display_errors', 1);
+
+        $data = [];
+                 
+        $model = new UserscommunityModel;
+        $data['users_community'] = $model->select('user_id', $id)->where('community_id', $community_id)->findAll();
+        
+        if($data['users_community'][0]){
+            $am = new CommunityassistantmanagersModel();
+            
+            $newData = [
+                'user_id' => $id,
+                'community_id' => $community_id,
+                'manager_id' => session()->get('id'),
+            ];
+
+            if($am->insert($newData)){
+                $msg = 'You added an Assistant Manager';
+                return redirect()->to(base_url() .'/admin/community_users/'.$community_id)->with('msg', $msg);
+            }else{
+                return redirect()->to(base_url() .'/admin');
+            }
+
+            
+        }else{
+            return redirect()->to(base_url() .'/admin');
+        }
+        
+
     }
 
 

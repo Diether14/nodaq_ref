@@ -45,10 +45,14 @@
           </tfoot>
           <tbody>
             <tr>
-              <td><?= $users['nickname'] ?></td>
-              <td><?= $users['email'] ?></td>
-              <td><?= $users['updated_at'] ?></td>
+            <?php foreach ($users as $key => $value):?>
+              <td><?= $value->nickname ?></td>
+              <td><?= $value->email ?></td>
+              <td><?= $value->updated_at ?></td>
               <td>
+              <a href="<?= base_url(); ?>/add_assistant_manager/<?= $users->id; ?>/<?= $community_id; ?>" class="btn btn-primary btn-circle btn-sm">
+                  <i class="fas fa-user"></i>
+              </a>
               <a href="#" class="btn btn-primary btn-circle btn-sm" data-toggle="modal"
                   data-target="#view<?= $key?>">
                   <i class="fas fa-eye"></i>
@@ -99,7 +103,7 @@
               </div>
             </div>
 
-
+            <?php endforeach; ?>
           </tbody>
         </table>
       </div>

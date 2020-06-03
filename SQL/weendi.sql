@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2020 at 05:45 PM
+-- Generation Time: Jun 03, 2020 at 06:17 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -50,7 +50,24 @@ INSERT INTO `community` (`id`, `user_id`, `com_photo_id`, `title`, `community_ty
 (23, 26, 24, 'Test Community', 1, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', '#11309b', '#ffffff', 'Like', 'Dislike', '2020-05-10 23:29:08', '2020-05-10 23:29:08'),
 (24, 26, 25, 'Test Community', 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', '#ffffff', '#000000', '', '', '2020-05-10 23:29:38', '2020-05-10 23:29:38'),
 (25, 26, 26, 'Test Community', 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', '#f08e91', '#ffffff', '', '', '2020-05-10 23:30:22', '2020-05-10 23:30:22'),
-(26, 26, 27, 'Test Community', 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', '#f08e91', '', '', '', '2020-05-11 18:40:25', '2020-05-11 18:40:25');
+(26, 26, 27, 'Test Community', 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry', '#f08e91', '', '', '', '2020-05-11 18:40:25', '2020-05-11 18:40:25'),
+(29, 18, 30, 'Test Community user', 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', '#ffffff', '#555555', 'Like', 'Dislike', '2020-06-02 22:55:25', '2020-06-02 22:55:25');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `community_assistant_managers`
+--
+
+CREATE TABLE `community_assistant_managers` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `community_id` int(11) NOT NULL,
+  `manager_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -96,7 +113,8 @@ INSERT INTO `community_photo` (`id`, `name`, `type`, `created_at`, `updated_at`)
 (24, 'xmFj7k.png', '', '2020-05-10 23:29:08', '2020-05-10 23:29:08'),
 (25, 'Desert.jpg', '', '2020-05-10 23:29:38', '2020-05-10 23:29:38'),
 (26, 'Jellyfish.jpg', '', '2020-05-10 23:30:21', '2020-05-10 23:30:21'),
-(27, 'Tulips.jpg', '', '2020-05-11 18:40:25', '2020-05-11 18:40:25');
+(27, 'Tulips.jpg', '', '2020-05-11 18:40:25', '2020-05-11 18:40:25'),
+(30, 'Future-Created-Today.jpg', '', '2020-06-02 22:55:25', '2020-06-02 22:55:25');
 
 -- --------------------------------------------------------
 
@@ -291,7 +309,9 @@ CREATE TABLE `users_community` (
 
 INSERT INTO `users_community` (`id`, `user_id`, `community_id`, `created_at`, `updated_at`) VALUES
 (2, 18, 26, '2020-05-11 23:10:32', '2020-05-11 23:10:32'),
-(3, 18, 23, '2020-05-12 00:07:02', '2020-05-12 00:07:02');
+(3, 18, 23, '2020-05-12 00:07:02', '2020-05-12 00:07:02'),
+(4, 18, 29, '2020-06-03 22:06:33', '2020-06-03 22:06:33'),
+(5, 21, 29, '2020-06-03 23:56:10', '2020-06-03 23:56:10');
 
 -- --------------------------------------------------------
 
@@ -464,6 +484,12 @@ ALTER TABLE `community`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `community_assistant_managers`
+--
+ALTER TABLE `community_assistant_managers`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `community_banned_users`
 --
 ALTER TABLE `community_banned_users`
@@ -573,7 +599,13 @@ ALTER TABLE `user_settings`
 -- AUTO_INCREMENT for table `community`
 --
 ALTER TABLE `community`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT for table `community_assistant_managers`
+--
+ALTER TABLE `community_assistant_managers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `community_banned_users`
@@ -585,7 +617,7 @@ ALTER TABLE `community_banned_users`
 -- AUTO_INCREMENT for table `community_photo`
 --
 ALTER TABLE `community_photo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `cover_photo`
@@ -633,7 +665,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users_community`
 --
 ALTER TABLE `users_community`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users_deleted_post`

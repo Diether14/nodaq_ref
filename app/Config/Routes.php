@@ -109,9 +109,7 @@ $routes->match(['get','post'],'update_community_photo', 'Admin::update_community
 $routes->get('delete_community/(:num)', 'Admin::delete_community/$1', ['filter' => 'auth']);
 $routes->match(['get', 'post'], 'community_ban_user', 'Admin::community_ban_user', ['filter' => 'auth']);
 $routes->match(['get', 'post'], 'update_admin_user', 'Admin::update_admin_user', ['filter' => 'auth']);
-
-
-
+$routes->get('/add_assistant_manager/(:num)/(:num)', 'Admin::add_assistant_manager/$1/$2', ['filter' => 'auth']);
 
 
 

@@ -1,3 +1,11 @@
+<style>
+  .custom-card{
+    min-height: 400px;
+    max-height: 600px;    
+  }
+ 
+</style>
+
 <div class="page-header header-filter" data-parallax="true"
   style="background-image: url('public/user/assets/img/profile_city.jpg')">
   <div class="container">
@@ -23,10 +31,10 @@
         <div class="row">
           <?php foreach ($community_list as $key => $value): ?>
 
-          <div class="col-md-4">
+          <div class="col-md-4 ">
             <div class="team-player">
 
-              <div class="card card-plain" >
+              <div class="card custom-card card-plain " >
 
                 <h4 class="card-title p-3 my-0" style="background-color: <?= $value->color; ?>">
               
