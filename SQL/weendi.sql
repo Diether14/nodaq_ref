@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2020 at 06:17 PM
+-- Generation Time: Jun 04, 2020 at 06:02 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -68,6 +68,13 @@ CREATE TABLE `community_assistant_managers` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `community_assistant_managers`
+--
+
+INSERT INTO `community_assistant_managers` (`id`, `user_id`, `community_id`, `manager_id`, `status`, `created_at`, `updated_at`) VALUES
+(2, 21, 29, 18, 0, '2020-06-03 16:19:15', '2020-06-03 16:19:15');
 
 -- --------------------------------------------------------
 
@@ -136,6 +143,21 @@ CREATE TABLE `cover_photo` (
 
 INSERT INTO `cover_photo` (`id`, `user_id`, `name`, `type`, `created_at`) VALUES
 (15, 18, 'bg2.jpg', 'image/jpeg', '2020-05-03 23:41:28');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `emoticon_store`
+--
+
+CREATE TABLE `emoticon_store` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -367,6 +389,8 @@ CREATE TABLE `users_post` (
   `title` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `content` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL,
+  `reason` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -375,9 +399,10 @@ CREATE TABLE `users_post` (
 -- Dumping data for table `users_post`
 --
 
-INSERT INTO `users_post` (`id`, `user_id`, `community_id`, `title`, `description`, `content`, `created_at`, `updated_at`) VALUES
-(10, 21, 23, 'test', 'tset', '<h1>Hello world!</h1>\n\n<p>I&#39;m an instance of <a href=\"https://ckeditor.com\">CKEditor</a>.</p>\n', '2020-05-21 00:13:13', '2020-05-21 00:13:13'),
-(11, 18, 23, 'Test Post', 'This is a test Post DID U KNOW THAT A LONG TIME AGO THERE ONCE WAS A YOUNG HOT WING HE WAS A VERY NICE HOT WING EXCEPT HE WANTED TO HE TOMATO\'S NOT JUST NORMAL TAMATO\'S BUT TOMATO\'S FROM A CLOWNS NOSE.', '<h1>Hello world!</h1>\n\n<p>I&#39;m an instance of <a href=\"https://ckeditor.com\">CKEditor</a>.</p>\n', '2020-05-28 00:45:11', '2020-05-28 00:45:11');
+INSERT INTO `users_post` (`id`, `user_id`, `community_id`, `title`, `description`, `content`, `status`, `reason`, `created_at`, `updated_at`) VALUES
+(10, 21, 23, 'test', 'tset', '<h1>Hello world!</h1>\n\n<p>I&#39;m an instance of <a href=\"https://ckeditor.com\">CKEditor</a>.</p>\n', 0, 'This post should be reported!', '2020-05-21 00:13:13', '2020-05-21 00:13:13'),
+(11, 18, 23, 'Test Post', 'This is a test Post DID U KNOW THAT A LONG TIME AGO THERE ONCE WAS A YOUNG HOT WING HE WAS A VERY NICE HOT WING EXCEPT HE WANTED TO HE TOMATO\'S NOT JUST NORMAL TAMATO\'S BUT TOMATO\'S FROM A CLOWNS NOSE.', '<h1>Hello world!</h1>\n\n<p>I&#39;m an instance of <a href=\"https://ckeditor.com\">CKEditor</a>.</p>\n', 0, 'This post should be reported!', '2020-05-28 00:45:11', '2020-05-28 00:45:11'),
+(12, 18, 29, 'Test', 'Test', '<h1>Hello world!</h1>\n\n<p>I&#39;m an instance of <a href=\"https://ckeditor.com\">CKEditor</a>.</p>\n', 1, 'delete post testing', '2020-06-04 20:27:47', '2020-06-04 20:27:47');
 
 -- --------------------------------------------------------
 
@@ -508,6 +533,12 @@ ALTER TABLE `cover_photo`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `emoticon_store`
+--
+ALTER TABLE `emoticon_store`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `files`
 --
 ALTER TABLE `files`
@@ -605,7 +636,7 @@ ALTER TABLE `community`
 -- AUTO_INCREMENT for table `community_assistant_managers`
 --
 ALTER TABLE `community_assistant_managers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `community_banned_users`
@@ -624,6 +655,12 @@ ALTER TABLE `community_photo`
 --
 ALTER TABLE `cover_photo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `emoticon_store`
+--
+ALTER TABLE `emoticon_store`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `files`
@@ -683,7 +720,7 @@ ALTER TABLE `users_ip`
 -- AUTO_INCREMENT for table `users_post`
 --
 ALTER TABLE `users_post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users_report`

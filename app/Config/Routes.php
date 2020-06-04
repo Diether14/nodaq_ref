@@ -99,6 +99,10 @@ $routes->get('/community-admins', 'Admin::community_admins', ['filter' => 'auth'
 $routes->match(['get','post'],'community-create-admin', 'Admin::community_create_admin', ['filter' => 'auth']);
 // $routes->match(['get','post'],'save_community', 'Admin::save_community', ['filter' => 'auth']);
 
+//emoticon store
+$routes->get('/emoticon-store', 'Emoticonstore::index', ['filter' => 'auth']);
+
+
 
 
 
@@ -110,16 +114,7 @@ $routes->get('delete_community/(:num)', 'Admin::delete_community/$1', ['filter' 
 $routes->match(['get', 'post'], 'community_ban_user', 'Admin::community_ban_user', ['filter' => 'auth']);
 $routes->match(['get', 'post'], 'update_admin_user', 'Admin::update_admin_user', ['filter' => 'auth']);
 $routes->get('/add_assistant_manager/(:num)/(:num)', 'Admin::add_assistant_manager/$1/$2', ['filter' => 'auth']);
-
-
-
-
-
-
-
-
-
-
+$routes->match(['get', 'post'], 'community_ban_post', 'Admin::community_ban_post', ['filter' => 'auth']);
 
 //picture
 $routes->match(['get','post'],'change_profile', 'Users::change_profile');

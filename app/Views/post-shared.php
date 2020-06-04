@@ -122,7 +122,7 @@
           </div>
         </div>
        
-        <div class="col-12 mb-5">
+        <!-- <div class="col-12 mb-5">
     <div class="row">
         <div class="col-12">
         <div class="bg-white pl-4 rounded shadow-sm h-100 text-center">
@@ -150,7 +150,7 @@
 
     
     </div>
-    </div>
+    </div> -->
 
         <div class="card my-4">
           <h5 class="card-title ml-3">Leave a Comment:</h5>

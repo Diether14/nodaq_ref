@@ -524,5 +524,34 @@ class Admin extends BaseController
 
     }
 
+    public function community_ban_post(){
+
+        ini_set('display_errors', 1);
+        helper(['form']);
+        $data = [];
+
+        $rules = [
+            'reason' => 'required|min_length[4]|max_length[20]',
+        ];
+
+        $new_data = [
+            // 'post_id' =>$this->request->getPost('post_id'),
+            // 'community_id' => $this->request->getPost('community_id'),
+            'reason' => $this->request->getPost('reason'),
+            'status' => '1',
+        ];
+        $id = $this->request->getPost('post_id');
+
+        $model = new UserspostModel();
+
+        if($model->update($id, $new_data)){
+            $msg = 'Post Deleted Temporarily';
+            return redirect()->to(base_url() .'/post-list/'.$this->request->getPost('community_id'));
+        }else{
+            $msg = 'There is something wrong';
+            return redirect()->to(base_url() .'/post-list/'.$this->request->getPost('community_id'));
+        }
+    }
+
 
 }

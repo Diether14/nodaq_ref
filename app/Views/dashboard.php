@@ -1,8 +1,9 @@
 <style>
   .custom-card{
-    min-height: 400px;
-    max-height: 600px;    
+    min-height: 350px;
+    max-height: 500px;    
   }
+ 
  
 </style>
 
@@ -31,7 +32,7 @@
         <div class="row">
           <?php foreach ($community_list as $key => $value): ?>
 
-          <div class="col-md-4 ">
+          <div class="col-md-3 ">
             <div class="team-player">
 
               <div class="card custom-card card-plain " >

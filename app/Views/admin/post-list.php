@@ -34,6 +34,7 @@
               <th>Posted By</th>
               <th>Upvotes</th>
               <th>Devotes</th>
+              <th>Status</th>
               <th>Date</th>
               <th>Action</th>
             </tr>
@@ -45,6 +46,7 @@
               <th>Posted By</th>
               <th>Upvotes</th>
               <th>Devotes</th>
+              <th>Status</th>
               <th>Date</th>
               <th>Action</th>
             </tr>
@@ -58,6 +60,7 @@
               <td><?= $value->nickname ?></td>
               <td>123</td>
               <td>123</td>
+              <td>Banned</td>
               <td><?= $value->updated_at ?></td>
               <td>
               <a href="#" class="btn btn-primary btn-circle btn-sm" data-toggle="modal"
@@ -66,10 +69,10 @@
               </a>
        
       
-              <!-- <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal"
-                  data-target="#ban">
+              <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal"
+                  data-target="#ban<?= $key ?>">
                   <i class="fas fa-ban"></i>
-              </a> -->
+              </a>
               </td>
             
             </tr>
@@ -79,26 +82,26 @@
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ban User</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Ban Post</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">×</span>
                     </button>
                   </div>
                   <div class="modal-body">
-                  <form class="contact-form" action="<?= base_url(); ?>/community_ban_user" method="post">
+                  <form class="contact-form" action="<?= base_url(); ?>/community_ban_post" method="post">
 
-                      <h4>Nickname: <b><?= $users['nickname'] ?></b></h4>
-
-                      <input type="hidden" name="user_id" value="<?= $users['id'] ?>">
-                      <input type="hidden" name="community_id" value="<?= $community['id'] ?>">
+                   
+                    
+                  <input type="hidden" name="post_id" value="<?= $value->id ?>">
+                      <input type="hidden" name="community_id" value="<?= $value->community_id ?>">
                       <div class="form-group">
                         <textarea name="reason" class="form-control" cols="30" rows="10"
-                          placeholder="Content"></textarea>
+                          placeholder="Reason"></textarea>
                       </div>
 
                       
                      
-                      <button type="submit" class="btn btn-danger">Ban User</button>
+                      <button type="submit" class="btn btn-danger">Delete Post</button>
 
                     </form>
                     

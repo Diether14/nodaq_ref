@@ -18,9 +18,10 @@
   }
 
   .custom-card{
-    min-height: 400px;
-    max-height: 600px;    
+    min-height: 200px;
+    max-height: 500px;    
   }
+ 
  
 
 
@@ -103,10 +104,10 @@
                   </div>
 
                   <?php foreach($posts as $key => $value): ?>
-                  <div class="col-md-4">
+                  <div class="col-md-4 ">
 
-                    <div class="team-player">
-                      <div class="card p-3">
+                    <div class="team-player ">
+                      <div class="custom-card card p-3">
 
                         <div class="profile-photo-small d-flex">
 
@@ -121,7 +122,7 @@
 
                           <?php endif; ?>
 
-                          <div class="m-0 p-0">
+                          <div class=" m-0 p-0 ">
                             <h4 class="card-title pl-2 mt-0 mb-0"><?= $value->nickname; ?>
                             </h4>
                             <p class="small pl-2 m-0">1 hour ago</p><br>
@@ -137,7 +138,7 @@
 
                         <p class="card-description"><?= $value->description ?></p>
 
-                        <div class="d-flex justify-content-center">
+                        <div class="card-footer justify-content-center">
                           <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-2"><i
                               class="fa fa-eye m-0 p-0"></i> 10 Views </a>
                           <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-comments m-0 p-0"></i> 50 Comments</a>    
@@ -153,7 +154,7 @@
                   <?php foreach($shared as $key => $value): ?>
 
                   <div class="col-md-4">
-                    <div class="card ">
+                    <div class="custom-card card ">
 
                      <div class="team-player">
                       <div class="profile-photo-small m-2 d-flex">
@@ -184,17 +185,16 @@
 
                       </div>
 
-                    
-                      <!-- chevron-up -->
-                        <div class="d-flex justify-content-center">
+                      </div>
+                      <div class="card-footer justify-content-center">
                         <a href="<?= base_url(); ?>/post-share/<?= $value->id ?>/<?= $community_id ?>" class="btn btn-link m-0 p-2"><i
                               class="fa fa-eye m-0 p-0"></i> 10 Views </a>
                               <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-comments m-0 p-0"></i> 50 Comments</a>  
                           <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-share m-0 p-0"></i> 2 Shares</a>
 
                         </div>
-                      </div>
                     </div>
+                    
                   </div>
                   <?php endforeach; ?>
 

@@ -156,7 +156,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="javascript:;" class="nav-link">
+            <a href="<?= base_url(); ?>/emoticon-store" class="nav-link">
               Emoticon Store
             </a>
           </li>
@@ -184,6 +184,7 @@
 
               <a href="#" data-toggle="modal" data-target="#logoutModal" class="dropdown-item">Sign out</a>
               <hr><a href="<?= base_url() ?>/community" class="dropdown-item">My Community</a>
+              <a href="<?= base_url() ?>/Admin" class="dropdown-item">Manage Community</a>
             </div>
           </li>
         </ul>
