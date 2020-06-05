@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 
 class EmoticonstoreModel extends Model{
     protected $table = 'emoticon_store';
-    protected $allowedFields = ['id', 'user_id', 'name', 'type', 'updated_at'];
+    protected $allowedFields = ['id', 'user_id', 'title','name', 'type', 'updated_at'];
 }
 
 ?>

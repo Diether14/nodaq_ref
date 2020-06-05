@@ -25,6 +25,12 @@
 
     <div class="section text-center">
       <h2 class="title">Top Stickers</h2>
+      <?php if (session('msg')) : ?>
+                <div class="mx-auto my-auto alert alert-primary alert-dismissible">
+                  <?= session('msg') ?>
+                  <button type="button" class="close" data-dismiss="alert"><span>×</span></button>
+                </div>
+                <?php endif ?>
       <div class="team">
         <div class="row">
 
@@ -38,7 +44,7 @@
           </div>
         </div>
         </div>
-
+        <?php foreach ($emoticon_list as $key => $value): ?>
           <div class="col-md-3 ">
             <div class="team-player">
 
@@ -49,10 +55,10 @@
                   <!-- <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-bars pl-3"
                       style="float:left;"></i></a>
                   <a href="#"></a> -->
-                  Smile dogs
+                  <?= $value->title ?>
                 </h4>
                 <div class="view overlay">
-                  <img class="card-img-top rounded-0" src="public/user/assets/img/bg.jpg" alt="Card image cap">
+                  <img class="card-img-top rounded-0" src="public/user/uploads/stickers/<?= $value->name ?>" alt="Card image cap">
                   <a href="#!">
                     <div class="mask rgba-white-slight"></div>
                   </a>
@@ -61,131 +67,16 @@
                 <div class="card-footer justify-content-center">
 
                   <div style="float-right">
-                    <p class="text">By: <b>Test</b></p>
+                    <p class="text">By: <b><?= $value->nickname ?></b></p>
                   </div>
 
                 </div>
               </div>
             </div>
           </div>
+        <?php endforeach; ?>
 
-          <div class="col-md-3 ">
-            <div class="team-player">
-
-              <div class="card card-plain ">
-
-                <h4 class="card-title p-3 my-0" style="background-color: ">
-
-                  <!-- <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-bars pl-3"
-                      style="float:left;"></i></a>
-                  <a href="#"></a> -->
-                  Smile dogs
-                </h4>
-                <div class="view overlay">
-                  <img class="card-img-top rounded-0" src="public/user/assets/img/bg.jpg" alt="Card image cap">
-                  <a href="#!">
-                    <div class="mask rgba-white-slight"></div>
-                  </a>
-                </div>
-
-                <div class="card-footer justify-content-center">
-
-                  <div style="float-right">
-                    <p class="text">By: <b>Test</b></p>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 ">
-            <div class="team-player">
-
-              <div class="card card-plain ">
-
-                <h4 class="card-title p-3 my-0" style="background-color: ">
-
-                  <!-- <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-bars pl-3"
-                      style="float:left;"></i></a>
-                  <a href="#"></a> -->
-                  Smile dogs
-                </h4>
-                <div class="view overlay">
-                  <img class="card-img-top rounded-0" src="public/user/assets/img/bg.jpg" alt="Card image cap">
-                  <a href="#!">
-                    <div class="mask rgba-white-slight"></div>
-                  </a>
-                </div>
-
-                <div class="card-footer justify-content-center">
-
-                  <div style="float-right">
-                    <p class="text">By: <b>Test</b></p>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 ">
-            <div class="team-player">
-
-              <div class="card card-plain ">
-
-                <h4 class="card-title p-3 my-0" style="background-color: ">
-
-                  <!-- <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-bars pl-3"
-                      style="float:left;"></i></a>
-                  <a href="#"></a> -->
-                  Smile dogs
-                </h4>
-                <div class="view overlay">
-                  <img class="card-img-top rounded-0" src="public/user/assets/img/bg.jpg" alt="Card image cap">
-                  <a href="#!">
-                    <div class="mask rgba-white-slight"></div>
-                  </a>
-                </div>
-
-                <div class="card-footer justify-content-center">
-
-                  <div style="float-right">
-                    <p class="text">By: <b>Test</b></p>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-3 ">
-            <div class="team-player">
-
-              <div class="card card-plain ">
-
-                <h4 class="card-title p-3 my-0" style="background-color: ">
-
-                  <!-- <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-bars pl-3"
-                      style="float:left;"></i></a>
-                  <a href="#"></a> -->
-                  Smile dogs
-                </h4>
-                <div class="view overlay">
-                  <img class="card-img-top rounded-0" src="public/user/assets/img/bg.jpg" alt="Card image cap">
-                  <a href="#!">
-                    <div class="mask rgba-white-slight"></div>
-                  </a>
-                </div>
-
-                <div class="card-footer justify-content-center">
-
-                  <div style="float-right">
-                    <p class="text">By: <b>Test</b></p>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
+        
 
         </div>
       </div>
@@ -200,26 +91,33 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Update Profile Picture</h5>
+        <h5 class="modal-title">Upload Sticker</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <i class="material-icons">clear</i>
         </button>
       </div>
 
       <div class="modal-body">
-        <div class="text-center">
-          <form class="contact-form" action="/weendi/update_mode" method="post">
-            <div class="togglebutton">
-              <label>
-                <input type="checkbox" name="mode" <?= ($user_settings['user_mode'] == '1' ? 'checked': null)?>>
-                <span class="toggle"></span>
-                Anonymous mode
-              </label>
+      <div class="form-group">
+            <label>Title</label>
+              <input type="text" name="title" class="form-control" require>
             </div>
-            <button type="submit" class="btn btn-primary btn-raised mt-3" id="btnSubmit">
-              Save
-            </button>
+        <div class="text-center">
+          <img src="public/assets/img/bg-sticker.png" class="avatar img-circle img-thumbnail"
+            alt="avatar">
+          <h6>Upload a different sticker...</h6>
+          <form class="contact-form" action="<?= base_url(); ?>/add_sticker" method="post" accept-charset="utf-8"
+            enctype="multipart/form-data">
+
+            <input type="file" name="file" class="text-center center-block file-upload" accept=".png, .jpg, .jpeg">
+            
+           
+            <div class="form-group"><br>
+              <hr>
+              <button type="submit" id="send_form" class="btn btn-primary">Submit</button>
+            </div>
           </form>
+
         </div>
         </hr><br>
       </div>
@@ -228,3 +126,44 @@
   </div>
 </div>
 <!--  End Modal -->
+
+<script>
+  $(document).ready(function () {
+
+
+    var readURL = function (input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          $('.avatar').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+
+    $(".file-upload").on('change', function () {
+      readURL(this);
+    });
+
+  });
+
+
+// function readURL(input, id) {
+//     id = id || '#blah';
+//     if (input.files &amp;&amp; input.files[0]) {
+//         var reader = new FileReader();
+
+//         reader.onload = function (e) {
+//             $(id)
+//                     .attr('src', e.target.result)
+//                     .width(200)
+//                     .height(150);
+//         };
+
+//         reader.readAsDataURL(input.files[0]);
+//     }
+//  }
+</script>
