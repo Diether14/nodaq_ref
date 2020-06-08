@@ -101,8 +101,8 @@ $routes->match(['get','post'],'community-create-admin', 'Admin::community_create
 
 //emoticon store
 $routes->get('/emoticon-store', 'Emoticonstore::index', ['filter' => 'auth']);
-
-
+$routes->get('/my-emoticon-store', 'Emoticonstore::my_emoticon_store', ['filter' => 'auth']);
+$routes->get('/emoticon-store-list/(:num)', 'Emoticonstore::my_emoticon_store_list/$1', ['filter' => 'auth']);
 
 
 

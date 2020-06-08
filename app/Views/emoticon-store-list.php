@@ -5,11 +5,11 @@
 </style>
 
 <div class="page-header header-filter" data-parallax="true"
-  style="background-image: url('public/user/assets/img/profile_city.jpg')">
+  style="background-image: url('<?= base_url(); ?>/public/user/uploads/stickers/<?= $emoticon_list[0]->name ?>')">
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <h1 class="title">Emoticon Sotre</h1>
+        <h1 class="title">Emoticon Store</h1>
         <h4>Every landing page needs a small description after the big bold title, that&apos;s why we added this text
           here. Add here all the information that can make you or your product create the first impression.</h4>
         <br>
@@ -34,7 +34,7 @@
                   </button>
                 </form>
                 </div>
-    <h2 class="title">My Stickers</h2>
+    <h2 class="title"><?= $emoticon_list[0]->title ?></h2>
       <?php if (session('msg')) : ?>
                 <div class="mx-auto my-auto alert alert-primary alert-dismissible">
                   <?= session('msg') ?>
@@ -54,8 +54,8 @@
           </div>
         </div>
         </div>
-        <?php foreach ($emoticon_list as $key => $value): ?>
-        <a href="<?= base_url(); ?>/emoticon-store-list/<?= $value->id ?>">
+        <!-- < foreach ($emoticon_list as $key => $value): ?> -->
+        <!-- <a href="<= base_url(); ?>/">
           <div class="col-md-3 ">
             <div class="team-player">
 
@@ -63,13 +63,10 @@
 
                 <h4 class="card-title p-3 my-0" style="background-color: ">
 
-                  <!-- <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-bars pl-3"
-                      style="float:left;"></i></a>
-                  <a href="#"></a> -->
-                  <?= $value->title ?>
+                  <= $value->title ?>
                 </h4>
                 <div class="view overlay">
-                  <img class="card-img-top rounded-0" src="public/user/uploads/stickers/<?= $value->name ?>" alt="Card image cap">
+                  <img class="card-img-top rounded-0" src="public/user/uploads/stickers/<= $value->name ?>" alt="Card image cap">
                   <a href="#!">
                     <div class="mask rgba-white-slight"></div>
                   </a>
@@ -78,15 +75,15 @@
                 <div class="card-footer justify-content-center">
 
                   <div style="float-right">
-                    <p class="text">By: <b><?= $value->nickname ?></b></p>
+                    <p class="text">By: <b><= $value->nickname ?></b></p>
                   </div>
 
                 </div>
               </div>
             </div>
           </div>
-          </a>
-        <?php endforeach; ?>
+          </a> -->
+        <!-- < endforeach; ?> -->
 
         
 

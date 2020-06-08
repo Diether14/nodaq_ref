@@ -25,8 +25,7 @@ class Emoticonstore extends BaseController
         $builder->join('users', 'emoticon_store.user_id = users.id');
         $query   = $builder->get();
         $data['emoticon_list'] = $query->getResult();
-        // echo '<pre>';
-        // var_dump($data['emoticon_list']);exit;
+
 
         echo view('templates/header', $data);
         echo view('emoticon-store', $data);
@@ -75,6 +74,48 @@ class Emoticonstore extends BaseController
     
     return redirect()->to( base_url('/emoticon-store') )->with('msg', $msg);
     }
+
+    public function my_emoticon_store(){
+      ini_set('display_errors', 1);
+      $data = [];
+      helper(['form']);
+
+         
+      $db      = \Config\Database::connect();
+      $builder = $db->table('emoticon_store');
+
+      $builder->select('emoticon_store.id,emoticon_store.user_id, emoticon_store.title ,emoticon_store.name, emoticon_store.created_at, users.nickname ');
+      $builder->join('users', 'emoticon_store.user_id = users.id');
+      $query   = $builder->get();
+      $data['emoticon_list'] = $query->getResult();
+
+
+      echo view('templates/header', $data);
+      echo view('emoticon-store', $data);
+      echo view('templates/footer', $data);
+    }
+
+    public function my_emoticon_store_list($id = null){
+      ini_set('display_errors', 1);
+      $data = [];
+      helper(['form']);
+
+         
+      $db      = \Config\Database::connect();
+      $builder = $db->table('emoticon_store');
+
+      $builder->select('emoticon_store.id,emoticon_store.user_id, emoticon_store.title ,emoticon_store.name, emoticon_store.created_at, users.nickname ');
+      $builder->where('emoticon_store.id', $id );
+      $builder->join('users', 'emoticon_store.user_id = users.id');
+      $query   = $builder->get();
+      $data['emoticon_list'] = $query->getResult();
+
+
+      echo view('templates/header', $data);
+      echo view('emoticon-store-list', $data);
+      echo view('templates/footer', $data);
+    }
+
 
 	//--------------------------------------------------------------------
 

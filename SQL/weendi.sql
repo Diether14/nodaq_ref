@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 04, 2020 at 06:02 PM
+-- Generation Time: Jun 08, 2020 at 06:13 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -153,10 +153,33 @@ INSERT INTO `cover_photo` (`id`, `user_id`, `name`, `type`, `created_at`) VALUES
 CREATE TABLE `emoticon_store` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `emoticon_store`
+--
+
+INSERT INTO `emoticon_store` (`id`, `user_id`, `title`, `name`, `type`, `created_at`, `updated_at`) VALUES
+(1, 18, 'Future Created Today', 'Future-Created-Today.jpg', 'image/jpeg', '2020-06-05 08:53:12', '2020-06-05 08:53:12');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `emoticon_store_files`
+--
+
+CREATE TABLE `emoticon_store_files` (
+  `id` int(11) NOT NULL,
+  `users_id` int(11) NOT NULL,
+  `emoticon_store_id` int(11) NOT NULL,
+  `files` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `createad_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -539,6 +562,12 @@ ALTER TABLE `emoticon_store`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `emoticon_store_files`
+--
+ALTER TABLE `emoticon_store_files`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `files`
 --
 ALTER TABLE `files`
@@ -660,6 +689,12 @@ ALTER TABLE `cover_photo`
 -- AUTO_INCREMENT for table `emoticon_store`
 --
 ALTER TABLE `emoticon_store`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `emoticon_store_files`
+--
+ALTER TABLE `emoticon_store_files`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
