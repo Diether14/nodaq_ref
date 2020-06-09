@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2020 at 06:13 PM
+-- Generation Time: Jun 09, 2020 at 04:52 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -175,12 +175,23 @@ INSERT INTO `emoticon_store` (`id`, `user_id`, `title`, `name`, `type`, `created
 
 CREATE TABLE `emoticon_store_files` (
   `id` int(11) NOT NULL,
-  `users_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `emoticon_store_id` int(11) NOT NULL,
   `files` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
-  `createad_at` datetime NOT NULL DEFAULT current_timestamp()
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `emoticon_store_files`
+--
+
+INSERT INTO `emoticon_store_files` (`id`, `user_id`, `emoticon_store_id`, `files`, `name`, `type`, `created_at`) VALUES
+(7, 18, 1, '', 'clark-tibbs-oqStl2L5oxI-unsplash.jpg', 'image/jpeg', '2020-06-09 21:36:00'),
+(8, 18, 1, '', 'Future-Created-Today.jpg', 'image/jpeg', '2020-06-09 21:36:00'),
+(9, 18, 1, '', 'web-development-minimalism-bl-1920x1080.jpg', 'image/jpeg', '2020-06-09 21:36:01'),
+(10, 18, 1, '', 'xmFj7k.png', 'image/png', '2020-06-09 21:36:01');
 
 -- --------------------------------------------------------
 
@@ -695,7 +706,7 @@ ALTER TABLE `emoticon_store`
 -- AUTO_INCREMENT for table `emoticon_store_files`
 --
 ALTER TABLE `emoticon_store_files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `files`

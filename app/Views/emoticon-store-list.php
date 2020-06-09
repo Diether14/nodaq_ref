@@ -34,7 +34,7 @@
                   </button>
                 </form>
                 </div>
-    <h2 class="title"><?= $emoticon_list[0]->title ?></h2>
+    <h2 class="title"><?= $emoticon_list[0]->title ?> Stickers</h2>
       <?php if (session('msg')) : ?>
                 <div class="mx-auto my-auto alert alert-primary alert-dismissible">
                   <?= session('msg') ?>
@@ -54,36 +54,24 @@
           </div>
         </div>
         </div>
-        <!-- < foreach ($emoticon_list as $key => $value): ?> -->
-        <!-- <a href="<= base_url(); ?>/">
+        <?php foreach ($emoticon_package as $key => $value): ?>
+        <a href="<= base_url(); ?>/">
           <div class="col-md-3 ">
             <div class="team-player">
 
               <div class="card  card-plain ">
-
-                <h4 class="card-title p-3 my-0" style="background-color: ">
-
-                  <= $value->title ?>
-                </h4>
-                <div class="view overlay">
-                  <img class="card-img-top rounded-0" src="public/user/uploads/stickers/<= $value->name ?>" alt="Card image cap">
+                  <div class="view overlay">
+                  <img class="card-img-top rounded-0" src="<?=base_url() ?>/public/user/uploads/stickers/pack/<?= $value->name ?>" alt="Card image cap">
                   <a href="#!">
                     <div class="mask rgba-white-slight"></div>
                   </a>
                 </div>
 
-                <div class="card-footer justify-content-center">
-
-                  <div style="float-right">
-                    <p class="text">By: <b><= $value->nickname ?></b></p>
-                  </div>
-
-                </div>
               </div>
             </div>
           </div>
-          </a> -->
-        <!-- < endforeach; ?> -->
+          </a>
+        <?php endforeach; ?>
 
         
 
@@ -100,26 +88,22 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Upload Sticker</h5>
+        <h5 class="modal-title">Upload Sticker Bundle</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <i class="material-icons">clear</i>
         </button>
       </div>
 
       <div class="modal-body">
-      <div class="form-group">
-            <label>Title</label>
-              <input type="text" name="title" class="form-control" require>
-            </div>
         <div class="text-center">
-          <img src="public/assets/img/bg-sticker.png" class="avatar img-circle img-thumbnail"
-            alt="avatar">
-          <h6>Upload a different sticker...</h6>
-          <form class="contact-form" action="<?= base_url(); ?>/add_sticker" method="post" accept-charset="utf-8"
+          <!-- <img src="<?= base_url();?>/public/assets/img/bg-sticker.png" class="avatar img-circle img-thumbnail"
+            alt="avatar"> -->
+          <h6>Select multiple stickers...</h6>
+          <form class="contact-form" action="<?= base_url(); ?>/add_multiple_sticker" method="post" accept-charset="utf-8"
             enctype="multipart/form-data">
 
-            <input type="file" name="file" class="text-center center-block file-upload" accept=".png, .jpg, .jpeg">
-            
+            <input type="file" name="file[]" class="text-center center-block file-upload" accept=".png, .jpg, .jpeg" multiple>
+            <input type="hidden" name="emoticon_store_id" value="<?= $id ?>">
            
             <div class="form-group"><br>
               <hr>

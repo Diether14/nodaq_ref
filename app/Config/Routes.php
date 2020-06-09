@@ -120,6 +120,7 @@ $routes->match(['get', 'post'], 'community_ban_post', 'Admin::community_ban_post
 $routes->match(['get','post'],'change_profile', 'Users::change_profile');
 $routes->match(['get','post'],'change_cover', 'Users::change_cover');
 $routes->match(['get','post'],'add_sticker', 'Emoticonstore::add_sticker');
+$routes->match(['get','post'],'add_multiple_sticker', 'Emoticonstore::add_multiple_sticker');
 
 // $routes->group('users', function($routes)
 // {

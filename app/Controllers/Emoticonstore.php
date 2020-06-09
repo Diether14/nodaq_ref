@@ -111,10 +111,54 @@ class Emoticonstore extends BaseController
       $data['emoticon_list'] = $query->getResult();
 
 
+      $db      = \Config\Database::connect();
+      $builder = $db->table('emoticon_store_files');
+
+      $builder->select('emoticon_store_files.id,emoticon_store_files.user_id, emoticon_store_files.emoticon_store_id ,emoticon_store_files.name, emoticon_store_files.created_at');
+      $builder->where('emoticon_store_files.emoticon_store_id', $id );
+      $builder->join('users', 'emoticon_store_files.user_id = users.id');
+      $query   = $builder->get();
+      $data['emoticon_package'] = $query->getResult();
+
+      $data['id'] = $id;
       echo view('templates/header', $data);
       echo view('emoticon-store-list', $data);
       echo view('templates/footer', $data);
     }
+
+    public function add_multiple_sticker(){
+      ini_set('display_errors', 1);
+ 
+      helper(['form', 'url']);
+ 
+      $db      = \Config\Database::connect();
+      $builder = $db->table('emoticon_store_files');
+
+      $msg = 'Please select a valid files';
+
+      if ($this->request->getFileMultiple('file')) {
+    
+           foreach($this->request->getFileMultiple('file') as $file)
+           {   
+
+              $file->move('public/user/uploads/stickers/pack');
+
+            $data = [
+              'user_id' => session()->get('id'),
+              'emoticon_store_id' =>  $this->request->getPost('emoticon_store_id'),
+              'name' =>  $file->getClientName(),
+              'type'  => $file->getClientMimeType()
+            ];
+
+            $save = $builder->insert($data);
+           }
+           $msg = 'Files has been uploaded';
+           return redirect()->to( base_url('/emoticon-store-list/'. $this->request->getPost('emoticon_store_id')) )->with('msg', $msg);
+      }
+        
+
+  
+}
 
 
 	//--------------------------------------------------------------------
