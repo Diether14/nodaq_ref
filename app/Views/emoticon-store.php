@@ -2,6 +2,14 @@
   .custom-card{
     min-height:253px;
   }
+  .modal-backdrop.show {
+    opacity: 0 !important;
+    position: absolute !important;
+}
+.modal-content {
+  top: 60px;
+}
+
 </style>
 
 <div class="page-header header-filter" data-parallax="true"
@@ -55,7 +63,7 @@
         </div>
         </div>
         <?php foreach ($emoticon_list as $key => $value): ?>
-        <a href="<?= base_url(); ?>/emoticon-store-list/<?= $value->id ?>">
+       
           <div class="col-md-3 ">
             <div class="team-player">
 
@@ -63,10 +71,11 @@
 
                 <h4 class="card-title p-3 my-0" style="background-color: ">
 
-                  <!-- <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-bars pl-3"
+                  <a href="#" data-toggle="modal"  data-target="#edit_<?= $key ?>"><i class="fa fa-cog pl-1 pt-1"
                       style="float:left;"></i></a>
-                  <a href="#"></a> -->
+                      <a href="<?= base_url(); ?>/emoticon-store-list/<?= $value->id ?>">
                   <?= $value->title ?>
+                  </a>
                 </h4>
                 <div class="view overlay">
                   <img class="card-img-top rounded-0" src="public/user/uploads/stickers/<?= $value->name ?>" alt="Card image cap">
@@ -85,7 +94,50 @@
               </div>
             </div>
           </div>
-          </a>
+        
+          
+      <!-- Classic Modal -->
+      <div class="modal fade" id="edit_<?= $key ?>" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Edit Sticker Bundle</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="material-icons">clear</i>
+              </button>
+            </div>
+
+            <div class="modal-body">
+            <form class="contact-form" action="<?= base_url(); ?>/update_sticker" method="post" accept-charset="utf-8"
+                  enctype="multipart/form-data">
+            <div class="form-group">
+                  <label>Title</label>
+                    <input type="text" name="title" value="<?= $value->title ?>" class="form-control" required>
+                  </div>
+                  <input type="hidden" name="id" value="<?= $value->id ?>">
+              <div class="text-center">
+                <img src="public/user/uploads/stickers/<?= $value->name ?>" class="avatar img-circle img-thumbnail"
+                  alt="avatar">
+                <h6>Upload a different bundle sticker photo...</h6>
+
+
+
+                  <input type="file" name="file" class="text-center center-block file-upload" accept=".png, .jpg, .jpeg">
+                
+                  <div class="form-group"><br>
+                    <hr>
+                    <button type="submit" id="send_form" class="btn btn-primary">Submit</button>
+                  </div>
+                </form>
+
+              </div>
+              </hr><br>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!--  End Modal -->
         <?php endforeach; ?>
 
         
@@ -110,19 +162,20 @@
       </div>
 
       <div class="modal-body">
+      <form class="contact-form" action="<?= base_url(); ?>/add_sticker" method="post" accept-charset="utf-8"
+            enctype="multipart/form-data">
       <div class="form-group">
             <label>Title</label>
-              <input type="text" name="title" class="form-control" require>
+              <input type="text" name="title" class="form-control" required>
             </div>
         <div class="text-center">
           <img src="public/assets/img/bg-sticker.png" class="avatar img-circle img-thumbnail"
             alt="avatar">
           <h6>Upload a different sticker...</h6>
-          <form class="contact-form" action="<?= base_url(); ?>/add_sticker" method="post" accept-charset="utf-8"
-            enctype="multipart/form-data">
+
+
 
             <input type="file" name="file" class="text-center center-block file-upload" accept=".png, .jpg, .jpeg">
-            
            
             <div class="form-group"><br>
               <hr>

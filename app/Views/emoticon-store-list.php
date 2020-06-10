@@ -2,6 +2,12 @@
   .custom-card{
     min-height:253px;
   }
+  .modal-backdrop {
+    position: absolute !important;
+  }
+  .modal-backdrop.show {
+    opacity: 0 !important;
+}
 </style>
 
 <div class="page-header header-filter" data-parallax="true"
@@ -55,7 +61,7 @@
         </div>
         </div>
         <?php foreach ($emoticon_package as $key => $value): ?>
-        <a href="<= base_url(); ?>/">
+        <a href="#" data-toggle="modal" data-target="#showStickers_<?= $key ?>">
           <div class="col-md-3 ">
             <div class="team-player">
 
@@ -70,7 +76,43 @@
               </div>
             </div>
           </div>
+          
           </a>
+
+          <!-- Classic Modal -->
+        <div class="modal fade" id="showStickers_<?= $key ?>" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <!-- <div class="modal-header">
+                
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <i class="material-icons">clear</i>
+                </button>
+              </div> -->
+
+              <div class="modal-body">
+                <div class="text-center">
+                  <img src="<?=base_url() ?>/public/user/uploads/stickers/pack/<?= $value->name ?>" class="avatar img-circle img-thumbnail"
+                    alt="avatar">
+                 
+                </div>
+                </hr><br>
+                <a href="<?= base_url(); ?>/delete-single-sticker/<?= $value->id; ?>/<?= $value->emoticon_store_id ?>">
+                <button type="button" class="btn btn-danger">
+                  Delete
+                </button>
+                </a>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close">
+                Close
+              </button>
+              </div>
+             
+            </div>
+          </div>
+        </div>
+        <!--  End Modal -->
+
+
         <?php endforeach; ?>
 
         

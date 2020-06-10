@@ -103,7 +103,7 @@ $routes->match(['get','post'],'community-create-admin', 'Admin::community_create
 $routes->get('/emoticon-store', 'Emoticonstore::index', ['filter' => 'auth']);
 $routes->get('/my-emoticon-store', 'Emoticonstore::my_emoticon_store', ['filter' => 'auth']);
 $routes->get('/emoticon-store-list/(:num)', 'Emoticonstore::my_emoticon_store_list/$1', ['filter' => 'auth']);
-
+$routes->get('/delete-single-sticker/(:num)/(:num)', 'Emoticonstore::delete_single_sticker/$1/$2', ['filter' => 'auth']);
 
 
 //admin functions
@@ -121,6 +121,7 @@ $routes->match(['get','post'],'change_profile', 'Users::change_profile');
 $routes->match(['get','post'],'change_cover', 'Users::change_cover');
 $routes->match(['get','post'],'add_sticker', 'Emoticonstore::add_sticker');
 $routes->match(['get','post'],'add_multiple_sticker', 'Emoticonstore::add_multiple_sticker');
+$routes->match(['get','post'],'update_sticker', 'Emoticonstore::update_sticker');
 
 // $routes->group('users', function($routes)
 // {

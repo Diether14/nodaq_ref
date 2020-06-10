@@ -3,6 +3,7 @@
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\EmoticonstoreModel;
+use App\Models\EmoticonstorefilesModel;
 
 class Emoticonstore extends BaseController
 {
@@ -155,11 +156,70 @@ class Emoticonstore extends BaseController
            $msg = 'Files has been uploaded';
            return redirect()->to( base_url('/emoticon-store-list/'. $this->request->getPost('emoticon_store_id')) )->with('msg', $msg);
       }
+  }
+
+  public function delete_single_sticker($id = null, $store_id = null){
+    ini_set('display_errors', 1);
+ 
+    helper(['form', 'url']);
+
+    $model = new EmoticonstorefilesModel();
+
+    $delete = $model->delete($id);
+    if($delete){
+      $msg = 'The File has been deleted!';
+      return redirect()->to( base_url('/emoticon-store-list/'. $store_id) )->with('msg', $msg);
+    }else{
+      $msg = 'Failed to delete';
+      return redirect()->to( base_url('/emoticon-store-list/'. $store_id) )->with('msg', $msg);
+    }
+
+  }
+
+  public function update_sticker(){
+    ini_set('display_errors', 1);
+
+    helper(['form', 'url']);
+
+
+    $db      = \Config\Database::connect();
+         $builder = $db->table('emoticon_store');
         
+         $validated = $this->validate([
+            'file' => [
+                'uploaded[file]',
+                'mime_in[file,image/jpg,image/jpeg,image/gif,image/png]',
+                'max_size[file,4096]',
+            ],
+            'title' => 'required|min_length[3]|max_length[50]'
+        ]);
 
-  
+        $msg = 'Please select a valid file!';
+        if ($validated) {
+            $avatar = $this->request->getFile('file');
+            $avatar->move('public/user/uploads/stickers');
+            
+            $id = $this->request->getPost('id'); 
+        
+          $data = [
+          
+            'title' => $this->request->getPost('title'),
+            'name' =>  $avatar->getClientName(),
+            'type'  => $avatar->getClientMimeType()
+          ];
+          
+          $builder->where('id', $id);
+          $update = $builder->update($data);
+          if($update){
+            $msg = 'Sticker Bundle has been updated';
+          }else{
+            $msg = 'Failed to update!';
+          }
+    
+
+  }
+  return redirect()->to( base_url('/emoticon-store') )->with('msg', $msg);
 }
-
 
 	//--------------------------------------------------------------------
 
