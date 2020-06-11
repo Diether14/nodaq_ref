@@ -102,8 +102,9 @@
                       </div>
                     </div>
                   </div>
-
-                  <?php foreach($posts as $key => $value): ?>
+              
+                  <?php for ($i=0; $i <=1; $i++): ?>
+                  <?php foreach($posts[$i] as $key => $value): ?>
                   <div class="col-md-4 ">
 
                     <div class="team-player ">
@@ -126,21 +127,26 @@
                             <h4 class="card-title pl-2 mt-0 mb-0"><?= $value->nickname; ?>
                             </h4>
                             <p class="small pl-2 m-0">1 hour ago</p><br>
-                            <p class="text p-0 m-0">
-                              <?= $value->content ?>
-
-                            </p>
+                          
 
                           </div>
 
                         </div>
 
+                        <p class="text">
+                              <?= $value->content ?>
 
+                            </p>
                         <p class="card-description"><?= $value->description ?></p>
 
                         <div class="card-footer justify-content-center">
-                          <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-2"><i
+                          <?php if($value->post_id): ?>
+                            <a href="<?= base_url(); ?>/post-share/<?= $value->post_id ?>/<?= $community_id ?>" class="btn btn-link m-0 p-2"><i
                               class="fa fa-eye m-0 p-0"></i> 10 Views </a>
+                          <?php else: ?>
+                            <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-2"><i
+                              class="fa fa-eye m-0 p-0"></i> 10 Views </a>
+                          <?php endif; ?>  
                           <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-comments m-0 p-0"></i> 50 Comments</a>    
                           <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-share m-0 p-0"></i> 2 Shares</a>
               
@@ -149,35 +155,37 @@
                     </div>
                   </div>
                   <?php endforeach; ?>
+         
 
+                  <?php endfor;?>
 
-                  <?php foreach($shared as $key => $value): ?>
+                  <!-- <php foreach($shared as $key => $value): ?> -->
 
-                  <div class="col-md-4">
+                  <!-- <div class="col-md-4">
                     <div class="custom-card card ">
 
                      <div class="team-player">
                       <div class="profile-photo-small m-2 d-flex">
                        
-                        <?php if(!empty($value->name)): ?>
+                        <php if(!empty($value->name)): ?>
 
                         <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $value->name ?>"
                           alt="Circle Image" class="rounded-circle img-fluid z-depth-2">
 
-                        <?php else: ?>
+                        <php else: ?>
                         <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image"
                           class="img-raised rounded-circle img-fluid  z-depth-2" alt="avatar">
 
-                        <?php endif; ?> 
+                        <php endif; ?> 
 
                         <div class="m-0 p-0">
                           
-                          <h4 class="card-title pl-2 mt-0 mb-0"><?= $value->nickname; ?>
+                          <h4 class="card-title pl-2 mt-0 mb-0"><= $value->nickname; ?>
                           <span class="fa fa-share small" style="float-right"></span>
                           </h4>
                           <p class="small pl-2 m-0">1 hour ago </p>
                           <p class="text p-0 m-0">
-                            <?= $value->content ?>
+                            <= $value->content ?>
 
                           </p>
 
@@ -187,7 +195,7 @@
 
                       </div>
                       <div class="card-footer justify-content-center">
-                        <a href="<?= base_url(); ?>/post-share/<?= $value->id ?>/<?= $community_id ?>" class="btn btn-link m-0 p-2"><i
+                        <a href="<= base_url(); ?>/post-share/<= $value->id ?>/<= $community_id ?>" class="btn btn-link m-0 p-2"><i
                               class="fa fa-eye m-0 p-0"></i> 10 Views </a>
                               <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-comments m-0 p-0"></i> 50 Comments</a>  
                           <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-share m-0 p-0"></i> 2 Shares</a>
@@ -195,8 +203,8 @@
                         </div>
                     </div>
                     
-                  </div>
-                  <?php endforeach; ?>
+                  </div> -->
+                  <!-- <php //endforeach; ?> -->
 
 
 
@@ -243,6 +251,8 @@
           <div id="editor">
             <h1>Hello world!</h1>
             <p>I'm an instance of <a href="https://ckeditor.com">CKEditor</a>.</p>
+            <!-- <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image"
+                            class="img-raised rounded-circle img-fluid  z-depth-2" alt="avatar"> -->
           </div>
         </div>
         <!-- <div class="card container p-3 ">

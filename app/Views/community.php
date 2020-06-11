@@ -1,6 +1,6 @@
 <style>
   .custom-card{
-    min-height: 350px;
+    min-height: 300px;
     max-height: 500px;    
   }
  
@@ -45,7 +45,7 @@
           </div>
         </div>
         </div>
-
+      <?php if(!empty($community_list)): ?>
         <?php foreach ($community_list as $key => $value): ?>
 
 
@@ -92,10 +92,22 @@
 </div>
 
 <?php endforeach; ?>
+        <?php else: ?>
+         
+        <div class="col-md-3">
+   
 
+        <div class="team-player">
+          <div class="card custom-card card-body justify-content-center">
+            
+            <p class="text-center">No Created Community Yet</p>
+          </div>
+        </div>
+        </div>
+        <?php endif; ?>
 
         </div>
-      </div>
+   
 
 
       

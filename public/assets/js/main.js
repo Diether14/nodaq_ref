@@ -28,7 +28,7 @@ $(document).ready(function(){
                    //if success close modal and reload ajax table
                    console.log(data);
                   alert('Blog Added');
-                  window.location.href = "profile";// for reload a page
+                  location.reload();
                 },
                 error: function (jqXHR, textStatus, errorThrown)
                 {

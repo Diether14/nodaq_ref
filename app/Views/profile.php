@@ -111,8 +111,9 @@
             </div>
             <br>
             <hr>
-            <h2 class="title">Community Joined</h2>
+            <h2 class="title">Community Joined In</h2>
             <div class="row">
+            <?php if(!empty($community_list)): ?>
               <?php foreach ($community_list as $key => $value): ?>
 
               <div class="col-md-4">
@@ -161,12 +162,25 @@
               </div>
 
               <?php endforeach; ?>
+              <?php else: ?>
+                <div class="col-md-3">
+   
+
+              <div class="team-player">
+                <div class="card custom-card card-body justify-content-center">
+                  
+                  <p class="text-center">No Community Joined Yet</p>
+                </div>
+              </div>
+              </div>
+              <?php endif; ?>  
 
             </div>
             <hr>
 
             <h2 class="title mb-0">Recent Post</h2>
             <div class="row">
+            <?php if(!empty($posts)): ?>
               <?php foreach($posts as $key => $value): ?>
               <div class="col-md-4">
 
@@ -206,17 +220,35 @@
                     <div class="d-flex justify-content-center">
                       <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-2"><i
                           class="fa fa-eye m-0 p-0"></i> 10 Views </a>
-                      <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-share m-0 p-0"></i> 2 Shares</a>
-                      <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-exclamation m-0 p-0"></i> Reports</a>
+                      <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-recycle m-0 p-0"></i> Edit</a>
+                      <a href="<?= base_url() ?>/delete-post/<?= $value->id ?>" class="btn btn-link m-0 p-2"><i class="fa fa-trash m-0 p-0"></i> Delete</a>
                     </div>
                   </div>
                 </div>
               </div>
               <?php endforeach; ?>
+              <?php else: ?>
 
+                <div class="col-md-3">
+   
 
-              <?php foreach($shared as $key => $value): ?>
+              <div class="team-player">
+                <div class="card custom-card card-body justify-content-center">
+                  
+                  <p class="text-center">No Post Yet</p>
+                </div>
+              </div>
+              </div>
+              <?php endif; ?>  
 
+                      
+              
+          </div>
+          <h2 class="title mb-0">Recent Shared Post</h2><br>
+          <div class="row">
+          <?php if(!empty($shared)): ?>
+          <?php foreach($shared as $key => $value): ?>
+            
               <div class="col-md-4">
                 <div class="card">
 
@@ -253,17 +285,30 @@
 
                   <div class="d-flex justify-content-center">
 
-                    <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-2"><i
+                  <a href="<?= base_url(); ?>/post-share/<?= $value->post_id ?>/<?= $value->community_id ?>" class="btn btn-link m-0 p-2"><i
                         class="fa fa-eye m-0 p-0"></i> 10 Views </a>
-                    <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-comments m-0 p-0"></i> 50 Comments</a>
-                    <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-share m-0 p-0"></i> 2 Shares</a>
-
+                        <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-recycle m-0 p-0"></i> Edit</a>
+                      <a href="<?= base_url() ?>/delete-shared-post/<?= $value->id ?>" class="btn btn-link m-0 p-2"><i class="fa fa-trash m-0 p-0"></i> Delete</a>
 
                   </div>
                 </div>
               </div>
             </div>
             <?php endforeach; ?>
+            <?php else: ?>
+
+            <div class="col-md-3">
+
+
+            <div class="team-player">
+            <div class="card custom-card card-body justify-content-center">
+              
+              <p class="text-center">No Shared Post Yet</p>
+            </div>
+            </div>
+            </div>
+            <?php endif; ?>  
+
           </div>
         </div>
 

@@ -86,6 +86,7 @@ class Emoticonstore extends BaseController
       $builder = $db->table('emoticon_store');
 
       $builder->select('emoticon_store.id,emoticon_store.user_id, emoticon_store.title ,emoticon_store.name, emoticon_store.created_at, users.nickname ');
+      $builder->where('emoticon_store.user_id', session()->get('id') );
       $builder->join('users', 'emoticon_store.user_id = users.id');
       $query   = $builder->get();
       $data['emoticon_list'] = $query->getResult();

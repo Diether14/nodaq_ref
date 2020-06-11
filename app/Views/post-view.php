@@ -132,7 +132,7 @@
               </div>
               <?php endif ?>
 
-                <?php if(!empty($com)): ?>
+                <?php if(!empty($com['upvote_name']) && !empty($com['devote_name'])): ?>
          
                 <form action="<?= base_url(); ?>/add_upvote" method="post">
                   <input type="hidden" name="post_id" value="<?= $blog['id'] ?>">
@@ -142,7 +142,7 @@
                     style="background-color:#E74C3C;"><i class="fa fa-chevron-up"></i></button>
                   <p class="lead  mb-0 small"><b><?= $com['upvote_name'] ?></b></p>
                 </form>
-                <h1 class="m-0">1334</h1>
+                <h1 class="m-0"><?= $vote_totals ?></h1>
                 <form action="<?= base_url(); ?>/add_devote" method="post">
                   <input type="hidden" name="post_id" value="<?= $blog['id'] ?>">
                   <input type="hidden" name="community_id" value="<?= $blog['community_id'] ?>">
@@ -152,12 +152,12 @@
                   <p class="lead mb-0 small"><b><?= $com['devote_name'] ?></b></p>
                 </form>
                 <?php else: ?>
-                <form action="<?= base_url(); ?>/c" method="post">
+                <form action="<?= base_url(); ?>/add_upvote" method="post">
                   <button class="btn btn-danger btn-circle btn-circle-xl" style="background-color:#E74C3C;"><i
                       class="fa fa-chevron-up"></i></button>
                   <p class="lead  mb-0 small"><b>Upvote</b></p>
                 </form>
-                <h1 class="m-0">1334</h1>
+                <h1 class="m-0"><?= $vote_totals ?></h1>
                 <form action="<?= base_url(); ?>/add_devote" method="post">
                   <button class="btn btn-danger btn-circle btn-circle-xl" style="background-color:#8E44AD;"><i
                       class="fa fa-chevron-down"></i></button>

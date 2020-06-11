@@ -295,6 +295,7 @@ class Users extends BaseController
         $builder = $db->table('community');
     
         $builder->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.updated_at, community.color, community.text_color, community_photo.name, users.nickname');
+        $builder->where('community.user_id', session()->get('id'));
         $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
         $builder->join('users_community', 'users_community.community_id = community.id');
         $builder->join('users', 'users.id = users_community.user_id');
@@ -305,7 +306,7 @@ class Users extends BaseController
         
         $db2      = \Config\Database::connect();
         $builder2 = $db2->table('users_shared_posts');
-        $builder2->select('users_post.id, users_shared_posts.content ,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.updated_at, users.nickname,profile_photo.name');
+        $builder2->select('users_shared_posts.id, users_shared_posts.post_id, users_shared_posts.content ,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.updated_at, users.nickname,profile_photo.name');
         $builder2->where('users_shared_posts.user_id', session()->get('id'));
        
         $builder2->join('users', 'users.id = users_shared_posts.user_id');
@@ -696,6 +697,8 @@ class Users extends BaseController
             ->first();
 
 
+
+
         // $user_model = new UserModel();
         
 
@@ -734,10 +737,14 @@ class Users extends BaseController
    
         $com = new CommunityModel();
         $data['com'] = $com->where('id', $data['blog']['community_id'])->first();
-   
+        // var_dump($data['com']);exit;
         $voteModel = new UsersvoteModel(); 
 
-        $data['vote'] = $voteModel->where('user_id', $data['blog']['user_id'])->where('community_id', $data['blog']['community_id'])->first();
+        $data['vote'] = $voteModel->where('user_id', session()->get('id'))->where('post_id', $id)->where('community_id', $data['blog']['community_id'])->first();
+        // var_dump($data[''])
+
+
+        $data['vote_totals'] = $voteModel->where('post_id', $id)->where('community_id', $data['blog']['community_id'])->where('status', '1')->countAllResults();
 
         echo view('templates/header', $data);
         echo view('post-view', $data);
