@@ -38,6 +38,24 @@
     background-position: center center;
     background-size: cover;
   }
+
+  .modal {
+    display: none;
+    /* Hidden by default */
+
+    padding-top: 50px;
+    /* Location of the box - don't know what this does?  If it is to move your modal down by 100px, then just change top below to 100px and remove this*/
+
+    overflow: auto;
+    /* Enable scroll if needed */
+
+    z-index: 9999;
+    /* Sit on top - higher than any other z-index in your site*/
+  }
+
+  .modal-backdrop {
+    position: absolute !important;
+  }
 </style>
 <?php if(!empty($cover_photo['name'])): ?>
 
@@ -113,7 +131,7 @@
             <hr>
             <h2 class="title">Community Joined In</h2>
             <div class="row">
-            <?php if(!empty($community_list)): ?>
+              <?php if(!empty($community_list)): ?>
               <?php foreach ($community_list as $key => $value): ?>
 
               <div class="col-md-4">
@@ -163,24 +181,24 @@
 
               <?php endforeach; ?>
               <?php else: ?>
-                <div class="col-md-3">
-   
+              <div class="col-md-3">
 
-              <div class="team-player">
-                <div class="card custom-card card-body justify-content-center">
-                  
-                  <p class="text-center">No Community Joined Yet</p>
+
+                <div class="team-player">
+                  <div class="card custom-card card-body justify-content-center">
+
+                    <p class="text-center">No Community Joined Yet</p>
+                  </div>
                 </div>
               </div>
-              </div>
-              <?php endif; ?>  
+              <?php endif; ?>
 
             </div>
             <hr>
 
             <h2 class="title mb-0">Recent Post</h2>
             <div class="row">
-            <?php if(!empty($posts)): ?>
+              <?php if(!empty($posts)): ?>
               <?php foreach($posts as $key => $value): ?>
               <div class="col-md-4">
 
@@ -199,16 +217,12 @@
                         class="img-raised rounded-circle img-fluid  z-depth-2" alt="avatar">
 
                       <?php endif; ?>
-                     
+
                       <div class="m-0 p-0">
                         <h4 class="card-title pl-2 mt-0 mb-0"><?= $value->nickname; ?>
                         </h4>
                         <p class="small pl-2 m-0">1 hour ago</p><br>
-                        
-                        <p class="text p-0 m-0">
-                          <?= $value->content ?>
 
-                        </p>
 
                       </div>
 
@@ -219,36 +233,120 @@
 
                     <div class="d-flex justify-content-center">
                       <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-2"><i
-                          class="fa fa-eye m-0 p-0"></i> 10 Views </a>
-                      <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-recycle m-0 p-0"></i> Edit</a>
-                      <a href="<?= base_url() ?>/delete-post/<?= $value->id ?>" class="btn btn-link m-0 p-2"><i class="fa fa-trash m-0 p-0"></i> Delete</a>
+                          class="fa fa-eye m-0 p-0"></i> View Post </a>
+                      <a href="#" data-toggle="modal" data-target="#edit-post<?= $key?>" class="btn btn-link m-0 p-2"><i
+                          class="fa fa-recycle m-0 p-0"></i> Edit Post</a>
+                      <a href="#" data-toggle="modal" data-target="#delete-post<?= $key?>"
+                        class="btn btn-link m-0 p-2"><i class="fa fa-trash m-0 p-0"></i> Delete</a>
                     </div>
                   </div>
                 </div>
               </div>
+
+              <!-- Classic Modal -->
+              <div class="modal fade" id="edit-post<?= $key ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Edit Post</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="material-icons">clear</i>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+
+                      <div class="card container">
+                        <div class="form-group ">
+                          <label>Title</label>
+                          <div class="input-group">
+                            <input type="text" id="title" name="title" value="<?= $value->title ?>" class="form-control"
+                              placeholder="Title..." value="" required>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card container">
+                        <div class="form-group">
+                          <label>Description</label>
+                          <textarea name="description" class="form-control" placeholder="Description..." cols="30"
+                            rows="5"><?= $value->description ?></textarea>
+                        </div>
+                      </div>
+
+                      <div class="card my-auto mx-auto">
+                        <h4 class="h4 p-3">Post Content</h4>
+                        <div id="editor">
+                          <?= $value->content ?>
+                        </div>
+                      </div>
+
+                      <input type="hidden" name="community_id" id="community-id" value="<?= $value->community_id; ?>">
+                      <input type="hidden" name="id" id="id" value="<?= $value->id; ?>">
+                      <div class="mt-3">
+
+                        <button id="edit_post" class="btn btn-primary">Save</button>
+
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--  End Modal -->
+
+
+              <!-- Classic Modal -->
+              <div class="modal fade" id="delete-post<?= $key ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Are you sure do you want to delete your post?</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="material-icons">clear</i>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary btn-link" data-dismiss="modal">Close</button>
+                      <a href="<?= base_url() ?>/delete-post/<?= $value->id ?>" class="btn btn-danger"> Delete</a>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--  End Modal -->
+
+
               <?php endforeach; ?>
               <?php else: ?>
 
-                <div class="col-md-3">
-   
+              <div class="col-md-3">
 
-              <div class="team-player">
-                <div class="card custom-card card-body justify-content-center">
-                  
-                  <p class="text-center">No Post Yet</p>
+
+                <div class="team-player">
+                  <div class="card custom-card card-body justify-content-center">
+
+                    <p class="text-center">No Post Yet</p>
+                  </div>
                 </div>
               </div>
-              </div>
-              <?php endif; ?>  
+              <?php endif; ?>
 
-                      
-              
-          </div>
-          <h2 class="title mb-0">Recent Shared Post</h2><br>
-          <div class="row">
-          <?php if(!empty($shared)): ?>
-          <?php foreach($shared as $key => $value): ?>
-            
+
+
+            </div>
+            <h2 class="title mb-0">Recent Shared Post</h2><br>
+            <div class="row">
+              <?php if(!empty($shared)): ?>
+              <?php foreach($shared as $key => $value): ?>
+
               <div class="col-md-4">
                 <div class="card">
 
@@ -285,29 +383,31 @@
 
                   <div class="d-flex justify-content-center">
 
-                  <a href="<?= base_url(); ?>/post-share/<?= $value->post_id ?>/<?= $value->community_id ?>" class="btn btn-link m-0 p-2"><i
-                        class="fa fa-eye m-0 p-0"></i> 10 Views </a>
-                        <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-recycle m-0 p-0"></i> Edit</a>
-                      <a href="<?= base_url() ?>/delete-shared-post/<?= $value->id ?>" class="btn btn-link m-0 p-2"><i class="fa fa-trash m-0 p-0"></i> Delete</a>
+                    <a href="<?= base_url(); ?>/post-share/<?= $value->post_id ?>/<?= $value->community_id ?>"
+                      class="btn btn-link m-0 p-2"><i class="fa fa-eye m-0 p-0"></i> View Post </a>
+                    <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-recycle m-0 p-0"></i> Edit Post</a>
+                    <a href="<?= base_url() ?>/delete-shared-post/<?= $value->id ?>" class="btn btn-link m-0 p-2"><i
+                        class="fa fa-trash m-0 p-0"></i> Delete</a>
 
                   </div>
                 </div>
               </div>
+
+              <?php endforeach; ?>
             </div>
-            <?php endforeach; ?>
             <?php else: ?>
 
             <div class="col-md-3">
 
 
-            <div class="team-player">
-            <div class="card custom-card card-body justify-content-center">
-              
-              <p class="text-center">No Shared Post Yet</p>
+              <div class="team-player">
+                <div class="card custom-card card-body justify-content-center">
+
+                  <p class="text-center">No Shared Post Yet</p>
+                </div>
+              </div>
             </div>
-            </div>
-            </div>
-            <?php endif; ?>  
+            <?php endif; ?>
 
           </div>
         </div>
@@ -437,6 +537,9 @@
   </div>
 </div>
 <!--  End Modal -->
+
+
+
 <script>
   $(document).ready(function () {
 

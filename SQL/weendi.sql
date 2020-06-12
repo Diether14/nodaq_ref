@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2020 at 04:52 PM
+-- Generation Time: Jun 12, 2020 at 05:36 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -165,7 +165,9 @@ CREATE TABLE `emoticon_store` (
 --
 
 INSERT INTO `emoticon_store` (`id`, `user_id`, `title`, `name`, `type`, `created_at`, `updated_at`) VALUES
-(1, 18, 'Future Created Today', 'Future-Created-Today.jpg', 'image/jpeg', '2020-06-05 08:53:12', '2020-06-05 08:53:12');
+(1, 18, 'Future Created Today', 'Future-Created-Today.jpg', 'image/jpeg', '2020-06-05 08:53:12', '2020-06-05 08:53:12'),
+(2, 18, 'Test Sticker Bundle', 'web-development-minimalism-bl-1920x1080.jpg', 'image/jpeg', '2020-06-10 13:53:13', '2020-06-10 13:53:13'),
+(3, 21, 'Test Bundle Sticker', 'xmFj7k.png', 'image/png', '2020-06-11 18:35:27', '2020-06-11 18:35:27');
 
 -- --------------------------------------------------------
 
@@ -188,10 +190,7 @@ CREATE TABLE `emoticon_store_files` (
 --
 
 INSERT INTO `emoticon_store_files` (`id`, `user_id`, `emoticon_store_id`, `files`, `name`, `type`, `created_at`) VALUES
-(7, 18, 1, '', 'clark-tibbs-oqStl2L5oxI-unsplash.jpg', 'image/jpeg', '2020-06-09 21:36:00'),
-(8, 18, 1, '', 'Future-Created-Today.jpg', 'image/jpeg', '2020-06-09 21:36:00'),
-(9, 18, 1, '', 'web-development-minimalism-bl-1920x1080.jpg', 'image/jpeg', '2020-06-09 21:36:01'),
-(10, 18, 1, '', 'xmFj7k.png', 'image/png', '2020-06-09 21:36:01');
+(7, 18, 1, '', 'clark-tibbs-oqStl2L5oxI-unsplash.jpg', 'image/jpeg', '2020-06-09 21:36:00');
 
 -- --------------------------------------------------------
 
@@ -236,15 +235,8 @@ CREATE TABLE `post_comments` (
 --
 
 INSERT INTO `post_comments` (`id`, `user_id`, `post_id`, `content`, `created_at`, `updated_at`) VALUES
-(2, 18, 3, 'test comment', '2020-05-07 23:14:46', '2020-05-07 23:14:46'),
-(3, 18, 3, 'test 2 comment', '2020-05-07 23:17:29', '2020-05-07 23:17:29'),
-(4, 18, 3, 'test comment', '2020-05-07 23:18:52', '2020-05-07 23:18:52'),
-(5, 18, 3, 'Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.\r\n', '2020-05-07 23:26:24', '2020-05-07 23:26:24'),
-(6, 18, 9, 'Test Comment', '2020-05-20 01:43:01', '2020-05-20 01:43:01'),
-(7, 18, 9, 'test comments', '2020-05-20 21:13:15', '2020-05-20 21:13:15'),
-(8, 18, 9, 'tset', '2020-05-20 21:24:37', '2020-05-20 21:24:37'),
-(9, 18, 9, 'test test', '2020-05-20 22:26:07', '2020-05-20 22:26:07'),
-(10, 21, 10, 'Test Comment', '2020-05-21 00:16:48', '2020-05-21 00:16:48');
+(11, 18, 19, 'Test', '2020-06-12 19:12:01', '2020-06-12 19:12:01'),
+(12, 18, 19, 'Test Comment', '2020-06-12 20:30:28', '2020-06-12 20:30:28');
 
 -- --------------------------------------------------------
 
@@ -305,7 +297,8 @@ CREATE TABLE `shared_comments` (
 
 INSERT INTO `shared_comments` (`id`, `user_id`, `post_id`, `content`, `created_at`, `updated_at`) VALUES
 (11, 18, 10, 'Test shared Comment', '2020-05-28 23:18:02', '2020-05-28 23:18:02'),
-(12, 18, 11, 'Test share comment', '2020-05-29 00:31:37', '2020-05-29 00:31:37');
+(12, 18, 11, 'Test share comment', '2020-05-29 00:31:37', '2020-05-29 00:31:37'),
+(13, 18, 21, 'Test', '2020-06-12 22:18:17', '2020-06-12 22:18:17');
 
 -- --------------------------------------------------------
 
@@ -337,7 +330,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `pk`, `firstname`, `lastname`, `nickname`, `email`, `birthdate`, `gender`, `password`, `user_type`, `status`, `auth`, `prof`, `created_at`, `updated_at`) VALUES
 (18, 0, 'John', 'Smith', 'John Smith', 'test@gmail.com', '', '', '$2y$10$vAxwPXIwhwY6ntzC2I.WROqgUyWSiUiJAoq6aPNSOjWKNsl9WzrEe', 0, 0, 0, 0, '2020-04-26 23:34:03', '2020-04-26 23:34:03'),
-(21, 0, 'test', 'user', 'tset', 'test@test.com', '', '', '$2y$10$rcvnM8zG.b1U5qxukG6pO.82v7X.NYZBFU9CsEI/ki1gQUNvhlpSW', 0, 0, 0, 0, '2020-05-04 18:38:55', '2020-05-04 18:38:55'),
+(21, 0, 'test', 'user', 'Test User', 'test@test.com', '', '', '$2y$10$rcvnM8zG.b1U5qxukG6pO.82v7X.NYZBFU9CsEI/ki1gQUNvhlpSW', 0, 0, 0, 0, '2020-05-04 18:38:55', '2020-05-04 18:38:55'),
 (22, 0, 'firstname', 'lastname', 'manager', 'manager@weendi.com', '', '', '$2y$10$rcvnM8zG.b1U5qxukG6pO.82v7X.NYZBFU9CsEI/ki1gQUNvhlpSW', 1, 0, 0, 0, '2020-05-04 18:38:55', '2020-05-04 18:38:55'),
 (23, 0, 'firstname', 'lastname', 'assistant manager', 'assistant_manager@weendi.com', '', '', '$2y$10$rcvnM8zG.b1U5qxukG6pO.82v7X.NYZBFU9CsEI/ki1gQUNvhlpSW', 2, 0, 0, 0, '2020-05-04 18:38:55', '2020-05-04 18:38:55'),
 (24, 0, 'test_user', 'test_user', 'test_user', 'test_user@gmail.com', '', '', '$2y$10$VMCm9olTym6fLoqWUTIByO23/Zy.WjlyRzYHrUttlEPEG53jp79Ym', 0, 0, 0, 0, '2020-05-06 22:51:17', '2020-05-06 22:51:17'),
@@ -434,9 +427,8 @@ CREATE TABLE `users_post` (
 --
 
 INSERT INTO `users_post` (`id`, `user_id`, `community_id`, `title`, `description`, `content`, `status`, `reason`, `created_at`, `updated_at`) VALUES
-(10, 21, 23, 'test', 'tset', '<h1>Hello world!</h1>\n\n<p>I&#39;m an instance of <a href=\"https://ckeditor.com\">CKEditor</a>.</p>\n', 0, 'This post should be reported!', '2020-05-21 00:13:13', '2020-05-21 00:13:13'),
-(11, 18, 23, 'Test Post', 'This is a test Post DID U KNOW THAT A LONG TIME AGO THERE ONCE WAS A YOUNG HOT WING HE WAS A VERY NICE HOT WING EXCEPT HE WANTED TO HE TOMATO\'S NOT JUST NORMAL TAMATO\'S BUT TOMATO\'S FROM A CLOWNS NOSE.', '<h1>Hello world!</h1>\n\n<p>I&#39;m an instance of <a href=\"https://ckeditor.com\">CKEditor</a>.</p>\n', 0, 'This post should be reported!', '2020-05-28 00:45:11', '2020-05-28 00:45:11'),
-(12, 18, 29, 'Test', 'Test', '<h1>Hello world!</h1>\n\n<p>I&#39;m an instance of <a href=\"https://ckeditor.com\">CKEditor</a>.</p>\n', 1, 'delete post testing', '2020-06-04 20:27:47', '2020-06-04 20:27:47');
+(19, 18, 23, 'What is Lorem Ipsum?', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ', '<h1><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a', 0, '', '2020-06-11 23:32:55', '2020-06-11 23:32:55'),
+(21, 21, 23, 'Where does it come from?', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old', '<h1>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up ', 0, '', '2020-06-12 00:15:32', '2020-06-12 00:15:32');
 
 -- --------------------------------------------------------
 
@@ -453,14 +445,6 @@ CREATE TABLE `users_report` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `users_report`
---
-
-INSERT INTO `users_report` (`id`, `user_id`, `community_id`, `post_id`, `report_content`, `created_at`, `updated_at`) VALUES
-(1, 18, 23, 8, 'This post is spamming', '2020-05-13 19:14:41', '2020-05-13 19:14:41'),
-(2, 18, 23, 9, 'Test report content!', '2020-05-13 23:42:27', '2020-05-13 23:42:27');
 
 -- --------------------------------------------------------
 
@@ -483,8 +467,7 @@ CREATE TABLE `users_shared_posts` (
 --
 
 INSERT INTO `users_shared_posts` (`id`, `user_id`, `community_id`, `post_id`, `content`, `created_at`, `updated_at`) VALUES
-(3, 21, 23, 10, 'test', '2020-05-21 00:13:39', '2020-05-21 00:13:39'),
-(5, 18, 23, 11, 'Sample share post', '2020-05-29 00:27:23', '2020-05-29 00:27:23');
+(10, 18, 23, 21, 'Share post test', '2020-06-12 23:21:46', '2020-06-12 23:21:46');
 
 -- --------------------------------------------------------
 
@@ -507,7 +490,8 @@ CREATE TABLE `users_vote` (
 --
 
 INSERT INTO `users_vote` (`id`, `user_id`, `post_id`, `community_id`, `status`, `created_at`, `updated_at`) VALUES
-(8, 18, 11, 23, 1, '2020-05-29 09:53:14', '2020-05-29 09:53:14');
+(11, 18, 19, 23, 1, '2020-06-11 15:34:24', '2020-06-11 15:34:24'),
+(12, 21, 19, 23, 1, '2020-06-11 16:05:11', '2020-06-11 16:05:11');
 
 -- --------------------------------------------------------
 
@@ -700,7 +684,7 @@ ALTER TABLE `cover_photo`
 -- AUTO_INCREMENT for table `emoticon_store`
 --
 ALTER TABLE `emoticon_store`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `emoticon_store_files`
@@ -718,7 +702,7 @@ ALTER TABLE `files`
 -- AUTO_INCREMENT for table `post_comments`
 --
 ALTER TABLE `post_comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `post_photo`
@@ -736,7 +720,7 @@ ALTER TABLE `profile_photo`
 -- AUTO_INCREMENT for table `shared_comments`
 --
 ALTER TABLE `shared_comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -766,7 +750,7 @@ ALTER TABLE `users_ip`
 -- AUTO_INCREMENT for table `users_post`
 --
 ALTER TABLE `users_post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `users_report`
@@ -778,13 +762,13 @@ ALTER TABLE `users_report`
 -- AUTO_INCREMENT for table `users_shared_posts`
 --
 ALTER TABLE `users_shared_posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users_vote`
 --
 ALTER TABLE `users_vote`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `user_settings`

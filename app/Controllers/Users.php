@@ -283,7 +283,7 @@ class Users extends BaseController
         $db1      = \Config\Database::connect();
         $builder1 = $db1->table('users_post');
         $builder1->where('users_post.user_id', session()->get('id'));
-        $builder1->select('users_post.id,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.updated_at, users.nickname, profile_photo.name' );
+        $builder1->select('users_post.id,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.content, users_post.updated_at, users.nickname, profile_photo.name' );
         $builder1->join('users', 'users.id = users_post.user_id');
         $builder1->join('profile_photo', 'users.id = profile_photo.user_id');
         
@@ -368,10 +368,11 @@ class Users extends BaseController
         $profile_photo = new ProfilephotoModel();
         $data['profile_photo'] = $profile_photo->where('user_id', session()->get('id'))
             ->first();
+      
         echo view('templates/editor-header', $data);
         echo view('post', $data);
         echo view('templates/editor-footer', $data);
-        
+       
     }
 
     public function save_post(){
@@ -384,6 +385,24 @@ class Users extends BaseController
             'title' => $this->request->getPost('title'),
             'content' => $this->request->getPost('content'),
             'community_id' => $this->request->getPost('community_id'),
+            'description' => $this->request->getPost('description')
+        );
+
+        $insert = $model->save($data);
+        echo json_encode(array("status" => TRUE));
+    }
+
+    public function edit_post(){
+     
+
+        ini_set('display_errors', 1);
+        helper(['form', 'url']);
+        $model = new UserspostModel();
+       
+        $data = array(
+            'id' => $this->request->getPost('id'),
+            'title' => $this->request->getPost('title'),
+            'content' => $this->request->getPost('content'),
             'description' => $this->request->getPost('description')
         );
 
@@ -690,7 +709,7 @@ class Users extends BaseController
         $data['profile_photo1'] = $profile_photo->where('user_id',$data['blog']['user_id'])
             ->first();
 
-            $data['profile_photo'] = $profile_photo->where('user_id', session()->get('id'))
+        $data['profile_photo'] = $profile_photo->where('user_id', session()->get('id'))
                 ->first();
 
         $data['user'] = $user->where('id',$data['blog']['user_id'])
@@ -720,12 +739,13 @@ class Users extends BaseController
         $db1 = \Config\Database::connect();
         $builder1 = $db1->table('community');
         $builder1->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.updated_at, community_photo.name');
-        
+        $builder1->where('users_community.user_id', session()->get('id'));
         $builder1->join('users_community', 'users_community.community_id = community.id');
         $builder1->join('community_photo', 'community_photo.id = community.com_photo_id');
         $query1 = $builder1->get();
         $data['community'] = $query1->getResult();
-
+        // echo '<pre>';
+        // var_dump( session()->get('id'));exit;
 
         $db2 = \Config\Database::connect();
         $builder2 = $db1->table('community');
@@ -772,22 +792,20 @@ class Users extends BaseController
         $data['shared'] = $share->where('post_id', $id)->where('community_id', $community_id)->first();
 
 
+
         $profile_photo = new ProfilephotoModel();
         $data['profile_photo1'] = $profile_photo->where('user_id', $data['blog']['user_id'])
             ->first();
 
 
-            $data['profile_photo'] = $profile_photo->where('user_id', session()->get('id'))
+        $data['profile_photo'] = $profile_photo->where('user_id', session()->get('id'))
                 ->first();
 
         $data['user'] = $user->where('id',$data['blog']['user_id'])
             ->first();
 
-
-        // $user_model = new UserModel();
-        
-
-        // $post_model = new PostcommentsModel();
+        $data['current_user'] = $user->where('id', session()->get('id'))
+            ->first();
         
         $db = \Config\Database::connect();
         $builder = $db->table('shared_comments');

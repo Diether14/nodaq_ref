@@ -214,16 +214,17 @@ class Category extends BaseController
         $model = new UserssharedpostModel;
 
         $community_id = $this->request->getPost('community_id');
+        $post_id =$this->request->getPost('post_id');
         $data = [
             'user_id' => session()->get('id'),
-            'post_id' => $this->request->getPost('post_id'),
+            'post_id' => $post_id,
             'community_id' => $community_id,
             'content' => $this->request->getPost('share_content')
         ];
 
         if($model->insert($data)){
-            $msg = 'Reported!';
-            return redirect()->to( base_url().'/post-view/'.$community_id)->with('msg', $msg);
+            $msg = 'Shared Post!';
+            return redirect()->to( base_url().'/post-share/'.$post_id. '/' .$community_id)->with('msg', $msg);
         }
 
     }

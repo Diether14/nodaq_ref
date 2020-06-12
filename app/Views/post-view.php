@@ -69,7 +69,7 @@
         <div style="float:right">
           <p class="text mt-0 pt-2 "><?php 
  
-              echo date('Y-m-d H:i:s', $blog['updated_at']); ?>
+              echo $blog['updated_at']; ?>
 
         </div>
         <div class="media m-0 ">
@@ -107,9 +107,26 @@
           <div class="justify-content-left p-2">
             <hr>
 
-            <a href="#" class="btn btn-link"><i class="fa fa-comment pr-1"></i> 20</a>
+            <a href="#comments" class="btn btn-link"><i class="fa fa-comment pr-1"></i> 
+            <?php 
+                          if(1000 >= 1000){ 
+                            echo round((1200/1000),1). 'K'; 
+                          }elseif(1000000 >= 1000000){
+                            echo round((1000000/1000000),1). 'M';
+                          }else{
+                            echo '50';
+                          } ?>
+            Comments</a>
             <a href="#" data-toggle="modal" data-target="#share" class="btn btn-link"><i class="fa fa-share pr-1"></i>
-              Share</a>
+            <?php 
+                          if(1000 >= 1000){ 
+                            echo round((1200/1000),1). 'K'; 
+                          }elseif(1000000 >= 1000000){
+                            echo round((1000000/1000000),1). 'M';
+                          }else{
+                            echo '50';
+                          } ?>
+                          Share Post</a>
 
             <?php if(empty($report)): ?>
             <a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-link " class="btn btn-link"><i
@@ -173,7 +190,7 @@
           </div>
         </div>
 
-        <div class="card my-4">
+        <div id ="comments" class="card my-4">
           <h5 class="card-title ml-3">Leave a Comment:</h5>
 
           <div class="card-body">

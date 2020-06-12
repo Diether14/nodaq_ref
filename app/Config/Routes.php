@@ -40,6 +40,7 @@ $routes->match(['get','post'],'update_profile', 'Users::update_profile', ['filte
 $routes->match(['get','post'],'update_mode', 'Users::update_mode', ['filter' => 'auth']);
 $routes->match(['get','post'],'update_profile_info', 'Users::update_profile_info', ['filter' => 'auth']);
 $routes->match(['get','post'],'save_post', 'Users::save_post', ['filter' => 'auth']);
+$routes->match(['get','post'],'edit_post', 'Users::edit_post', ['filter' => 'auth']);
 $routes->match(['get','post'],'add_comment', 'Users::add_comment', ['filter' => 'auth']);
 $routes->match(['get','post'],'add_shared_comment', 'Users::add_shared_comment', ['filter' => 'auth']);
 $routes->match(['get','post'],'join_community', 'Category::join_community', ['filter' => 'auth']);

@@ -55,9 +55,11 @@
   </div>
 </div>
 
+
 <div class="main">
 
   <div class="container">
+
     <div class="section">
       <?php if (session('msg')) : ?>
       <div class="card bg-info text-white shadow">
@@ -80,7 +82,7 @@
       </div>
       <hr class="m-0">
 
-      
+      <?php if(!empty($users_community)): ?>
       <div class="row">
         <div class="col-md-12">
         <h2 class="title mt-5 mb-0 ml-3">Posts</h2>
@@ -126,7 +128,10 @@
                           <div class=" m-0 p-0 ">
                             <h4 class="card-title pl-2 mt-0 mb-0"><?= $value->nickname; ?>
                             </h4>
-                            <p class="small pl-2 m-0">1 hour ago</p><br>
+                            <p class="small pl-2 m-0"><?php
+                            echo $value->updated_at;
+                            // echo date('h:i A', $value->updated_at);     
+                           ?> </p><br>
                           
 
                           </div>
@@ -142,13 +147,31 @@
                         <div class="card-footer justify-content-center">
                           <?php if($value->post_id): ?>
                             <a href="<?= base_url(); ?>/post-share/<?= $value->post_id ?>/<?= $community_id ?>" class="btn btn-link m-0 p-2"><i
-                              class="fa fa-eye m-0 p-0"></i> 10 Views </a>
+                              class="fa fa-eye m-0 p-0"></i> View Shared Post </a>
                           <?php else: ?>
-                            <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-2"><i
-                              class="fa fa-eye m-0 p-0"></i> 10 Views </a>
+                            <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-1"><i
+                              class="fa fa-eye m-0 p-0"></i> View Post</a>
                           <?php endif; ?>  
-                          <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-comments m-0 p-0"></i> 50 Comments</a>    
-                          <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-share m-0 p-0"></i> 2 Shares</a>
+                          <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-1"><i class="fa fa-comments m-0 p-0"></i> 
+                          <?php if(1000 >= 1000){ 
+                              echo round((1200/1000),1). 'K'; 
+                            }elseif(1000000 >= 1000000){
+                              echo round((1000000/1000000),1). 'M';
+                            }else{
+                              echo '50';
+                            } ?> Comments</a>    
+                          <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-1"><i class="fa fa-share m-0 p-0"></i> 
+                          <?php 
+                          if(1000 >= 1000){ 
+                            echo round((1200/1000),1). 'K'; 
+                          }elseif(1000000 >= 1000000){
+                            echo round((1000000/1000000),1). 'M';
+                          }else{
+                            echo '50';
+                          } ?>
+                      
+                          
+                          Shares</a>
               
                         </div>
                       </div>
@@ -216,7 +239,9 @@
           </div>
         </div>
       </div>
+      <?php endif; ?>
     </div>
+
   </div>
 </div>
 

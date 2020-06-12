@@ -63,13 +63,42 @@
 <div class="main">
   <div class="container">
     <div class="section">
+    <div class="col-lg-12 col-md-12">
+    <div style="float:right">
+            <p class="text mt-0 pt-2 "><?php 
+ 
+              echo $shared['updated_at']; ?>
+            </p>
+            </div>
+        <div class="media m-0 ">
+          <div class="profile-photo-small mr-2">
+            <?php if(!empty($profile_photo['name'])): ?>
+
+            <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $profile_photo['name'] ?>" alt="Circle Image"
+              class="rounded-circle1 img-fluid z-depth-2">
+
+            <?php else: ?>
+            <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image"
+              class="img-raised rounded-circle1 img-fluid  z-depth-2" alt="avatar">
+
+            <?php endif; ?>
+
+          </div>
+   
+            <h5 class="mt-0 pt-2"><?= $current_user['nickname']; ?></h5>
+            
+        </div> 
+        <hr class="mt-0">
+        <p class="text"><?= $shared['content'] ?></p>
+    </div>
+    <div class="card card-body">
       <div class="col-lg-12 col-md-12">
         <h2 class="title"><?= $blog['title'] ?> </h2><br>
 
         <div style="float:right">
             <p class="text mt-0 pt-2 "><?php 
  
-              echo date('Y-m-d H:i:s', $blog['updated_at']); ?>
+              echo $blog['updated_at']; ?>
             </p>
             </div>
         <div class="media m-0 ">
@@ -105,9 +134,9 @@
 
           </div>
           <div class="justify-content-left p-2">
-            <hr>
+            <!-- <hr> -->
 
-            <a href="#" class="btn btn-link"><i class="fa fa-comment pr-1"></i> 20</a>
+            <!-- <a href="#" class="btn btn-link"><i class="fa fa-comment pr-1"></i> 20</a> -->
             <!-- <a href="#" data-toggle="modal" data-target="#share" class="btn btn-link"><i class="fa fa-share pr-1"></i>
               Share</a> -->
 
@@ -121,7 +150,7 @@
 
           </div>
         </div>
-       
+
         <!-- <div class="col-12 mb-5">
     <div class="row">
         <div class="col-12">
@@ -151,7 +180,7 @@
     
     </div>
     </div> -->
-
+    </div></div>
         <div class="card my-4">
           <h5 class="card-title ml-3">Leave a Comment:</h5>
 
