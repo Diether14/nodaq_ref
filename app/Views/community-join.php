@@ -82,9 +82,23 @@
       </div>
       <hr class="m-0">
 
-      <?php if(!empty($users_community)): ?>
+      <?php if(empty($users_community) && $community_list[0]->community_type == '1') : ?>
+      <?php else: ?>
       <div class="row">
         <div class="col-md-12">
+      <?php if(empty($users_community)) : ?>  
+      <div class="alert alert-info">
+        <div class="container">
+          <div class="alert-icon">
+            <i class="material-icons">info_outline</i>
+          </div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true"><i class="material-icons">clear</i></span>
+          </button>
+          <b>Info alert:</b> You must join to the community first, inorder to be able to add post and add comments. 
+        </div>
+      </div>
+      <?php endif; ?>
         <h2 class="title mt-5 mb-0 ml-3">Posts</h2>
       
 
@@ -98,9 +112,13 @@
 
                     <div class="team-player">
                       <div class="card custom-card card-body justify-content-center">
-                        
+                        <?php if(!empty($users_community)): ?>
                         <a class="btn btn-link" data-toggle="modal" data-target="#myModal">
                           <span style="font-size:50px; color:#9C27B0" class="fa fa-plus"></span></a>
+                        <?php else: ?>
+                          <a id="not_joined" class="btn btn-link">
+                          <span style="font-size:50px; color:#9C27B0" class="fa fa-plus"></span></a>
+                        <?php endif; ?>
                       </div>
                     </div>
                   </div>
@@ -266,7 +284,7 @@
         </div>
         <div class="card container">
           <div class="form-group">
-            <textarea name="description" class="form-control" placeholder="Description..." cols="30"
+            <textarea name="description" class="form-control" placeholder="Tags..." cols="30"
               rows="5"></textarea>
           </div>
         </div>

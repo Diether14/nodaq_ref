@@ -406,7 +406,23 @@ class Users extends BaseController
             'description' => $this->request->getPost('description')
         );
 
-        $insert = $model->save($data);
+        $update = $model->save($data);
+        echo json_encode(array("status" => TRUE));
+    }
+
+    public function edit_shared_post(){
+
+        ini_set('display_errors', 1);
+        helper(['form', 'url']);
+        $model = new UserssharedpostModel();
+       
+        $data = array(
+            'id' => $this->request->getPost('id'),
+            'content' => $this->request->getPost('content')
+        );
+      
+        $update = $model->save($data);
+        
         echo json_encode(array("status" => TRUE));
     }
 
@@ -704,6 +720,7 @@ class Users extends BaseController
         $data['blog'] = $model->where('id', $id)->first();
         $data['shared'] = $share->where('post_id', $id)->where('community_id', $data['blog']['community_id'])->first();
 
+        $data['users_community'] = $model->where(['user_id' => session()->get('id'), $data['blog']['community_id']])->first();
 
         $profile_photo = new ProfilephotoModel();
         $data['profile_photo1'] = $profile_photo->where('user_id',$data['blog']['user_id'])

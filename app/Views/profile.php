@@ -266,7 +266,7 @@
                       </div>
                       <div class="card container">
                         <div class="form-group">
-                          <label>Description</label>
+                          <label>Tags</label>
                           <textarea name="description" class="form-control" placeholder="Description..." cols="30"
                             rows="5"><?= $value->description ?></textarea>
                         </div>
@@ -385,13 +385,82 @@
 
                     <a href="<?= base_url(); ?>/post-share/<?= $value->post_id ?>/<?= $value->community_id ?>"
                       class="btn btn-link m-0 p-2"><i class="fa fa-eye m-0 p-0"></i> View Post </a>
-                    <a href="#" class="btn btn-link m-0 p-2"><i class="fa fa-recycle m-0 p-0"></i> Edit Post</a>
-                    <a href="<?= base_url() ?>/delete-shared-post/<?= $value->id ?>" class="btn btn-link m-0 p-2"><i
-                        class="fa fa-trash m-0 p-0"></i> Delete</a>
+                    <a href="#" data-toggle="modal" data-target="#edit-shared-post<?= $key?>" class="btn btn-link m-0 p-2"><i
+                          class="fa fa-recycle m-0 p-0"></i> Edit Post</a>
+                    <a href="#" data-toggle="modal" data-target="#delete-shared-post<?= $key?>"
+                        class="btn btn-link m-0 p-2"><i class="fa fa-trash m-0 p-0"></i> Delete</a>
 
                   </div>
                 </div>
               </div>
+
+              
+              <!-- Classic Modal -->
+              <div class="modal fade" id="edit-shared-post<?= $key ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Edit Shared Post</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="material-icons">clear</i>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+
+                 
+                      <div class="card container">
+                        <div class="form-group">
+                          <label>Tags</label>
+                          <textarea name="shared_content" class="form-control" placeholder="Tags" cols="30"
+                            rows="5"><?= $value->content ?></textarea>
+                        </div>
+                      </div>
+
+
+                      <input type="hidden" name="shared_id" id="id" value="<?= $value->id; ?>">
+                      <div class="mt-3">
+
+                        <button id="edit_shared_post" class="btn btn-primary">Save</button>
+
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--  End Modal -->
+
+                       <!-- Classic Modal -->
+              <div class="modal fade" id="delete-shared-post<?= $key ?>" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Are you sure do you want to delete your shared post?</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="material-icons">clear</i>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary btn-link" data-dismiss="modal">Close</button>
+                      <a href="<?= base_url() ?>/delete-shared-post/<?= $value->id ?>" class="btn btn-danger m-0 p-2"> Delete</a>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--  End Modal -->
+
+
+
 
               <?php endforeach; ?>
             </div>

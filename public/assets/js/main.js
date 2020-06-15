@@ -80,10 +80,54 @@ $(document).ready(function(){
             });
         }
         
+    });
+
+    $( "#not_joined").click(function(){
+        alert('You must join to the community first!');
+    });
+
+    $( ".not_joined").click(function(){
+        alert('You must join to the community first!');
+    });
+
+
+    $( "#edit_shared_post" ).click(function() {
+
+        var content = $("textarea[name=shared_content]").val();
+        var id = $("input[name=shared_id]").val();
+
+        var data = {
+            'content': content,
+            'id' : id
+        }
+
+        if(title == ''  || content == ''){
+            alert('Please fill out the fields!')
+        }else{
+            $.ajax({
+                type: "POST",
+                url  : "edit_shared_post",
+                data: data,
+                dataType: "JSON",
+                success: function(data)
+                {
+                   //if success close modal and reload ajax table
+          
+                  alert('Update Successfully!');
+                  location.reload();
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                    alert('There is an error!');
+                }
+            });
+        }
+        
 
         
 
     });
+    
 
     var readURL = function (input) {
         if (input.files && input.files[0]) {

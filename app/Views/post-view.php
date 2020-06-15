@@ -64,6 +64,20 @@
   <div class="container">
     <div class="section">
       <div class="col-lg-12 col-md-12">
+      <?php if(empty($users_community)) : ?>  
+      <div class="alert alert-info">
+        <div class="container">
+          <div class="alert-icon">
+            <i class="material-icons">info_outline</i>
+          </div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true"><i class="material-icons">clear</i></span>
+          </button>
+          <b>Info alert:</b> You must join to the community first, inorder to be able to add post and add comments. 
+        </div>
+      </div>
+      <?php endif; ?>
+
         <h2 class="title"><?= $blog['title'] ?> </h2><br>
 
         <div style="float:right">
@@ -106,7 +120,38 @@
           </div>
           <div class="justify-content-left p-2">
             <hr>
+            <?php if(empty($users_community)) : ?>
+              
+              <a href="#comments" class="btn btn-link not_joined"><i class="fa fa-comment pr-1"></i> 
+            <?php 
+                          if(1000 >= 1000){ 
+                            echo round((1200/1000),1). 'K'; 
+                          }elseif(1000000 >= 1000000){
+                            echo round((1000000/1000000),1). 'M';
+                          }else{
+                            echo '50';
+                          } ?>
+            Comments</a>
+            <a href="#"  class="btn btn-link not_joined"><i class="fa fa-share pr-1"></i>
+            <?php 
+                          if(1000 >= 1000){ 
+                            echo round((1200/1000),1). 'K'; 
+                          }elseif(1000000 >= 1000000){
+                            echo round((1000000/1000000),1). 'M';
+                          }else{
+                            echo '50';
+                          } ?>
+                          Share Post</a>
 
+            <?php if(empty($report)): ?>
+            <a href="#" class="btn btn-link not_joined" class="btn btn-link"><i
+                class="fa fa-exclamation pr-1"></i> Report Post</a>
+            <?php else: ?>
+
+            <a href="#" class="btn btn-link not_joined"><i class="fa fa-exclamation pr-1"></i> Reported</a>
+            <?php endif; ?>
+
+            <?php else: ?>
             <a href="#comments" class="btn btn-link"><i class="fa fa-comment pr-1"></i> 
             <?php 
                           if(1000 >= 1000){ 
@@ -135,7 +180,7 @@
 
             <a href="#" class="btn btn-link"><i class="fa fa-exclamation pr-1"></i> Reported</a>
             <?php endif; ?>
-
+            <?php endif; ?>
           </div>
         </div>
 
@@ -148,7 +193,20 @@
                 <?= session('vote') ?>
               </div>
               <?php endif ?>
+              <?php if(empty($users_community)) : ?>
+              
+                  <button  class="not_joined btn btn-danger btn-circle btn-circle-xl" style="background-color:#E74C3C;"><i
+                      class="fa fa-chevron-up"></i></button>
+                  <p class="lead  mb-0 small"><b>Upvote</b></p>
+         
+                <h1 class="m-0"><?= $vote_totals ?></h1>
+               
+                  <button  class="not_joined btn btn-danger btn-circle btn-circle-xl" style="background-color:#8E44AD;"><i
+                      class="fa fa-chevron-down"></i></button>
 
+                  <p class="lead mb-0 small"><b>Devote</b></p>
+               
+              <?php else: ?>
                 <?php if(!empty($com['upvote_name']) && !empty($com['devote_name'])): ?>
          
                 <form action="<?= base_url(); ?>/add_upvote" method="post">
@@ -182,7 +240,8 @@
                   <p class="lead mb-0 small"><b>Devote</b></p>
                 </form>
                 <?php endif; ?>
-
+                
+                <?php endif; ?>
               </div>
             </div>
 
@@ -196,10 +255,18 @@
           <div class="card-body">
             <form class="contact-form" action="/weendi/add_comment" method="post">
               <div class="form-group">
+              <?php if(empty($users_community)) : ?>
+                <textarea class="form-control" rows="3">You must join to the community first!</textarea>
+              <?php else: ?>  
                 <textarea name="content" class="form-control" rows="3"></textarea>
+              <?php endif; ?>
               </div>
               <input type="hidden" name="post_id" value="<?= $blog['id']?>">
+              <?php if(empty($users_community)) : ?>
+                <button type="button" id="not_joined" class="btn btn-primary">Submit</button>
+              <?php else: ?>
               <button type="submit" class="btn btn-primary">Submit</button>
+              <?php endif; ?>
             </form>
           </div>
         </div>
