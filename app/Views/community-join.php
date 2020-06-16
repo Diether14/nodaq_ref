@@ -17,13 +17,15 @@
     border-radius: 0.25em;
   }
 
-  .custom-card{
-    min-height: 200px;
-    max-height: 500px;    
+  .custom-card {
+    min-height: 270px;
+    max-height: 500px;
   }
- 
- 
 
+  .card .card-body,
+  .card .card-footer {
+    padding: 0 !important;
+  }
 
   /* .rounded-circle1 {
     height: 42px !important;
@@ -86,28 +88,28 @@
       <?php else: ?>
       <div class="row">
         <div class="col-md-12">
-      <?php if(empty($users_community)) : ?>  
-      <div class="alert alert-info">
-        <div class="container">
-          <div class="alert-icon">
-            <i class="material-icons">info_outline</i>
+          <?php if(empty($users_community)) : ?>
+          <div class="alert alert-info">
+            <div class="container">
+              <div class="alert-icon">
+                <i class="material-icons">info_outline</i>
+              </div>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true"><i class="material-icons">clear</i></span>
+              </button>
+              <b>Info alert:</b> You must join to the community first, inorder to be able to add post and add comments.
+            </div>
           </div>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true"><i class="material-icons">clear</i></span>
-          </button>
-          <b>Info alert:</b> You must join to the community first, inorder to be able to add post and add comments. 
-        </div>
-      </div>
-      <?php endif; ?>
-        <h2 class="title mt-5 mb-0 ml-3">Posts</h2>
-      
+          <?php endif; ?>
+          <h2 class="title mt-5 mb-0 ml-3">Posts</h2>
+
 
           <div class="card-body pt-0">
             <div class="tab-content">
               <div class="tab-pane active" id="home">
 
                 <div class="row">
-          
+
                   <div class="col-md-4">
 
                     <div class="team-player">
@@ -116,13 +118,13 @@
                         <a class="btn btn-link" data-toggle="modal" data-target="#myModal">
                           <span style="font-size:50px; color:#9C27B0" class="fa fa-plus"></span></a>
                         <?php else: ?>
-                          <a id="not_joined" class="btn btn-link">
+                        <a id="not_joined" class="btn btn-link">
                           <span style="font-size:50px; color:#9C27B0" class="fa fa-plus"></span></a>
                         <?php endif; ?>
                       </div>
                     </div>
                   </div>
-              
+
                   <?php for ($i=0; $i <=1; $i++): ?>
                   <?php foreach($posts[$i] as $key => $value): ?>
                   <div class="col-md-4 ">
@@ -149,37 +151,35 @@
                             <p class="small pl-2 m-0"><?php
                             echo $value->updated_at;
                             // echo date('h:i A', $value->updated_at);     
-                           ?> </p><br>
-                          
-
+                           ?> </p>
                           </div>
-
                         </div>
-
                         <p class="text">
-                              <?= $value->content ?>
-
-                            </p>
-                        <p class="card-description"><?= $value->description ?></p>
-
+                          <?= $value->content ?>
+                        </p>
+                        <div class="card-body">
+                          <p class="m-0 p-0 card-description"><?= $value->description ?></p>
+                        </div>
                         <div class="card-footer justify-content-center">
                           <?php if($value->post_id): ?>
-                            <a href="<?= base_url(); ?>/post-share/<?= $value->post_id ?>/<?= $community_id ?>" class="btn btn-link m-0 p-2"><i
-                              class="fa fa-eye m-0 p-0"></i> View Shared Post </a>
+                          <a href="<?= base_url(); ?>/post-share/<?= $value->post_id ?>/<?= $community_id ?>"
+                            class="btn btn-link m-0 p-2"><i class="fa fa-eye m-0 p-0"></i> View Post </a>
                           <?php else: ?>
-                            <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-1"><i
+                          <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-1"><i
                               class="fa fa-eye m-0 p-0"></i> View Post</a>
-                          <?php endif; ?>  
-                          <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-1"><i class="fa fa-comments m-0 p-0"></i> 
-                          <?php if(1000 >= 1000){ 
+                          <?php endif; ?>
+                          <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-1"><i
+                              class="fa fa-comments m-0 p-0"></i>
+                            <?php if(1000 >= 1000){ 
                               echo round((1200/1000),1). 'K'; 
                             }elseif(1000000 >= 1000000){
                               echo round((1000000/1000000),1). 'M';
                             }else{
                               echo '50';
-                            } ?> Comments</a>    
-                          <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-1"><i class="fa fa-share m-0 p-0"></i> 
-                          <?php 
+                            } ?> Comments</a>
+                          <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-1"><i
+                              class="fa fa-share m-0 p-0"></i>
+                            <?php 
                           if(1000 >= 1000){ 
                             echo round((1200/1000),1). 'K'; 
                           }elseif(1000000 >= 1000000){
@@ -187,16 +187,16 @@
                           }else{
                             echo '50';
                           } ?>
-                      
-                          
-                          Shares</a>
-              
+
+
+                            Shares</a>
+
                         </div>
                       </div>
                     </div>
                   </div>
                   <?php endforeach; ?>
-         
+
 
                   <?php endfor;?>
 
@@ -252,7 +252,7 @@
 
                 </div>
               </div>
-              
+
             </div>
           </div>
         </div>
@@ -284,8 +284,7 @@
         </div>
         <div class="card container">
           <div class="form-group">
-            <textarea name="description" class="form-control" placeholder="Tags..." cols="30"
-              rows="5"></textarea>
+            <textarea name="description" class="form-control" placeholder="Tags..." cols="30" rows="5"></textarea>
           </div>
         </div>
 

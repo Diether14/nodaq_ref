@@ -125,11 +125,11 @@
     ?>
 
 
-  <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg" color-on-scroll="100">
+  <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg bg-dark" color-on-scroll="100">
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand" href="/weendi/dashboard">
-          Weendi </a>
+          <h3 class="m-0 p-0"><b>Weendi</b></h3> </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false"
           aria-label="Toggle navigation">
           <span class="sr-only">Weendi</span>
@@ -139,25 +139,29 @@
         </button>
       </div>
       <div class="collapse navbar-collapse">
+      <!-- <form class="form-inline ml-auto">
+                  <div class="form-group has-white">
+                    <input type="text" class="form-control" placeholder="Search">
+                  </div>
+                  <button type="submit" class="btn btn-white btn-raised btn-fab btn-round">
+                    <i class="material-icons">search</i>
+                  </button>
+                </form> -->
         <ul class="navbar-nav ml-auto">
+          
           <li class="nav-item">
             <a href="<?= base_url(); ?>/dashboard" class="nav-link">
-              Home
+              <i class="fa fa-home"></i> Simple SNS
             </a>
           </li>
           <li class="nav-item">
             <a href="javascript:;" class="nav-link">
-              Simple SNS
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="javascript:;" class="nav-link">
-              Authentication
+            <i class="fa fa-key"></i> Authentication
             </a>
           </li>
           <li class="nav-item">
             <a href="<?= base_url(); ?>/emoticon-store" class="nav-link">
-              Emoticon Store
+            <i class="fa fa-smile-o"></i> Emoticon Store
             </a>
           </li>
           <li class="dropdown nav-item">
@@ -191,7 +195,11 @@
             </div>
           </li>
         </ul>
+        
       </div>
     </div>
   </nav>
+
+
+  
   <?php endif; ?>

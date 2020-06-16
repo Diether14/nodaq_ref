@@ -56,6 +56,19 @@
   .modal-backdrop {
     position: absolute !important;
   }
+
+  
+  .custom-card1 {
+    min-height: 270px;
+    max-height: 500px;
+  }
+
+  .card .card-body,
+  .card .card-footer {
+    padding: 0 !important;
+  }
+
+  
 </style>
 <?php if(!empty($cover_photo['name'])): ?>
 
@@ -132,54 +145,47 @@
             <h2 class="title">Community Joined In</h2>
             <div class="row">
               <?php if(!empty($community_list)): ?>
-              <?php foreach ($community_list as $key => $value): ?>
+                <?php foreach ($community_list as $key => $value): ?>
 
-              <div class="col-md-4">
-                <div class="team-player">
+                <div class="col-md-4">
+                  <div class="team-player">
 
-                  <div class="card card-plain">
+                    <div class="card h-100 custom-card " >
 
-                    <h6 class="card-title p-3 my-0" style="background-color: <?= $value->color; ?>">
+                      <h4 class="card-title p-3 my-0" style="background-color: <?= $value->color; ?>">
 
-                      <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-bars pl-3"
-                          style="float:left;"></i></a>
-                      <a href="community-join/<?= $value->id;  ?>" style="color: <?= $value->text_color; ?>"><span
-                          class="p-3"><?= $value->title ?> </span></a>
-
-                    </h6>
-                    <div class="view overlay">
-                      <img class="card-img-top rounded-0" src="public/admin/uploads/community/<?= $value->name ?>"
-                        alt="Card image cap">
-                      <a href="#!">
-                        <div class="mask rgba-white-slight"></div>
-                      </a>
-                    </div>
-
-
-
-                    <div class="card-body">
-
-
-                      <p class="card-description"><?= $value->content ?>
-                      </p>
-                    </div>
-                    <div class="card-footer justify-content-center">
-                      <div class="togglebutton">
-                        <label>
-                          <input type="checkbox" checked="">
-                          <span class="toggle"></span>
-                          label here
-                        </label><br>
-                        <div style="float-right">
-                          <p class="text">Created By: <b><?= $value->nickname ?></b></p>
+                        <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-bars pl-3"
+                            style="float:left;"></i></a>
+                        <a href="community-join/<?= $value->id;  ?>"
+                          style="color: <?= $value->text_color; ?>"  ><div class="text-center"><?= $value->title ?> </div></a>
+                      </h4>
+                      <div class="view overlay">
+                        <img class="card-img-top rounded-0" src="public/admin/uploads/community/<?= $value->name ?>"
+                          alt="Card image cap">
+                        <a href="#!">
+                          <div class="mask rgba-white-slight"></div>
+                        </a>
+                      </div>
+                      <div class="card-body">
+                        <p class="card-description"><?= $value->content ?>
+                        </p>
+                      </div>
+                      <div class="card-footer justify-content-center">
+                        <div class="togglebutton">
+                          <label>
+                            <input type="checkbox" checked="">
+                            <span class="toggle"></span>
+                            Anonymous Mode
+                          </label><br>
+                          <div style="float-right">
+                            <p class="text">Created By: <b><?= $value->nickname ?></b></p>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-
-              <?php endforeach; ?>
+                <?php endforeach; ?>
               <?php else: ?>
               <div class="col-md-3">
 
@@ -203,7 +209,7 @@
               <div class="col-md-4">
 
                 <div class="team-player">
-                  <div class="card p-3">
+                  <div class="card custom-card1 p-3">
 
                     <div class="profile-photo-small d-flex">
 
@@ -221,7 +227,7 @@
                       <div class="m-0 p-0">
                         <h4 class="card-title pl-2 mt-0 mb-0"><?= $value->nickname; ?>
                         </h4>
-                        <p class="small pl-2 m-0">1 hour ago</p><br>
+                        <p class="small pl-2 m-0">1 hour ago</p>
 
 
                       </div>
@@ -229,9 +235,12 @@
                     </div>
 
 
-                    <p class="card-description"><?= $value->description ?></p>
-
-                    <div class="d-flex justify-content-center">
+                    <!-- <p class="card-text"><?= $value->description ?></p> -->
+                    
+                    <div class="card-body  m-0 p-0">
+                          <p class="m-0 p-0 card-description"><?= $value->description ?></p>
+                    </div>
+                    <div class="card-footer justify-content-center m-0 p-0">
                       <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-2"><i
                           class="fa fa-eye m-0 p-0"></i> View Post </a>
                       <a href="#" data-toggle="modal" data-target="#edit-post<?= $key?>" class="btn btn-link m-0 p-2"><i
@@ -331,7 +340,7 @@
 
 
                 <div class="team-player">
-                  <div class="card custom-card card-body justify-content-center">
+                  <div class="card custom-card1 card-body justify-content-center">
 
                     <p class="text-center">No Post Yet</p>
                   </div>
@@ -348,10 +357,9 @@
               <?php foreach($shared as $key => $value): ?>
 
               <div class="col-md-4">
-                <div class="card">
+              <div class="card custom-card1 p-3">
 
-
-                  <div class="profile-photo-small m-2 d-flex">
+              <div class="profile-photo-small d-flex">
 
                     <?php if(!empty($value->name)): ?>
 
@@ -370,18 +378,19 @@
                         <span class="fa fa-share small" style="float-right"></span>
                       </h4>
                       <p class="small pl-2 m-0">1 hour ago </p>
-                      <p class="text p-0 m-0">
-                        <?= $value->content ?>
-
-                      </p>
-
+                      
+                     
                     </div>
 
                   </div>
 
+                  <div class="card-body m-0 p-0">
+                      <p class="card-description">
+                        <?= $value->content ?>
+                      </p>
+                      </div>
 
-
-                  <div class="d-flex justify-content-center">
+                  <div class="card-footer justify-content-center m-0 p-0" >
 
                     <a href="<?= base_url(); ?>/post-share/<?= $value->post_id ?>/<?= $value->community_id ?>"
                       class="btn btn-link m-0 p-2"><i class="fa fa-eye m-0 p-0"></i> View Post </a>
@@ -470,7 +479,7 @@
 
 
               <div class="team-player">
-                <div class="card custom-card card-body justify-content-center">
+                <div class="card custom-card1 card-body justify-content-center">
 
                   <p class="text-center">No Shared Post Yet</p>
                 </div>

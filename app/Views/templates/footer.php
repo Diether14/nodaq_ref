@@ -1,4 +1,4 @@
-<footer class="footer footer-default">
+<footer class="footer footer-default bg-dark" style="color:#ffffff">
     <div class="container">
       <nav class="float-left">
         <ul>
@@ -25,7 +25,7 @@
         <script>
           document.write(new Date().getFullYear())
         </script>, 
-        <a href="#" target="_blank">Weendi</a>
+        <a href="#" style="color:#ffffff" target="_blank">Weendi</a>
       </div>
     </div>
   </footer>

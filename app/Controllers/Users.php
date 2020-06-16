@@ -863,7 +863,7 @@ class Users extends BaseController
 
         echo view('templates/header', $data);
         echo view('post-shared', $data);
-        echo view('templates/footer', $data);
+        // echo view('templates/footer', $data);
       
 
     }

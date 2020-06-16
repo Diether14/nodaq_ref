@@ -1,10 +1,14 @@
 <style>
-  .custom-card{
-    min-height: 350px;
-    max-height: 500px;    
+  .custom-card {
+    min-height: 420px;
+    max-height: 420px;
   }
- 
- 
+
+  .card-img-top{
+    max-height: 200px; 
+    min-height: 200px;
+    border-radius: 0%; 
+  }
 </style>
 
 <div class="page-header header-filter" data-parallax="true"
@@ -16,48 +20,55 @@
         <h4>Every landing page needs a small description after the big bold title, that&apos;s why we added this text
           here. Add here all the information that can make you or your product create the first impression.</h4>
         <br>
-        <!-- <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn btn-danger btn-raised btn-lg">
-            <i class="fa fa-play"></i> Watch video
-          </a> -->
       </div>
     </div>
   </div>
 </div>
+
 <div class="main">
   <div class="container">
 
     <div class="section text-center">
-      <h2 class="title">Communities</h2>
+
+      <div class="col-12">
+        <div class="row">
+          <!-- <form class="form-inline ">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                  
+                    <button type="submit" class="btn btn-white btn-raised btn-fab btn-round">
+                    <i class="material-icons">search</i>
+                  </button>
+                  </div>
+                </form> -->
+        </div>
+      </div>
+      <h2 class="title"><i class="fa fa-globe pr-3"></i>Communities</h2>
       <div class="team">
         <div class="row">
           <?php foreach ($community_list as $key => $value): ?>
 
-          <div class="col-md-3 ">
+          <div class="col-md-4">
             <div class="team-player">
 
-              <div class="card custom-card card-plain " >
+              <div class="card h-100 custom-card " >
 
                 <h4 class="card-title p-3 my-0" style="background-color: <?= $value->color; ?>">
-              
+
                   <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-bars pl-3"
                       style="float:left;"></i></a>
-                  <a href="community-join/<?= $value->id;  ?>" style="color: <?= $value->text_color; ?>"><?= $value->title ?> </a>
-                
+                  <a href="community-join/<?= $value->id;  ?>"
+                    style="color: <?= $value->text_color; ?>"><?= $value->title ?> </a>
                 </h4>
-                <div class="view overlay" >
+                <div class="view overlay">
                   <img class="card-img-top rounded-0" src="public/admin/uploads/community/<?= $value->name ?>"
                     alt="Card image cap">
                   <a href="#!">
                     <div class="mask rgba-white-slight"></div>
                   </a>
                 </div>
-     
-
-
                 <div class="card-body">
-               
-
-                <p class="card-description"><?= $value->content ?>
+                  <p class="card-description"><?= $value->content ?>
                   </p>
                 </div>
                 <div class="card-footer justify-content-center">
@@ -65,15 +76,16 @@
                     <label>
                       <input type="checkbox" checked="">
                       <span class="toggle"></span>
-                      label here
+                      Anonymous Mode
                     </label><br>
-                    <div style="float-right"><p class="text">Created By: <b><?= $value->nickname ?></b></p></div>
+                    <div style="float-right">
+                      <p class="text">Created By: <b><?= $value->nickname ?></b></p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
           <?php endforeach; ?>
 
         </div>
@@ -83,94 +95,38 @@
     <!-- <div class="section text-center">
       <div class="row">
         <div class="col-md-12 ml-auto mr-auto">
-          <h2 class="title">Articles</h2>
+          <h2 class="title">Trending Posts</h2>
 
           <div class="row">
             <div class="col-md-12 ml-auto mr-auto">
-              <div class="profile-tabs">
-                <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
-                  <li class="nav-item">
-                    <a class="nav-link active" href="#studio" role="tab" data-toggle="tab">
-                      <i class="material-icons">camera</i> Blog
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#works" role="tab" data-toggle="tab">
-                      <i class="material-icons">palette</i> Work
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#favorite" role="tab" data-toggle="tab">
-                      <i class="material-icons">favorite</i> Favorite
-                    </a>
-                  </li>
-                </ul>
-              </div>
 
-              <div class="tab-content tab-space">
-                <div class="tab-pane active" id="studio">
 
-                  <div class="row">
-                    <?php foreach ($blog as $key => $value): ?>
-                    <a href="/weendi/post-view/<?= $value['id']; ?>">
-                      <div class="col-lg-4 mb-4">
-                        <div class="card h-100 text-center">
-                          <img class="card-img-top" src="http://placehold.it/750x450" alt="">
-                          <div class="card-body">
-                            <h4 class="card-title"><?= $value['title'] ?></h4>
-                            <h6 class="card-subtitle mb-2 text-muted">Position</h6>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut
-                              mollitia eum ipsum fugiat odio officiis odit.</p>
-                          </div>
-                          <div class="card-footer">
-                            <a href="#">name@example.com</a>
-                          </div>
-                        </div>
+              <div class="row">
+                <?php foreach ($blog as $key => $value): ?>
+                <a href="/weendi/post-view/<?= $value['id']; ?>">
+                  <div class="col-lg-4 mb-4">
+                    <div class="card h-100 text-center">
+                      <img class="card-img-top" src="http://placehold.it/750x450" alt="">
+                      <div class="card-body">
+                        <h4 class="card-title"><?= $value['title'] ?></h4>
+                        <h6 class="card-subtitle mb-2 text-muted">Position</h6>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut
+                          mollitia eum ipsum fugiat odio officiis odit.</p>
                       </div>
-                    </a>
-                    <?php endforeach; ?>
-                  </div>
-                </div>
-                <div class="tab-pane text-center" id="works">
-
-
-
-
-                </div>
-                <div class="tab-pane text-center" id="favorite">
-                  <div class="row">
-                    <div class="col-md-12">
-                      test2
+                      <div class="card-footer">
+                        <a href="#">name@example.com</a>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </a>
+                <?php endforeach; ?>
               </div>
-
-              <ul class="pagination pagination-primary ">
-                <li class="page-item"><a href="javascript:void(0);" class="page-link">1</a></li>
-                <li class="page-item"><a href="javascript:void(0);" class="page-link">...</a></li>
-                <li class="page-item"><a href="javascript:void(0);" class="page-link">5</a></li>
-                <li class="page-item"><a href="javascript:void(0);" class="page-link">6</a></li>
-                <li class="active page-item"><a href="javascript:void(0);" class="page-link">7</a></li>
-                <li class="page-item"><a href="javascript:void(0);" class="page-link">8</a></li>
-                <li class="page-item"><a href="javascript:void(0);" class="page-link">9</a></li>
-                <li class="page-item"><a href="javascript:void(0);" class="page-link">...</a></li>
-                <li class="page-item"><a href="javascript:void(0);" class="page-link">12</a></li>
-              </ul>
             </div>
           </div>
-
         </div>
-
-
       </div>
-
-
-
-
     </div> -->
   </div>
-
 </div>
 
 <!-- Classic Modal -->
