@@ -1,6 +1,8 @@
 <style>
-  .custom-card{
-    min-height:253px;
+ 
+ .custom-card {
+    min-height: 270px;
+    max-height: 500px;
   }
   .modal-backdrop.show {
     opacity: 0 !important;
@@ -55,7 +57,7 @@
         <div class="col-md-3">
 
         <div class="team-player">
-          <div class="card card-plain custom-card card-body justify-content-center">
+          <div class="card  custom-card card-body justify-content-center">
             
             <a class="btn btn-link" data-toggle="modal" data-target="#myModal">
               <span style="font-size:50px; color:#9C27B0" class="fa fa-plus"></span></a>
@@ -67,7 +69,7 @@
           <div class="col-md-3 ">
             <div class="team-player">
 
-              <div class="card  card-plain ">
+              <div class="card  custom-card ">
 
                 <h4 class="card-title p-3 my-0" style="background-color: ">
 

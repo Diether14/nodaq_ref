@@ -1,6 +1,7 @@
 <style>
-  .custom-card{
-    min-height:253px;
+  .custom-card {
+    min-height: 200px;
+    max-height: 500px;
   }
   .modal-backdrop {
     position: absolute !important;
@@ -67,7 +68,7 @@
 
               <div class="card  card-plain ">
                   <div class="view overlay">
-                  <img class="card-img-top rounded-0" src="<?=base_url() ?>/public/user/uploads/stickers/pack/<?= $value->name ?>" alt="Card image cap">
+                  <img class="card-img-top rounded-0 custom-card" src="<?=base_url() ?>/public/user/uploads/stickers/pack/<?= $value->name ?>" alt="Card image cap">
                   <a href="#!">
                     <div class="mask rgba-white-slight"></div>
                   </a>

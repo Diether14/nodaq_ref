@@ -57,7 +57,6 @@
     position: absolute !important;
   }
 
-  
   .custom-card1 {
     min-height: 270px;
     max-height: 500px;
@@ -228,12 +227,8 @@
                         <h4 class="card-title pl-2 mt-0 mb-0"><?= $value->nickname; ?>
                         </h4>
                         <p class="small pl-2 m-0">1 hour ago</p>
-
-
                       </div>
-
                     </div>
-
 
                     <!-- <p class="card-text"><?= $value->description ?></p> -->
                     

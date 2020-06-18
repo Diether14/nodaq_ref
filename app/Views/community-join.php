@@ -86,7 +86,10 @@
 
       <?php if(empty($users_community) && $community_list[0]->community_type == '1') : ?>
       <?php else: ?>
+
       <div class="row">
+            <
+
         <div class="col-md-12">
           <?php if(empty($users_community)) : ?>
           <div class="alert alert-info">
@@ -101,10 +104,38 @@
             </div>
           </div>
           <?php endif; ?>
+
+         
+
+          
           <h2 class="title mt-5 mb-0 ml-3">Posts</h2>
 
-
-          <div class="card-body pt-0">
+          <div class="col-lg-12 mb-0 pt-0">
+              <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+           
+                <li class="nav-item">
+                  <a class="nav-link active" href="#dashboard-1" role="tab" data-toggle="tab">
+                  All Post
+                
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="#schedule-1" role="tab" data-toggle="tab">
+                    Minor Hot Board
+                 
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#tasks-1" role="tab" data-toggle="tab">
+                   
+                    Notice
+                  </a>
+                </li>
+              </ul>
+              <div class="tab-content tab-space">
+                <div class="tab-pane active" id="dashboard-1">
+                 
+                <div class="card-body pt-0">
             <div class="tab-content">
               <div class="tab-pane active" id="home">
 
@@ -255,6 +286,20 @@
 
             </div>
           </div>
+                
+                </div>
+                <div class="tab-pane" id="schedule-1">
+                  Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
+                  <br><br>Dramatically maintain clicks-and-mortar solutions without functional solutions.
+                </div>
+                <div class="tab-pane" id="tasks-1">
+                  Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
+                  <br><br>Dynamically innovate resource-leveling customer service for state of the art customer service.
+                </div>
+              </div>
+          </div>
+
+          
         </div>
       </div>
       <?php endif; ?>

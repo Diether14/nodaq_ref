@@ -11,6 +11,7 @@ use App\Models\UserspostModel;
 use App\Models\UsersreportModel;
 use App\Models\UserssharedpostModel;
 use App\Models\UsersvoteModel;
+use App\Models\CommunityassistantmanagersModel;
 
 class Category extends BaseController
 {
@@ -394,6 +395,21 @@ class Category extends BaseController
 
         $query   = $builder->get();
         $data['community_list'] = $query->getResult();
+
+        $assistant = new CommunityassistantmanagersModel();
+        $get_assistant = $assistant->where('user_id', session()->get('id'))->findAll();
+
+        $db1      = \Config\Database::connect();
+        $builder1 = $db1->table('community');
+    
+        $builder1->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.updated_at, community.color , community.text_color, community_photo.name, users.nickname');
+        $builder1->where('community.id', $get_assistant[0]['community_id']);
+        $builder1->join('community_photo', 'community_photo.id = community.com_photo_id');
+        $builder1->join('users', 'community.user_id = users.id');
+        
+        $query1   = $builder1->get();
+        $data['community_list_manager'] = $query1->getResult();
+   
 
         echo view('templates/header', $data);
         echo view('community', $data);

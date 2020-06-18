@@ -499,10 +499,14 @@ class Admin extends BaseController
                  
         $model = new UserscommunityModel;
         $data['users_community'] = $model->select('user_id', $id)->where('community_id', $community_id)->findAll();
-        
+
         if($data['users_community'][0]){
             $am = new CommunityassistantmanagersModel();
             
+            $am_select = $am->where('user_id', $id)->first();
+            
+            if(empty($am_select)){
+
             $newData = [
                 'user_id' => $id,
                 'community_id' => $community_id,
@@ -515,8 +519,11 @@ class Admin extends BaseController
             }else{
                 return redirect()->to(base_url() .'/admin');
             }
+        }else{
+            $msg = 'Already an Assistant Manager';
+            return redirect()->to(base_url() .'/admin/community_users/'.$community_id)->with('msg', $msg);
+        }
 
-            
         }else{
             return redirect()->to(base_url() .'/admin');
         }

@@ -2,6 +2,23 @@ $(document).ready(function(){
     initSample();
     
     $( "#save_post" ).click(function() {
+
+        // grecaptcha.ready(function() {
+        //     // do request for recaptcha token
+        //     // response is promise with passed token
+        //     grecaptcha.execute('6LfwIo4UAAAAADauXCK0Ke_jIWNSW-z49N-IUj43', {action: 'save_post'}).then(function(token) {
+        //         // add token to form
+        //         $('#comment_form').prepend('<input type="hidden" name="g-recaptcha-response" value="' + token + '">');
+		//     $.post("form_v3.php",{email: email, comment: comment, token: token}, function(result) {
+		// 	    console.log(result);
+		// 	    if(result.success) {
+		// 		    alert('Thanks for posting comment.')
+		// 	    } else {
+		// 		    alert('You are spammer ! Get the @$%K out.')
+		// 	    }
+		//     });
+        //     });;
+        // });
         
         var title = $("input[name=title]").val();
         var community_id = $("input[name=community_id]").val();
