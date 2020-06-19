@@ -171,7 +171,7 @@ class Admin extends BaseController
         
                 $id =  $this->request->getPost('id');
                 $newData = [
-                    'user_id' => session()->get('id'),
+                    // 'user_id' => session()->get('id'),
                     'title' => $this->request->getPost('title'),
                     'content' => $this->request->getPost('content'),
                     'community_type' => $community_type,

@@ -12,6 +12,8 @@ use App\Models\UsersreportModel;
 use App\Models\UserssharedpostModel;
 use App\Models\UsersvoteModel;
 use App\Models\CommunityassistantmanagersModel;
+use App\Models\PostcommentsModel;
+use App\Models\SharedcommentsModel;
 
 class Category extends BaseController
 {
@@ -140,7 +142,6 @@ class Category extends BaseController
         $query1  = $builder1->get();
         $data['posts'][] = $query1->getResult();  
 
-    
         $db2      = \Config\Database::connect();
         $builder2 = $db2->table('users_shared_posts');
         $builder2->select('users_shared_posts.post_id, users_post.id, users_shared_posts.content ,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.updated_at, users.nickname,profile_photo.name');
@@ -151,10 +152,10 @@ class Category extends BaseController
         $builder2->join('profile_photo', 'users.id = profile_photo.user_id');
 
         $query2  = $builder2->get();
+
         $data['posts'][] = $query2->getResult();  
         
-        // echo '<pre>';
-        // var_dump($data['posts']);exit;
+
         echo view('templates/header', $data);
         echo view('community-join', $data);
         echo view('templates/footer', $data); 

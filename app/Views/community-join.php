@@ -177,7 +177,15 @@
                           <?php endif; ?>
 
                           <div class=" m-0 p-0 ">
+                          <?php if(session()->get('id') == $value->user_id): ?>
+                            <a href="<?= base_url(); ?>/profile">
                             <h4 class="card-title pl-2 mt-0 mb-0"><?= $value->nickname; ?>
+                          </a>
+                          <?php else: ?>
+                          <a href="<?= base_url(); ?>/view-profile/<?= $value->user_id;?>">
+                            <h4 class="card-title pl-2 mt-0 mb-0"><?= $value->nickname; ?>
+                          </a>
+                          <?php endif; ?>
                             </h4>
                             <p class="small pl-2 m-0"><?php
                             echo $value->updated_at;

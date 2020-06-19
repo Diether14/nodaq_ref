@@ -35,6 +35,7 @@ $routes->get('logout', 'Users::logout');
 $routes->match(['get','post'],'register', 'Users::register', ['filter' => 'noauth']);
 $routes->match(['get','post'],'login', 'Users::login', ['filter' => 'noauth']);
 $routes->match(['get','post'],'profile', 'Users::profile', ['filter' => 'auth']);
+$routes->get('/view-profile/(:num)', 'Users::view_profile/$1', ['filter' => 'auth']);
 $routes->match(['get','post'],'settings', 'Users::settings', ['filter' => 'auth']);
 $routes->match(['get','post'],'update_profile', 'Users::update_profile', ['filter' => 'auth']);
 $routes->match(['get','post'],'update_mode', 'Users::update_mode', ['filter' => 'auth']);

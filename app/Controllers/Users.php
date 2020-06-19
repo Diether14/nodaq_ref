@@ -228,37 +228,6 @@ class Users extends BaseController
         helper(['form']);
         $model = new UserModel();
 
-        // if ($this->request->getMethod() == 'post') {
-        //     $rules = [
-        //         'nickname' => 'required|min_length[3]|max_length[20]',
-        //     ];
-            
-        //     if($this->request->getPost('password') != ''){
-        //         $rules['password'] = 'required|min_length[8]|max_length[255]';
-        //         $rules['password_confirm'] = 'matches[password]';
-                
-        //     }
-
-        //     if (! $this->validate($rules)) {
-        //         $data['validation'] = $this->validator;
-        //     }else{
-
-        //         $newData = [
-        //             'id' => session()->get('id'),
-        //             'nickname' => $this->request->getPost('nickname'),
-        //         ];
-
-        //         if($this->request->getPost('password') != ''){
-        //             $newData['password'] = $this->request->getPost('password');
-        //         }
-
-        //         $model->save($newData);
-        //         // $session = session();
-        //         session()->setFlashdata('success', 'Successful Updated');
-        //         return redirect()->to('/weendi/profile');
-            
-        //     }
-        // }
         $profile_photo = new ProfilephotoModel();
         $cover_photo = new CoverphotoModel();
         $users_setting = new UsersettingsModel();
@@ -320,6 +289,75 @@ class Users extends BaseController
         echo view('profile');
         echo view('templates/footer');
     }
+
+    public function view_profile($id = null){
+        ini_set('display_errors', 1);
+
+
+        $data = [];
+        helper(['form']);
+
+        $profile_photo = new ProfilephotoModel();
+        $cover_photo = new CoverphotoModel();
+        $users_setting = new UsersettingsModel();
+        $users_post = new UserspostModel();
+        $model = new UserModel();
+
+        $data['profile_photo'] = $profile_photo->where('user_id', $id)
+            ->first();
+        $data['cover_photo'] = $cover_photo->where('user_id', $id)
+            ->first();
+        $data['users_settings'] = $users_setting->where('user_id', $id)
+            ->first();
+
+        $data['user'] = $model->where('id', $id)->first();
+        $posts = new UserspostModel();
+        
+
+        $db1      = \Config\Database::connect();
+        $builder1 = $db1->table('users_post');
+        $builder1->where('users_post.user_id', $id);
+        $builder1->select('users_post.id,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.content, users_post.updated_at, users.nickname, profile_photo.name' );
+        $builder1->join('users', 'users.id = users_post.user_id');
+        $builder1->join('profile_photo', 'users.id = profile_photo.user_id');
+        
+        $query1  = $builder1->get();
+        $data['posts'] = $query1->getResult();  
+
+        
+        $db      = \Config\Database::connect();
+        $builder = $db->table('community');
+    
+        $builder->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.updated_at, community.color, community.text_color, community_photo.name, users.nickname');
+        $builder->where('community.user_id', $id);
+        $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
+        $builder->join('users_community', 'users_community.community_id = community.id');
+        $builder->join('users', 'users.id = users_community.user_id');
+        $query   = $builder->get();
+        $data['community_list'] = $query->getResult();
+  
+
+        
+        $db2      = \Config\Database::connect();
+        $builder2 = $db2->table('users_shared_posts');
+        $builder2->select('users_shared_posts.id, users_shared_posts.post_id, users_shared_posts.content ,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.updated_at, users.nickname,profile_photo.name');
+        $builder2->where('users_shared_posts.user_id', $id);
+       
+        $builder2->join('users', 'users.id = users_shared_posts.user_id');
+        $builder2->join('users_post', 'users_post.id = users_shared_posts.post_id');
+        $builder2->join('profile_photo', 'users.id = profile_photo.user_id');
+
+        $query2  = $builder2->get();
+        $data['shared'] = $query2->getResult();  
+
+        // echo '<pre>';
+        // var_dump($data);exit;
+
+        echo view('templates/header', $data);
+        echo view('profile-view');
+        echo view('templates/footer');
+    }
+
 
     public function update_profile(){
         ini_set('display_errors', 1);
