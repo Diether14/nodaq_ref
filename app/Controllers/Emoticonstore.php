@@ -17,7 +17,7 @@ class Emoticonstore extends BaseController
         ini_set('display_errors', 1);
         $data = [];
         helper(['form']);
-
+        helper('text');
            
         $db      = \Config\Database::connect();
         $builder = $db->table('emoticon_store');
@@ -80,7 +80,7 @@ class Emoticonstore extends BaseController
       ini_set('display_errors', 1);
       $data = [];
       helper(['form']);
-
+      helper('text');
          
       $db      = \Config\Database::connect();
       $builder = $db->table('emoticon_store');
@@ -101,7 +101,7 @@ class Emoticonstore extends BaseController
       ini_set('display_errors', 1);
       $data = [];
       helper(['form']);
-
+      helper('text');
          
       $db      = \Config\Database::connect();
       $builder = $db->table('emoticon_store');

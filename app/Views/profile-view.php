@@ -166,7 +166,7 @@
                     <!-- <p class="card-text"><?= $value->description ?></p> -->
                     
                     <div class="card-body  m-0 p-0">
-                          <p class="m-0 p-0 card-description"><?= $value->description ?></p>
+                          <p class="m-0 p-0 card-description"><?= character_limiter($value->description, 180) ?></p>
                     </div>
                     <div class="card-footer justify-content-center">
                           <?php if($value->post_id): ?>
@@ -261,7 +261,7 @@
 
                   <div class="card-body m-0 p-0">
                       <p class="card-description">
-                        <?= $value->content ?>
+                        <?= character_limiter($value->content, 180) ?>
                       </p>
                       </div>
 

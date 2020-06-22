@@ -39,22 +39,14 @@
     background-size: cover;
   }
 
-  .modal {
-    display: none;
-    /* Hidden by default */
-
-    padding-top: 50px;
-    /* Location of the box - don't know what this does?  If it is to move your modal down by 100px, then just change top below to 100px and remove this*/
-
-    overflow: auto;
-    /* Enable scroll if needed */
-
-    z-index: 9999;
-    /* Sit on top - higher than any other z-index in your site*/
-  }
-
+  /* modal show */
   .modal-backdrop {
-    position: absolute !important;
+    z-index: 1040 !important;
+    display: none;    
+  }
+  .modal-dialog {
+      margin: 80px auto;
+      z-index: 1100 !important;
   }
 
   .custom-card1 {
@@ -119,12 +111,14 @@
                 <?php endif ?>
                 <div class="text-center profile-name mt-3 mb-3" data-toggle="modal" data-target="#profilename">
                   <span class="h3 title"><?php echo $user['nickname']  ?></span><br><span class="small" class="h3">
-                    <?php if($user_settings['user_mode'] == '1'): ?>
-                    (Anonymous)
+                    <?php if($users_settings['user_mode'] == '1'): ?>
+                    (Anonymous Mode)
                     <?php else: ?>
-
+                     
                     <?php endif; ?>
                   </span>
+               
+
                   <?php if(session()->get('success')): ?>
                   <div class="alert alert-success" role="alert">
                     <?= session()->get('success') ?>
@@ -186,11 +180,11 @@
                 </div>
                 <?php endforeach; ?>
               <?php else: ?>
-              <div class="col-md-3">
+              <div class="col-md-4">
 
 
                 <div class="team-player">
-                  <div class="card custom-card card-body justify-content-center">
+                  <div class="card custom-card1 card-body justify-content-center">
 
                     <p class="text-center">No Community Joined Yet</p>
                   </div>
@@ -199,7 +193,7 @@
               <?php endif; ?>
 
             </div>
-            <hr>
+        
 
             <h2 class="title mb-0">Recent Post</h2>
             <div class="row">
@@ -233,7 +227,7 @@
                     <!-- <p class="card-text"><?= $value->description ?></p> -->
                     
                     <div class="card-body  m-0 p-0">
-                          <p class="m-0 p-0 card-description"><?= $value->description ?></p>
+                          <p class="m-0 p-0 card-description"><?= character_limiter($value->description, 180) ?></p>
                     </div>
                     <div class="card-footer justify-content-center m-0 p-0">
                       <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-2"><i
@@ -331,7 +325,7 @@
               <?php endforeach; ?>
               <?php else: ?>
 
-              <div class="col-md-3">
+              <div class="col-md-4">
 
 
                 <div class="team-player">
@@ -381,7 +375,7 @@
 
                   <div class="card-body m-0 p-0">
                       <p class="card-description">
-                        <?= $value->content ?>
+                        <?= character_limiter($value->content, 180); ?>
                       </p>
                       </div>
 
@@ -470,7 +464,7 @@
             </div>
             <?php else: ?>
 
-            <div class="col-md-3">
+            <div class="col-md-4">
 
 
               <div class="team-player">

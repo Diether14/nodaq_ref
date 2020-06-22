@@ -21,10 +21,6 @@
     opacity: 0 !important;
   }
 
-  .modal-backdrop {
-    position: absolute;
-  }
-
   .custom-card {
     min-height: 420px;
     max-height: 420px;
@@ -34,6 +30,15 @@
     max-height: 200px;
     min-height: 200px;
     border-radius: 0%;
+  }
+/* modal show */
+  .modal-backdrop {
+    z-index: 1040 !important;
+    display: none;    
+  }
+  .modal-dialog {
+      margin: 32px auto;
+      z-index: 1100 !important;
   }
 </style>
 
@@ -57,16 +62,16 @@
 
 
       <div class="col-lg-12 col-md-12">
-        <?php if ($msg) : ?>
-        <div class="card  bg-info text-white shadow">
+    
+
+        <?php if (session('msg')) : ?>
+        <div class="card bg-info text-white shadow">
           <div class="card-body">
-            <?= $msg ?>
+            <?= session('msg') ?>
 
           </div>
         </div>
-        <br>
-        <?php endif; ?>
-
+           <?php endif; ?>
 
         <div class="col-lg-12 mb-0 pt-0">
           <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
@@ -87,53 +92,49 @@
           <div class="tab-content tab-space">
             <div class="tab-pane active" id="dashboard-1">
 
-            <div class="row">
+              <div class="row">
+                <div class="col-md-4">
 
 
+                  <div class="team-player">
+                    <div class="card custom-card card-body justify-content-center">
 
-
-              <div class="col-md-4">
-
-
-                <div class="team-player">
-                  <div class="card custom-card card-body justify-content-center">
-
-                    <a class="btn btn-link" data-toggle="modal" data-target="#myModal">
-                      <span style="font-size:50px; color:#9C27B0" class="fa fa-plus"></span></a>
+                      <a class="btn btn-link" data-toggle="modal" data-target="#myModal">
+                        <span style="font-size:50px; color:#9C27B0" class="fa fa-plus"></span></a>
+                    </div>
                   </div>
                 </div>
-              </div>
 
 
-              <?php if(!empty($community_list)): ?>
-              <?php foreach ($community_list as $key => $value): ?>
-              <div class="col-md-4">
-                <div class="team-player">
+                <?php if(!empty($community_list)): ?>
+                <?php foreach ($community_list as $key => $value): ?>
+                <div class="col-md-4">
+                  <div class="team-player">
 
-                  <div class="card h-100 custom-card ">
+                    <div class="card h-100 custom-card ">
 
-                    <h4 class="card-title p-3 my-0" style="background-color: <?= $value->color; ?>">
+                      <h4 class="card-title p-3 my-0" style="background-color: <?= $value->color; ?>">
 
-                   
-                      <a href="#" data-toggle="modal"
-                  data-target="#edit<?= $key ?>"><i class="fa fa-cog pl-3" style="float:left;"></i></a>
-                      <a href="community-join/<?= $value->id;  ?>" style="color: <?= $value->text_color; ?>">
-                        <p class="text-center justify-content-center m-0 p-0"><?= $value->title ?> </p>
-                      </a>
-                    </h4>
-                    <div class="view overlay">
-                      <img class="card-img-top rounded-0" src="public/admin/uploads/community/<?= $value->name ?>"
-                        alt="Card image cap">
-                      <a href="#!">
-                        <div class="mask rgba-white-slight"></div>
-                      </a>
-                    </div>
-                    <div class="card-body">
-                      <p class="card-description"><?= $value->content ?>
-                      </p>
-                    </div>
-                    <div class="card-footer justify-content-center">
-                      
+
+                        <a href="#" data-toggle="modal" data-target="#edit<?= $key ?>"><i class="fa fa-cog pl-3"
+                            style="float:left;"></i></a>
+                        <a href="community-join/<?= $value->id;  ?>" style="color: <?= $value->text_color; ?>">
+                          <p class="text-center justify-content-center m-0 p-0"><?= character_limiter($value->title, 18) ?> </p>
+                        </a>
+                      </h4>
+                      <div class="view overlay">
+                        <img class="card-img-top rounded-0" src="public/admin/uploads/community/<?= $value->name ?>"
+                          alt="Card image cap">
+                        <a href="#!">
+                          <div class="mask rgba-white-slight"></div>
+                        </a>
+                      </div>
+                      <div class="card-body">
+                        <p class="card-description"><?= character_limiter($value->content, 80); ?>
+                        </p>
+                      </div>
+                      <div class="card-footer justify-content-center">
+
                         <div style="float-right">
                           <p class="text">Created By: <b><?= $value->nickname ?></b></p>
                         </div>
@@ -141,234 +142,218 @@
                     </div>
                   </div>
                 </div>
-           
-                <div class="modal fade" id="edit<?= $key ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Update Community </h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">×</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-
-                    <form class="contact-form" action="update_community" method="post" accept-charset="utf-8"
-                      enctype="multipart/form-data">
-
-                      <div class="form-group">
-                        <input type="text" name="title" class="form-control" placeholder="Title"
-                          value="<?= $value->title ?>">
+                
+                <div style="position: absolute">
+                <div class="modal fade" id="edit<?= $key ?>" tabindex="-1" role="dialog"
+                  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Update Community </h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                        </button>
                       </div>
-                      <input type="hidden" name="com_photo_id" value="<?= $value->com_photo_id; ?>">
-                      <input type="hidden" name="id" value="<?= $value->id; ?>">
+                      <div class="modal-body">
 
-                      <div class="form-group">
-                        <textarea name="content" class="form-control" cols="30" rows="10"
-                          placeholder="Content"><?= $value->content ?></textarea>
+                        <form class="contact-form" action="update_community" method="post" accept-charset="utf-8"
+                          enctype="multipart/form-data">
+
+                          <div class="form-group">
+                            <input type="text" name="title" class="form-control" placeholder="Title"
+                              value="<?= $value->title ?>">
+                          </div>
+                          <input type="hidden" name="com_photo_id" value="<?= $value->com_photo_id; ?>">
+                          <input type="hidden" name="id" value="<?= $value->id; ?>">
+
+                          <div class="form-group">
+                            <textarea name="content" class="form-control" cols="30" rows="10"
+                              placeholder="Content"><?= $value->content ?></textarea>
+                          </div>
+
+                          <div class="togglebutton">
+                            <label>
+                              <input type="checkbox" name="community_type"
+                                <?= ($value->community_type	 == '1' ? 'checked': null)?>>
+                              <span class="toggle"></span>
+                              Private Community
+                            </label>
+                          </div>
+                          <label for="color">Select your theme color: </label>
+                          <input type="color" name="color" value="<?= $value->color; ?>"><br>
+                          <label for="color">Select your text color:</label>
+                          <input type="color" name="text_color" value="<?= $value->text_color; ?>">
+                          <br>
+
+                          <button type="submit" class="btn btn-primary">Save Community</button>
+
+                        </form>
+
+
+
+
                       </div>
+                      <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
 
-                      <div class="togglebutton">
-                        <label>
-                          <input type="checkbox" name="community_type"
-                            <?= ($value->community_type	 == '1' ? 'checked': null)?>>
-                          <span class="toggle"></span>
-                          Private Community
-                        </label>
                       </div>
-                      <label for="color">Select your theme color: </label>
-                      <input type="color" name="color" value="<?= $value->color; ?>"><br>
-                      <label for="color">Select your text color:</label>
-                      <input type="color" name="text_color" value="<?= $value->text_color; ?>" >
-                      <br>
-
-                      <button type="submit" class="btn btn-primary">Save Community</button>
-
-                    </form>
-
-
-
-
-
-                  </div>
-                  <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-              
+                </div>
 
-              <?php endforeach; ?>
-              <?php else: ?>
+                <?php endforeach; ?>
+                <?php else: ?>
 
-              <div class="col-md-4">
+                <div class="col-md-4">
 
 
-                <div class="team-player">
-                  <div class="card custom-card card-body justify-content-center">
+                  <div class="team-player">
+                    <div class="card custom-card card-body justify-content-center">
 
-                    <p class="text-center">No Created Community Yet</p>
+                      <p class="text-center">No Created Community Yet</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <?php endif; ?>
+                <?php endif; ?>
 
               </div>
 
 
             </div>
             <div class="tab-pane" id="schedule-1">
-            <div class="row">
+              <div class="row">
+                <?php if(!empty($community_list_manager)): ?>
+                <?php foreach ($community_list_manager as $key => $value): ?>
+                <div class="col-md-4">
+                  <div class="team-player">
 
+                    <div class="card h-100 custom-card ">
 
+                      <h4 class="card-title p-3 my-0" style="background-color: <?= $value->color; ?>">
 
-
-<div class="col-md-4">
-
-
-  <div class="team-player">
-    <div class="card custom-card card-body justify-content-center">
-
-      <a class="btn btn-link" data-toggle="modal" data-target="#myModal">
-        <span style="font-size:50px; color:#9C27B0" class="fa fa-plus"></span></a>
-    </div>
-  </div>
-</div>
-
-
-<?php if(!empty($community_list_manager)): ?>
-<?php foreach ($community_list_manager as $key => $value): ?>
-<div class="col-md-4">
-  <div class="team-player">
-
-    <div class="card h-100 custom-card ">
-
-      <h4 class="card-title p-3 my-0" style="background-color: <?= $value->color; ?>">
-
-        <a data-toggle="modal" data-target="#edit1<?= $key ?>"><i class="fa fa-cog pl-3" style="float:left;"></i></a>
-        <a href="community-join/<?= $value->id;  ?>" style="color: <?= $value->text_color; ?>">
-          <p class="text-center justify-content-center m-0 p-0"><?= $value->title ?> </p>
-        </a>
-      </h4>
-      <div class="view overlay">
-        <img class="card-img-top rounded-0" src="public/admin/uploads/community/<?= $value->name ?>"
-          alt="Card image cap">
-        <a href="#!">
-          <div class="mask rgba-white-slight"></div>
-        </a>
-      </div>
-      <div class="card-body">
-        <p class="card-description"><?= $value->content ?>
-        </p>
-      </div>
-      <div class="card-footer justify-content-center">
-        <div class="togglebutton">
-          
-          <div style="float-right">
-            <p class="text">Created By: <b><?= $value->nickname ?></b></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-  <div class="modal fade" id="edit1<?= $key ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Update Community </h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">×</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-
-                    <form class="contact-form" action="update_community" method="post" accept-charset="utf-8"
-                      enctype="multipart/form-data">
-
-                      <div class="form-group">
-                        <input type="text" name="title" class="form-control" placeholder="Title"
-                          value="<?= $value->title ?>">
+                        <a data-toggle="modal" data-target="#edit1<?= $key ?>"><i class="fa fa-cog pl-3"
+                            style="float:left;"></i></a>
+                        <a href="community-join/<?= $value->id;  ?>" style="color: <?= $value->text_color; ?>">
+                          <p class="text-center justify-content-center m-0 p-0"><?= character_limiter($value->title, 18); ?> </p>
+                        </a>
+                      </h4>
+                      <div class="view overlay">
+                        <img class="card-img-top rounded-0" src="public/admin/uploads/community/<?= $value->name ?>"
+                          alt="Card image cap">
+                        <a href="#!">
+                          <div class="mask rgba-white-slight"></div>
+                        </a>
                       </div>
-                      <input type="hidden" name="com_photo_id" value="<?= $value->com_photo_id; ?>">
-                      <input type="hidden" name="id" value="<?= $value->id; ?>">
-
-                      <div class="form-group">
-                        <textarea name="content" class="form-control" cols="30" rows="10"
-                          placeholder="Content"><?= $value->content ?></textarea>
+                      <div class="card-body">
+                        <p class="card-description"><?= character_limiter($value->content, 80) ?>
+                        </p>
                       </div>
+                      <div class="card-footer justify-content-center">
+                        <div class="togglebutton">
 
-                      <div class="togglebutton">
-                        <label>
-                          <input type="checkbox" name="community_type"
-                            <?= ($value->community_type	 == '1' ? 'checked': null)?>>
-                          <span class="toggle"></span>
-                          Private Community
-                        </label>
+                          <div style="float-right">
+                            <p class="text">Created By: <b><?= $value->nickname ?></b></p>
+                          </div>
+                        </div>
                       </div>
-                      <label for="color">Select your theme color: </label>
-                      <input type="color" name="color" value="<?= $value->color; ?>"><br>
-                      <label for="color">Select your text color:</label>
-                      <input type="color" name="text_color" value="<?= $value->text_color; ?>" >
-                      <br>
-
-                      <button type="submit" class="btn btn-primary">Save Community</button>
-
-                    </form>
-
-
-
-
-
-                  </div>
-                  <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-
+                    </div>
                   </div>
                 </div>
+
+
+                <div class="modal fade" id="edit1<?= $key ?>" tabindex="-1" role="dialog"
+                  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Update Community </h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+
+                        <form class="contact-form" action="update_community" method="post" accept-charset="utf-8"
+                          enctype="multipart/form-data">
+
+                          <div class="form-group">
+                            <input type="text" name="title" class="form-control" placeholder="Title"
+                              value="<?= $value->title ?>">
+                          </div>
+                          <input type="hidden" name="com_photo_id" value="<?= $value->com_photo_id; ?>">
+                          <input type="hidden" name="id" value="<?= $value->id; ?>">
+
+                          <div class="form-group">
+                            <textarea name="content" class="form-control" cols="30" rows="10"
+                              placeholder="Content"><?= $value->content ?></textarea>
+                          </div>
+
+                          <div class="togglebutton">
+                            <label>
+                              <input type="checkbox" name="community_type"
+                                <?= ($value->community_type	 == '1' ? 'checked': null)?>>
+                              <span class="toggle"></span>
+                              Private Community
+                            </label>
+                          </div>
+                          <label for="color">Select your theme color: </label>
+                          <input type="color" name="color" value="<?= $value->color; ?>"><br>
+                          <label for="color">Select your text color:</label>
+                          <input type="color" name="text_color" value="<?= $value->text_color; ?>">
+                          <br>
+
+                          <button type="submit" class="btn btn-primary">Save Community</button>
+
+                        </form>
+
+
+
+
+
+                      </div>
+                      <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <?php endforeach; ?>
+                <?php else: ?>
+
+                <div class="col-md-4">
+
+
+                  <div class="team-player">
+                    <div class="card custom-card card-body justify-content-center">
+
+                      <p class="text-center">No Created Community Yet</p>
+                    </div>
+                  </div>
+                </div>
+                <?php endif; ?>
+
               </div>
+
+
             </div>
-
-<?php endforeach; ?>
-<?php else: ?>
-
-<div class="col-md-4">
-
-
-  <div class="team-player">
-    <div class="card custom-card card-body justify-content-center">
-
-      <p class="text-center">No Created Community Yet</p>
-    </div>
-  </div>
-</div>
-<?php endif; ?>
-
-</div>
-
-
-</div>
-            </div>
-            
           </div>
+
         </div>
-
-
       </div>
 
 
-      
-
-
-
     </div>
+
+
+
+
+
+
   </div>
+</div>
 </div>
 
 <!-- Classic Modal -->

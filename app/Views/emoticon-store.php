@@ -19,7 +19,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <h1 class="title">Emoticon Sotre</h1>
+        <h1 class="title">Emoticon Store</h1>
         <h4>Every landing page needs a small description after the big bold title, that&apos;s why we added this text
           here. Add here all the information that can make you or your product create the first impression.</h4>
         <br>
@@ -76,7 +76,7 @@
                   <a href="#" data-toggle="modal"  data-target="#edit_<?= $key ?>"><i class="fa fa-cog pl-1 pt-1"
                       style="float:left;"></i></a>
                       <a href="<?= base_url(); ?>/emoticon-store-list/<?= $value->id ?>">
-                  <?= $value->title ?>
+                  <?= character_limiter($value->title, 15) ?>
                   </a>
                 </h4>
                 <div class="view overlay">

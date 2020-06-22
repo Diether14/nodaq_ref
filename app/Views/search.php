@@ -12,13 +12,12 @@
 </style>
 
 <div class="page-header header-filter" data-parallax="true"
-  style="background-image: url('public/user/assets/img/profile_city.jpg')">
+  style="background-image: url('<?= base_url(); ?>/public/user/assets/img/profile_city.jpg')">
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <h1 class="title">Welcome to weendi.</h1>
-        <h4>Every landing page needs a small description after the big bold title, that&apos;s why we added this text
-          here. Add here all the information that can make you or your product create the first impression.</h4>
+        <h1 class="title">Search Results</h1>
+        <h4>Search Results for <b>"<?= $q ?>"</b></h4>
         <br>
       </div>
     </div>
@@ -30,19 +29,7 @@
 
     <div class="section text-center">
 
-      <div class="col-12">
-        <div class="row">
-          <!-- <form class="form-inline ">
-                  <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                  
-                    <button type="submit" class="btn btn-white btn-raised btn-fab btn-round">
-                    <i class="material-icons">search</i>
-                  </button>
-                  </div>
-                </form> -->
-        </div>
-      </div>
+    
       <h2 class="title"><i class="fa fa-globe pr-3"></i>Communities</h2>
       <div class="team">
         <div class="row">
@@ -58,10 +45,10 @@
                   <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-bars pl-3"
                       style="float:left;"></i></a>
                   <a href="community-join/<?= $value->id;  ?>"
-                    style="color: <?= $value->text_color; ?>"><?= character_limiter($value->title, 18) ?> </a>
+                    style="color: <?= $value->text_color; ?>"><?= character_limiter($value->title, 15) ?> </a>
                 </h4>
                 <div class="view overlay">
-                  <img class="card-img-top rounded-0" src="public/admin/uploads/community/<?= $value->name ?>"
+                  <img class="card-img-top rounded-0" src="<?= base_url(); ?>/public/admin/uploads/community/<?= $value->name ?>"
                     alt="Card image cap">
                   <a href="#!">
                     <div class="mask rgba-white-slight"></div>
@@ -102,13 +89,13 @@
 
 
               <div class="row">
-                <?php foreach ($blog as $key => $value): ?>
-                <a href="/weendi/post-view/<?= $value['id']; ?>">
+                <php foreach ($blog as $key => $value): ?>
+                <a href="/weendi/post-view/<= $value['id']; ?>">
                   <div class="col-lg-4 mb-4">
                     <div class="card h-100 text-center">
                       <img class="card-img-top" src="http://placehold.it/750x450" alt="">
                       <div class="card-body">
-                        <h4 class="card-title"><?= $value['title'] ?></h4>
+                        <h4 class="card-title"><= $value['title'] ?></h4>
                         <h6 class="card-subtitle mb-2 text-muted">Position</h6>
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut
                           mollitia eum ipsum fugiat odio officiis odit.</p>
@@ -119,7 +106,7 @@
                     </div>
                   </div>
                 </a>
-                <?php endforeach; ?>
+                <php endforeach; ?>
               </div>
             </div>
           </div>

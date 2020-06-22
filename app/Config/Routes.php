@@ -52,7 +52,10 @@ $routes->match(['get','post'],'add_upvote', 'Category::add_upvote', ['filter' =>
 $routes->match(['get', 'post'], 'add_devote', 'Category::add_devote', ['filter' => 'auth']);
 
 $routes->get('delete-shared-post/(:num)', 'Category::delete_shared_post/$1', ['filter' => 'auth']);
-$routes->get('delete-post/(:num)', 'Category::delete_post/$1', ['filter' => 'auth']);
+// $routes->match(['get', 'post'], 'Search::search', ['filter' => 'auth']);
+
+//search
+// $routes->get('search/(:any)', 'Search::search', ['filter' => 'auth']);
 
 // $routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth']);
 $routes->get('dashboard', 'Users::dashboard', ['filter' => 'auth']);

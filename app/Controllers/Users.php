@@ -226,6 +226,7 @@ class Users extends BaseController
 
         $data = [];
         helper(['form']);
+        helper('text');
         $model = new UserModel();
 
         $profile_photo = new ProfilephotoModel();
@@ -296,6 +297,7 @@ class Users extends BaseController
 
         $data = [];
         helper(['form']);
+        helper('text');
 
         $profile_photo = new ProfilephotoModel();
         $cover_photo = new CoverphotoModel();
@@ -712,6 +714,7 @@ class Users extends BaseController
        
         $data = [];
         helper(['form']);
+        helper(['text']);
 
         $model = new UserspostModel();
           
@@ -729,7 +732,6 @@ class Users extends BaseController
         $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
         $builder->join('users', 'community.user_id = users.id');
         
-
         $query   = $builder->get();
         $data['community_list'] = $query->getResult();
 

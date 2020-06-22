@@ -62,7 +62,7 @@ class Admin extends BaseController
 
         $rules = [
             'title' => 'required|min_length[3]|max_length[20]',
-            'content' => 'required|min_length[3]|max_length[500]',
+            'content' => 'required|min_length[3]|max_length[80]',
             'upvote' => 'required|min_length[3]|max_length[12]',
             'devote' => 'required|min_length[3]|max_length[12]',   
         ];
@@ -150,10 +150,10 @@ class Admin extends BaseController
         ini_set('display_errors', 1);
         helper(['form', 'url']);
 
- 
+
         $rules = [
             'title' => 'required|min_length[3]|max_length[20]',
-            'content' => 'required|min_length[3]|max_length[500]',
+            'content' => 'required|min_length[3]|max_length[80]',
         ];
 
 
@@ -180,11 +180,17 @@ class Admin extends BaseController
                     ];
                 
                 if($model->update($id,$newData)){
-                    $msg = 'Successfully updated!';   
+                    $msg = 'Community has been updated!';   
                 }
         }
-
-        return redirect()->to( 'community-table')->with('msg', $msg);
+        if(session()->get('user_type')  == '3' ){
+            return redirect()->to( 'community-table')->with('msg', $msg);
+        }else{
+            return redirect()->to( 'community')->with('msg', $msg);
+        }
+      
+        
+   
     }
 
     public function update_community_photo(){

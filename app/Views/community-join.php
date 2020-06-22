@@ -63,13 +63,21 @@
   <div class="container">
 
     <div class="section">
+      
+   
       <?php if (session('msg')) : ?>
-      <div class="card bg-info text-white shadow">
-        <div class="card-body">
-          <?= session('msg') ?>
-
-        </div>
+      <div class="alert alert-info">
+            <div class="container">
+              <div class="alert-icon">
+                <i class="material-icons">info_outline</i>
+              </div>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true"><i class="material-icons">clear</i></span>
+              </button>
+              <b>Info alert:</b>    <?= session('msg') ?>
+            </div>
       </div>
+
       <br>
       <?php endif; ?>
       <div class="row">
@@ -88,7 +96,7 @@
       <?php else: ?>
 
       <div class="row">
-            <
+  
 
         <div class="col-md-12">
           <?php if(empty($users_community)) : ?>
@@ -197,7 +205,7 @@
                           <?= $value->content ?>
                         </p>
                         <div class="card-body">
-                          <p class="m-0 p-0 card-description"><?= $value->description ?></p>
+                          <p class="m-0 p-0 card-description"><?= character_limiter($value->description, 180) ?></p>
                         </div>
                         <div class="card-footer justify-content-center">
                           <?php if($value->post_id): ?>

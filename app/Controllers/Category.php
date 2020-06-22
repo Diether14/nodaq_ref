@@ -111,6 +111,7 @@ class Category extends BaseController
         ini_set('display_errors', 1);
         $data = [];
         helper(['form']);
+        helper('text');
 
         $profile_photo = new ProfilephotoModel();
         $data['profile_photo'] = $profile_photo->where('user_id', session()->get('id'))
@@ -375,7 +376,7 @@ class Category extends BaseController
 
         $data = [];
         helper(['form']);
-
+        helper('text');
         $model = new UserspostModel();
           
         $data['blog'] = $model->where('user_id',  session()->get('id'))
@@ -423,7 +424,7 @@ class Category extends BaseController
     
     
             helper(['form', 'url']);
-    
+            
     
             $community_photo = new CommunityphotoModel();
      
@@ -436,7 +437,7 @@ class Category extends BaseController
             ]);
     
             $rules = [
-                'title' => 'required|min_length[3]|max_length[20]',
+                'title' => 'required|min_length[3]|max_length[100]',
                 'content' => 'required|min_length[3]|max_length[500]',
                 'upvote' => 'required|min_length[3]|max_length[12]',
                 'devote' => 'required|min_length[3]|max_length[12]',   
