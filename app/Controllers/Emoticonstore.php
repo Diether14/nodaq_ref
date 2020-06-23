@@ -29,7 +29,7 @@ class Emoticonstore extends BaseController
 
 
         echo view('templates/header', $data);
-        echo view('emoticon-store', $data);
+        echo view('emoticon-store-all', $data);
         echo view('templates/footer', $data);
     }
     

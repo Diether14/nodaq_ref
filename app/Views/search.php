@@ -4,6 +4,11 @@
     max-height: 420px;
   }
 
+  .custom-card1 {
+    min-height: 300px;
+    max-height: 350px;
+  }
+
   .card-img-top{
     max-height: 200px; 
     min-height: 200px;
@@ -29,7 +34,7 @@
 
     <div class="section text-center">
 
-    
+      <?php if(!empty($community_list)): ?>
       <h2 class="title"><i class="fa fa-globe pr-3"></i>Communities</h2>
       <div class="team">
         <div class="row">
@@ -77,6 +82,81 @@
 
         </div>
       </div>
+      <?php endif; ?>
+      <?php if(!empty($posts)): ?>
+      <h2 class="title mb-0">Post</h2>
+            <div class="row">
+             
+              <?php foreach($posts as $key => $value): ?>
+              <div class="col-md-4">
+
+                <div class="team-player">
+                  <div class="card custom-card1 p-3">
+
+                    <div class="profile-photo-small d-flex">
+
+                      <?php if(!empty($value->name)): ?>
+
+                      <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $value->name ?>" alt="Circle Image"
+                        class="rounded-circle img-fluid z-depth-2">
+
+                      <?php else: ?>
+                      <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image"
+                        class="img-raised rounded-circle img-fluid  z-depth-2" alt="avatar">
+
+                      <?php endif; ?>
+
+                      <div class="m-0 p-0">
+                        <h4 class="card-title pl-2 mt-0 mb-0"><?= $value->nickname; ?>
+                        </h4>
+                        <p class="small pl-2 m-0">1 hour ago</p>
+                      </div>
+                    </div>
+
+                    <!-- <p class="card-text"><?= $value->description ?></p> -->
+                    
+                    <div class="card-body  m-0 p-0">
+                          <p class="m-0 p-0 card-description"><?= character_limiter($value->description, 180) ?></p>
+                    </div>
+                    <div class="card-footer justify-content-center">
+                          <?php if($value->post_id): ?>
+                          <a href="<?= base_url(); ?>/post-share/<?= $value->post_id ?>/<?= $community_id ?>"
+                            class="btn btn-link m-0 p-2"><i class="fa fa-eye m-0 p-0"></i> View Post </a>
+                          <?php else: ?>
+                          <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-1"><i
+                              class="fa fa-eye m-0 p-0"></i> View Post</a>
+                          <?php endif; ?>
+                          <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-1"><i
+                              class="fa fa-comments m-0 p-0"></i>
+                            <?php if(1000 >= 1000){ 
+                              echo round((1200/1000),1). 'K'; 
+                            }elseif(1000000 >= 1000000){
+                              echo round((1000000/1000000),1). 'M';
+                            }else{
+                              echo '50';
+                            } ?> Comments</a>
+                          <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-1"><i
+                              class="fa fa-share m-0 p-0"></i>
+                            <?php 
+                          if(1000 >= 1000){ 
+                            echo round((1200/1000),1). 'K'; 
+                          }elseif(1000000 >= 1000000){
+                            echo round((1000000/1000000),1). 'M';
+                          }else{
+                            echo '50';
+                          } ?>
+
+
+                            Shares</a>
+
+                        </div>
+                  </div>
+                </div>
+              </div>
+              <?php endforeach; ?>
+
+            </div>
+        <?php endif; ?>
     </div>
 
     <!-- <div class="section text-center">

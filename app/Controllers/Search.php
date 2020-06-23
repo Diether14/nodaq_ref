@@ -51,6 +51,18 @@ class Search extends BaseController
         $query   = $builder->get();
         $data['community_list'] = $query->getResult();
 
+        $db1      = \Config\Database::connect();
+        $builder1 = $db1->table('users_post');
+        $builder1->like('users_post.description', $q);
+        $builder1->select('users_post.id,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.updated_at, users.nickname, profile_photo.name' );
+        $builder1->join('users', 'users.id = users_post.user_id');
+        $builder1->join('profile_photo', 'users.id = profile_photo.user_id');
+        
+        $query1  = $builder1->get();
+        $data['posts'] = $query1->getResult();  
+
+
+
         echo view('templates/header');
         echo view('search', $data);
         echo view('templates/footer');
