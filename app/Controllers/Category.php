@@ -44,13 +44,13 @@ class Category extends BaseController
     }
 
 
-    public function cafeStyle(){
+    public function smile(){
         $data = [];
         helper(['form']);
 
-        echo view('templates/header', $data);
-        echo view('cafe-style', $data);
-        echo view('templates/footer', $data);
+        // echo view('templates/header', $data);
+        echo view('smile', $data);
+        // echo view('templates/footer', $data);
     }
 
     public function cafeStyleView(){

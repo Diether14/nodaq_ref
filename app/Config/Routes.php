@@ -110,6 +110,7 @@ $routes->get('/emoticon-store', 'Emoticonstore::index', ['filter' => 'auth']);
 $routes->get('/my-emoticon-store', 'Emoticonstore::my_emoticon_store', ['filter' => 'auth']);
 $routes->get('/emoticon-store-list/(:num)', 'Emoticonstore::my_emoticon_store_list/$1', ['filter' => 'auth']);
 $routes->get('/delete-single-sticker/(:num)/(:num)', 'Emoticonstore::delete_single_sticker/$1/$2', ['filter' => 'auth']);
+$routes->get('/smile', 'Category::smile', ['filter' => 'auth']);
 
 
 //admin functions

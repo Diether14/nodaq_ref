@@ -746,11 +746,6 @@ class Users extends BaseController
 
         $data = [];
         helper(['form', 'url']);
-        // $db      = \Config\Database::connect();
-        // $builder = $db->table('profile_photo');
-        // $query   = $builder->get(); 
-
-        // test($query);
 
         $model = new UserspostModel();
         $user = new UserModel();
@@ -760,7 +755,7 @@ class Users extends BaseController
         $data['blog'] = $model->where('id', $id)->first();
         $data['shared'] = $share->where('post_id', $id)->where('community_id', $data['blog']['community_id'])->first();
 
-        $data['users_community'] = $model->where(['user_id' => session()->get('id'), $data['blog']['community_id']])->first();
+        $data['users_community'] = $model->where('user_id', session()->get('id'))->where('community_id', $data['blog']['community_id'])->first();
 
         $profile_photo = new ProfilephotoModel();
         $data['profile_photo1'] = $profile_photo->where('user_id',$data['blog']['user_id'])
@@ -771,15 +766,7 @@ class Users extends BaseController
 
         $data['user'] = $user->where('id',$data['blog']['user_id'])
             ->first();
-
-
-
-
-        // $user_model = new UserModel();
-        
-
-        // $post_model = new PostcommentsModel();
-        
+            
         $db = \Config\Database::connect();
         $builder = $db->table('post_comments');
         $builder->where('post_comments.post_id', $id);

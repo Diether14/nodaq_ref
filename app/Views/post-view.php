@@ -73,7 +73,7 @@
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true"><i class="material-icons">clear</i></span>
           </button>
-          <b>Info alert:</b> You must join to the community first, inorder to be able to add post and add comments. 
+           You must join to the community first, inorder to be able to add post and add comments. 
         </div>
       </div>
       <?php endif; ?>

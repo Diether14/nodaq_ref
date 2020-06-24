@@ -351,6 +351,8 @@
 
         <div class="card my-auto mx-auto">
           <h4 class="h4 p-3">Post Content</h4>
+                          
+
           <div id="editor">
             <h1>Hello world!</h1>
             <p>I'm an instance of <a href="https://ckeditor.com">CKEditor</a>.</p>

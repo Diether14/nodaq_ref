@@ -24,7 +24,7 @@ $(document).ready(function(){
         var community_id = $("input[name=community_id]").val();
         var content = CKEDITOR.instances.editor.getData();
         var desc = $("textarea[name=description]").val();
-        
+        // console.log(content);return;
         var data = {
             'title': title,
             'content': content,
