@@ -810,7 +810,7 @@ class Users extends BaseController
 
         $data['vote_totals'] = $voteModel->where('post_id', $id)->where('community_id', $data['blog']['community_id'])->where('status', '1')->countAllResults();
 
-        echo view('templates/header', $data);
+        echo view('templates/header-post', $data);
         echo view('post-view', $data);
         echo view('templates/footer', $data);
     }
