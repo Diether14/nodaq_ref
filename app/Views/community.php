@@ -1,3 +1,8 @@
+<link rel="stylesheet" href="<?= base_url(); ?>/public/assets/simple-watch/css/simpleSwatchPicker.css">
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="<?= base_url(); ?>/public/assets/simple-watch/js/jquery.simpleSwatchPicker.js"></script>
+
 <style>
   .modal {
     display: none;
@@ -179,10 +184,11 @@
                               Private Community
                             </label>
                           </div>
-                          <label for="color">Select your theme color: </label>
-                          <input type="color" name="color" value="<?= $value->color; ?>"><br>
-                          <label for="color">Select your text color:</label>
+                          <label for="color">Select your theme color:</label><br>
+                          <input class="myField" type="hidden" name="color" value="<?= $value->color; ?>" >
+                          <label for="color">Select your text color:</label><br>
                           <input type="color" name="text_color" value="<?= $value->text_color; ?>">
+
                           <br>
 
                           <button type="submit" class="btn btn-primary">Save Community</button>
@@ -297,9 +303,9 @@
                               Private Community
                             </label>
                           </div>
-                          <label for="color">Select your theme color: </label>
-                          <input type="color" name="color" value="<?= $value->color; ?>"><br>
-                          <label for="color">Select your text color:</label>
+                          <label for="color">Select your theme color:</label><br>
+                          <input type="hidden" name="color" value="<?= $value->color; ?>" class="myField">
+                          <label for="color">Select your text color:</label><br>
                           <input type="color" name="text_color" value="<?= $value->text_color; ?>">
                           <br>
 
@@ -390,9 +396,9 @@
             </label>
           </div>
 
-          <label for="color">Select your theme color:</label>
-          <input type="color" name="color" value="#FFFFFF">
-          <label for="color">Select your text color:</label>
+          <label for="color">Select your theme color:</label><br>
+          <input type="hidden" name="color" value="#FFFFFF" class="myField">
+          <label for="color">Select your text color:</label><br>
           <input type="color" name="text_color" value="#555555">
 
           <div class="form-group row">
@@ -407,7 +413,7 @@
             </div>
 
           </div>
-
+        
           <button type="submit" class="btn btn-primary">Save Community</button>
 
         </form>
@@ -424,6 +430,14 @@
 
 
 </div>
+<script type="text/javascript">
+
+$(".myField").simpleSwatchPicker();
+// $("#myField1").simpleSwatchPicker();
+// $("#myField2").simpleSwatchPicker();
+
+
+</script>
 <script>
   $('document').ready(function () {
     $("#btnSubmit").attr("disabled", true);
