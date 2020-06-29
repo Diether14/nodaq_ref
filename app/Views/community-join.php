@@ -170,7 +170,31 @@
 
                     <div class="team-player ">
                       <div class="custom-card card p-3">
+                        <?php if($value->user_mode == '1'): ?>
+                        <div class="profile-photo-small d-flex">
+                          
+                          <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image"
+                            class="img-raised rounded-circle img-fluid  z-depth-2" alt="avatar">
 
+                          <div class=" m-0 p-0 ">
+                          <?php if(session()->get('id') == $value->user_id): ?>
+                            <a href="<?= base_url(); ?>/profile">
+                            <h4 class="card-title pl-2 mt-0 mb-0">Anonymous
+                          </a>
+                          <?php else: ?>
+                          <a href="<?= base_url(); ?>/view-profile/<?= $value->user_id;?>">
+                            <h4 class="card-title pl-2 mt-0 mb-0">Anonymous
+                          </a>
+                          <?php endif; ?>
+                            </h4>
+                            <p class="small pl-2 m-0"><?php
+                            echo $value->updated_at;
+                            // echo date('h:i A', $value->updated_at);     
+                           ?> </p>
+                          </div>
+                        </div>
+
+                        <?php else: ?>
                         <div class="profile-photo-small d-flex">
 
                           <?php if(!empty($value->name)): ?>
@@ -201,6 +225,8 @@
                            ?> </p>
                           </div>
                         </div>
+                        <?php endif; ?>
+                       
                         <p class="text">
                           <?= $value->content ?>
                         </p>

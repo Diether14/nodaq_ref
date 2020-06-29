@@ -203,7 +203,20 @@
 
                 <div class="team-player">
                   <div class="card custom-card1 p-3">
+                    <?php if($value->user_mode == '1'): ?>
+                      <div class="profile-photo-small d-flex">
 
+                      <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image"
+                        class="img-raised rounded-circle img-fluid  z-depth-2" alt="avatar">
+
+                      <div class="m-0 p-0">
+                        <h4 class="card-title pl-2 mt-0 mb-0">Anonymous
+                        </h4>
+                        <p class="small pl-2 m-0">1 hour ago</p>
+                      </div>
+                    </div>
+                    <?php else: ?>
+                    
                     <div class="profile-photo-small d-flex">
 
                       <?php if(!empty($value->name)): ?>
@@ -223,6 +236,8 @@
                         <p class="small pl-2 m-0">1 hour ago</p>
                       </div>
                     </div>
+
+                    <?php endif; ?>
 
                     <!-- <p class="card-text"><?= $value->description ?></p> -->
                     

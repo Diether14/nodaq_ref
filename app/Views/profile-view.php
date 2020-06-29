@@ -79,7 +79,6 @@
                 <img class="img-raised rounded-circle z-depth-2" alt="100x100"
                   src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $profile_photo['name'] ?>" data-holder-rendered="true">
 
-
                 <?php else: ?>
                 <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="100x100"
                   class="img-raised rounded-circle z-depth-2" alt="avatar" data-holder-rendered="true">

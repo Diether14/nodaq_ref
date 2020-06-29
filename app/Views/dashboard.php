@@ -79,7 +79,11 @@
                       Anonymous Mode
                     </label><br> -->
                     <div style="float-right">
+                      <?php if($value->user_mode == '1'):?>
+                        <p class="text">Created By: <b>Anonymous</b></p>
+                        <?php else: ?>
                       <p class="text">Created By: <b><?= $value->nickname ?></b></p>
+                      <?php endif; ?>
                     </div>
                   </div>
                 </div>
