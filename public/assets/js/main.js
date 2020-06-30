@@ -156,6 +156,15 @@ $(document).ready(function(){
 
           reader.readAsDataURL(input.files[0]);
         }
+        if(input.files && input.files[1]){
+            var reader1 = new FileReader();
+
+            reader1.onload = function (e) {
+              $('.avatar1').attr('src', e.target.result);
+            }
+  
+            reader1.readAsDataURL(input.files[1]);
+        }
       }
 
 

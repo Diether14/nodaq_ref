@@ -157,6 +157,21 @@ class Category extends BaseController
 
         $data['posts'][] = $query2->getResult();  
         
+        $users_community_count = new UserscommunityModel();
+
+        $data['users_community'] = $users_community_count->where('community_id', $id)->countAllResults();
+        
+        $db3      = \Config\Database::connect();
+        $builder3 = $db3->table('users_community');
+        $builder3->where('users_community.community_id', $id);
+        $builder3->select('users_community.id, users.nickname, users_community.user_id, profile_photo.name');
+        $builder3->join('users', 'users_community.user_id = users.id');
+        $builder3->join('profile_photo', 'profile_photo.user_id = users.id');
+        $query3   = $builder3->get();
+        $data['users'] = $query3->getResult();
+        
+        // echo '<pre>';
+        // var_dump($data['users']);exit;
 
         echo view('templates/header', $data);
         echo view('community-join', $data);

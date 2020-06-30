@@ -41,12 +41,12 @@
         <h4><?= $community_list[0]->content; ?></h4>
         <br>
         <?php if(empty($users_community)): ?>
-        <form class="contact-form" action="<?= base_url(); ?>/join_community" method="post">
-          <input type="hidden" name="community_id" value="<?= $community_list[0]->id; ?>">
-          <button type="submit" class="btn btn-primary btn-raised btn-lg">
+        <!-- <form class="contact-form" action="<?= base_url(); ?>/join_community" method="post"> -->
+          <!-- <input type="hidden" name="community_id" value="<?= $community_list[0]->id; ?>"> -->
+          <button type="button" class="btn btn-primary btn-raised btn-lg" data-toggle="modal" data-target="#join">
             Join Community
           </button>
-        </form>
+        <!-- </form> -->
         <?php else: ?>
         <button class="btn btn-primary btn-raised btn-lg">
           Joined
@@ -413,3 +413,80 @@
   </div>
 </div>
 <!--  End Modal -->
+
+
+
+
+<!-- Classic Modal -->
+<div class="modal fade" id="join" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">What is Lorem Ipsum?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <i class="material-icons">clear</i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <h4></h4>
+        <div class="text-center">
+        
+          <img src="" class="avatar img-circle img-thumbnail">
+          <img src="" class="avatar1 img-circle img-thumbnail">
+
+          <h6>Upload a different photo...</h6>
+          <form action="<?php echo base_url('/change_cover');?>" name="ajax_form" id="ajax_form" method="post"
+            accept-charset="utf-8" enctype="multipart/form-data">
+
+            <input type="file" name="file" class="text-center center-block file-upload" accept=".png, .jpg, .jpeg" multiple>
+            <div class="form-group"><br>
+              <hr>
+              <button type="submit" id="send_form" class="btn btn-primary">Join Community</button>
+            </div>
+          </form>
+
+        </div>
+        </hr><br>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--  End Modal -->
+
+
+<script>
+  // $(document).ready(function () {
+
+
+  //   var readURL = function (input) {
+    
+  //     if (input.files[0]) {
+
+  //       var reader = new FileReader();
+
+  //       reader.onload = function (e) {
+  //         $('.avatar').attr('src', e.target.result);
+  //       }
+
+  //       reader.readAsDataURL(input.files[0]);
+  //     }
+  //     if (input.files[1]) {
+  //       var reader = new FileReader();
+
+  //       reader.onload = function (e) {
+  //         $('.avatar1').attr('src', e.target.result);
+  //       }
+     
+  //       reader.readAsDataURL(input.files[1]);
+  //     }
+  //   }
+
+
+  //   $(".file-upload").on('change', function () {
+  //     readURL(this);
+  //   });
+
+  // });
+</script>
