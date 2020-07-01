@@ -147,6 +147,10 @@ $(document).ready(function(){
     
 
     var readURL = function (input) {
+        if(input.files.length > 2){
+            alert('Please Upload Atleast 2 images!');
+            $('.file-upload').val('');
+        }else{
         if (input.files && input.files[0]) {
           var reader = new FileReader();
 
@@ -155,8 +159,7 @@ $(document).ready(function(){
           }
 
           reader.readAsDataURL(input.files[0]);
-        }
-        if(input.files && input.files[1]){
+        }if(input.files && input.files[1]){
             var reader1 = new FileReader();
 
             reader1.onload = function (e) {
@@ -164,6 +167,7 @@ $(document).ready(function(){
             }
   
             reader1.readAsDataURL(input.files[1]);
+        }
         }
       }
 

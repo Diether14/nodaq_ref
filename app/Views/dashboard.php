@@ -57,9 +57,14 @@
 
                   <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-bars pl-3"
                       style="float:left;"></i></a>
-                  <a href="community-join/<?= $value->id;  ?>"
+                  <?php if($value->community_type == '1'): ?>
+                    <a href="community-private/<?= $value->id;  ?>"
                     style="color: <?= $value->text_color; ?>"><?= character_limiter($value->title, 18) ?> </a>
-                </h4>
+                    <?php else: ?>
+                    <a href="community-join/<?= $value->id;  ?>"
+                    style="color: <?= $value->text_color; ?>"><?= character_limiter($value->title, 18) ?> </a>
+                  <?php endif; ?>
+                  </h4>
                 <div class="view overlay">
                   <img class="card-img-top rounded-0" src="public/admin/uploads/community/<?= $value->name ?>"
                     alt="Card image cap">

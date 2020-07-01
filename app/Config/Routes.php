@@ -80,13 +80,13 @@ $routes->get('meeting-style', 'Category::meetingStyle', ['filter' => 'auth']);
 $routes->get('settings-gallery', 'Category::settingsGallery', ['filter' => 'auth']);
 $routes->get('gallery-settings', 'Category::settingsGallery1', ['filter' => 'auth']);
 $routes->get('community-join/(:num)', 'Category::community_join/$1', ['filter' => 'auth']);
+$routes->get('community-private/(:num)', 'Category::community_private/$1', ['filter' => 'auth']);
 
 
 //community
 $routes->get('community', 'Category::community', ['filter' => 'auth']);
 $routes->match(['get','post'],'user_save_community', 'Category::save_community', ['filter' => 'auth']);
-
-
+$routes->match(['get','post'],'user_join', 'Category::user_join');
 //administrator
 $routes->get('/admin', 'Admin::index', ['filter' => 'auth']);
 $routes->get('/create-community', 'Admin::create_community', ['filter' => 'auth']);

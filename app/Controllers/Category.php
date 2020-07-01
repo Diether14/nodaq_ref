@@ -14,6 +14,7 @@ use App\Models\UsersvoteModel;
 use App\Models\CommunityassistantmanagersModel;
 use App\Models\PostcommentsModel;
 use App\Models\SharedcommentsModel;
+use App\Models\JoincommunityfilesModel;
 
 class Category extends BaseController
 {
@@ -176,6 +177,110 @@ class Category extends BaseController
         echo view('templates/header', $data);
         echo view('community-join', $data);
         echo view('templates/footer', $data); 
+    }
+
+    public function community_private($id = null){
+        ini_set('display_errors', 1);
+        $data = [];
+        helper(['form']);
+        helper('text');
+
+        $profile_photo = new ProfilephotoModel();
+        $data['profile_photo'] = $profile_photo->where('user_id', session()->get('id'))
+            ->first();
+
+        $db      = \Config\Database::connect();
+        $builder = $db->table('community');
+        $builder->where('community.id', $id);
+        $builder->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.updated_at, community.color, community_photo.name');
+        $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
+        
+        $query   = $builder->get();
+        $data['community_list'] = $query->getResult();
+
+
+        $model = new UserscommunityModel;
+
+        $data['users_community'] = $model->where(['user_id' => session()->get('id'), 'community_id' => $id])->first();
+        $data['community_id'] = $id;
+
+        $data['posts'] = array();
+        $db1      = \Config\Database::connect();
+        $builder1 = $db1->table('users_post');
+        $builder1->where('users_post.community_id', $id);
+        $builder1->select('users_post.id,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.updated_at, users.nickname, profile_photo.name, user_settings.user_mode'  );
+        $builder1->join('users', 'users.id = users_post.user_id');
+        $builder1->join('profile_photo', 'users.id = profile_photo.user_id');
+        $builder1->join('user_settings', 'users.id = user_settings.user_id');
+        $query1  = $builder1->get();
+        $data['posts'][] = $query1->getResult();  
+
+        $db2      = \Config\Database::connect();
+        $builder2 = $db2->table('users_shared_posts');
+        $builder2->select('users_shared_posts.post_id, users_post.id, users_shared_posts.content ,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.updated_at, users.nickname,profile_photo.name, user_settings.user_mode');
+        $builder2->where('users_shared_posts.community_id', $id );
+        
+        $builder2->join('users', 'users.id = users_shared_posts.user_id');
+        $builder2->join('users_post', 'users_post.id = users_shared_posts.post_id');
+        $builder2->join('profile_photo', 'users.id = profile_photo.user_id');
+        $builder2->join('user_settings', 'users.id = user_settings.user_id');
+        
+        $query2  = $builder2->get();
+
+        $data['posts'][] = $query2->getResult();  
+        
+        $users_community_count = new UserscommunityModel();
+
+        $data['users_community'] = $users_community_count->where('community_id', $id)->countAllResults();
+        
+        $db3      = \Config\Database::connect();
+        $builder3 = $db3->table('users_community');
+        $builder3->where('users_community.community_id', $id);
+        $builder3->select('users_community.id, users.nickname, users_community.user_id, profile_photo.name');
+        $builder3->join('users', 'users_community.user_id = users.id');
+        $builder3->join('profile_photo', 'profile_photo.user_id = users.id');
+        $query3   = $builder3->get();
+        $data['users'] = $query3->getResult();
+        
+        $join_community = new JoincommunityfilesModel();
+
+        $data['join_community'] = $join_community->where(['user_id' => session()->get('id'), 'community_id' => $id])->first();
+
+
+        echo view('templates/header', $data);
+        echo view('community-private', $data);
+        echo view('templates/footer', $data); 
+    }
+
+    public function user_join(){
+        ini_set('display_errors', 1);
+        
+        helper(['form', 'url']);
+   
+        $db      = \Config\Database::connect();
+        $builder = $db->table('join_community_files');
+  
+        $msg = 'Please select a valid files';
+ 
+        if ($this->request->getFileMultiple('file')) {
+      
+             foreach($this->request->getFileMultiple('file') as $file)
+             {   
+  
+                $file->move('public/user/uploads/community-join');
+  
+              $data = [
+                'user_id' => session()->get('id'),
+                'community_id' =>  $this->request->getPost('community_id'),
+                'name' =>  $file->getClientName(),
+                'type'  => $file->getClientMimeType()
+              ];
+  
+              $save = $builder->insert($data);
+             }
+             $msg = 'Your request has been sent!';
+             return redirect()->to( base_url('/community-private/'. $this->request->getPost('community_id')) )->with('msg', $msg);
+        }
     }
 
     public function join_community(){

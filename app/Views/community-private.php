@@ -41,12 +41,15 @@
         <h4><?= $community_list[0]->content; ?></h4>
         <br>
         <?php if(empty($users_community)): ?>
-        <!-- <form class="contact-form" action="<?= base_url(); ?>/join_community" method="post"> -->
-          <!-- <input type="hidden" name="community_id" value="<?= $community_list[0]->id; ?>"> -->
-          <button type="button" class="btn btn-primary btn-raised btn-lg" data-toggle="modal" data-target="#join">
-            Join Community
-          </button>
-        <!-- </form> -->
+            <?php if(empty($join_community)): ?>
+                    <button type="button" class="btn btn-primary btn-raised btn-lg" data-toggle="modal" data-target="#join">
+                    Join Community
+                    </button>
+                <?php else: ?>
+                    <button type="button" class="btn btn-primary btn-raised btn-lg" data-toggle="modal" data-target="#join">
+                    Requested to join
+                    </button>
+            <?php endif; ?>
         <?php else: ?>
         <button class="btn btn-primary btn-raised btn-lg">
           Joined
@@ -437,9 +440,10 @@
                             
           <h6>Upload atleast 2 images...</h6>
           <form action="<?php echo base_url('/user_join');?>" name="ajax_form" id="ajax_form" method="post"
-            accept-charset="utf-8" enctype="multipart/form-data">
+          accept-charset="utf-8" enctype="multipart/form-data">
 
-            <input type="file" name="file"  class="text-center center-block file-upload" accept=".png, .jpg, .jpeg" multiple required>
+            <input type="file" name="file[]"  class="text-center center-block file-upload" accept=".png, .jpg, .jpeg" multiple required>
+            <input type="hidden" name="community_id" value="<?= $community_id ?>">
             <div class="form-group"><br>
               <hr>
               <button type="submit" id="send_form" class="btn btn-primary">Join Community</button>
