@@ -42,11 +42,12 @@
   /* modal show */
   .modal-backdrop {
     z-index: 1040 !important;
-    display: none;    
+    display: none;
   }
+
   .modal-dialog {
-      margin: 80px auto;
-      z-index: 1100 !important;
+    margin: 80px auto;
+    z-index: 1100 !important;
   }
 
   .custom-card1 {
@@ -58,8 +59,6 @@
   .card .card-footer {
     padding: 0 !important;
   }
-
-  
 </style>
 <?php if(!empty($cover_photo['name'])): ?>
 
@@ -114,10 +113,10 @@
                     <?php if($users_settings['user_mode'] == '1'): ?>
                     (Anonymous Mode)
                     <?php else: ?>
-                     
+
                     <?php endif; ?>
                   </span>
-               
+
 
                   <?php if(session()->get('success')): ?>
                   <div class="alert alert-success" role="alert">
@@ -135,50 +134,51 @@
             </div>
             <br>
             <hr>
-            <h2 class="title">Community Joined In</h2>
+            <h2 class="title text-center"><span class="fa fa-globe"> </span> Community Joined In</h2>
             <div class="row">
               <?php if(!empty($community_list)): ?>
-                <?php foreach ($community_list as $key => $value): ?>
+              <?php foreach ($community_list as $key => $value): ?>
 
-                <div class="col-md-4">
-                  <div class="team-player">
+              <div class="col-md-4">
+                <div class="team-player">
 
-                    <div class="card h-100 custom-card " >
+                  <div class="card h-100 custom-card ">
 
-                      <h4 class="card-title p-3 my-0" style="background-color: <?= $value->color; ?>">
+                    <h4 class="card-title p-3 my-0" style="background-color: <?= $value->color; ?>">
 
-                        <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-bars pl-3"
-                            style="float:left;"></i></a>
-                        <a href="community-join/<?= $value->id;  ?>"
-                          style="color: <?= $value->text_color; ?>"  ><div class="text-center"><?= $value->title ?> </div></a>
-                      </h4>
-                      <div class="view overlay">
-                        <img class="card-img-top rounded-0" src="public/admin/uploads/community/<?= $value->name ?>"
-                          alt="Card image cap">
-                        <a href="#!">
-                          <div class="mask rgba-white-slight"></div>
-                        </a>
-                      </div>
-                      <div class="card-body">
-                        <p class="card-description"><?= $value->content ?>
-                        </p>
-                      </div>
-                      <div class="card-footer justify-content-center">
-                        <div class="togglebutton">
-                          <label>
-                            <input type="checkbox" checked="">
-                            <span class="toggle"></span>
-                            Anonymous Mode
-                          </label><br>
-                          <div style="float-right">
-                            <p class="text">Created By: <b><?= $value->nickname ?></b></p>
-                          </div>
+                      <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-bars pl-3"
+                          style="float:left;"></i></a>
+                      <a href="community-join/<?= $value->id;  ?>" style="color: <?= $value->text_color; ?>">
+                        <div class="text-center"><?= $value->title ?> </div>
+                      </a>
+                    </h4>
+                    <div class="view overlay">
+                      <img class="card-img-top rounded-0" src="public/admin/uploads/community/<?= $value->name ?>"
+                        alt="Card image cap">
+                      <a href="#!">
+                        <div class="mask rgba-white-slight"></div>
+                      </a>
+                    </div>
+                    <div class="card-body">
+                      <p class="card-description"><?= $value->content ?>
+                      </p>
+                    </div>
+                    <div class="card-footer justify-content-center">
+                      <div class="togglebutton">
+                        <label>
+                          <input type="checkbox" checked="">
+                          <span class="toggle"></span>
+                          Anonymous Mode
+                        </label><br>
+                        <div style="float-right">
+                          <p class="text">Created By: <b><?= $value->nickname ?></b></p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <?php endforeach; ?>
+              </div>
+              <?php endforeach; ?>
               <?php else: ?>
               <div class="col-md-4">
 
@@ -193,304 +193,395 @@
               <?php endif; ?>
 
             </div>
-        
 
-            <h2 class="title mb-0">Recent Post</h2>
-            <div class="row">
-              <?php if(!empty($posts)): ?>
-              <?php foreach($posts as $key => $value): ?>
-              <div class="col-md-4">
 
-                <div class="team-player">
-                  <div class="card custom-card1 p-3">
-                    <?php if($value->user_mode == '1'): ?>
-                      <div class="profile-photo-small d-flex">
+            <h2 class="title mb-0 text-center"><span class="fa fa-newspaper-o"></span> Posts</h2>
+            <div class="m-4">
+              <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+                <!--
+                                color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
+                            -->
+                <li class="nav-item">
+                  <a class="nav-link" href="#dashboard-1" role="tab" data-toggle="tab">
+                    <i class="material-icons">dashboard</i>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="#schedule-1" role="tab" data-toggle="tab">
+                    <i class="material-icons">schedule</i>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#tasks-1" role="tab" data-toggle="tab">
+                    <i class="material-icons">list</i>
+                  </a>
+                </li>
+              </ul>
 
-                      <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image"
-                        class="img-raised rounded-circle img-fluid  z-depth-2" alt="avatar">
+              <div class="tab-content tab-space">
+                <div class="tab-pane active" id="dashboard-1">
+                  <!-- tabs -->
 
-                      <div class="m-0 p-0">
-                        <h4 class="card-title pl-2 mt-0 mb-0">Anonymous
-                        </h4>
-                        <p class="small pl-2 m-0">1 hour ago</p>
+                  <div class="card card-nav-tabs card-plain">
+                    <div class="card-header card-header-success">
+                      <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                      <div class="nav-tabs-navigation">
+                        <div class="nav-tabs-wrapper">
+                          <ul class="nav nav-tabs" data-tabs="tabs">
+                            <li class="nav-item">
+                              <a class="nav-link active" href="#home" data-toggle="tab">All Post</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="#updates" data-toggle="tab">Posts</a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link" href="#history" data-toggle="tab">Shared Posts</a>
+                            </li>
+                          </ul>
+                        </div>
                       </div>
                     </div>
-                    <?php else: ?>
-                    
-                    <div class="profile-photo-small d-flex">
+                    <div class="card-body ">
+                      <div class="tab-content text-center">
+                        <div class="tab-pane active" id="home">
 
-                      <?php if(!empty($value->name)): ?>
 
-                      <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $value->name ?>" alt="Circle Image"
-                        class="rounded-circle img-fluid z-depth-2">
 
-                      <?php else: ?>
-                      <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image"
-                        class="img-raised rounded-circle img-fluid  z-depth-2" alt="avatar">
+                        </div>
+                        <div class="tab-pane" id="updates">
+                          <!-- content -->
+                          <div class="row m-3">
+                            <?php if(!empty($posts)): ?>
+                            <?php foreach($posts as $key => $value): ?>
+                            <div class="col-md-4">
 
-                      <?php endif; ?>
+                              <div class="team-player">
+                                <div class="card custom-card1 p-3">
+                                  <?php if($value->user_mode == '1'): ?>
+                                  <div class="profile-photo-small d-flex">
 
-                      <div class="m-0 p-0">
-                        <h4 class="card-title pl-2 mt-0 mb-0"><?= $value->nickname; ?>
-                        </h4>
-                        <p class="small pl-2 m-0">1 hour ago</p>
-                      </div>
-                    </div>
+                                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image"
+                                      class="img-raised rounded-circle img-fluid  z-depth-2" alt="avatar">
 
-                    <?php endif; ?>
+                                    <div class="m-0 p-0">
+                                      <h4 class="card-title pl-2 mt-0 mb-0">Anonymous
+                                      </h4>
+                                      <p class="small pl-2 m-0">1 hour ago</p>
+                                    </div>
+                                  </div>
+                                  <?php else: ?>
 
-                    <!-- <p class="card-text"><?= $value->description ?></p> -->
-                    
-                    <div class="card-body  m-0 p-0">
-                          <p class="m-0 p-0 card-description"><?= character_limiter($value->description, 180) ?></p>
-                    </div>
-                    <div class="card-footer justify-content-center m-0 p-0">
-                      <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-2"><i
-                          class="fa fa-eye m-0 p-0"></i> View Post </a>
-                      <a href="#" data-toggle="modal" data-target="#edit-post<?= $key?>" class="btn btn-link m-0 p-2"><i
-                          class="fa fa-recycle m-0 p-0"></i> Edit Post</a>
-                      <a href="#" data-toggle="modal" data-target="#delete-post<?= $key?>"
-                        class="btn btn-link m-0 p-2"><i class="fa fa-trash m-0 p-0"></i> Delete</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                                  <div class="profile-photo-small d-flex">
 
-              <!-- Classic Modal -->
-              <div class="modal fade" id="edit-post<?= $key ?>" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">Edit Post</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <i class="material-icons">clear</i>
-                      </button>
-                    </div>
-                    <div class="modal-body">
+                                    <?php if(!empty($value->name)): ?>
 
-                      <div class="card container">
-                        <div class="form-group ">
-                          <label>Title</label>
-                          <div class="input-group">
-                            <input type="text" id="title" name="title" value="<?= $value->title ?>" class="form-control"
-                              placeholder="Title..." value="" required>
+                                    <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $value->name ?>"
+                                      alt="Circle Image" class="rounded-circle img-fluid z-depth-2">
+
+                                    <?php else: ?>
+                                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image"
+                                      class="img-raised rounded-circle img-fluid  z-depth-2" alt="avatar">
+
+                                    <?php endif; ?>
+
+                                    <div class="m-0 p-0">
+                                      <h4 class="card-title pl-2 mt-0 mb-0"><?= $value->nickname; ?>
+                                      </h4>
+                                      <p class="small pl-2 m-0">1 hour ago</p>
+                                    </div>
+                                  </div>
+
+                                  <?php endif; ?>
+
+                                  <!-- <p class="card-text"><?= $value->description ?></p> -->
+
+                                  <div class="card-body  m-0 p-0">
+                                    <p class="m-0 p-0 card-description">
+                                      <?= character_limiter($value->description, 180) ?></p>
+                                  </div>
+                                  <div class="card-footer justify-content-center m-0 p-0">
+                                    <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>"
+                                      class="btn btn-link m-0 p-2"><i class="fa fa-eye m-0 p-0"></i> View Post </a>
+                                    <a href="#" data-toggle="modal" data-target="#edit-post<?= $key?>"
+                                      class="btn btn-link m-0 p-2"><i class="fa fa-recycle m-0 p-0"></i> Edit Post</a>
+                                    <a href="#" data-toggle="modal" data-target="#delete-post<?= $key?>"
+                                      class="btn btn-link m-0 p-2"><i class="fa fa-trash m-0 p-0"></i> Delete</a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <!-- Classic Modal -->
+                            <div class="modal fade" id="edit-post<?= $key ?>" tabindex="-1" role="dialog">
+                              <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title">Edit Post</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <i class="material-icons">clear</i>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+
+                                    <div class="card container">
+                                      <div class="form-group ">
+                                        <label>Title</label>
+                                        <div class="input-group">
+                                          <input type="text" id="title" name="title" value="<?= $value->title ?>"
+                                            class="form-control" placeholder="Title..." value="" required>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="card container">
+                                      <div class="form-group">
+                                        <label>Tags</label>
+                                        <textarea name="description" class="form-control" placeholder="Description..."
+                                          cols="30" rows="5"><?= $value->description ?></textarea>
+                                      </div>
+                                    </div>
+
+                                    <div class="card my-auto mx-auto">
+                                      <h4 class="h4 p-3">Post Content</h4>
+                                      <div id="editor">
+                                        <?= $value->content ?>
+                                      </div>
+                                    </div>
+
+                                    <input type="hidden" name="community_id" id="community-id"
+                                      value="<?= $value->community_id; ?>">
+                                    <input type="hidden" name="id" id="id" value="<?= $value->id; ?>">
+                                    <div class="mt-3">
+
+                                      <button id="edit_post" class="btn btn-primary">Save</button>
+
+                                    </div>
+
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger btn-link"
+                                      data-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!--  End Modal -->
+
+
+                            <!-- Classic Modal -->
+                            <div class="modal fade" id="delete-post<?= $key ?>" tabindex="-1" role="dialog">
+                              <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title">Are you sure do you want to delete your post?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <i class="material-icons">clear</i>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+
+
+
+
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary btn-link"
+                                      data-dismiss="modal">Close</button>
+                                    <a href="<?= base_url() ?>/delete-post/<?= $value->id ?>" class="btn btn-danger">
+                                      Delete</a>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <!--  End Modal -->
+
+
+                            <?php endforeach; ?>
+                            <?php else: ?>
+
+                            <div class="col-md-4">
+
+
+                              <div class="team-player">
+                                <div class="card custom-card1 card-body justify-content-center">
+
+                                  <p class="text-center">No Post Yet</p>
+                                </div>
+                              </div>
+                            </div>
+                            <?php endif; ?>
+
+
+
                           </div>
+
+                          <!-- end content -->
+
+                        </div>
+                        <div class="tab-pane" id="history">
+                            <!-- shared content -->
+                            <div class="row m-3">
+                              <?php if(!empty($shared)): ?>
+                              <?php foreach($shared as $key => $value): ?>
+
+                              <div class="col-md-4">
+                                <div class="card custom-card1 p-3">
+
+                                  <div class="profile-photo-small d-flex">
+
+                                    <?php if(!empty($value->name)): ?>
+
+                                    <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $value->name ?>" alt="Circle Image"
+                                      class="rounded-circle img-fluid z-depth-2">
+
+                                    <?php else: ?>
+                                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image"
+                                      class="img-raised rounded-circle img-fluid  z-depth-2" alt="avatar">
+
+                                    <?php endif; ?>
+
+                                    <div class="m-0 p-0">
+
+                                      <h4 class="card-title pl-2 mt-0 mb-0"><?= $value->nickname; ?>
+                                        <span class="fa fa-share small" style="float-right"></span>
+                                      </h4>
+                                      <p class="small pl-2 m-0">1 hour ago </p>
+
+
+                                    </div>
+
+                                  </div>
+
+                                  <div class="card-body m-0 p-0">
+                                    <p class="card-description">
+                                      <?= character_limiter($value->content, 180); ?>
+                                    </p>
+                                  </div>
+
+                                  <div class="card-footer justify-content-center m-0 p-0">
+
+                                    <a href="<?= base_url(); ?>/post-share/<?= $value->post_id ?>/<?= $value->community_id ?>"
+                                      class="btn btn-link m-0 p-2"><i class="fa fa-eye m-0 p-0"></i> View Post </a>
+                                    <a href="#" data-toggle="modal" data-target="#edit-shared-post<?= $key?>"
+                                      class="btn btn-link m-0 p-2"><i class="fa fa-recycle m-0 p-0"></i> Edit Post</a>
+                                    <a href="#" data-toggle="modal" data-target="#delete-shared-post<?= $key?>"
+                                      class="btn btn-link m-0 p-2"><i class="fa fa-trash m-0 p-0"></i> Delete</a>
+
+                                  </div>
+                                </div>
+                              </div>
+
+
+                              <!-- Classic Modal -->
+                              <div class="modal fade" id="edit-shared-post<?= $key ?>" tabindex="-1" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title">Edit Shared Post</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <i class="material-icons">clear</i>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+
+
+                                      <div class="card container">
+                                        <div class="form-group">
+                                          <label>Tags</label>
+                                          <textarea name="shared_content" class="form-control" placeholder="Tags" cols="30"
+                                            rows="5"><?= $value->content ?></textarea>
+                                        </div>
+                                      </div>
+
+
+                                      <input type="hidden" name="shared_id" id="id" value="<?= $value->id; ?>">
+                                      <div class="mt-3">
+
+                                        <button id="edit_shared_post" class="btn btn-primary">Save</button>
+
+                                      </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <!--  End Modal -->
+
+                              <!-- Classic Modal -->
+                              <div class="modal fade" id="delete-shared-post<?= $key ?>" tabindex="-1" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title">Are you sure do you want to delete your shared post?</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <i class="material-icons">clear</i>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body">
+
+
+
+
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-primary btn-link" data-dismiss="modal">Close</button>
+                                      <a href="<?= base_url() ?>/delete-shared-post/<?= $value->id ?>" class="btn btn-danger m-0 p-2">
+                                        Delete</a>
+
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <!--  End Modal -->
+
+
+
+
+                              <?php endforeach; ?>
+                            </div>
+                            <?php else: ?>
+
+                            <div class="col-md-4">
+
+
+                              <div class="team-player">
+                                <div class="card custom-card1 card-body justify-content-center">
+
+                                  <p class="text-center">No Shared Post Yet</p>
+                                </div>
+                              </div>
+                            </div>
+                            <?php endif; ?>
+
+                            <!-- end shared content -->
                         </div>
                       </div>
-                      <div class="card container">
-                        <div class="form-group">
-                          <label>Tags</label>
-                          <textarea name="description" class="form-control" placeholder="Description..." cols="30"
-                            rows="5"><?= $value->description ?></textarea>
-                        </div>
-                      </div>
-
-                      <div class="card my-auto mx-auto">
-                        <h4 class="h4 p-3">Post Content</h4>
-                        <div id="editor">
-                          <?= $value->content ?>
-                        </div>
-                      </div>
-
-                      <input type="hidden" name="community_id" id="community-id" value="<?= $value->community_id; ?>">
-                      <input type="hidden" name="id" id="id" value="<?= $value->id; ?>">
-                      <div class="mt-3">
-
-                        <button id="edit_post" class="btn btn-primary">Save</button>
-
-                      </div>
-
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
                     </div>
                   </div>
+                  <!-- end tabs -->
                 </div>
-              </div>
-              <!--  End Modal -->
-
-
-              <!-- Classic Modal -->
-              <div class="modal fade" id="delete-post<?= $key ?>" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">Are you sure do you want to delete your post?</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <i class="material-icons">clear</i>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-
-
-
-
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-primary btn-link" data-dismiss="modal">Close</button>
-                      <a href="<?= base_url() ?>/delete-post/<?= $value->id ?>" class="btn btn-danger"> Delete</a>
-
-                    </div>
-                  </div>
+                <div class="tab-pane" id="schedule-1">
+                  Efficiently unleash cross-media information without cross-media value. Quickly maximize timely
+                  deliverables for real-time schemas.
+                  <br><br>Dramatically maintain clicks-and-mortar solutions without functional solutions.
                 </div>
-              </div>
-              <!--  End Modal -->
-
-
-              <?php endforeach; ?>
-              <?php else: ?>
-
-              <div class="col-md-4">
-
-
-                <div class="team-player">
-                  <div class="card custom-card1 card-body justify-content-center">
-
-                    <p class="text-center">No Post Yet</p>
-                  </div>
-                </div>
-              </div>
-              <?php endif; ?>
-
-
-
-            </div>
-            <h2 class="title mb-0">Recent Shared Post</h2><br>
-            <div class="row">
-              <?php if(!empty($shared)): ?>
-              <?php foreach($shared as $key => $value): ?>
-
-              <div class="col-md-4">
-              <div class="card custom-card1 p-3">
-
-              <div class="profile-photo-small d-flex">
-
-                    <?php if(!empty($value->name)): ?>
-
-                    <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $value->name ?>" alt="Circle Image"
-                      class="rounded-circle img-fluid z-depth-2">
-
-                    <?php else: ?>
-                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image"
-                      class="img-raised rounded-circle img-fluid  z-depth-2" alt="avatar">
-
-                    <?php endif; ?>
-
-                    <div class="m-0 p-0">
-
-                      <h4 class="card-title pl-2 mt-0 mb-0"><?= $value->nickname; ?>
-                        <span class="fa fa-share small" style="float-right"></span>
-                      </h4>
-                      <p class="small pl-2 m-0">1 hour ago </p>
-                      
-                     
-                    </div>
-
-                  </div>
-
-                  <div class="card-body m-0 p-0">
-                      <p class="card-description">
-                        <?= character_limiter($value->content, 180); ?>
-                      </p>
-                      </div>
-
-                  <div class="card-footer justify-content-center m-0 p-0" >
-
-                    <a href="<?= base_url(); ?>/post-share/<?= $value->post_id ?>/<?= $value->community_id ?>"
-                      class="btn btn-link m-0 p-2"><i class="fa fa-eye m-0 p-0"></i> View Post </a>
-                    <a href="#" data-toggle="modal" data-target="#edit-shared-post<?= $key?>" class="btn btn-link m-0 p-2"><i
-                          class="fa fa-recycle m-0 p-0"></i> Edit Post</a>
-                    <a href="#" data-toggle="modal" data-target="#delete-shared-post<?= $key?>"
-                        class="btn btn-link m-0 p-2"><i class="fa fa-trash m-0 p-0"></i> Delete</a>
-
-                  </div>
-                </div>
-              </div>
-
-              
-              <!-- Classic Modal -->
-              <div class="modal fade" id="edit-shared-post<?= $key ?>" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">Edit Shared Post</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <i class="material-icons">clear</i>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-
-                 
-                      <div class="card container">
-                        <div class="form-group">
-                          <label>Tags</label>
-                          <textarea name="shared_content" class="form-control" placeholder="Tags" cols="30"
-                            rows="5"><?= $value->content ?></textarea>
-                        </div>
-                      </div>
-
-
-                      <input type="hidden" name="shared_id" id="id" value="<?= $value->id; ?>">
-                      <div class="mt-3">
-
-                        <button id="edit_shared_post" class="btn btn-primary">Save</button>
-
-                      </div>
-
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!--  End Modal -->
-
-                       <!-- Classic Modal -->
-              <div class="modal fade" id="delete-shared-post<?= $key ?>" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">Are you sure do you want to delete your shared post?</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <i class="material-icons">clear</i>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-
-
-
-
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-primary btn-link" data-dismiss="modal">Close</button>
-                      <a href="<?= base_url() ?>/delete-shared-post/<?= $value->id ?>" class="btn btn-danger m-0 p-2"> Delete</a>
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!--  End Modal -->
-
-
-
-
-              <?php endforeach; ?>
-            </div>
-            <?php else: ?>
-
-            <div class="col-md-4">
-
-
-              <div class="team-player">
-                <div class="card custom-card1 card-body justify-content-center">
-
-                  <p class="text-center">No Shared Post Yet</p>
+                <div class="tab-pane" id="tasks-1">
+                  Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate
+                  one-to-one customer service with robust ideas.
+                  <br><br>Dynamically innovate resource-leveling customer service for state of the art customer service.
                 </div>
               </div>
             </div>
-            <?php endif; ?>
 
+
+
+
+
+
+           
           </div>
         </div>
 

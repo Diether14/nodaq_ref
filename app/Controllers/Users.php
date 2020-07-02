@@ -710,38 +710,7 @@ class Users extends BaseController
         }
     }
 
-    public function dashboard(){
-        ini_set('display_errors', 1);
-       
-        $data = [];
-        helper(['form']);
-        helper(['text']);
-
-        $model = new UserspostModel();
-          
-        $data['blog'] = $model->where('user_id',  session()->get('id'))
-        ->findAll();
-
-        $profile_photo = new ProfilephotoModel();
-        $data['profile_photo'] = $profile_photo->where('user_id', session()->get('id'))
-            ->first();
-
-        $db      = \Config\Database::connect();
-        $builder = $db->table('community');
-    
-        $builder->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.updated_at, community.color , community.text_color, community_photo.name, users.nickname');
-        $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
-        $builder->join('users', 'community.user_id = users.id');
-        // $builder->join('user_settings', 'users.id = user_settings.user_id');
-        $query   = $builder->get();
-        $data['community_list'] = $query->getResult();
-
-        echo view('templates/header', $data);
-        echo view('dashboard', $data);
-        echo view('templates/footer', $data);
-
-    }
-
+  
     public function post_view($id = NULL){
         ini_set('display_errors', 1);
 

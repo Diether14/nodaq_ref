@@ -233,6 +233,8 @@ class Category extends BaseController
 
         $data['users_community'] = $users_community_count->where('community_id', $id)->countAllResults();
         
+
+        //users in the community
         $db3      = \Config\Database::connect();
         $builder3 = $db3->table('users_community');
         $builder3->where('users_community.community_id', $id);
@@ -241,17 +243,103 @@ class Category extends BaseController
         $builder3->join('profile_photo', 'profile_photo.user_id = users.id');
         $query3   = $builder3->get();
         $data['users'] = $query3->getResult();
-        
+
+  
         $join_community = new JoincommunityfilesModel();
 
+        //join button
         $data['join_community'] = $join_community->where(['user_id' => session()->get('id'), 'community_id' => $id])->first();
-
+        
 
         echo view('templates/header', $data);
         echo view('community-private', $data);
         echo view('templates/footer', $data); 
     }
 
+    //community accept user
+    public function accept_user_community(){
+        ini_set('display_errors', 1);
+
+        helper(['form', 'url']);
+    
+        $data = [   
+            'user_id' => $this->request->getPost('user_id'),
+            'community_id' => $this->request->getPost('community_id'),
+            'status' => '1'
+          ];
+
+        $db      = \Config\Database::connect();
+        $builder = $db->table('emoticon_store');
+        // $community_id = $this->request->getPost('community_id');
+        $builder->where(['user_id' => $user_id, 'community_id' => $community_id]);
+        $update = $builder->update($data);
+        if($update){
+          $msg = 'User has been accepted';
+        }else{
+          $msg = 'There is an error!';
+        }
+  
+    }
+    
+    //community decline user
+    public function reject_user_community($user_id = null){
+        ini_set('display_errors', 1);
+
+        helper(['form', 'url']);
+        
+          
+        $data = [   
+            'user_id' => $this->request->getPost('user_id'),
+            'community_id' => $this->request->getPost('community_id'),
+            'status' => '0'
+          ];
+
+        $db      = \Config\Database::connect();
+        $builder = $db->table('emoticon_store');
+
+        $builder->where(['user_id' => $user_id, 'community_id' => $community_id]);
+        $update = $builder->update($data);
+        if($update){
+          $msg = 'User has been accepted';
+        }else{
+          $msg = 'There is an error!';
+        }
+    }
+
+    public function dashboard(){
+        ini_set('display_errors', 1);
+       
+        $data = [];
+        helper(['form']);
+        helper(['text']);
+
+        $model = new UserspostModel();
+          
+        $data['blog'] = $model->where('user_id',  session()->get('id'))
+        ->findAll();
+
+        $profile_photo = new ProfilephotoModel();
+        $data['profile_photo'] = $profile_photo->where('user_id', session()->get('id'))
+            ->first();
+
+        $db      = \Config\Database::connect();
+        $builder = $db->table('community');
+    
+        $builder->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.updated_at, community.color , community.text_color, community_photo.name, users.nickname, community_users_anonymous.status');
+        $builder->where('community.community_type', '0');
+        $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
+        $builder->join('users', 'community.user_id = users.id');
+        $builder->join('community_users_anonymous', 'community.id = community_users_anonymous.community_id', 'left');
+        $query   = $builder->get();
+        $data['community_list'] = $query->getResult();
+  
+        echo view('templates/header', $data);
+        echo view('dashboard', $data);
+        echo view('templates/footer', $data);
+
+    }
+
+    
     public function user_join(){
         ini_set('display_errors', 1);
         

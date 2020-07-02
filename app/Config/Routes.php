@@ -58,7 +58,7 @@ $routes->get('delete-shared-post/(:num)', 'Category::delete_shared_post/$1', ['f
 // $routes->get('search/(:any)', 'Search::search', ['filter' => 'auth']);
 
 // $routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth']);
-$routes->get('dashboard', 'Users::dashboard', ['filter' => 'auth']);
+$routes->get('dashboard', 'Category::dashboard', ['filter' => 'auth']);
 $routes->get('post', 'Users::post', ['filter' => 'auth']);
 $routes->get('post-view', 'Users::post_view', ['filter' => 'auth']);
 $routes->get('post-view/(:num)', 'Users::post_view/$1', ['filter' => 'auth']);
@@ -81,7 +81,8 @@ $routes->get('settings-gallery', 'Category::settingsGallery', ['filter' => 'auth
 $routes->get('gallery-settings', 'Category::settingsGallery1', ['filter' => 'auth']);
 $routes->get('community-join/(:num)', 'Category::community_join/$1', ['filter' => 'auth']);
 $routes->get('community-private/(:num)', 'Category::community_private/$1', ['filter' => 'auth']);
-
+$routes->get('accept_user_community/(:num)', 'Category::accept_user_community/$1', ['filter' => 'auth']);
+$routes->get('reject_user_community/(:num)', 'Category::reject_user_community/$1', ['filter' => 'auth']);
 
 //community
 $routes->get('community', 'Category::community', ['filter' => 'auth']);
