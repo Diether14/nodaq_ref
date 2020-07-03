@@ -86,8 +86,15 @@ $routes->get('reject_user_community/(:num)', 'Category::reject_user_community/$1
 
 //community
 $routes->get('community', 'Category::community', ['filter' => 'auth']);
+$routes->get('category', 'Category::category', ['filter' => 'auth']);
+$routes->get('sub-category', 'Category::sub_category', ['filter' => 'auth']);
+
 $routes->match(['get','post'],'user_save_community', 'Category::save_community', ['filter' => 'auth']);
 $routes->match(['get','post'],'user_join', 'Category::user_join');
+
+
+
+
 //administrator
 $routes->get('/admin', 'Admin::index', ['filter' => 'auth']);
 $routes->get('/create-community', 'Admin::create_community', ['filter' => 'auth']);

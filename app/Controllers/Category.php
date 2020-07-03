@@ -579,6 +579,28 @@ class Category extends BaseController
 
     }
 
+    public function category(){
+        ini_set('display_errors', 1);
+
+        $data = [];
+        helper(['form']);
+
+        echo view('templates/header', $data);
+        echo view('manager-community/create-category', $data);
+        echo view('templates/footer', $data); 
+    }   
+
+    public function sub_category(){
+        ini_set('display_errors', 1);
+
+        $data = [];
+        helper(['form']);
+
+        echo view('templates/header', $data);
+        echo view('manager-community/create-subcategory', $data);
+        echo view('templates/footer', $data); 
+    }
+
     public function community(){
         // echo 'test';exit;
         ini_set('display_errors', 1);
