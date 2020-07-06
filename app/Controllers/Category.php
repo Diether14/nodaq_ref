@@ -601,6 +601,17 @@ class Category extends BaseController
         echo view('templates/footer', $data); 
     }
 
+    public function manager_create_community(){
+        ini_set('display_errors', 1);
+
+        $data = [];
+        helper(['form']);
+
+        echo view('templates/header', $data);
+        echo view('manager-community/create-category', $data);
+        echo view('templates/footer', $data); 
+    }
+
     public function community(){
         // echo 'test';exit;
         ini_set('display_errors', 1);
@@ -651,8 +662,8 @@ class Category extends BaseController
 
     public function save_community(){
             ini_set('display_errors', 1);
-    
-    
+            // echo '<pre>';
+            // var_dump($_POST);exit;
     
             helper(['form', 'url']);
             
@@ -709,7 +720,8 @@ class Category extends BaseController
                         'color' => $this->request->getPost('color'),
                         'text_color' => $this->request->getPost('text_color'),
                         'upvote_name' => $this->request->getPost('upvote'),
-                        'devote_name' => $this->request->getPost('devote')
+                        'devote_name' => $this->request->getPost('devote'),
+                        'category' => $this->request->getPost('category')
                         ];
                     
                     if($model->insert($newData)){

@@ -7,27 +7,28 @@
 
       <!-- Basic Card Example -->
       <div class="card shadow mb-4">
-     
+
         <div class="card-header py-3">
           <h6 class="m-0 font-weight-bold text-primary">Create Community</h6>
         </div>
         <div class="card-body">
-        <?php if ($msg) : ?>
-        <div class="card bg-info text-white shadow">
-                    <div class="card-body">
-                    <?= $msg ?>
-            
-                    </div>
-                  </div>
-                  <br>
-    <?php endif; ?>
+          <?php if ($msg) : ?>
+          <div class="card bg-info text-white shadow">
+            <div class="card-body">
+              <?= $msg ?>
 
-        <form class="contact-form" action="<?= base_url(); ?>/save_community"  method="post" accept-charset="utf-8" enctype="multipart/form-data">
+            </div>
+          </div>
+          <br>
+          <?php endif; ?>
+
+          <form class="contact-form" action="<?= base_url(); ?>/save_community" method="post" accept-charset="utf-8"
+            enctype="multipart/form-data">
 
             <div class="form-group">
               <input type="text" name="title" class="form-control" placeholder="Title">
             </div>
-          
+
             <div class="form-group">
               <textarea name="content" class="form-control" cols="30" rows="10" placeholder="Content"></textarea>
             </div>
@@ -35,11 +36,12 @@
               <input type="file" name="file" class="text-center center-block file-upload" accept=".png, .jpg, .jpeg">
             </div>
             <div class="togglebutton">
-                  <label>
-                    <input type="checkbox" name="community_type" <?= ($user_settings['user_mode'] == '1' ? 'checked': null)?>>
-                    <span class="toggle"></span>
-                    Private Community
-                  </label>
+              <label>
+                <input type="checkbox" name="community_type"
+                  <?= ($user_settings['user_mode'] == '1' ? 'checked': null)?>>
+                <span class="toggle"></span>
+                Private Community
+              </label>
             </div>
 
             <label for="color">Select your theme color:</label>
@@ -51,12 +53,12 @@
               <div class="col-lg-6">
                 <label>Upvote Name</label>
                 <input type="text" name="upvote" class="form-control">
-              </div> 
-              
+              </div>
+
               <div class="col-lg-6">
                 <label>Devote Name</label>
                 <input type="text" name="devote" class="form-control">
-              </div>  
+              </div>
 
             </div>
 
