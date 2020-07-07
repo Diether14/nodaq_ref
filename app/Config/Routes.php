@@ -140,6 +140,11 @@ $routes->match(['get','post'],'add_sticker', 'Emoticonstore::add_sticker');
 $routes->match(['get','post'],'add_multiple_sticker', 'Emoticonstore::add_multiple_sticker');
 $routes->match(['get','post'],'update_sticker', 'Emoticonstore::update_sticker');
 
+
+//managers
+$routes->get('/manage-community/(:num)', 'Managers::dashboard/$1', ['filter' => 'auth']);
+
+
 // $routes->group('users', function($routes)
 // {
 //         // $routes->add('users/create', 'Crud\Users::create');

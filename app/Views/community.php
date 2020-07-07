@@ -25,10 +25,9 @@
   .modal-backdrop.show {
     opacity: 0 !important;
   }
-
   .custom-card {
-    min-height: 420px;
-    max-height: 420px;
+    min-height: 330px;
+    max-height: 330px;
   }
 
   .card-img-top {
@@ -113,19 +112,14 @@
 
                 <?php if(!empty($community_list)): ?>
                 <?php foreach ($community_list as $key => $value): ?>
+                  <a href="#" data-toggle="modal" data-target="#edit<?= $key ?>">
                 <div class="col-md-4">
                   <div class="team-player">
 
                     <div class="card h-100 custom-card ">
 
-                      <h4 class="card-title p-3 my-0" style="background-color: <?= $value->color; ?>">
-
-
-                        <a href="#" data-toggle="modal" data-target="#edit<?= $key ?>"><i class="fa fa-cog pl-3"
-                            style="float:left;"></i></a>
-                        <a href="community-join/<?= $value->id;  ?>" style="color: <?= $value->text_color; ?>">
-                          <p class="text-center justify-content-center m-0 p-0"><?= character_limiter($value->title, 18) ?> </p>
-                        </a>
+                      <h4 class="card-title p-3 my-0" style="background-color: <?= $value->color; ?>">           
+                          <p class="text text-center justify-content-center m-0 p-0"><?= character_limiter($value->title, 18) ?> </p>
                       </h4>
                       <div class="view overlay">
                         <img class="card-img-top rounded-0" src="public/admin/uploads/community/<?= $value->name ?>"
@@ -134,10 +128,10 @@
                           <div class="mask rgba-white-slight"></div>
                         </a>
                       </div>
-                      <div class="card-body">
+                      <!-- <div class="card-body">
                         <p class="card-description"><?= character_limiter($value->content, 80); ?>
                         </p>
-                      </div>
+                      </div> -->
                       <div class="card-footer justify-content-center">
 
                         <div style="float-right">
@@ -147,9 +141,51 @@
                     </div>
                   </div>
                 </div>
-                
-                <div style="position: absolute">
+                </a>
+
                 <div class="modal fade" id="edit<?= $key ?>" tabindex="-1" role="dialog"
+                  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Community </h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="row">
+                        
+                          <div class="col-lg-6">
+                          <a href="community-join/<?= $value->id;  ?>" style="color: <?= $value->text_color; ?>">
+                            <div class="card">
+                              <div class="card-body text-center">
+                                <span class="fa fa-globe" style="font-size: 40px"> </span>
+                                <p>View as community</p>
+
+                              </div>
+                            </div>
+                            </a>
+                          </div>
+                        
+
+                          <div class="col-lg-6">
+                          <a href="manage-community/<?= $value->id;  ?>" style="color: <?= $value->text_color; ?>">
+                            <div class="card ">
+                              <div class="card-body text-center">
+                              <span class="fa fa-cogs" style="font-size: 40px"> </span>
+                               <p>Manage community</p>
+                              </div>
+                            </div>
+                          </a>  
+                          </div>
+                        </div>
+                      </div>
+                     
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="modal fade" id="edit<?= $key ?>" tabindex="-1" role="dialog"
                   aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -205,8 +241,8 @@
                       </div>
                     </div>
                   </div>
-                </div>
-                </div>
+                </div> -->
+            
 
                 <?php endforeach; ?>
                 <?php else: ?>
@@ -267,8 +303,28 @@
                   </div>
                 </div>
 
-
                 <div class="modal fade" id="edit1<?= $key ?>" tabindex="-1" role="dialog"
+                  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Update Community </h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+
+                        
+                      </div>
+                      <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="modal fade" id="edit1<?= $key ?>" tabindex="-1" role="dialog"
                   aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -308,15 +364,8 @@
                           <label for="color">Select your text color:</label><br>
                           <input type="color" name="text_color" value="<?= $value->text_color; ?>">
                           <br>
-
                           <button type="submit" class="btn btn-primary">Save Community</button>
-
                         </form>
-
-
-
-
-
                       </div>
                       <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -324,7 +373,7 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
 
                 <?php endforeach; ?>
                 <?php else: ?>

@@ -45,7 +45,7 @@
                   <div class="col-11 p-0 m-0 text-center community-title card-title ">
                 <h4 class="p-3 my-0 card-title p-3 my-0" >
                 <a href="community-join/<?= $value->id;  ?>" style="color: <?= $value->text_color; ?>"><?= character_limiter($value->title, 18) ?> </a>
-</h4>
+                </h4>
                   </div>
                 </div>
                  
