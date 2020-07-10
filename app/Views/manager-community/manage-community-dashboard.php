@@ -50,12 +50,14 @@
                   Category
                 </a>
               </li>
+           
               <li class="nav-item">
-                <a class="nav-link" href="#acm" role="tab" data-toggle="tab">
-                  <i class="material-icons">assistant</i>
-                  Manage Managers
+                <a class="nav-link" href="#users" role="tab" data-toggle="tab">
+                  <i class="material-icons">people</i>
+                  Users in community
                 </a>
               </li>
+             
               <li class="nav-item">
                 <a class="nav-link" href="#report" role="tab" data-toggle="tab">
                   <i class="material-icons">report</i>
@@ -63,11 +65,12 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#ip" role="tab" data-toggle="tab">
-                  <i class="material-icons">people</i>
-                  Users in community
+                <a class="nav-link" href="#acm" role="tab" data-toggle="tab">
+                  <i class="material-icons">assistant</i>
+                  Manage Managers
                 </a>
               </li>
+
               <li class="nav-item">
                 <a class="nav-link" href="#ip" role="tab" data-toggle="tab">
                   <i class="material-icons">share</i>
@@ -323,8 +326,135 @@
                 </div>
               </div>
 
-              <div class="tab-pane" id="ip">
-                IP Management                  
+              <div class="tab-pane" id="users">
+              <?php if(session()->get('success')): ?>
+                <div class="alert alert-success" role="alert">
+                  <?= session()->get('success') ?>
+                </div>
+                <?php endif; ?>
+                <h2>Users in Community</h2>
+                <!-- <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add_ac">Add Assistant Manager</button> -->
+                <div class="row">
+               
+                 
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th width="20%;">Username</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php foreach ($users as $key => $value): ?>
+                      <tr>
+                        <td><?= $value->nickname ?></td>
+                        <td><?= $value->email ?></td> 
+               
+                        <td>July 01, 2020</td>
+                        <td>
+                          <button class="btn btn-primary btn-sm">View Profile</button>
+                        
+                        </td>
+                      </tr>
+                      <?php endforeach; ?>
+                    </tbody>
+                  </table>
+                </div>
+
+                <h2>Pending Request</h2>
+                <!-- <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add_ac">Add Assistant Manager</button> -->
+                <div class="row">
+               
+                 
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th width="20%;">Username</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Response</th>
+                        <th>Action</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php foreach ($pending_users as $key => $value): ?>
+                      <tr>
+                        <td><?= $value->nickname ?></td>
+                        <td><?= $value->email ?></td> 
+                        <td>July 01, 2020</td>
+                        <td>Image</td>
+                        <td>
+                          <button class="btn btn-primary btn-sm">View</button>
+                          <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#accept_user<?= $key ?>">Accept</button>    
+                          <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#reject_user<?= $key ?>">Reject</button> 
+                        </td>
+                      </tr>
+
+                        <!-- Classic Modal -->
+                      <div class="modal fade" id="accept_user<?= $key ?>" tabindex="-1" role="dialog">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title">Accept User</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <i class="material-icons">clear</i>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <div class="form-group row">
+                                  <div class="col-lg-12">
+                                    <h6 class="text">Are you sure do you want to accept the User?</h6>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <a href="<?= base_url() ?>/accept_user/<?= $value->id ?>/<?= $value->community_id ?>">
+                                <button type="submit" class="btn btn-link">Accept</button>
+                                </a>
+                                <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!--  End Modal -->
+
+                             <!-- Classic Modal -->
+                      <div class="modal fade" id="reject_user<?= $key ?>" tabindex="-1" role="dialog">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title">Reject User</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <i class="material-icons">clear</i>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <div class="form-group row">
+                                  <div class="col-lg-12">
+                                    <h6 class="text">Are you sure do you want to reject the User?</h6>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <a href="<?= base_url() ?>/reject_user/<?= $value->id ?>/<?= $value->community_id ?>">
+                                <button type="submit" class="btn btn-link">Reject</button>
+                                </a>
+                                <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!--  End Modal -->
+
+
+                      <?php endforeach; ?>
+                    </tbody>
+                  </table>
+                </div>                 
               </div>
 
               <div class="tab-pane" id="settings">

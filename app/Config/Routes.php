@@ -148,6 +148,12 @@ $routes->get('/manage-community/(:num)', 'Managers::dashboard/$1', ['filter' => 
 $routes->match(['get','post'],'add_category', 'Managers::add_category');
 $routes->get('/delete_category/(:num)/(:num)', 'Managers::delete_category/$1/$2', ['filter' => 'auth']);
 $routes->match(['get','post'],'update_category', 'Managers::update_category');
+
+//accept and reject user
+$routes->get('/accept_user/(:num)/(:num)', 'Managers::accept_user/$1/$2', ['filter' => 'auth']);
+$routes->get('/reject_user/(:num)/(:num)', 'Managers::reject_user/$1/$2', ['filter' => 'auth']);
+
+
 // $routes->group('users', function($routes)
 // {
 //         // $routes->add('users/create', 'Crud\Users::create');

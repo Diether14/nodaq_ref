@@ -117,8 +117,8 @@ h3.community-title {
     box-shadow: none !important;
 }
 
-ul.nav.nav-pills.community-tab-opts li.nav-item.active {
-    background: #e0e0e0 !important;
+ul.nav.nav-pills.community-tab-opts li.nav-item a.active {
+    background: #e0e0e0b0!important;
     border-radius: 5px 4px 0 0;
 }
 
@@ -181,9 +181,8 @@ h4.community-title {
 }
 
 .of-scroll {
-    /* overflow: scroll; */
     float: left;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .of-scroll::-webkit-scrollbar-track {
@@ -210,14 +209,69 @@ h4.community-title {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #E0E0E0;
+    background-color: #e0e0e0b0;
     min-height: 60px !important;
     float: right;
 }
 
 .tab-content.tab-space {
-    background: #E0E0E0;
     padding: 0 !important;
+    height: 100%;
+}
+
+.bg-gray {
+    background: #e0e0e0b0;
+}
+
+.of-hidden {
+    overflow: hidden;
+}
+
+.fw600 {
+    font-weight: 600;
+}
+
+.community-create-post .create-post-title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+div.community-create-post .modal-dialog {
+    max-width: 50% !important;
+}
+
+.community-info-area {
+    height: 140px;
+}
+
+.profile-card {
+    flex-direction: unset !important;
+    border-radius: 0 !important;
+}
+
+.profile-community_list .list-group-item:hover {
+    background-color: rgba(0, 0, 0, 0.075);
+}
+
+.post-tabs {
+    text-align: center !important;
+    justify-content: center;
+}
+
+.profile-content .post-tabs li a.nav-link {
+    color: #000 !important;
+}
+
+.profile-content .post-tabs li a.nav-link:hover {
+    color: #000 !important;
+}
+
+.profile-content .post-tabs li a.nav-link.active {
+    color: #000 !important;
+}
+
+.form-action-button {
+    max-width: 45px;
 }
 
 
