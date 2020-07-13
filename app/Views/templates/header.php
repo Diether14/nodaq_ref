@@ -31,7 +31,8 @@
   <!-- <link rel="stylesheet" href="<?= base_url(); ?>/public/assets/ckeditor/samples/css/samples.css"> -->
   <link rel="stylesheet"
     href="<?= base_url(); ?>/public/assets/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css">
-
+  <!-- Custom styles for this page -->
+  <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
   <style>
     .rounded-circle {
       border-radius: 50% !important;

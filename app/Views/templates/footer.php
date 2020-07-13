@@ -51,7 +51,7 @@
 
   </div>
 
-  <script src="<?= base_url(); ?>/public/user/assets/js/core/jquery.min.js" type="text/javascript"></script>
+  <!-- <script src="<?= base_url(); ?>/public/user/assets/js/core/jquery.min.js" type="text/javascript"></script> -->
   <script src="<?= base_url(); ?>/public/user/assets/js/core/popper.min.js" type="text/javascript"></script>
   <script src="<?= base_url(); ?>/public/user/assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
   <script src="<?= base_url(); ?>/public/user/assets/js/plugins/moment.min.js"></script>
@@ -64,6 +64,15 @@
   <script src="<?= base_url(); ?>/public/user/assets/js/material-kit.js?v=2.0.7" type="text/javascript"></script>
   <script src="<?= base_url(); ?>/public/assets/js/main.js" type="text/javascript"></script>
   <script src="<?= base_url(); ?>/public/assets/taginput/tagsinput.js" type="text/javascript"></script>
-  
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+  <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+
+  <script>
+    $(document).ready( function () {
+        $('#myTable').DataTable();
+    } );
+  </script>
 </body>
 </html>

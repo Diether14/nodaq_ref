@@ -143,6 +143,8 @@ $routes->match(['get','post'],'update_sticker', 'Emoticonstore::update_sticker')
 
 //managers
 $routes->get('/manage-community/(:num)', 'Managers::dashboard/$1', ['filter' => 'auth']);
+$routes->get('/manage-community/category/(:num)', 'Managers::category/$1', ['filter' => 'auth']);
+$routes->get('/manage-community/users/(:num)', 'Managers::users/$1', ['filter' => 'auth']);
 
 //managers functions
 $routes->match(['get','post'],'add_category', 'Managers::add_category');

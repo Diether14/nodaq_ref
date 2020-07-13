@@ -32,35 +32,60 @@ class Managers extends BaseController
         $model = new CommunitycategoryModel;
         $data['community_category'] = $model->where(['user_id' => session()->get('id'), 'community_id' => $id])->find();
 
-        $db      = \Config\Database::connect();
-        $builder = $db->table('users_community');
-        $builder->select('users_community.id, users_community.user_id, users_community.community_id, users_community.status, users_community.anounymous, users_community.assistant_manager, users.nickname, users.email');
-        $builder->where(['users_community.community_id' => $id, 'users_community.assistant_manager' => 1]);
-        $builder->join('users', 'users_community.user_id = users.id');
-        $query   = $builder->get();
-        $data['users_community'] = $query->getResult();
-
-        $db      = \Config\Database::connect();
-        $builder = $db->table('users_community');
-        $builder->select('users_community.id, users_community.user_id, users_community.community_id, users_community.status, users_community.anounymous, users_community.assistant_manager, users.nickname, users.email');
-        $builder->where(['users_community.community_id' => $id, 'users_community.assistant_manager' => 0, 'users_community.status' => 1]);
-        $builder->join('users', 'users_community.user_id = users.id');
-        $query   = $builder->get();
-        $data['users'] = $query->getResult();
-
-        $db      = \Config\Database::connect();
-        $builder = $db->table('users_community');
-        $builder->select('users_community.id, users_community.user_id, users_community.community_id, users_community.status, users_community.anounymous, users_community.assistant_manager, users.nickname, users.email');
-        $builder->where(['users_community.community_id' => $id, 'users_community.assistant_manager' => 0, 'users_community.status' => 0]);
-        $builder->join('users', 'users_community.user_id = users.id');
-        $query   = $builder->get();
-        $data['pending_users'] = $query->getResult();
-        
-
         echo view('templates/header', $data);
         echo view('manager-community/manage-community-dashboard', $data);
         echo view('templates/footer', $data);
     }
+
+    public function category($id = null){
+        helper(['form']);
+
+        ini_set('display_errors', 1);
+        $data['community_id'] = $id;
+
+        $model = new CommunitycategoryModel;
+        $data['community_category'] = $model->where(['user_id' => session()->get('id'), 'community_id' => $id])->find();
+
+        echo view('templates/header', $data);
+        echo view('manager-community/manage-community-category', $data);
+        echo view('templates/footer', $data);
+    }
+
+    public function users($id = null){
+        helper(['form']);
+
+        ini_set('display_errors', 1);
+        $data['community_id'] = $id;
+
+        // $db      = \Config\Database::connect();
+        // $builder = $db->table('users_community');
+        // $builder->select('users_community.id, users_community.user_id, users_community.community_id, users_community.status, users_community.anounymous, users_community.assistant_manager, users.nickname, users.email');
+        // $builder->where(['users_community.community_id' => $id, 'users_community.assistant_manager' => 1]);
+        // $builder->join('users', 'users_community.user_id = users.id');
+        // $query   = $builder->get();
+        // $data['users_community'] = $query->getResult();
+
+        $db      = \Config\Database::connect();
+        $builder = $db->table('users_community');
+        $builder->select('users_community.id, users_community.user_id, users_community.community_id, users_community.status, users_community.anounymous, users_community.assistant_manager, users.nickname, users.email');
+        $builder->where(['users_community.community_id' => $id]);
+        $builder->join('users', 'users_community.user_id = users.id');
+        $query   = $builder->get();
+        $data['users'] = $query->getResult();
+
+        // $db      = \Config\Database::connect();
+        // $builder = $db->table('users_community');
+        // $builder->select('users_community.id, users_community.user_id, users_community.community_id, users_community.status, users_community.anounymous, users_community.assistant_manager, users.nickname, users.email');
+        // $builder->where(['users_community.community_id' => $id, 'users_community.assistant_manager' => 0, 'users_community.status' => 0]);
+        // $builder->join('users', 'users_community.user_id = users.id');
+        // $query   = $builder->get();
+        // $data['pending_users'] = $query->getResult();
+
+        echo view('templates/header', $data);
+        echo view('manager-community/manage-community-users', $data);
+        echo view('templates/footer', $data);
+    }
+
 
     public function add_category(){
         ini_set('display_errors', 1);
@@ -75,8 +100,6 @@ class Managers extends BaseController
             'community_id' => $community_id,
             'category_name' => $this->request->getPost('category_name')
         ];
-
-        
 
         // echo '<pre>';
         // var_dump($data);exit;
@@ -145,10 +168,10 @@ class Managers extends BaseController
 
         if($model->save($data)){
             $msg = 'User has been accepted!';
-            return redirect()->to( base_url().'/manage-community/'.$community_id)->with('msg', $msg);
+            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
         }else{
             $msg = 'Failed to accept!';
-            return redirect()->to( base_url().'/manage-community/'.$community_id)->with('msg', $msg);
+            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
         }
     }
     
@@ -165,10 +188,10 @@ class Managers extends BaseController
 
         if($delete){
             $msg = 'Category has been deleted!';
-            return redirect()->to( base_url().'/manage-community/'.$community_id)->with('msg', $msg);
+            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
         }else{
             $msg = 'Failed to delete!';
-            return redirect()->to( base_url().'/manage-community/'.$community_id)->with('msg', $msg);
+            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
         }
     }
 }
