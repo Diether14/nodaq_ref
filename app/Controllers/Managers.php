@@ -67,7 +67,7 @@ class Managers extends BaseController
 
         $db      = \Config\Database::connect();
         $builder = $db->table('users_community');
-        $builder->select('users_community.id, users_community.user_id, users_community.community_id, users_community.status, users_community.anounymous, users_community.assistant_manager, users.nickname, users.email');
+        $builder->select('users_community.id, users_community.user_id, users_community.community_id, users_community.status, users_community.anounymous, users.nickname, users.email');
         $builder->where(['users_community.community_id' => $id]);
         $builder->join('users', 'users_community.user_id = users.id');
         $query   = $builder->get();
@@ -164,7 +164,6 @@ class Managers extends BaseController
             'id'       => $id,
             'status' => '1'
         ];
-        
 
         if($model->save($data)){
             $msg = 'User has been accepted!';
@@ -179,9 +178,6 @@ class Managers extends BaseController
         ini_set('display_errors', 1);
         $data = [];
         helper(['form', 'url']);
-        ini_set('display_errors', 1);
-        $data = [];
-        helper(['form', 'url']);
         
         $model = new UsersCommunityModel();
         $delete = $model->delete($id);
@@ -191,6 +187,68 @@ class Managers extends BaseController
             return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
         }else{
             $msg = 'Failed to delete!';
+            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+        }
+    }
+
+    public function make_ac($id = null, $community_id = null){
+        ini_set('display_errors', 1);
+        $data = [];
+        helper(['form', 'url']);    
+        
+        $model = new UserscommunityModel();
+
+        $data = [
+            'id'       => $id,
+            'status' => '2'
+        ];
+
+        if($model->save($data)){
+            $msg = 'User has been accepted!';
+            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+        }else{
+            $msg = 'Failed to accept!';
+            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+        }
+    }
+    public function remove_ac(){
+        ini_set('display_errors', 1);
+        $data = [];
+        helper(['form', 'url']);    
+
+        $model = new UserscommunityModel();
+        $community_id =  $this->request->getPost('community_id');
+        $data = [
+            'id'       => $this->request->getPost('id'),
+            'status' => '1',
+            'remove_ac_reason' => $this->request->getPost('remove_ac_reason')
+        ];
+
+        if($model->save($data)){
+            $msg = 'User has been removed from the assistant manager!';
+            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+        }else{
+            $msg = 'Failed to remove!';
+            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+        }
+    }
+    public function ban_user($id = null, $community_id = null){
+        ini_set('display_errors', 1);
+        $data = [];
+        helper(['form', 'url']);    
+        
+        $model = new UserscommunityModel();
+
+        $data = [
+            'id'       => $id,
+            'status' => '3'
+        ];
+
+        if($model->save($data)){
+            $msg = 'User has been accepted!';
+            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+        }else{
+            $msg = 'Failed to accept!';
             return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
         }
     }

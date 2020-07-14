@@ -51,7 +51,7 @@
 
   </div>
 
-  <!-- <script src="<?= base_url(); ?>/public/user/assets/js/core/jquery.min.js" type="text/javascript"></script> -->
+  <script src="<?= base_url(); ?>/public/user/assets/js/core/jquery.min.js" type="text/javascript"></script>
   <script src="<?= base_url(); ?>/public/user/assets/js/core/popper.min.js" type="text/javascript"></script>
   <script src="<?= base_url(); ?>/public/user/assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
   <script src="<?= base_url(); ?>/public/user/assets/js/plugins/moment.min.js"></script>

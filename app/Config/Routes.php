@@ -150,11 +150,13 @@ $routes->get('/manage-community/users/(:num)', 'Managers::users/$1', ['filter' =
 $routes->match(['get','post'],'add_category', 'Managers::add_category');
 $routes->get('/delete_category/(:num)/(:num)', 'Managers::delete_category/$1/$2', ['filter' => 'auth']);
 $routes->match(['get','post'],'update_category', 'Managers::update_category');
+$routes->match(['get','post'],'remove_ac', 'Managers::remove_ac');
 
-//accept and reject user
 $routes->get('/accept_user/(:num)/(:num)', 'Managers::accept_user/$1/$2', ['filter' => 'auth']);
 $routes->get('/reject_user/(:num)/(:num)', 'Managers::reject_user/$1/$2', ['filter' => 'auth']);
-
+$routes->get('/make_ac/(:num)/(:num)', 'Managers::make_ac/$1/$2', ['filter' => 'auth']);
+// $routes->get('/remove_ac/(:num)/(:num)', 'Managers::remove_ac/$1/$2', ['filter' => 'auth']);
+$routes->get('/ban_user/(:num)/(:num)', 'Managers::ban_user/$1/$2', ['filter' => 'auth']);
 
 // $routes->group('users', function($routes)
 // {
