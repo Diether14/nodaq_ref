@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 09, 2020 at 06:00 PM
+-- Generation Time: Jul 15, 2020 at 05:53 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -55,6 +55,38 @@ INSERT INTO `community` (`id`, `user_id`, `com_photo_id`, `title`, `community_ty
 (30, 18, 31, 'Test Private test', 1, 'This is a private community test update', '#ffffff', '#555555', 'Like', 'Dislike', '', '2020-06-15 23:00:03', '2020-06-15 23:00:03'),
 (31, 21, 32, 'Lorem Ipsum test', 0, 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur test', '#ffffff', '#555555', 'Like', 'Dislike', '', '2020-06-20 00:41:36', '2020-06-20 00:41:36'),
 (32, 18, 33, 'Test custom color', 0, 'test test', '#1f7ead', '#ffffff', 'Like', 'Dislike', '', '2020-06-26 22:41:01', '2020-06-26 22:41:01');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `community_ac_settings`
+--
+
+CREATE TABLE `community_ac_settings` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `community_id` int(11) NOT NULL,
+  `remove_comments` int(11) NOT NULL COMMENT '0 = false, 1 = true',
+  `remove_posts` int(11) NOT NULL COMMENT '0 = false, 1 = true',
+  `punish_users` int(11) NOT NULL COMMENT '0 = false, 1 = true',
+  `remove_posts_from_hotboard` int(11) NOT NULL COMMENT '0 = false, 1 = true',
+  `edit_cover_photo` int(11) NOT NULL COMMENT '0 = false, 1 = true',
+  `edit_categories` int(11) NOT NULL COMMENT '0 = false, 1 = true',
+  `edit_subclass` int(11) NOT NULL COMMENT '0 = false, 1 = true',
+  `unable_both` int(11) NOT NULL COMMENT '0 = false, 1 = true',
+  `notice` int(11) NOT NULL COMMENT '0 = false, 1 = true',
+  `general` int(11) NOT NULL COMMENT '0 = false, 1 = true',
+  `politic` int(11) NOT NULL COMMENT '0 = false, 1 = true',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `update_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `community_ac_settings`
+--
+
+INSERT INTO `community_ac_settings` (`id`, `user_id`, `community_id`, `remove_comments`, `remove_posts`, `punish_users`, `remove_posts_from_hotboard`, `edit_cover_photo`, `edit_categories`, `edit_subclass`, `unable_both`, `notice`, `general`, `politic`, `created_at`, `update_at`) VALUES
+(1, 21, 30, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, '2020-07-15 15:33:25', '2020-07-15 15:33:25');
 
 -- --------------------------------------------------------
 
@@ -411,7 +443,8 @@ INSERT INTO `users` (`id`, `pk`, `nickname`, `email`, `birthdate`, `gender`, `pa
 (26, 0, 'admin', 'admin@weendi.com', '', '', '$2y$10$LJ.xc4KwoR9xfNhrmtdZnOq/53G3b4c7MfFULeVU2pS3but75Zv2G', 3, 0, 0, 0, '2020-05-10 01:41:29', '2020-05-10 01:41:29'),
 (30, 0, 'test manager', 'test_manager@weendi.com', '', '', '$2y$10$tF1oZV7ZI7gQTLDUQiLXA.T2sNAUJkxRdmxUMlPWtmn.KtHtHLQl.', 1, 0, 0, 0, '2020-05-24 19:20:15', '2020-05-24 19:20:15'),
 (31, 0, 'testings ', 'test123@weendi.com', '1995-12-31', '2', '$2y$10$B8ec0KaXXxONX.mvsfrXDOdQNlOyQE44A8zbly6foAbA1v05JdIDi', 0, 0, 0, 0, '2020-05-25 19:41:50', '2020-05-25 19:41:50'),
-(33, 0, 'Test User', 'test_user@weendi.com', '1999-01-02', '1', '$2y$10$8LS/pVuwSlaTqGL2twMrTufPe4jg2rvRqVpLgwZsTQ/A0w8nr8Eme', 0, 0, 0, 0, '2020-06-17 21:06:38', '2020-06-17 21:06:38');
+(33, 0, 'Test User', 'test_user@weendi.com', '1999-01-02', '1', '$2y$10$8LS/pVuwSlaTqGL2twMrTufPe4jg2rvRqVpLgwZsTQ/A0w8nr8Eme', 0, 0, 0, 0, '2020-06-17 21:06:38', '2020-06-17 21:06:38'),
+(34, 0, 'test pending', 'test_pending@gmail.com', '1998-08-04', '1', '$2y$10$4j2NrVQY6ox7NnAH3yg1bukezyBrjvUG8bZK1btpk06oV7Bh/T.zK', 0, 0, 0, 0, '2020-07-13 22:11:23', '2020-07-13 22:11:23');
 
 -- --------------------------------------------------------
 
@@ -423,9 +456,10 @@ CREATE TABLE `users_community` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `community_id` int(11) NOT NULL,
-  `status` int(11) NOT NULL COMMENT '0 = not yet accepted, 1 = accepted',
+  `status` int(11) NOT NULL COMMENT '0 = not yet accepted, 1 = accepted, 2 = assistant manage, 3 = ban user ',
   `anounymous` int(11) NOT NULL COMMENT '0 = public, 1 = anounymous',
-  `assistant_manager` int(11) NOT NULL COMMENT '0 = not AC, 1 = AC',
+  `ban_reason` varchar(255) NOT NULL,
+  `remove_ac_reason` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -434,16 +468,18 @@ CREATE TABLE `users_community` (
 -- Dumping data for table `users_community`
 --
 
-INSERT INTO `users_community` (`id`, `user_id`, `community_id`, `status`, `anounymous`, `assistant_manager`, `created_at`, `updated_at`) VALUES
-(2, 18, 26, 0, 0, 0, '2020-05-11 23:10:32', '2020-05-11 23:10:32'),
-(3, 18, 23, 0, 0, 0, '2020-05-12 00:07:02', '2020-05-12 00:07:02'),
-(4, 18, 29, 0, 0, 0, '2020-06-03 22:06:33', '2020-06-03 22:06:33'),
-(5, 21, 29, 0, 0, 0, '2020-06-03 23:56:10', '2020-06-03 23:56:10'),
-(10, 21, 24, 0, 0, 0, '2020-06-15 23:27:23', '2020-06-15 23:27:23'),
-(11, 18, 24, 0, 0, 0, '2020-06-19 22:06:43', '2020-06-19 22:06:43'),
-(12, 21, 23, 0, 0, 0, '2020-06-22 23:13:30', '2020-06-22 23:13:30'),
-(13, 21, 31, 0, 0, 0, '2020-06-24 21:33:23', '2020-06-24 21:33:23'),
-(14, 21, 30, 0, 0, 1, '2020-06-24 21:33:23', '2020-06-24 21:33:23');
+INSERT INTO `users_community` (`id`, `user_id`, `community_id`, `status`, `anounymous`, `ban_reason`, `remove_ac_reason`, `created_at`, `updated_at`) VALUES
+(2, 18, 26, 0, 0, '0', '', '2020-05-11 23:10:32', '2020-05-11 23:10:32'),
+(3, 18, 23, 0, 0, '0', '', '2020-05-12 00:07:02', '2020-05-12 00:07:02'),
+(4, 18, 29, 0, 0, '0', '', '2020-06-03 22:06:33', '2020-06-03 22:06:33'),
+(5, 21, 29, 0, 0, '0', '', '2020-06-03 23:56:10', '2020-06-03 23:56:10'),
+(10, 21, 24, 0, 0, '0', '', '2020-06-15 23:27:23', '2020-06-15 23:27:23'),
+(11, 18, 24, 0, 0, '0', '', '2020-06-19 22:06:43', '2020-06-19 22:06:43'),
+(12, 21, 23, 0, 0, '0', '', '2020-06-22 23:13:30', '2020-06-22 23:13:30'),
+(13, 21, 31, 0, 0, '0', '', '2020-06-24 21:33:23', '2020-06-24 21:33:23'),
+(14, 21, 30, 2, 0, '1', 'test', '2020-06-24 21:33:23', '2020-06-24 21:33:23'),
+(16, 18, 30, 1, 0, '0', 'tset', '2020-06-19 22:06:43', '2020-06-19 22:06:43'),
+(17, 34, 30, 0, 0, '', '', '2020-06-19 22:06:43', '2020-06-19 22:06:43');
 
 -- --------------------------------------------------------
 
@@ -484,7 +520,8 @@ INSERT INTO `users_ip` (`id`, `user_id`, `ip`, `created_at`, `updated_at`) VALUE
 (6, 26, '::1', '2020-05-10 01:51:48', '2020-05-10 01:51:48'),
 (7, 21, '::1', '2020-05-18 21:28:24', '2020-05-18 21:28:24'),
 (8, 30, '::1', '2020-05-24 19:30:35', '2020-05-24 19:30:35'),
-(9, 31, '::1', '2020-05-25 19:50:29', '2020-05-25 19:50:29');
+(9, 31, '::1', '2020-05-25 19:50:29', '2020-05-25 19:50:29'),
+(10, 34, '::1', '2020-07-13 22:11:33', '2020-07-13 22:11:33');
 
 -- --------------------------------------------------------
 
@@ -611,6 +648,12 @@ INSERT INTO `user_settings` (`id`, `user_id`, `user_mode`, `user_nickname`, `cre
 --
 ALTER TABLE `community`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `community_ac_settings`
+--
+ALTER TABLE `community_ac_settings`
+  ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
 -- Indexes for table `community_assistant_managers`
@@ -761,6 +804,12 @@ ALTER TABLE `community`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
+-- AUTO_INCREMENT for table `community_ac_settings`
+--
+ALTER TABLE `community_ac_settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `community_assistant_managers`
 --
 ALTER TABLE `community_assistant_managers`
@@ -848,13 +897,13 @@ ALTER TABLE `shared_comments`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `users_community`
 --
 ALTER TABLE `users_community`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `users_deleted_post`
@@ -866,7 +915,7 @@ ALTER TABLE `users_deleted_post`
 -- AUTO_INCREMENT for table `users_ip`
 --
 ALTER TABLE `users_ip`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users_post`
