@@ -63,7 +63,7 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="#report" role="tab" data-toggle="tab">
+                <a class="nav-link" href="<?= base_url(); ?>/manage-community/reported_posts/<?= $community_id ?>" >
                   <i class="material-icons">report</i>
                   Reported Posts
                 </a>
@@ -250,7 +250,7 @@
                                               <h6>Community Settings</h6>
                                               <div class="form-check">
                                                 <label class="form-check-label">
-                                                  <input name="remove_comments" class="form-check-input" type="checkbox">
+                                                  <input name="remove_comments" class="form-check-input" type="checkbox" <?php if($value->remove_comments == '1'){ echo 'checked'; }  ?> >
                                                   Remove Comments
                                                   <span class="form-check-sign">
                                                     <span class="check"></span>
@@ -259,7 +259,7 @@
                                               </div>
                                               <div class="form-check">
                                                 <label class="form-check-label">
-                                                  <input name="remove_posts" class="form-check-input" type="checkbox" >
+                                                  <input name="remove_posts" class="form-check-input" type="checkbox"  <?php if($value->remove_posts == '1'){ echo 'checked'; }  ?>>
                                                   Remove Posts
                                                   <span class="form-check-sign">
                                                     <span class="check"></span>
@@ -268,7 +268,7 @@
                                               </div>
                                               <div class="form-check">
                                                 <label class="form-check-label">
-                                                  <input name="punish_users" class="form-check-input" type="checkbox" >
+                                                  <input name="punish_users" class="form-check-input" type="checkbox" <?php if($value->punish_users == '1'){ echo 'checked'; }  ?> >
                                                   Punish Users
                                                   <span class="form-check-sign">
                                                     <span class="check"></span>
@@ -277,7 +277,7 @@
                                               </div>
                                               <div class="form-check">
                                                 <label class="form-check-label">
-                                                  <input name="remove_posts_from_hotboard" class="form-check-input" type="checkbox" >
+                                                  <input name="remove_posts_from_hotboard" class="form-check-input" type="checkbox"  <?php if($value->remove_posts_from_hotboard == '1'){ echo 'checked'; }  ?> >
                                                   Remove posts from hot board
                                                   <span class="form-check-sign">
                                                     <span class="check"></span>
@@ -286,7 +286,7 @@
                                               </div>
                                               <div class="form-check">
                                                 <label class="form-check-label">
-                                                  <input name="edit_cover_photo" class="form-check-input" type="checkbox">
+                                                  <input name="edit_cover_photo" class="form-check-input" type="checkbox"  <?php if($value->edit_cover_photo == '1'){ echo 'checked'; }  ?> >
                                                   Edit cover photo
                                                   <span class="form-check-sign">
                                                     <span class="check"></span>
@@ -298,7 +298,7 @@
                                               <h6>Community Category Settings</h6>
                                               <div class="form-check">
                                                 <label class="form-check-label">
-                                                  <input name="edit_categories" class="form-check-input" type="checkbox" >
+                                                  <input name="edit_categories" class="form-check-input" type="checkbox"  <?php if($value->edit_categories == '1'){ echo 'checked'; }  ?>  >
                                                   Edit categories
                                                   <span class="form-check-sign">
                                                     <span class="check"></span>
@@ -307,17 +307,8 @@
                                               </div>
                                               <div class="form-check">
                                                 <label class="form-check-label">
-                                                  <input name="edit_subclass" class="form-check-input" type="checkbox" >
+                                                  <input name="edit_subclass" class="form-check-input" type="checkbox"  <?php if($value->edit_subclass == '1'){ echo 'checked'; }  ?>  >
                                                   Edit subclass
-                                                  <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                  </span>
-                                                </label>
-                                              </div>
-                                              <div class="form-check">
-                                                <label class="form-check-label">
-                                                  <input name="unable_both" class="form-check-input" type="checkbox" >
-                                                  Unable to edit both
                                                   <span class="form-check-sign">
                                                     <span class="check"></span>
                                                   </span>
@@ -331,7 +322,7 @@
                                               <h6>Notifications</h6>
                                               <div class="form-check">
                                                 <label class="form-check-label">
-                                                  <input name="notice" class="form-check-input" type="checkbox" >
+                                                  <input name="notice" class="form-check-input" type="checkbox"  <?php if($value->notice == '1'){ echo 'checked'; }  ?>  >
                                                   Notice
                                                   <span class="form-check-sign">
                                                     <span class="check"></span>
@@ -340,7 +331,7 @@
                                               </div>
                                               <div class="form-check">
                                                 <label class="form-check-label">
-                                                  <input name="general" class="form-check-input" type="checkbox" >
+                                                  <input name="general" class="form-check-input" type="checkbox"  <?php if($value->general == '1'){ echo 'checked'; }  ?>  >
                                                   General
                                                   <span class="form-check-sign">
                                                     <span class="check"></span>
@@ -349,7 +340,7 @@
                                               </div>
                                               <div class="form-check">
                                                 <label class="form-check-label">
-                                                  <input name="politic" class="form-check-input" type="checkbox" >
+                                                  <input name="politic" class="form-check-input" type="checkbox"  <?php if($value->politic == '1'){ echo 'checked'; }  ?>  >
                                                   Politic
                                                   <span class="form-check-sign">
                                                     <span class="check"></span>

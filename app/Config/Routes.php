@@ -145,6 +145,8 @@ $routes->match(['get','post'],'update_sticker', 'Emoticonstore::update_sticker')
 $routes->get('/manage-community/(:num)', 'Managers::dashboard/$1', ['filter' => 'auth']);
 $routes->get('/manage-community/category/(:num)', 'Managers::category/$1', ['filter' => 'auth']);
 $routes->get('/manage-community/users/(:num)', 'Managers::users/$1', ['filter' => 'auth']);
+$routes->get('/manage-community/reported_posts/(:num)', 'Managers::reported_posts/$1', ['filter' => 'auth']);
+$routes->get('/manage-community/community-settings/(:num)', 'Managers::community_settings/$1', ['filter' => 'auth']);
 
 //managers functions
 $routes->match(['get','post'],'add_category', 'Managers::add_category');

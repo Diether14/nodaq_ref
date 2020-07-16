@@ -70,7 +70,7 @@ class Managers extends BaseController
         $builder = $db->table('users_community');
         $builder->select('users_community.id, users_community.user_id, users_community.community_id, users_community.status, users_community.anounymous, users.nickname, users.email, profile_photo.name, 
         community_ac_settings.remove_comments,community_ac_settings.remove_posts,community_ac_settings.punish_users,community_ac_settings.remove_posts_from_hotboard,
-        community_ac_settings.edit_cover_photo, community_ac_settings.edit_categories, community_ac_settings.edit_subclass, community_ac_settings.unable_both, community_ac_settings.notice,
+        community_ac_settings.edit_cover_photo, community_ac_settings.edit_categories, community_ac_settings.edit_subclass, community_ac_settings.notice,
         community_ac_settings.general, community_ac_settings.politic');
         $builder->where(['users_community.community_id' => $id]);
         $builder->where('users_community.status !=', '3');
@@ -80,7 +80,8 @@ class Managers extends BaseController
         
         $query   = $builder->get();
         $data['users'] = $query->getResult();
-      
+        // echo '<pre>';
+        // var_dump($data['users']);exit;
         // $db      = \Config\Database::connect();
         // $builder = $db->table('users_community');
         // $builder->select('users_community.id, users_community.user_id, users_community.community_id, users_community.status, users_community.anounymous, users_community.assistant_manager, users.nickname, users.email');
@@ -91,6 +92,59 @@ class Managers extends BaseController
 
         echo view('templates/header', $data);
         echo view('manager-community/manage-community-users', $data);
+        echo view('templates/footer', $data);
+    }
+   
+    public function reported_posts($id = null){
+        helper(['form']);
+
+        ini_set('display_errors', 1);
+        $data['community_id'] = $id;
+
+        $db      = \Config\Database::connect();
+        $builder = $db->table('users_report');
+        $builder->select('*');
+        $builder->where(['users_report.community_id' => $id]);
+        // $builder->where('users_community.status !=', '3');
+        // AND users_report.user_id = users.id
+        // $builder->join('users', 'users_report.reported_by_user_id = users.id', 'left');
+        // $builder->join('profile_photo', 'users_community.user_id = profile_photo.user_id', 'left');
+        // $builder->join('community_ac_settings', 'users_community.user_id = community_ac_settings.user_id', 'left');
+        
+        $query   = $builder->get();
+        $data['reported_posts'] = $query->getResult();
+        // echo '<pre>';
+        // var_dump($data['reported_posts']);exit;
+
+        echo view('templates/header', $data);
+        echo view('manager-community/manage-community-reported-post', $data);
+        echo view('templates/footer', $data);
+    }
+
+      
+    public function community_settings($id = null){
+        helper(['form']);
+
+        ini_set('display_errors', 1);
+        $data['community_id'] = $id;
+
+        $db      = \Config\Database::connect();
+        $builder = $db->table('users_report');
+        $builder->select('*');
+        $builder->where(['users_report.community_id' => $id]);
+        // $builder->where('users_community.status !=', '3');
+        // AND users_report.user_id = users.id
+        // $builder->join('users', 'users_report.reported_by_user_id = users.id', 'left');
+        // $builder->join('profile_photo', 'users_community.user_id = profile_photo.user_id', 'left');
+        // $builder->join('community_ac_settings', 'users_community.user_id = community_ac_settings.user_id', 'left');
+        
+        $query   = $builder->get();
+        $data['reported_posts'] = $query->getResult();
+        // echo '<pre>';
+        // var_dump($data['reported_posts']);exit;
+
+        echo view('templates/header', $data);
+        echo view('manager-community/manage-community-settings', $data);
         echo view('templates/footer', $data);
     }
 
