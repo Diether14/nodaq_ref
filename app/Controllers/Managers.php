@@ -58,13 +58,6 @@ class Managers extends BaseController
         ini_set('display_errors', 1);
         $data['community_id'] = $id;
 
-        // $db      = \Config\Database::connect();
-        // $builder = $db->table('users_community');
-        // $builder->select('users_community.id, users_community.user_id, users_community.community_id, users_community.status, users_community.anounymous, users_community.assistant_manager, users.nickname, users.email');
-        // $builder->where(['users_community.community_id' => $id, 'users_community.assistant_manager' => 1]);
-        // $builder->join('users', 'users_community.user_id = users.id');
-        // $query   = $builder->get();
-        // $data['users_community'] = $query->getResult();
 
         $db      = \Config\Database::connect();
         $builder = $db->table('users_community');
@@ -80,15 +73,6 @@ class Managers extends BaseController
         
         $query   = $builder->get();
         $data['users'] = $query->getResult();
-        // echo '<pre>';
-        // var_dump($data['users']);exit;
-        // $db      = \Config\Database::connect();
-        // $builder = $db->table('users_community');
-        // $builder->select('users_community.id, users_community.user_id, users_community.community_id, users_community.status, users_community.anounymous, users_community.assistant_manager, users.nickname, users.email');
-        // $builder->where(['users_community.community_id' => $id, 'users_community.assistant_manager' => 0, 'users_community.status' => 0]);
-        // $builder->join('users', 'users_community.user_id = users.id');
-        // $query   = $builder->get();
-        // $data['pending_users'] = $query->getResult();
 
         echo view('templates/header', $data);
         echo view('manager-community/manage-community-users', $data);
@@ -105,11 +89,6 @@ class Managers extends BaseController
         $builder = $db->table('users_report');
         $builder->select('*');
         $builder->where(['users_report.community_id' => $id]);
-        // $builder->where('users_community.status !=', '3');
-        // AND users_report.user_id = users.id
-        // $builder->join('users', 'users_report.reported_by_user_id = users.id', 'left');
-        // $builder->join('profile_photo', 'users_community.user_id = profile_photo.user_id', 'left');
-        // $builder->join('community_ac_settings', 'users_community.user_id = community_ac_settings.user_id', 'left');
         
         $query   = $builder->get();
         $data['reported_posts'] = $query->getResult();
@@ -451,5 +430,55 @@ class Managers extends BaseController
 
         
 
+    }
+    public function update_community(){
+        $community = new CommunityModel();
+
+        $data = [];
+
+        $data = [
+            'user_id' => $this->post->request('user_id'),
+            'community_id' => $this->post->request('community_id'),
+            'upvote_name' => $this->post->request('upvote_name'),
+            'devote_name' => $this->post->request('devote_name'),
+            'cover_photo' => $this->post->request('cover_photo'),
+            'title' => $this->post->request('title'),
+            'content' => $this->post->request('content'),
+        ];
+
+        if($remove->update($this->post->request('id'), $data)){
+            $msg = 'Community has been deleted!';
+            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+        }else{
+            $msg = 'Failed to remove!';
+            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+        }
+
+    }
+
+    public function reset_community(){
+        $community = new CommunityModel();
+
+        if($remove->reset($this->post->request('id'))){
+            $msg = 'Community has been reset!';
+            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+        }else{
+            $msg = 'Failed to remove!';
+            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+        }
+    }
+
+    public function remove_community(){
+
+        $community = new CommunityModel();
+
+        if($remove->delete($this->post->request('id'))){
+            $msg = 'Community has been deleted!';
+            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+        }else{
+            $msg = 'Failed to remove!';
+            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+        }
+        
     }
 }

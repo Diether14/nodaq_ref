@@ -103,81 +103,74 @@
                 <h2>Community Settings</h2>
                 <!-- <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add_ac">Add Assistant Manager</button> -->
                 <div class="row">
+                  <div class="col-lg-12">
+                  <div class="form card card-body">
+                  <h4>Edit Community</h4>
+                    <form class="contact-form" action="update_community" method="post" accept-charset="utf-8"
+                            enctype="multipart/form-data">
 
-
-                  <!-- <div class="table-responsive">
-                    <table id="myTable" class="table table-striped table-bordered" style="width:100%">
-                      <thead>
-                        <tr>
-                          <th width="20%;">ID</th>
-                          <th>Reported By</th>
-                          <th>Post Title</th>
-                          <th>Reported Details</th> 
-                          <th>Action</th>
-                    
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <php foreach ($reported_posts as $key => $value): ?>
-                        <tr>
-                          <td><= $value->id ?></td>
-                          <td>John</td>
-                          <td>What is Lorem?</td>
-                          <td>This Post should be deleted!</td>
-                          <td>
-                            <button class="btn btn-primary btn-sm"> View</button>
-                            <button class="btn btn-danger btn-sm"> Ban User</button>
-                          
-                          </td>
-                          
-                        </tr>                  
-
-                       
-                          <div class="modal fade" id="ban_user<= $key ?>" tabindex="-1" role="dialog">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title">Ban User from community</h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <i class="material-icons">clear</i>
-                                  </button>
-                                </div>
-                                <form class="contact-form" action="<= base_url(); ?>/ban_user" method="post"
-                                  accept-charset="utf-8" enctype="multipart/form-data">
-                                  <div class="modal-body">
-                                    <div class="form-group row">
-                                      <div class="col-lg-12">
-                                        <div class="form-group row">
-                                          <div class="col-lg-12">
-                                            <label>Reason</label>
-                                            <input type="text" name="ban_reason" class="form-control" value="" required>
-                                            <input type="hidden" name="community_id"
-                                              value="<= $value->community_id; ?>">
-                                            <input type="hidden" name="id" value="<= $value->id; ?>">
-
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="modal-footer">
-
-                                    <button type="submit" class="btn btn-link">Remove</button>
-
-                                    <button type="button" class="btn btn-danger btn-link"
-                                      data-dismiss="modal">Close</button>
-                                  </div>
-                                </form>
-                              </div>
+                            <div class="form-group">
+                              <input type="text" name="title" class="form-control" placeholder="Title"
+                                value="<?= $value->title ?>">
                             </div>
-                          </div>
-                        
-                          <php endforeach; ?>
-                      </tbody>
-                    </table>
-                  </div> -->
-                </div>
+                            <input type="hidden" name="com_photo_id" value="<?= $value->com_photo_id; ?>">
+                            <input type="hidden" name="id" value="<?= $value->id; ?>">
 
+                            <div class="form-group">
+                              <textarea name="content" class="form-control" cols="30" rows="10"
+                                placeholder="Content"><?= $value->content ?></textarea>
+                            </div>
+
+                            <div class="togglebutton">
+                              <label>
+                                <input type="checkbox" name="community_type"
+                                  <?= ($value->community_type	 == '1' ? 'checked': null)?>>
+                                <span class="toggle"></span>
+                                Private Community
+                              </label>
+                            </div>
+                            <label for="color">Select your theme color:</label>
+                            <input type="color" name="color" value="<?= $value->color; ?>" class="myField"><br>
+                            <label for="color">Select your text color:</label>
+                            <input type="color" name="text_color" value="<?= $value->text_color; ?>"><hr>
+                            <div class="form-group"> 
+                              <h6>Edit Community Cover Photo</h6>
+                              
+                              <img src="<?= base_url(); ?>/public/user/assets/img/bg3.jpg" alt="" width="50%" height="50%"> 
+                              <input type="file" name="file" class="text-center center-block file-upload form-group" accept=".png, .jpg, .jpeg">
+                            </div><hr>
+                            <h6>Set up upvote and devote</h6>
+                            <div class="form-group">
+                              <label>Upvote Name</label><br>
+                              <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                              <label>Devote Name</label><br>
+                              <input type="text" class="form-control">
+                            </div><hr>
+                            <button type="submit" class="btn btn-primary btn-sm">Save Community</button>
+                            <button type="submit" class="btn btn-info btn-sm" >Preview Community</button>
+                          
+                          </form>
+                  </div>
+                  
+                  </div>
+                  
+                </div>
+               
+                
+                 <div class="card card-body mt-0">
+                    <h6>Settings</h6>
+                    <div class="form-group">
+                      <label>Reset Community</label><br>
+                      <button class="btn btn-primary btn-sm"> Reset</button>
+                    </div>
+                    <div class="form-group">
+                      <label>Remove Community</label><br>
+                      <button class="btn btn-danger btn-sm"> Remove</button>
+                    </div>
+                  </div>
+                
               </div>
 
 
