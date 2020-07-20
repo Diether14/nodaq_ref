@@ -145,8 +145,10 @@ $routes->match(['get','post'],'update_sticker', 'Emoticonstore::update_sticker')
 $routes->get('/manage-community/(:num)', 'Managers::dashboard/$1', ['filter' => 'auth']);
 $routes->get('/manage-community/category/(:num)', 'Managers::category/$1', ['filter' => 'auth']);
 $routes->get('/manage-community/users/(:num)', 'Managers::users/$1', ['filter' => 'auth']);
-$routes->get('/manage-community/reported_posts/(:num)', 'Managers::reported_posts/$1', ['filter' => 'auth']);
+$routes->get('/manage-community/reported-posts/(:num)', 'Managers::reported_posts/$1', ['filter' => 'auth']);
 $routes->get('/manage-community/community-settings/(:num)', 'Managers::community_settings/$1', ['filter' => 'auth']);
+$routes->get('/manage-community/ip-management/(:num)', 'Managers::ip_management/$1', ['filter' => 'auth']);
+$routes->get('/manage-community/block-list/(:num)', 'Managers::block_list/$1', ['filter' => 'auth']);
 
 //managers functions
 $routes->match(['get','post'],'add_category', 'Managers::add_category');
@@ -155,11 +157,12 @@ $routes->match(['get','post'],'update_category', 'Managers::update_category');
 $routes->match(['get','post'],'remove_ac', 'Managers::remove_ac');
 $routes->match(['get','post'],'ban_user', 'Managers::ban_user');
 $routes->match(['get', 'post'], 'ac_settings', 'Managers::ac_settings');
-
+$routes->match(['get', 'post'], 'block_settings', 'Managers::block_settings');
 
 $routes->get('/accept_user/(:num)/(:num)', 'Managers::accept_user/$1/$2', ['filter' => 'auth']);
 $routes->get('/reject_user/(:num)/(:num)', 'Managers::reject_user/$1/$2', ['filter' => 'auth']);
 $routes->get('/make_ac/(:num)/(:num)', 'Managers::make_ac/$1/$2', ['filter' => 'auth']);
+$routes->get('/unblock/(:num)/(:num)', 'Managers::unblock/$1/$2', ['filter' => 'auth']);
 // $routes->get('/remove_ac/(:num)/(:num)', 'Managers::remove_ac/$1/$2', ['filter' => 'auth']);
 
 

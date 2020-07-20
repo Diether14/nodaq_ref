@@ -39,7 +39,7 @@
             <ul class="nav nav-pills nav-pills-icons flex-column  card p-3" role="tablist">
 
               <li class="nav-item">
-                <a class="nav-link active" href="#dashboard" role="tab" data-toggle="tab">
+              <a class="nav-link active" href="<?= base_url() ?>/manage-community/<?= $community_id ?>" >
                   <i class="material-icons">dashboard</i>
                   Dashboard
                 </a>
@@ -59,26 +59,20 @@
               </li>
              
               <li class="nav-item">
-                <a class="nav-link" href="#report" role="tab" data-toggle="tab">
+              <a class="nav-link" href="<?= base_url(); ?>/manage-community/reported-posts/<?= $community_id ?>">
                   <i class="material-icons">report</i>
                   Reported Posts
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#acm" role="tab" data-toggle="tab">
-                  <i class="material-icons">assistant</i>
-                  Manage Managers
-                </a>
-              </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="#ip" role="tab" data-toggle="tab">
+              <a class="nav-link" href="<?= base_url(); ?>/manage-community/ip-management/<?= $community_id ?>">
                   <i class="material-icons">share</i>
                   IP Management
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#settings" role="tab" data-toggle="tab">
+            <a class="nav-link" href="<?= base_url(); ?>/manage-community/community-settings/<?= $community_id ?>">
                   <i class="material-icons">settings</i>
                   Settings
                 </a>

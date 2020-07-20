@@ -127,6 +127,101 @@ class Managers extends BaseController
         echo view('templates/footer', $data);
     }
 
+    public function ip_management($id = null){
+        helper(['form']);
+
+        ini_set('display_errors', 1);
+        $data['community_id'] = $id;
+        
+
+        echo view('templates/header', $data);
+        echo view('manager-community/manage-community-ip', $data);
+        echo view('templates/footer', $data);
+    }
+
+    public function block_list($id = null){
+        helper(['form']);
+
+        ini_set('display_errors', 1);
+        $data['community_id'] = $id;
+        
+        $db      = \Config\Database::connect();
+        $builder = $db->table('users_community');
+        $builder->select('users_community.id, users_community.user_id, users_community.community_id, users_community.ban_reason, users_community.post, users_community.comment, users_community.share, users_community.report, users_community.upvote_devote,users_community.status, users_community.anounymous, users.nickname, users.email, profile_photo.name, 
+        community_ac_settings.remove_comments,community_ac_settings.remove_posts,community_ac_settings.punish_users,community_ac_settings.remove_posts_from_hotboard,
+        community_ac_settings.edit_cover_photo, community_ac_settings.edit_categories, community_ac_settings.edit_subclass, community_ac_settings.notice,
+        community_ac_settings.general, community_ac_settings.politic');
+        $builder->where(['users_community.community_id' => $id]);
+        $builder->where('users_community.status =', '3');
+        $builder->join('users', 'users_community.user_id = users.id');
+        $builder->join('profile_photo', 'users_community.user_id = profile_photo.user_id', 'left');
+        $builder->join('community_ac_settings', 'users_community.user_id = community_ac_settings.user_id', 'left');
+        
+        $query   = $builder->get();
+        $data['users'] = $query->getResult();
+
+        echo view('templates/header', $data);
+        echo view('manager-community/manage-community-blocklist', $data);
+        echo view('templates/footer', $data);
+    }
+
+    public function block_settings(){
+        ini_set('display_errors', 1);
+        $data = [];
+        helper(['form', 'url']);    
+        
+        $model = new UserscommunityModel();
+        $community_id = $this->request->getPost('community_id');
+    
+        if($this->request->getPost('post') == 'on'){
+            $post = '1';
+        }else{
+            $post = '0';
+        }
+        
+        if($this->request->getPost('comment')){
+            $comment = '1';
+        }else{
+            $comment = '0';
+        }
+
+        if($this->request->getPost('share')){
+            $share = '1';
+        }else{
+            $share = '0';
+        }
+
+        if($this->request->getPost('report')){
+            $report = '1';
+        }else{
+            $report = '0';
+        }
+
+        if($this->request->getPost('upvote_devote')){
+            $upvote_devote = '1';
+        }else{
+            $upvote_devote = '0';
+        }
+
+        $data = [
+            'id'       => $this->request->getPost('id'),
+            'status' => '3',
+            'post' => $post, 
+            'comment' => $comment,
+            'share' => $share,
+            'report' => $report,
+            'upvote_devote' => $upvote_devote,
+        ];
+
+        if($model->save($data)){
+            $msg = 'Settings has been changed!';
+            return redirect()->to( base_url().'/manage-community/block-list/'.$community_id)->with('msg', $msg);
+        }else{
+            $msg = 'Failed to changed!';
+            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+        }
+    }
+
 
     public function add_category(){
         ini_set('display_errors', 1);
@@ -147,7 +242,7 @@ class Managers extends BaseController
 
         if($model->insert($data)){
             $msg = 'Category has been added!';
-            return redirect()->to( base_url().'/manage-community/'.$community_id)->with('msg', $msg);
+            return redirect()->to( base_url().'/manage-community/category/'.$community_id)->with('msg', $msg);
         }
     }
 
@@ -212,6 +307,27 @@ class Managers extends BaseController
         }else{
             $msg = 'Failed to accept!';
             return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+        }
+    }
+
+    public function unblock($id = null, $community_id = null){
+        ini_set('display_errors', 1);
+        $data = [];
+        helper(['form', 'url']);    
+        
+        $model = new UserscommunityModel();
+
+        $data = [
+            'id'       => $id,
+            'status' => '1'
+        ];
+
+        if($model->save($data)){
+            $msg = 'User has been unblock!';
+            return redirect()->to( base_url().'/manage-community/block-list/'.$community_id)->with('msg', $msg);
+        }else{
+            $msg = 'Failed to unblock!';
+            return redirect()->to( base_url().'/manage-community/block-list/'.$community_id)->with('msg', $msg);
         }
     }
     

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 15, 2020 at 05:53 PM
+-- Generation Time: Jul 20, 2020 at 05:58 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.5
 
@@ -73,7 +73,6 @@ CREATE TABLE `community_ac_settings` (
   `edit_cover_photo` int(11) NOT NULL COMMENT '0 = false, 1 = true',
   `edit_categories` int(11) NOT NULL COMMENT '0 = false, 1 = true',
   `edit_subclass` int(11) NOT NULL COMMENT '0 = false, 1 = true',
-  `unable_both` int(11) NOT NULL COMMENT '0 = false, 1 = true',
   `notice` int(11) NOT NULL COMMENT '0 = false, 1 = true',
   `general` int(11) NOT NULL COMMENT '0 = false, 1 = true',
   `politic` int(11) NOT NULL COMMENT '0 = false, 1 = true',
@@ -85,8 +84,8 @@ CREATE TABLE `community_ac_settings` (
 -- Dumping data for table `community_ac_settings`
 --
 
-INSERT INTO `community_ac_settings` (`id`, `user_id`, `community_id`, `remove_comments`, `remove_posts`, `punish_users`, `remove_posts_from_hotboard`, `edit_cover_photo`, `edit_categories`, `edit_subclass`, `unable_both`, `notice`, `general`, `politic`, `created_at`, `update_at`) VALUES
-(1, 21, 30, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, '2020-07-15 15:33:25', '2020-07-15 15:33:25');
+INSERT INTO `community_ac_settings` (`id`, `user_id`, `community_id`, `remove_comments`, `remove_posts`, `punish_users`, `remove_posts_from_hotboard`, `edit_cover_photo`, `edit_categories`, `edit_subclass`, `notice`, `general`, `politic`, `created_at`, `update_at`) VALUES
+(1, 21, 30, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2020-07-15 15:33:25', '2020-07-15 15:33:25');
 
 -- --------------------------------------------------------
 
@@ -154,7 +153,25 @@ CREATE TABLE `community_category` (
 --
 
 INSERT INTO `community_category` (`id`, `user_id`, `community_id`, `category_name`, `created_at`, `updated_at`) VALUES
-(0, 18, 30, 'Coffee', '2020-07-09 14:32:52', '2020-07-09 14:32:52');
+(0, 18, 0, '', '2020-07-09 14:32:52', '2020-07-09 14:32:52'),
+(5, 18, 30, 'test', '2020-07-19 13:29:28', '2020-07-19 13:29:28'),
+(6, 18, 30, 'test1', '2020-07-20 12:01:12', '2020-07-20 12:01:12');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `community_category_subclass`
+--
+
+CREATE TABLE `community_category_subclass` (
+  `id` int(11) NOT NULL,
+  `users_id` int(11) NOT NULL,
+  `community_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `subclass` varchar(255) NOT NULL,
+  `createad_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `update_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -460,6 +477,11 @@ CREATE TABLE `users_community` (
   `anounymous` int(11) NOT NULL COMMENT '0 = public, 1 = anounymous',
   `ban_reason` varchar(255) NOT NULL,
   `remove_ac_reason` varchar(255) NOT NULL,
+  `post` int(11) NOT NULL,
+  `comment` int(11) NOT NULL,
+  `share` int(11) NOT NULL,
+  `report` int(11) NOT NULL,
+  `upvote_devote` int(11) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -468,18 +490,18 @@ CREATE TABLE `users_community` (
 -- Dumping data for table `users_community`
 --
 
-INSERT INTO `users_community` (`id`, `user_id`, `community_id`, `status`, `anounymous`, `ban_reason`, `remove_ac_reason`, `created_at`, `updated_at`) VALUES
-(2, 18, 26, 0, 0, '0', '', '2020-05-11 23:10:32', '2020-05-11 23:10:32'),
-(3, 18, 23, 0, 0, '0', '', '2020-05-12 00:07:02', '2020-05-12 00:07:02'),
-(4, 18, 29, 0, 0, '0', '', '2020-06-03 22:06:33', '2020-06-03 22:06:33'),
-(5, 21, 29, 0, 0, '0', '', '2020-06-03 23:56:10', '2020-06-03 23:56:10'),
-(10, 21, 24, 0, 0, '0', '', '2020-06-15 23:27:23', '2020-06-15 23:27:23'),
-(11, 18, 24, 0, 0, '0', '', '2020-06-19 22:06:43', '2020-06-19 22:06:43'),
-(12, 21, 23, 0, 0, '0', '', '2020-06-22 23:13:30', '2020-06-22 23:13:30'),
-(13, 21, 31, 0, 0, '0', '', '2020-06-24 21:33:23', '2020-06-24 21:33:23'),
-(14, 21, 30, 2, 0, '1', 'test', '2020-06-24 21:33:23', '2020-06-24 21:33:23'),
-(16, 18, 30, 1, 0, '0', 'tset', '2020-06-19 22:06:43', '2020-06-19 22:06:43'),
-(17, 34, 30, 0, 0, '', '', '2020-06-19 22:06:43', '2020-06-19 22:06:43');
+INSERT INTO `users_community` (`id`, `user_id`, `community_id`, `status`, `anounymous`, `ban_reason`, `remove_ac_reason`, `post`, `comment`, `share`, `report`, `upvote_devote`, `created_at`, `updated_at`) VALUES
+(2, 18, 26, 0, 0, '0', '', 0, 0, 0, 0, 0, '2020-05-11 23:10:32', '2020-05-11 23:10:32'),
+(3, 18, 23, 0, 0, '0', '', 0, 0, 0, 0, 0, '2020-05-12 00:07:02', '2020-05-12 00:07:02'),
+(4, 18, 29, 0, 0, '0', '', 0, 0, 0, 0, 0, '2020-06-03 22:06:33', '2020-06-03 22:06:33'),
+(5, 21, 29, 0, 0, '0', '', 0, 0, 0, 0, 0, '2020-06-03 23:56:10', '2020-06-03 23:56:10'),
+(10, 21, 24, 0, 0, '0', '', 0, 0, 0, 0, 0, '2020-06-15 23:27:23', '2020-06-15 23:27:23'),
+(11, 18, 24, 0, 0, '0', '', 0, 0, 0, 0, 0, '2020-06-19 22:06:43', '2020-06-19 22:06:43'),
+(12, 21, 23, 0, 0, '0', '', 0, 0, 0, 0, 0, '2020-06-22 23:13:30', '2020-06-22 23:13:30'),
+(13, 21, 31, 0, 0, '0', '', 0, 0, 0, 0, 0, '2020-06-24 21:33:23', '2020-06-24 21:33:23'),
+(14, 21, 30, 2, 0, '1', 'test', 0, 0, 0, 0, 0, '2020-06-24 21:33:23', '2020-06-24 21:33:23'),
+(16, 18, 30, 3, 0, 'test block', 'tset', 1, 1, 1, 1, 1, '2020-06-19 22:06:43', '2020-06-19 22:06:43'),
+(17, 34, 30, 0, 0, 'test', '', 0, 0, 0, 0, 0, '2020-06-19 22:06:43', '2020-06-19 22:06:43');
 
 -- --------------------------------------------------------
 
@@ -547,7 +569,7 @@ CREATE TABLE `users_post` (
 --
 
 INSERT INTO `users_post` (`id`, `user_id`, `community_id`, `title`, `description`, `content`, `status`, `reason`, `created_at`, `updated_at`) VALUES
-(19, 18, 23, 'What is Lorem Ipsum?', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ', '<h1><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a', 0, '', '2020-06-11 23:32:55', '2020-06-11 23:32:55'),
+(19, 16, 30, 'What is Lorem Ipsum?', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ', '<h1><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a', 0, '', '2020-06-11 23:32:55', '2020-06-11 23:32:55'),
 (21, 21, 23, 'Where does it come from?', 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old', '<h1>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up ', 0, '', '2020-06-12 00:15:32', '2020-06-12 00:15:32'),
 (26, 21, 31, 'Test Title', 'It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,', '<h1 style=\"text-align:center\">Hello world!<br />\n<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer too', 0, '', '2020-06-24 21:34:27', '2020-06-24 21:34:27'),
 (30, 18, 23, 'tsetsetset', 'test', '<h1>Hello world!</h1>\n\n<h1 style=\"color:#aaaaaa; font-style:italic\">I&#39;m an instance of <a href=\"https://ckeditor.com\">CKEditor</a>. as<span style=\"background-color:#e67e22\">d</span><span style=\"font-size:11px\"><span style=\"background-color:#e67e22\"> f', 0, '', '2020-06-24 22:41:29', '2020-06-24 22:41:29');
@@ -560,13 +582,21 @@ INSERT INTO `users_post` (`id`, `user_id`, `community_id`, `title`, `description
 
 CREATE TABLE `users_report` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `reported_by_user_id` int(11) NOT NULL,
   `community_id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `report_content` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users_report`
+--
+
+INSERT INTO `users_report` (`id`, `reported_by_user_id`, `community_id`, `post_id`, `user_id`, `report_content`, `created_at`, `updated_at`) VALUES
+(1, 16, 30, 19, 16, 'I want to report this user!', '2020-07-16 21:24:57', '2020-07-16 21:24:57');
 
 -- --------------------------------------------------------
 
@@ -671,6 +701,12 @@ ALTER TABLE `community_banned_users`
 -- Indexes for table `community_category`
 --
 ALTER TABLE `community_category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `community_category_subclass`
+--
+ALTER TABLE `community_category_subclass`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -825,7 +861,13 @@ ALTER TABLE `community_banned_users`
 -- AUTO_INCREMENT for table `community_category`
 --
 ALTER TABLE `community_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `community_category_subclass`
+--
+ALTER TABLE `community_category_subclass`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `community_photo`

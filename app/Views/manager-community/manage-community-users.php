@@ -39,50 +39,49 @@
 
       <div class="col-lg-12">
         <div class="row">
-          <div class="col-md-3">
+        <div class="col-md-3">
             <ul class="nav nav-pills nav-pills-icons flex-column  card p-3" role="tablist">
 
               <li class="nav-item">
-                <a class="nav-link " href="<?= base_url(); ?>/manage-community/<?= $community_id ?>">
+              <a class="nav-link " href="<?= base_url() ?>/manage-community/<?= $community_id ?>" >
                   <i class="material-icons">dashboard</i>
                   Dashboard
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="<?= base_url(); ?>/manage-community/category/<?= $community_id ?>">
+                <a class="nav-link" href="<?= base_url() ?>/manage-community/category/<?= $community_id ?>" >
                   <i class="material-icons">category</i>
                   Category
                 </a>
               </li>
-
+           
               <li class="nav-item">
-                <a class="nav-link active" href="#users" role="tab" data-toggle="tab">
+                <a class="nav-link active" href="<?= base_url(); ?>/manage-community/users/<?= $community_id ?>">
                   <i class="material-icons">people</i>
                   Community Users
                 </a>
               </li>
-
+             
               <li class="nav-item">
-                <a class="nav-link" href="<?= base_url(); ?>/manage-community/reported_posts/<?= $community_id ?>" >
+              <a class="nav-link" href="<?= base_url(); ?>/manage-community/reported-posts/<?= $community_id ?>">
                   <i class="material-icons">report</i>
                   Reported Posts
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#acm" role="tab" data-toggle="tab">
-                  <i class="material-icons">assistant</i>
-                  Manage Managers
+              <a class="nav-link" href="<?= base_url(); ?>/manage-community/block-list/<?= $community_id ?>">
+                  <i class="material-icons">block</i>
+                  Block List
                 </a>
               </li>
-
               <li class="nav-item">
-                <a class="nav-link" href="#ip" role="tab" data-toggle="tab">
+              <a class="nav-link" href="<?= base_url(); ?>/manage-community/ip-management/<?= $community_id ?>">
                   <i class="material-icons">share</i>
                   IP Management
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#settings" role="tab" data-toggle="tab">
+            <a class="nav-link" href="<?= base_url(); ?>/manage-community/community-settings/<?= $community_id ?>">
                   <i class="material-icons">settings</i>
                   Settings
                 </a>
@@ -144,8 +143,6 @@
                               data-target="#accept_user<?= $key ?>">Accept</button>
                             <button class="btn btn-danger btn-sm" data-toggle="modal"
                               data-target="#reject_user<?= $key ?>">Reject</button>
-                            <button class="btn btn-danger btn-sm" data-toggle="modal"
-                              data-target="#ban_user<?= $key ?>">Ban User</button>
                             <?php elseif($value->status == 2): ?>
                             <button class="btn btn-info btn-sm" data-toggle="modal"
                               data-target="#ac_settings<?= $key ?>">AC Settings</button>
