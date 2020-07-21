@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
 
   <link href="<?= base_url(); ?>/public/user/assets/css/material-kit.css?v=2.0.7" rel="stylesheet" />
+  <link href="<?= base_url(); ?>/public/assets/scss/main.css" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="<?= base_url(); ?>/public/user/assets/demo/demo.css" rel="stylesheet" />
   <!-- tags input plugin -->
@@ -31,8 +32,7 @@
   <!-- <link rel="stylesheet" href="<?= base_url(); ?>/public/assets/ckeditor/samples/css/samples.css"> -->
   <link rel="stylesheet"
     href="<?= base_url(); ?>/public/assets/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css">
-  <!-- Custom styles for this page -->
-  <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+
   <style>
     .rounded-circle {
       border-radius: 50% !important;
@@ -124,7 +124,7 @@
   <?php 
       $uri = service('uri');
     ?>
-  <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg bg-dark">
+  <nav class="navbar  fixed-top navbar-expand-lg bg-primary">
             <div class="container">
               <div class="navbar-translate">
               <a class="navbar-brand" href="/weendi/dashboard">
@@ -137,7 +137,14 @@
                 </button>
               </div>
 
-              <form action="<?= base_url() ?>/search/all" class="form-inline ml-2">
+             
+
+
+              <div class="collapse navbar-collapse">
+              <ul class="navbar-nav ml-auto">
+          
+          <li class="nav-item">
+          <form action="<?= base_url() ?>/search/all" class="form-inline ml-2">
                   <div class="form-group has-white">
                     <input type="text" name="q" class="form-control" placeholder="Search">
                   </div>
@@ -145,11 +152,7 @@
                     <i class="material-icons">search</i>
                   </button>
                 </form>
-
-
-              <div class="collapse navbar-collapse">
-              <ul class="navbar-nav ml-auto">
-          
+          </li>
           <li class="nav-item">
             <a href="<?= base_url(); ?>/dashboard" class="nav-link">
               <i class="fa fa-home"></i> Simple SNS

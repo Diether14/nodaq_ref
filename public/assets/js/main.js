@@ -1,6 +1,32 @@
 $(document).ready(function(){
     initSample();
     
+    
+
+    $(".add-subclass").click(function(){
+        var x = $(".form-subclass").serializeArray();
+        console.log(x);
+        var base_url =  "<?php echo base_url();?>";
+        $.ajax({
+            type: "POST",
+            url  : "../../add_subclass",
+            data: x,
+            dataType: "JSON",
+            success: function(data)
+            {
+               //if success close modal and reload ajax table
+               console.log(data);
+              alert('Blog Added');
+              location.reload();
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('There is an error!');
+            }
+        });
+
+    });
+
     $( "#save_post" ).click(function() {
 
         // grecaptcha.ready(function() {
@@ -106,6 +132,7 @@ $(document).ready(function(){
     $( ".not_joined").click(function(){
         alert('You must join to the community first!');
     });
+
 
 
     $( "#edit_shared_post" ).click(function() {

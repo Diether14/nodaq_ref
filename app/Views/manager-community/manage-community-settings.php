@@ -100,50 +100,50 @@
                   <div class="col-lg-12">
                   <div class="form card card-body">
                   <h4>Edit Community</h4>
-                    <form class="contact-form" action="update_community" method="post" accept-charset="utf-8"
+                    <form class="contact-form" action="<?= base_url(); ?>/manager/save-community" method="post" accept-charset="utf-8"
                             enctype="multipart/form-data">
 
                             <div class="form-group">
                               <input type="text" name="title" class="form-control" placeholder="Title"
-                                value="<?= $value->title ?>">
+                                value="<?= $community[0]->title ?>">
                             </div>
-                            <input type="hidden" name="com_photo_id" value="<?= $value->com_photo_id; ?>">
-                            <input type="hidden" name="id" value="<?= $value->id; ?>">
-
+                            <input type="hidden" name="com_photo_id" value="<?= $community[0]->com_photo_id; ?>">
+                            <input type="hidden" name="id" value="<?= $community[0]->id; ?>">
+                    
                             <div class="form-group">
                               <textarea name="content" class="form-control" cols="30" rows="10"
-                                placeholder="Content"><?= $value->content ?></textarea>
+                                placeholder="Content"><?= $community[0]->content ?></textarea>
                             </div>
 
                             <div class="togglebutton">
                               <label>
                                 <input type="checkbox" name="community_type"
-                                  <?= ($value->community_type	 == '1' ? 'checked': null)?>>
+                                  <?= ($community[0]->community_type	 == '1' ? 'checked': null)?>>
                                 <span class="toggle"></span>
                                 Private Community
                               </label>
                             </div>
                             <label for="color">Select your theme color:</label>
-                            <input type="color" name="color" value="<?= $value->color; ?>" class="myField"><br>
+                            <input type="color" name="color" value="<?= $community[0]->color; ?>" class="myField"><br>
                             <label for="color">Select your text color:</label>
-                            <input type="color" name="text_color" value="<?= $value->text_color; ?>"><hr>
+                            <input type="color" name="text_color" value="<?= $community[0]->text_color; ?>"><hr>
                             <div class="form-group"> 
                               <h6>Edit Community Cover Photo</h6>
                               
-                              <img src="<?= base_url(); ?>/public/user/assets/img/bg3.jpg" alt="" width="50%" height="50%"> 
-                              <input type="file" name="file" class="text-center center-block file-upload form-group" accept=".png, .jpg, .jpeg">
+                              <img src="<?= base_url(); ?>/public/admin/uploads/community/<?= $community[0]->name ?>" alt="" width="50%" height="50%"> 
+                              <input type="file" name="file" class="text-center center-block file-upload form-control" accept=".png, .jpg, .jpeg">
                             </div><hr>
                             <h6>Set up upvote and devote</h6>
                             <div class="form-group">
                               <label>Upvote Name</label><br>
-                              <input type="text" class="form-control">
+                              <input name="upvote_name" value=" <?= $community[0]->upvote_name ?>" type="text" class="form-control">
                             </div>
                             <div class="form-group">
                               <label>Devote Name</label><br>
-                              <input type="text" class="form-control">
+                              <input name="devote_name" value="<?= $community[0]->devote_name ?> " type="text" class="form-control">
                             </div><hr>
                             <button type="submit" class="btn btn-primary btn-sm">Save Community</button>
-                            <button type="submit" class="btn btn-info btn-sm" >Preview Community</button>
+                            <button type="button" class="btn btn-info btn-sm" >Preview Community</button>
                           
                           </form>
                   </div>

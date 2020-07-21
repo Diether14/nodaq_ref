@@ -18,8 +18,8 @@
 <script>
 function add(){
       var new_chq_no = parseInt($('#total_chq').val())+1;
-      var new_input="<input class='form-control' type='text' id='new_"+new_chq_no+"' placeholder='Type here...'>";
-      $('#new_chq').append(new_input);
+      var new_input="<input class='form-control' type='text'  name='subclass[]' id='new_"+new_chq_no+"' placeholder='Type here...'>";
+      $('#sub').append(new_input);
       $('#total_chq').val(new_chq_no)
     }
     function remove(){
@@ -148,31 +148,37 @@ function add(){
                               </button>
                             </div>
                             <div class="modal-body">
-                              <!-- <form class="contact-form" action="<= base_url(); ?>/update_category" method="post"
-                                accept-charset="utf-8" enctype="multipart/form-data"> -->
+                            <!-- action="<= base_url(); ?>/add_subclass" -->
+                              <form class="form-subclass" >
                                 <div class="form-group row">
                                   <div class="col-lg-12">
                                
    
                                     <div class="mb-3">
                                       <label></label>
-                                      <button onclick="add()" class="btn btn-primary btn-sm">Add</button>
-                                      <button onclick="remove()" class="btn btn-danger btn-sm ">remove</button>
+                                      <button onclick="add()" type="button" class="btn btn-primary btn-sm">Add</button>
+                                      <button onclick="remove()" type="button" class="btn btn-danger btn-sm ">remove</button>
                                       </div>
                                       <br>
                                     <div id="new_chq">
                                       <label>Subclass</label>
-
+                                      
                                     </div>
                                     <input type="hidden" value="1" id="total_chq">
+                                    <div id="sub">
+                                    
+                                    </div>
+                                    <input type="hidden" value="<?= $value['community_id'] ?>" name="community_id[]">
+                                    <input type="hidden" value="<?= $value['id'] ?>" name="category_id[]" >
+                                    <input class='form-control' name='subclass[]' type='text' placeholder='Type here...'>
                                   </div>
                                 </div>
 
 
                             </div>
                             <div class="modal-footer">
-                              <button type="button" class="btn btn-link">Save</button>
-                              <!-- </form> -->
+                              <button type="button" class="add-subclass btn btn-link">Save</button>
+                              </form>
                               <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
                             </div>
                           </div>

@@ -111,6 +111,7 @@ class Managers extends BaseController
         $builder = $db->table('users_report');
         $builder->select('*');
         $builder->where(['users_report.community_id' => $id]);
+        
         // $builder->where('users_community.status !=', '3');
         // AND users_report.user_id = users.id
         // $builder->join('users', 'users_report.reported_by_user_id = users.id', 'left');
@@ -121,6 +122,15 @@ class Managers extends BaseController
         $data['reported_posts'] = $query->getResult();
         // echo '<pre>';
         // var_dump($data['reported_posts']);exit;
+
+        $builder1 = $db->table('community');
+    
+        $builder1->select('community.id, community.user_id, community.com_photo_id, community.title, community.upvote_name, community.devote_name,community.community_type, community.content, community.updated_at, community.color , community.text_color, community_photo.name, users.nickname, community.status');
+        $builder1->where('community.id', $id);
+        $builder1->join('community_photo', 'community_photo.id = community.com_photo_id');
+        $builder1->join('users', 'community.user_id = users.id');
+        $query1   = $builder1->get();
+        $data['community'] = $query1->getResult();
 
         echo view('templates/header', $data);
         echo view('manager-community/manage-community-settings', $data);
@@ -220,6 +230,96 @@ class Managers extends BaseController
             $msg = 'Failed to changed!';
             return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
         }
+    }
+    
+    
+    public function save_community(){
+        ini_set('display_errors', 1);
+        $data = [];
+        helper(['form', 'url']);
+       
+
+
+        // $community_photo = new CommunityphotoModel;
+ 
+        //  $validated = $this->validate([
+        //     'file' => [
+        //         'uploaded[file]',
+        //         'mime_in[file,image/jpg,image/jpeg,image/gif,image/png]',
+        //         'max_size[file,4096]',
+        //     ],
+        // ]);
+
+        $rules = [
+            'title' => 'required|min_length[3]|max_length[20]',
+            'content' => 'required|min_length[3]|max_length[80]',
+            'upvote' => 'required|min_length[3]|max_length[12]',
+            'devote' => 'required|min_length[3]|max_length[12]',   
+        ];
+
+        // $msg = 'Please select a valid file';
+    // if(! $this->validate($rules)){
+    //     $msg = $this->validator;
+    // }else{
+        // if ($validated ) {
+        //     $avatar = $this->request->getFile('file');
+        //     $avatar->move('public/admin/uploads/community');
+ 
+        //     $data = [
+        //         'name' =>  $avatar->getClientName(),
+        //         'type'  => $avatar->getClientMimeType()
+        //     ];
+        
+            // if($community_photo->insert($data)){
+                
+                $model = new CommunityModel;
+
+                // $last_id = $community_photo->insertID();
+                if($this->request->getPost('community_type') == "on"){
+                    $community_type = '1';
+                }else{
+                    $community_type = '0';
+                }
+        
+                $community_id =$this->request->getPost('id');
+          
+                $newData = [
+                    'id' => $this->request->getPost('id'),
+                    'title' => $this->request->getPost('title'),
+                    'content' => $this->request->getPost('content'),
+                    'community_type' => $community_type,
+                    'color' => $this->request->getPost('color'),
+                    'text_color' => $this->request->getPost('text_color'),
+                    'upvote_name' => $this->request->getPost('upvote_name'),
+                    'devote_name' => $this->request->getPost('devote_name')
+                    ];
+                
+                if($model->save($newData)){
+
+                    $msg = 'Successfully updated!';   
+                }else{
+                    $msg = 'Failed to update!';
+                }
+            // }else{
+            //     $msg = 'There is an error!';
+            // }
+
+            
+        // }
+
+        // 
+    // }
+    return redirect()->to( base_url().'/manage-community/community-settings/'.$community_id)->with('msg', $msg);
+}
+    
+    
+    public function add_subclass(){
+        ini_set('display_errors', 1);
+        $data = [];
+        helper(['form', 'url']);
+       
+        print_r($_POST);
+        exit;
     }
 
 

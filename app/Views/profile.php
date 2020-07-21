@@ -61,17 +61,17 @@
 </style>
 <?php if(!empty($cover_photo['name'])): ?>
 
-<div class="page-header header-filter img-cover" data-parallax="true" data-toggle="modal" data-target="#cover" style="background-image: url('public/user/uploads/covers/<?= $cover_photo['name'] ?>');"></div>
+<div class="page-header header-filter img-cover profile-page" data-parallax="true" data-toggle="modal" data-target="#cover" style="background-image: url('public/user/uploads/covers/<?= $cover_photo['name'] ?>');"></div>
 
 <?php else: ?>
-<div class="page-header header-filter img-cover" data-parallax="true" data-toggle="modal" data-target="#cover" style="background-image: url('public/user/assets/img/city-profile.jpg');"></div>
+<div class="page-header header-filter img-cover profile-page" data-parallax="true" data-toggle="modal" data-target="#cover" style="background-image: url('public/user/assets/img/city-profile.jpg');"></div>
 <?php endif; ?>
-<div class="main">
+<div class="main bg-light">
     <div class="profile-content ">
         <div class="col-sm-9 m-auto">
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="profile">
+                    <div class="profile profile-card bg-white">
                         <div class="avatar" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Click to update" data-container="body">
                             <?php if(!empty($profile_photo['name'])): ?>
 
@@ -126,10 +126,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 card profile-card bg-light">
-                    <div class="col-sm-3 px-2 border-right ">
-                        <h3 class="title text-center mb-2">My Communities</h3>
-                        <hr>
+                <!-- <div class="m-2 w-100"> -->
+                <div class="col-sm-12 profile-card bg-white d-flex">
+                    <div class="col-sm-3 px-2 border-right profile-community__tab">
+                        <h4 class="title mx-2 my-0">My Communities</h4>
+                        <hr class="m-0">
                         <div class="row profile-community_list">
                             <?php if(!empty($community_list)): ?>
                             <?php foreach ($community_list as $key => $value): ?>
@@ -170,16 +171,16 @@
                     </div>
                     <div class="col-sm-9 px-0">
 
-                        <div class="m-4">
+                        <div class="ml-4">
 
                             <div class="tab-content tab-space">
                                 <div class="tab-pane active" id="dashboard-1">
-                                    <div class="card card-nav-tabs card-plain my-1">
-                                        <div class="px-0 py-1">
+                                    <div class="card posts-nav-card card-nav-tabs card-plain my-1">
+                                        <div class="px-0 py-2">
                                             <div class="nav-tabs-navigation">
                                                 <div class="nav-tabs-wrapper">
-                                                    <h3 class="title mb-0 text-center my-0">Posts</h3>
-                                                    <hr>
+                                                    <h4 class="title mb-0 text-center my-0">Posts</h4>
+                                                    <hr class="m-0">
                                                     <ul class="nav nav-tabs post-tabs" data-tabs="tabs">
                                                         <li class="nav-item">
                                                             <a class="nav-link active" href="#home" data-toggle="tab">All Post</a>
