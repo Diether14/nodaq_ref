@@ -160,7 +160,7 @@ $routes->match(['get', 'post'], 'ac_settings', 'Managers::ac_settings');
 $routes->match(['get', 'post'], 'block_settings', 'Managers::block_settings');
 $routes->match(['get', 'post'], 'add_subclass', 'Managers::add_subclass');
 $routes->match(['get', 'post'], '/manager/save-community', 'Managers::save_community');
-
+$routes->match(['get', 'post'], 'update_community_cover', 'Managers::update_community_cover');
 
 $routes->get('/accept_user/(:num)/(:num)', 'Managers::accept_user/$1/$2', ['filter' => 'auth']);
 $routes->get('/reject_user/(:num)/(:num)', 'Managers::reject_user/$1/$2', ['filter' => 'auth']);

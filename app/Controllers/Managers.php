@@ -17,6 +17,7 @@ use App\Models\SharedcommentsModel;
 use App\Models\JoincommunityfilesModel;
 use App\Models\CommunitycategoryModel;
 use App\Models\CommunityacsettingsModel;
+use App\Models\CommunitysubclassModel;
 
 class Managers extends BaseController
 {
@@ -44,12 +45,65 @@ class Managers extends BaseController
         ini_set('display_errors', 1);
         $data['community_id'] = $id;
 
-        $model = new CommunitycategoryModel;
-        $data['community_category'] = $model->where(['user_id' => session()->get('id'), 'community_id' => $id])->find();
+        
+        // $model = new CommunitysubclassModel;
+        // $data['community_category'] = $model->where(['user_id' => session()->get('id'), 'community_id' => $id])->find();
+
+        $db      = \Config\Database::connect();
+        $builder = $db->table('community_category');
+        $builder->select('community_category.id, community_category.user_id, community_category.community_id,, community_category.category_name, community_category.updated_at, community_category_subclass.subclass');
+        $builder->where(['community_category.community_id' => $id]);
+        $builder->join('community_category_subclass', 'community_category_subclass.category_id = community_category.id', 'left');                
+        $query   = $builder->get();
+        $data['community_category'] = $query->getResult();
+
+        
 
         echo view('templates/header', $data);
         echo view('manager-community/manage-community-category', $data);
         echo view('templates/footer', $data);
+    }
+
+    public function update_community_cover(){
+        ini_set('display_errors', 1);
+        helper(['form', 'url']);
+
+        $db      = \Config\Database::connect();
+             $builder = $db->table('community_photo');
+            
+             $validated = $this->validate([
+                'file' => [
+                    'uploaded[file]',
+                    'mime_in[file,image/jpg,image/jpeg,image/gif,image/png]',
+                    'max_size[file,4096]',
+                ]
+                
+            ]);
+            $community_id = $this->request->getPost('community_id');
+            $msg = 'Please select a valid file!';
+            if ($validated) {
+                $avatar = $this->request->getFile('file');
+                $avatar->move('public/admin/uploads/community');
+                
+                $id = $this->request->getPost('com_photo_id'); 
+                
+              $data = [
+              
+                'name' =>  $avatar->getClientName(),
+                'type'  => $avatar->getClientMimeType()
+              ];
+              
+              $builder->where('id', $id);
+              $update = $builder->update($data);
+              if($update){
+                $msg = 'Community cover photo has been updated';
+              }else{
+                $msg = 'Failed to update!';
+              }
+        
+    
+      }
+      return redirect()->to( base_url('/manage-community/community-settings/'.$community_id) )->with('msg', $msg);
     }
 
     public function users($id = null){
@@ -317,9 +371,24 @@ class Managers extends BaseController
         ini_set('display_errors', 1);
         $data = [];
         helper(['form', 'url']);
-       
-        print_r($_POST);
-        exit;
+        
+        $model = new CommunitysubclassModel();
+        $community_id = $this->request->getPost('community_id');
+
+        $data = [
+            'category_id' => $this->request->getPost('category_id'),
+            'user_id' => session()->get('id'),
+            'community_id' => $community_id,
+            'subclass' => $this->request->getPost('subclass'),
+        ];
+
+        if($model->insert($data)){
+            $msg = 'Subclass has been added!';
+            return redirect()->to( base_url().'/manage-community/category/'.$community_id)->with('msg', $msg);
+        }else{
+            $msg = 'Failed to add!';
+            return redirect()->to( base_url().'/manage-community/category/'.$community_id)->with('msg', $msg);
+        }
     }
 
 
@@ -356,10 +425,10 @@ class Managers extends BaseController
 
         if($delete){
             $msg = 'Category has been deleted!';
-            return redirect()->to( base_url().'/manage-community/'.$community_id)->with('msg', $msg);
+            return redirect()->to( base_url().'/manage-community/category/'.$community_id)->with('msg', $msg);
         }else{
             $msg = 'Failed to delete!';
-            return redirect()->to( base_url().'/manage-community/'.$community_id)->with('msg', $msg);
+            return redirect()->to( base_url().'/manage-community/category/'.$community_id)->with('msg', $msg);
         }
     }
 
@@ -382,10 +451,10 @@ class Managers extends BaseController
 
         if($model->update($data['id'], $data)){
             $msg = 'Category has been updated!';
-            return redirect()->to( base_url().'/manage-community/'.$community_id)->with('msg', $msg);
+            return redirect()->to( base_url().'/manage-community/category/'.$community_id)->with('msg', $msg);
         }else{
             $msg = 'Failed to update!';
-            return redirect()->to( base_url().'/manage-community/'.$community_id)->with('msg', $msg);
+            return redirect()->to( base_url().'/manage-community/category/'.$community_id)->with('msg', $msg);
         }
     }
 

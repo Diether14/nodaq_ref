@@ -129,8 +129,10 @@
                             <input type="color" name="text_color" value="<?= $community[0]->text_color; ?>"><hr>
                             <div class="form-group"> 
                               <h6>Edit Community Cover Photo</h6>
-                              
+                              <a href="#" data-toggle="modal"
+                               data-target="#edit_cover<?= $key ?>">
                               <img src="<?= base_url(); ?>/public/admin/uploads/community/<?= $community[0]->name ?>" alt="" width="50%" height="50%"> 
+                              </a>
                               <input type="file" name="file" class="text-center center-block file-upload form-control" accept=".png, .jpg, .jpeg">
                             </div><hr>
                             <h6>Set up upvote and devote</h6>
@@ -155,10 +157,7 @@
                 
                  <div class="card card-body mt-0">
                     <h6>Settings</h6>
-                    <div class="form-group">
-                      <label>Reset Community</label><br>
-                      <button class="btn btn-primary btn-sm"> Reset</button>
-                    </div>
+                   
                     <div class="form-group">
                       <label>Remove Community</label><br>
                       <button class="btn btn-danger btn-sm"> Remove</button>
@@ -185,5 +184,86 @@
 </div>
 </div>
 
+<!-- Classic Modal -->
+<div class="modal fade" id="edit_cover" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Cover Photo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <i class="material-icons">clear</i>
+        </button>
+            </div>
 
+            <div class="modal-body">
+                <div class="text-center">
+                <div class="modal-body">
+                <div class="text-center">
+                    <img src="" class="avatar img-circle img-thumbnail">
+                    <h6>Upload a different photo...</h6>
+                    <form action="<?php echo base_url('/update_community_cover');?>" name="ajax_form" id="ajax_form" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+
+                        <input type="file" name="file" class="text-center center-block file-upload" accept=".png, .jpg, .jpeg">
+                        <input type="hidden" name="com_photo_id" value="<?= $community[0]->com_photo_id ?>">
+                        <input type="hidden" name="community_id" value="<?= $community[0]->id ?>">
+                        <div class="form-group"><br>
+                            <hr>
+                            <button type="submit" id="send_form" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+
+                </div>
+                </hr><br>
+            </div>
+
+                </div>
+                </hr><br>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--  End Modal -->
+
+
+
+<script>
+    $(document).ready(function() {
+
+
+        var readURL = function(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('.avatar').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+        $(".file-upload").on('change', function() {
+            readURL(this);
+        });
+
+    });
+
+
+    // function readURL(input, id) {
+    //     id = id || '#blah';
+    //     if (input.files &amp;&amp; input.files[0]) {
+    //         var reader = new FileReader();
+
+    //         reader.onload = function (e) {
+    //             $(id)
+    //                     .attr('src', e.target.result)
+    //                     .width(200)
+    //                     .height(150);
+    //         };
+
+    //         reader.readAsDataURL(input.files[0]);
+    //     }
+    //  }
 </script>
