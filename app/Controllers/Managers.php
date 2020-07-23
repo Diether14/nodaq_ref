@@ -45,19 +45,30 @@ class Managers extends BaseController
         ini_set('display_errors', 1);
         $data['community_id'] = $id;
 
+        $model = new CommunitysubclassModel;
         
-        // $model = new CommunitysubclassModel;
         // $data['community_category'] = $model->where(['user_id' => session()->get('id'), 'community_id' => $id])->find();
 
         $db      = \Config\Database::connect();
         $builder = $db->table('community_category');
-        $builder->select('community_category.id, community_category.user_id, community_category.community_id,, community_category.category_name, community_category.updated_at, community_category_subclass.subclass');
+        $builder->select('community_category.id, community_category.user_id, community_category.community_id,, community_category.category_name, community_category.updated_at');
         $builder->where(['community_category.community_id' => $id]);
-        $builder->join('community_category_subclass', 'community_category_subclass.category_id = community_category.id', 'left');                
+        // $builder->join('community_category_subclass', 'community_category_subclass.category_id = community_category.id', 'left');                
         $query   = $builder->get();
         $data['community_category'] = $query->getResult();
 
-        
+        $category = new CommunitycategoryModel;
+        $categories = $category->where('community_id', $id)->findAll();
+
+        foreach ($categories as $key => $value) {
+            $subclass = $model->where('category_id', $value['id'])
+            ->findAll();
+
+            $categories[$key]['subclass'] = $subclass;
+
+        }
+
+        $data['community_category'] = $categories;
 
         echo view('templates/header', $data);
         echo view('manager-community/manage-community-category', $data);
@@ -432,6 +443,8 @@ class Managers extends BaseController
         }
     }
 
+  
+
     public function update_category(){
         ini_set('display_errors', 1);
         $data = [];
@@ -457,6 +470,50 @@ class Managers extends BaseController
             return redirect()->to( base_url().'/manage-community/category/'.$community_id)->with('msg', $msg);
         }
     }
+
+    public function update_subclass(){
+        ini_set('display_errors', 1);
+        $data = [];
+        helper(['form', 'url']);
+        
+
+        $model = new CommunitysubclassModel;
+
+        $community_id = $this->request->getPost('community_id');
+        $data = [
+            'id' => $this->request->getPost('id'),
+            'user_id' => session()->get('id'),
+            'subclass' => $this->request->getPost('subclass')
+        ];
+        // echo '<pre>';
+        // var_dump($data);exit;
+
+        if($model->update($data['id'], $data)){
+            $msg = 'Category has been updated!';
+            return redirect()->to( base_url().'/manage-community/category/'.$community_id)->with('msg', $msg);
+        }else{
+            $msg = 'Failed to update!';
+            return redirect()->to( base_url().'/manage-community/category/'.$community_id)->with('msg', $msg);
+        }
+    }
+
+    public function delete_subclass($id = null, $community_id = null){
+        ini_set('display_errors', 1);
+        $data = [];
+        helper(['form', 'url']);
+        
+        $model = new CommunitysubclassModel;
+        $delete = $model->delete($id);
+
+        if($delete){
+            $msg = 'Subclass has been deleted!';
+            return redirect()->to( base_url().'/manage-community/category/'.$community_id)->with('msg', $msg);
+        }else{
+            $msg = 'Failed to delete!';
+            return redirect()->to( base_url().'/manage-community/category/'.$community_id)->with('msg', $msg);
+        }
+    }
+
 
     public function accept_user($id = null, $community_id = null){
         ini_set('display_errors', 1);

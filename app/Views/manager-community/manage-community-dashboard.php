@@ -118,7 +118,33 @@
                   </div>
                 </div>
               </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="card dashboard-card" >
+                    <div class='card-body justify-content-center'>
+                      <div class="text-center">
+                        <i class="material-icons text-primary" style="font-size:40px;">category</i>
+                        <p><b>312</b></p>
+                        <h6 class="">Total Category</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="card dashboard-card" >
+                    <div class='card-body justify-content-center'>
+                      <div class="text-center">
+                      <i class="material-icons text-success"  style="font-size:40px;">view_headline</i>
+                      <p><b>67</b></p>
+                      <h6>Total Subclass</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
               
+
               </div>
 
 

@@ -6,23 +6,29 @@
     
     .card-img-top {
         max-height: 200px;
-        min-height: 200px;
+        min-height: 180px;
         border-radius: 0%;
     }
+
+    .mt-5 {
+    margin-top: 6rem !important;
+}
+  /* modal show */
+  .modal-backdrop {
+    z-index: 1040 !important;
+    display: none;
+  }
+
+  .modal-dialog {
+    margin: 80px auto;
+    z-index: 1100 !important;
+  }
 </style>
 
-<div class="page-header header-filter" data-parallax="true" style="background-image: url('public/user/assets/img/profile_city.jpg')">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
 
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="main bg-light">
-    <div class="col-lg-12 card mx-auto">
+    <div class="container mt-5 rounded-0 card mx-auto">
         <div class="mx-auto mt-3">
             <ul class="nav nav-pills nav-pills-icons " role="tablist">
 
@@ -57,10 +63,10 @@
                                             <a href="#" data-toggle="modal" data-target="#anonymousModal"><i class="fa fa-bars px-3" style="float:left;"></i></a>
 
                                         </div>
-                                        <div class="col-10 p-0 m-0 text-center community-title card-title ">
-                                            <h4 class="p-3 my-0 card-title p-3 my-0">
+                                        <div class="col-10 p-0 m-0 text-center community-title  ">
+                                            <h6 class="p-3 my-0  p-3 my-0">
                                                 <a href="community-join/<?= $value->id;  ?>" style="color: <?= $value->text_color; ?>"><?= character_limiter($value->title, 18) ?> </a>
-                                            </h4>
+                                            </h6>
                                         </div>
                                         <div class="col-1 p-0 m-0">
                                             <a href="#communityInfo<?= $key ?>" data-toggle="modal" data-target="#communityInfo<?= $key ?>"><i class="fa fa-info-circle p-0" style="float:left;"></i></a>
@@ -82,7 +88,7 @@
                                     <div class="card-footer justify-content-center p-0 my-3">
                                         <div class="togglebutton d-flex w-100">
                                             <div class="float-right col-sm-8 ">
-                                                <a href="#" class="btn  btn-raised bg-white text-dark btn-sm">Joined <i class="fa fa-check text-success"></i></a>
+                                                <a href="#" class=""><span class="badge badge-pill badge-success">Joined</span></a>
                                             </div>
                                             <div class="col-sm-4 p-0">
                                                 <label>
@@ -101,7 +107,7 @@
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header bg-primary py-3 text-white align-items-center">
-                                        <h5 class="modal-title">
+                                        <h5 class="modal-title m-0">
                                             <?= character_limiter($value->title, 18) ?>
                                         </h5>
                                         <button type="button" class="close bg-danger text-white btn-link p-2 rounded-circle" data-dismiss="modal" aria-label="Close">
