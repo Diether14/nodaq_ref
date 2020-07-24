@@ -190,7 +190,7 @@ class Managers extends BaseController
 
         $builder1 = $db->table('community');
     
-        $builder1->select('community.id, community.user_id, community.com_photo_id, community.title, community.upvote_name, community.devote_name,community.community_type, community.content, community.updated_at, community.color , community.text_color, community_photo.name, users.nickname, community.status');
+        $builder1->select('community.id, community.user_id, community.com_photo_id, community.title, community.upvote_name, community.devote_name,community.community_type, community.content, community.updated_at, community.color , community.text_color, community_photo.name, users.nickname, community.status, community.questions');
         $builder1->where('community.id', $id);
         $builder1->join('community_photo', 'community_photo.id = community.com_photo_id');
         $builder1->join('users', 'community.user_id = users.id');
@@ -797,6 +797,34 @@ class Managers extends BaseController
         }
 
     }
+
+    public function community_questions(){
+        ini_set('display_errors', 1);
+        $community = new CommunityModel();
+
+        $data = [];
+        echo '<pre>';
+
+
+        $community_id = $this->request->getPost('community_id');
+        $data = [
+            'id' => $this->request->getPost('community_id'),
+            'questions' => $this->request->getPost('questions')
+        ];
+
+       
+        if($community->update($data['id'], $data)){
+            $msg = 'Community question has been save!';
+            return redirect()->to( base_url().'/manage-community/community-settings/'.$community_id)->with('msg', $msg);
+        }else{
+            $msg = 'Failed to save!';
+            return redirect()->to( base_url().'/manage-community/community-settings/'.$community_id)->with('msg', $msg);
+        }
+
+
+
+    }
+
 
     public function reset_community(){
         $community = new CommunityModel();

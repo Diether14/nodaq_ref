@@ -39,44 +39,40 @@
 
       <div class="col-lg-12">
         <div class="row">
-        <div class="col-md-3">
+          <div class="col-md-3">
             <ul class="nav nav-pills nav-pills-icons flex-column  card p-3" role="tablist">
 
               <li class="nav-item">
-              <a class="nav-link " href="<?= base_url() ?>/manage-community/<?= $community_id ?>" >
+                <a class="nav-link " href="<?= base_url() ?>/manage-community/<?= $community_id ?>">
                   <i class="material-icons">dashboard</i>
                   Dashboard
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="<?= base_url() ?>/manage-community/category/<?= $community_id ?>" >
+                <a class="nav-link" href="<?= base_url() ?>/manage-community/category/<?= $community_id ?>">
                   <i class="material-icons">category</i>
                   Category
                 </a>
               </li>
-           
+
               <li class="nav-item">
                 <a class="nav-link" href="<?= base_url(); ?>/manage-community/users/<?= $community_id ?>">
                   <i class="material-icons">people</i>
                   Community Users
                 </a>
               </li>
-             
+
               <li class="nav-item">
-              <a class="nav-link active" href="<?= base_url(); ?>/manage-community/reported-posts/<?= $community_id ?>">
+                <a class="nav-link active"
+                  href="<?= base_url(); ?>/manage-community/reported-posts/<?= $community_id ?>">
                   <i class="material-icons">report</i>
                   Reported Posts
                 </a>
               </li>
 
+
               <li class="nav-item">
-              <a class="nav-link" href="<?= base_url(); ?>/manage-community/ip-management/<?= $community_id ?>">
-                  <i class="material-icons">share</i>
-                  IP Management
-                </a>
-              </li>
-              <li class="nav-item">
-            <a class="nav-link" href="<?= base_url(); ?>/manage-community/community-settings/<?= $community_id ?>">
+                <a class="nav-link" href="<?= base_url(); ?>/manage-community/community-settings/<?= $community_id ?>">
                   <i class="material-icons">settings</i>
                   Settings
                 </a>
@@ -106,9 +102,9 @@
                           <th width="20%;">ID</th>
                           <th>Reported By</th>
                           <th>Post Title</th>
-                          <th>Reported Details</th> 
+                          <th>Reported Details</th>
                           <th>Action</th>
-                    
+
                         </tr>
                       </thead>
                       <tbody>
@@ -121,52 +117,51 @@
                           <td>
                             <button class="btn btn-primary btn-sm"> View</button>
                             <button class="btn btn-danger btn-sm"> Ban User</button>
-                          
+
                           </td>
-                          
-                        </tr>                  
 
-                          <!-- Classic Modal -->
-                          <div class="modal fade" id="ban_user<?= $key ?>" tabindex="-1" role="dialog">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title">Ban User from community</h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <i class="material-icons">clear</i>
-                                  </button>
-                                </div>
-                                <form class="contact-form" action="<?= base_url(); ?>/ban_user" method="post"
-                                  accept-charset="utf-8" enctype="multipart/form-data">
-                                  <div class="modal-body">
-                                    <div class="form-group row">
-                                      <div class="col-lg-12">
-                                        <div class="form-group row">
-                                          <div class="col-lg-12">
-                                            <label>Reason</label>
-                                            <input type="text" name="ban_reason" class="form-control" value="" required>
-                                            <input type="hidden" name="community_id"
-                                              value="<?= $value->community_id; ?>">
-                                            <input type="hidden" name="id" value="<?= $value->id; ?>">
+                        </tr>
 
-                                          </div>
+                        <!-- Classic Modal -->
+                        <div class="modal fade" id="ban_user<?= $key ?>" tabindex="-1" role="dialog">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title">Ban User from community</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <i class="material-icons">clear</i>
+                                </button>
+                              </div>
+                              <form class="contact-form" action="<?= base_url(); ?>/ban_user" method="post"
+                                accept-charset="utf-8" enctype="multipart/form-data">
+                                <div class="modal-body">
+                                  <div class="form-group row">
+                                    <div class="col-lg-12">
+                                      <div class="form-group row">
+                                        <div class="col-lg-12">
+                                          <label>Reason</label>
+                                          <input type="text" name="ban_reason" class="form-control" value="" required>
+                                          <input type="hidden" name="community_id" value="<?= $value->community_id; ?>">
+                                          <input type="hidden" name="id" value="<?= $value->id; ?>">
+
                                         </div>
                                       </div>
                                     </div>
                                   </div>
-                                  <div class="modal-footer">
+                                </div>
+                                <div class="modal-footer">
 
-                                    <button type="submit" class="btn btn-link">Save</button>
+                                  <button type="submit" class="btn btn-link">Save</button>
 
-                                    <button type="button" class="btn btn-danger btn-link"
-                                      data-dismiss="modal">Close</button>
-                                  </div>
-                                </form>
-                              </div>
+                                  <button type="button" class="btn btn-danger btn-link"
+                                    data-dismiss="modal">Close</button>
+                                </div>
+                              </form>
                             </div>
                           </div>
-                          <!--  End Modal -->
-                          <?php endforeach; ?>
+                        </div>
+                        <!--  End Modal -->
+                        <?php endforeach; ?>
                       </tbody>
                     </table>
                   </div>

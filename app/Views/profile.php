@@ -68,9 +68,9 @@
 <?php endif; ?>
 <div class="main bg-light">
     <div class="profile-content ">
-        <div class="col-sm-9 m-auto">
+        <div class="container m-auto">
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12 px-0">
                     <div class="profile profile-card bg-white">
                         <div class="avatar" data-toggle="modal" data-target="#myModal" data-toggle="tooltip" data-placement="top" title="Click to update" data-container="body">
                             <?php if(!empty($profile_photo['name'])): ?>
@@ -127,9 +127,9 @@
                     </div>
                 </div>
                 <!-- <div class="m-2 w-100"> -->
-                <div class="col-sm-12 profile-card bg-white d-flex">
-                    <div class="col-sm-3 px-2 border-right profile-community__tab">
-                        <h4 class="title mx-2 my-0">My Communities</h4>
+                <div class="col-sm-12 profile-card bg-white d-flex px-0">
+                    <div class="col-sm-3 px-0 border-right profile-community__tab">
+                        <h4 class="title mx-2 my-0 p-3">My Communities</h4>
                         <hr class="m-0">
                         <div class="row profile-community_list">
                             <?php if(!empty($community_list)): ?>
@@ -175,14 +175,14 @@
 
                             <div class="tab-content tab-space">
                                 <div class="tab-pane active" id="dashboard-1">
-                                    <div class="card posts-nav-card card-nav-tabs card-plain my-1">
-                                        <div class="px-0 py-2">
+                                    <div class=" posts-nav-card card-nav-tabs card-plain my-1">
+                                        <div class="px-0 py-0">
                                             <div class="nav-tabs-navigation">
                                                 <div class="nav-tabs-wrapper">
-                                                    <h4 class="title mb-0 text-center my-0">Posts</h4>
+                                                    <h4 class="title mb-0 text-center my-0 p-3">Posts</h4>
                                                     <hr class="m-0">
                                                     <ul class="nav nav-tabs post-tabs" data-tabs="tabs">
-                                                        <li class="nav-item">
+                                                        <li class="nav-item active">
                                                             <a class="nav-link active" href="#home" data-toggle="tab">All Post</a>
                                                         </li>
                                                         <li class="nav-item">
@@ -195,6 +195,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <hr class="m-0">
                                         <div class="card-body ">
                                             <div class="tab-content text-center">
                                                 <div class="tab-pane active" id="home">
@@ -210,7 +211,7 @@
                                                         <div class="col-md-12">
 
                                                             <div class="team-player">
-                                                                <div class="card custom-card1 p-3">
+                                                                <div class="card custom-card1 p-3 my-1">
                                                                     <?php if($value->user_mode == '1'): ?>
                                                                     <div class="profile-photo-small d-flex">
 
@@ -222,6 +223,7 @@
                                                                             <p class="small pl-2 m-0">1 hour ago</p>
                                                                         </div>
                                                                     </div>
+                                                                    <hr class="m-0">
                                                                     <?php else: ?>
 
                                                                     <div class="profile-photo-small d-flex">
@@ -245,11 +247,14 @@
 
                                                                     <?php endif; ?>
 
-                                                                    <!-- <p class="card-text"><?= $value->description ?></p> -->
+                                                                  
+                                                                    
 
                                                                     <div class="card-body  m-0 p-0">
                                                                         <p class="m-0 p-0 card-description">
-                                                                            <?= character_limiter($value->description, 180) ?>
+                                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquet pharetra sapien,</p>
+                                                                        <span class="badge badge-pill badge-info"><?= character_limiter($value->description, 10) ?></span>
+
                                                                         </p>
                                                                     </div>
                                                                     <div class="card-footer justify-content-center m-0 p-0">
@@ -382,7 +387,7 @@
                                                                     <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image" class="img-raised rounded-circle img-fluid  z-depth-2" alt="avatar">
 
                                                                     <?php endif; ?>
-
+<hr class="m-0">
                                                                     <div class="m-0 p-0">
 
                                                                         <h4 class="card-title pl-2 mt-0 mb-0">

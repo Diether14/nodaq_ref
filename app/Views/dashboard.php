@@ -6,29 +6,15 @@
     
     .card-img-top {
         max-height: 200px;
-        min-height: 180px;
+        min-height: 200px;
         border-radius: 0%;
     }
-
-    .mt-5 {
-    margin-top: 6rem !important;
-}
-  /* modal show */
-  .modal-backdrop {
-    z-index: 1040 !important;
-    display: none;
-  }
-
-  .modal-dialog {
-    margin: 80px auto;
-    z-index: 1100 !important;
-  }
 </style>
 
 
 
 <div class="main bg-light">
-    <div class="container mt-5 rounded-0 card mx-auto">
+    <div class="container  mt-5 mb-0 rounded-0 card mx-auto">
         <div class="mx-auto mt-3">
             <ul class="nav nav-pills nav-pills-icons " role="tablist">
 
@@ -64,9 +50,9 @@
 
                                         </div>
                                         <div class="col-10 p-0 m-0 text-center community-title  ">
-                                            <h6 class="p-3 my-0  p-3 my-0">
+                                            <h4 class="p-3 my-0  p-3 my-0">
                                                 <a href="community-join/<?= $value->id;  ?>" style="color: <?= $value->text_color; ?>"><?= character_limiter($value->title, 18) ?> </a>
-                                            </h6>
+                                            </h4>
                                         </div>
                                         <div class="col-1 p-0 m-0">
                                             <a href="#communityInfo<?= $key ?>" data-toggle="modal" data-target="#communityInfo<?= $key ?>"><i class="fa fa-info-circle p-0" style="float:left;"></i></a>
