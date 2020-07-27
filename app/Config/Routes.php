@@ -163,6 +163,7 @@ $routes->match(['get', 'post'], '/manager/save-community', 'Managers::save_commu
 $routes->match(['get', 'post'], 'update_community_cover', 'Managers::update_community_cover');
 $routes->match(['get', 'post'], 'update_subclass', 'Managers::update_subclass');
 $routes->match(['get', 'post'], 'community_questions', 'Managers::community_questions');
+$routes->match(['get', 'post'], 'remove_community', 'Managers::remove_community');
 
 $routes->get('/delete_subclass/(:num)/(:num)', 'Managers::delete_subclass/$1/$2', ['filter' => 'auth']);
 

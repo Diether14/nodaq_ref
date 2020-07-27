@@ -174,17 +174,11 @@
 
                   <div class="form-group">
                     <label>Remove Community</label><br>
-                    <button class="btn btn-danger btn-sm"> Remove</button>
+
+                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#remove-community">Remove</button>
+          
                   </div>
                 </div>
-
-              </div>
-
-
-
-
-
-
 
 
             </div>
@@ -197,6 +191,41 @@
   </div>
 </div>
 </div>
+
+
+
+
+
+<!-- Classic Modal -->
+<div class="modal fade" id="remove-community" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Community</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <i class="material-icons">clear</i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="text-center">
+          <div class="modal-body">
+            <h6>Are you sure do you want to delete this community?</h6>
+             
+              <form action="<?= base_url() ?>/remove_community" method="POST">
+                      <input type="hidden" name="id" value="<?= $community[0]->id ?>">
+                      <button type="submit" class="btn btn-danger btn-sm"> Remove</button>
+                    </form>
+          </div>
+
+        </div>
+        </hr><br>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--  End Modal -->
 
 <!-- Classic Modal -->
 <div class="modal fade" id="edit_cover" tabindex="-1" role="dialog">

@@ -111,16 +111,43 @@
                         <?php foreach ($reported_posts as $key => $value): ?>
                         <tr>
                           <td><?= $value->id ?></td>
-                          <td>John</td>
-                          <td>What is Lorem?</td>
-                          <td>This Post should be deleted!</td>
+                          <td><?= $value->nickname ?></td>
+                          <td><?= $value->title ?></td>
+                          <td><?= $value->report_content ?></td>
                           <td>
-                            <button class="btn btn-primary btn-sm"> View</button>
-                            <button class="btn btn-danger btn-sm"> Ban User</button>
+                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#view<?= $key ?>"> View</button>
+                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#ban_user<?= $key ?>"> Ban User</button>
 
                           </td>
 
                         </tr>
+
+                        <div class="modal fade" id="view<?= $key ?>" tabindex="-1" role="dialog">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title">View Reported</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <i class="material-icons">clear</i>
+                                </button>
+                              </div>
+                             
+                                <div class="modal-body">
+                                  <label>Post Title</label><br>
+                                  <h6><?= $value->title ?></h6><br>
+                                  <label>Report Content</label><br>
+                                  <h6><?= $value->report_content ?></h6><br>
+                                </div>
+                                <div class="modal-footer">
+
+                                  <button type="button" class="btn btn-danger btn-link"
+                                    data-dismiss="modal">Close</button>
+                                </div>
+                            
+                            </div>
+                          </div>
+                        </div>
+                        <!--  End Modal -->
 
                         <!-- Classic Modal -->
                         <div class="modal fade" id="ban_user<?= $key ?>" tabindex="-1" role="dialog">

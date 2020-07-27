@@ -83,7 +83,7 @@
                       <div class='card-body justify-content-center'>
                         <div class="text-center">
                           <i class="material-icons text-primary" style="font-size:40px;">article</i>
-                          <p><b>312</b></p>
+                          <p><b><?= $total_posts ?></b></p>
                           <h6 class="">Total Posts</h6>
                         </div>
                       </div>
@@ -94,7 +94,7 @@
                       <div class='card-body justify-content-center'>
                         <div class="text-center">
                           <i class="material-icons text-success" style="font-size:40px;">report</i>
-                          <p><b>67</b></p>
+                          <p><b><?= $total_members ?></b></p>
                           <h6>Total Members</h6>
                         </div>
                       </div>
@@ -105,7 +105,7 @@
                       <div class='card-body '>
                         <div class="text-center">
                           <i class="material-icons text-danger" style="font-size:40px;">report</i>
-                          <p><b>12</b></p>
+                          <p><b><?= $total_reports ?></b></p>
                           <h6>Total Reported Posts</h6>
                         </div>
                       </div>
@@ -118,7 +118,7 @@
                       <div class='card-body justify-content-center'>
                         <div class="text-center">
                           <i class="material-icons text-primary" style="font-size:40px;">category</i>
-                          <p><b>312</b></p>
+                          <p><b><?= $total_category ?></b></p>
                           <h6 class="">Total Category</h6>
                         </div>
                       </div>
@@ -129,7 +129,7 @@
                       <div class='card-body justify-content-center'>
                         <div class="text-center">
                           <i class="material-icons text-success" style="font-size:40px;">view_headline</i>
-                          <p><b>67</b></p>
+                          <p><b><?= $total_subclass ?></b></p>
                           <h6>Total Subclass</h6>
                         </div>
                       </div>

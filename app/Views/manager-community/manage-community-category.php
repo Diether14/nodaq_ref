@@ -30,13 +30,17 @@
     }
   }
 
-  function showAll() {
-    $(".collapse").addClass("show");
-
-  }
-
   function hideAll() {
-    $(".collapse").removeClass("show");
+    if($( ".collapse" ).hasClass( "show" )){
+      $(".collapse").removeClass("show");
+      $(".eye").removeClass("fa fa-eye-slash");
+      $(".eye").addClass("fa fa-eye");
+    }else{
+      $(".eye").removeClass("fa fa-eye");
+      $(".collapse").addClass("show");
+      $(".eye").addClass("fa fa-eye-slash");
+    }
+   
   }
 
 </script>
@@ -115,12 +119,8 @@
                   class="fa fa-plus"></i> Add
                 Category</button>
               <div style="float:right">
-                <button class="btn btn-secondary btn-fab btn-round show-all" onclick="showAll()">
-                  <i class="fa fa-list" aria-hidden="true"></i>
-                  <div class="ripple-container"></div>
-                </button>
                 <button class="btn btn-secondary btn-fab btn-round hide-all" onclick="hideAll()">
-                  <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                  <i class="eye fa fa-eye-slash" aria-hidden="true"></i>
                   <div class="ripple-container"></div>
                 </button>
 
