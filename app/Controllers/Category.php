@@ -314,25 +314,42 @@ class Category extends BaseController
         helper(['text']);
 
         $model = new UserspostModel();
-          
-        $data['blog'] = $model->where('user_id',  session()->get('id'))
-        ->findAll();
+
 
         $profile_photo = new ProfilephotoModel();
         $data['profile_photo'] = $profile_photo->where('user_id', session()->get('id'))
             ->first();
 
-        $db      = \Config\Database::connect();
-        $builder = $db->table('community');
+        // $db      = \Config\Database::connect();
+        // $builder = $db->table('community');
     
-        $builder->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.updated_at, community.color , community.text_color, community_photo.name, users.nickname, community_users_anonymous.status');
-        $builder->where('community.community_type', '0');
-        $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
+        // $builder->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.updated_at, community.color , community.text_color, community_photo.name, users.nickname, community_users_anonymous.status');
+        // $builder->where('community.community_type', '0');
+        // $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
+        // $builder->join('users', 'community.user_id = users.id');
+        // $builder->join('community_users_anonymous', 'community.id = community_users_anonymous.community_id', 'left');
+        // $query   = $builder->get();
+        // $data['community_list'] = $query->getResult();
+
+        $db      = \Config\Database::connect();
+        $builder = $db->table('users_community');
+    
+        $builder->select('users_community.id, users_community.user_id, users_community.community_id, users_community.status, users_community.anounymous,users_community.ban_reason,users_community.remove_ac_reason, users_community.created_at,
+        community.com_photo_id,community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.category, community.status as community_status, community.questions,
+        users.nickname, users.email, users.status as users_status,
+        community_photo.name
+        ');
+        $builder->where('users_community.user_id', session()->get('id'));
+        $builder->join('community', 'community.id = users_community.community_id');
         $builder->join('users', 'community.user_id = users.id');
-        $builder->join('community_users_anonymous', 'community.id = community_users_anonymous.community_id', 'left');
+        $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
+        
         $query   = $builder->get();
         $data['community_list'] = $query->getResult();
-  
+        
+        // echo '<pre>';
+        // var_dump($data['community_list']);exit;
+
         echo view('templates/header', $data);
         echo view('dashboard', $data);
         echo view('templates/footer', $data);
