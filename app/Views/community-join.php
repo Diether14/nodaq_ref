@@ -1,39 +1,40 @@
 <style>
-.modal-lg {
-    max-width: 80% !important;
-}
+    .modal-lg {
+        max-width: 80% !important;
+    }
 
-.label-info {
-    background-color: #5bc0de;
-    display: inline-block;
-    padding: 0.2em 0.6em 0.3em;
-    font-size: 75%;
-    font-weight: 700;
-    line-height: 1;
-    color: #fff;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: 0.25em;
-}
+    .label-info {
+        background-color: #5bc0de;
+        display: inline-block;
+        padding: 0.2em 0.6em 0.3em;
+        font-size: 75%;
+        font-weight: 700;
+        line-height: 1;
+        color: #fff;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: 0.25em;
+    }
 
-.custom-card {
-    min-height: 200px;
-    max-height: 200px;
-    height: 400px;
-}
+    .custom-card {
+        min-height: 200px;
+        max-height: 200px;
+        height: 400px;
+    }
 
-.card .card-body,
-.card .card-footer {
-    padding: 0 !important;
-}
+    .card .card-body,
+    .card .card-footer {
+        padding: 0 !important;
+    }
 
-/* .rounded-circle1 {
+    /* .rounded-circle1 {
     height: 42px !important;
   } */
 </style>
 
-<div class="page-header header-filter m-auto" data-parallax="true" style="background-image: url('<?= base_url(); ?>/public/admin/uploads/community/<?= $community_list[0]->name; ?>')">
+<div class="page-header header-filter m-auto" data-parallax="true"
+    style="background-image: url('<?= base_url(); ?>/public/admin/uploads/community/<?= $community_list[0]->name; ?>')">
     <!-- <div class="container">
     <div class="row">
       <div class="col-md-6">
@@ -138,7 +139,8 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-8">
-                                    <ul class="nav nav-pills nav-pills-icons justify-content-end px-0 view-options" role="tablist">
+                                    <ul class="nav nav-pills nav-pills justify-content-end px-0 view-options"
+                                        role="tablist">
                                         <li class="nav-item ">
                                             <a class="nav-link p-0 m-0 active show" href="#grid" role="tab"
                                                 id="community-grid-tab" data-toggle="pill" aria-controls="grid"
@@ -189,35 +191,35 @@
 
                         </div>
                         <div class="d-flex col-12 px-0 community-after-options">
-                        <div class="col-sm-6 m-0 p-0 page-breadcrumb">
-                            <nav aria-label="breadcrumb ">
-                                <ol class="breadcrumb m-0  bg-white">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item"><a href="#">Communities</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Test Community</li>
-                                </ol>
-                            </nav>
-                        </div>
-                        <div class="col-sm-6 mb-0 p-0 d-flex justify-content-end text-white view-options">
-                            <ul class="nav nav-pills nav-pills-icons justify-content-center community-tab-opts px-0"
-                                role="tablist">
-                                <li class="nav-item active">
-                                    <a class="nav-link active" href="#dashboard-1" role="tab" data-toggle="tab">
-                                        Hot
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link " href="#schedule-1" role="tab" data-toggle="tab">
-                                        Burning
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#tasks-1" role="tab" data-toggle="tab">
-                                        Notice
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                            <div class="col-sm-6 m-0 p-0 page-breadcrumb">
+                                <nav aria-label="breadcrumb ">
+                                    <ol class="breadcrumb m-0  bg-white">
+                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                        <li class="breadcrumb-item"><a href="#">Communities</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Test Community</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                            <div class="col-sm-6 mb-0 p-0 d-flex justify-content-end text-white view-options">
+                                <ul class="nav nav-pills nav-pills-icons justify-content-center community-tab-opts px-0"
+                                    role="tablist">
+                                    <li class="nav-item active">
+                                        <a class="nav-link active" href="#dashboard-1" role="tab" data-toggle="tab">
+                                            Hot
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link " href="#schedule-1" role="tab" data-toggle="tab">
+                                            Burning
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#tasks-1" role="tab" data-toggle="tab">
+                                            Notice
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div class="d-flex">
@@ -231,8 +233,7 @@
                                     <div class=" my-0 rounded-0 ">
                                         <div class="text-center bg-custom" id="headingOne">
                                             <h2 class="my-0 rounded-0">
-                                                <button
-                                                    class="btn btn-link btn-block dropdown-toggle text-left "
+                                                <button class="btn btn-link btn-block dropdown-toggle text-left "
                                                     type="button" data-toggle="collapse" data-target="#collapseOne"
                                                     aria-expanded="true" aria-controls="collapseOne">
                                                     Category 2
@@ -361,7 +362,8 @@
                                                         <?= character_limiter($value->title, 40) ?>
                                                     </h6>
                                                     <p class="m-0 p-0 card-description">
-                                                    <span class="badge badge-pill badge-info"><?= character_limiter($value->description, 10) ?></span> 
+                                                        <span
+                                                            class="badge badge-pill badge-info"><?= character_limiter($value->description, 10) ?></span>
                                                     </p>
                                                 </div>
                                             </div>
@@ -437,7 +439,8 @@
                                                     <?= $value->title; ?>
                                                 </h4>
                                                 <p class="card-text">
-                                                <span class="badge badge-pill badge-info"><?= character_limiter($value->description, 10) ?></span>
+                                                    <span
+                                                        class="badge badge-pill badge-info"><?= character_limiter($value->description, 10) ?></span>
                                                 </p>
                                             </div>
                                             <div class="col-sm-3">
@@ -511,7 +514,8 @@
                                                                 <?= $value->title; ?>
                                                             </h4>
                                                             <p>
-                                                            <span class="badge badge-pill badge-info"><?= character_limiter($value->description, 10) ?></span>
+                                                                <span
+                                                                    class="badge badge-pill badge-info"><?= character_limiter($value->description, 10) ?></span>
                                                             </p>
                                                         </div>
                                                     </div>

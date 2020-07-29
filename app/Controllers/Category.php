@@ -320,16 +320,16 @@ class Category extends BaseController
         $data['profile_photo'] = $profile_photo->where('user_id', session()->get('id'))
             ->first();
 
-        // $db      = \Config\Database::connect();
-        // $builder = $db->table('community');
+        $db      = \Config\Database::connect();
+        $builder = $db->table('community');
     
-        // $builder->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.updated_at, community.color , community.text_color, community_photo.name, users.nickname, community_users_anonymous.status');
+        $builder->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.created_at, community.color , community.text_color, community_photo.name, users.nickname, community_users_anonymous.status');
         // $builder->where('community.community_type', '0');
-        // $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
-        // $builder->join('users', 'community.user_id = users.id');
-        // $builder->join('community_users_anonymous', 'community.id = community_users_anonymous.community_id', 'left');
-        // $query   = $builder->get();
-        // $data['community_list'] = $query->getResult();
+        $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
+        $builder->join('users', 'community.user_id = users.id');
+        $builder->join('community_users_anonymous', 'community.id = community_users_anonymous.community_id', 'left');
+        $query   = $builder->get();
+        $data['recommended_community'] = $query->getResult();
 
         $db      = \Config\Database::connect();
         $builder = $db->table('users_community');
