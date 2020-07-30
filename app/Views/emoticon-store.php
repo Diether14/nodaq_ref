@@ -183,7 +183,7 @@
         <div class="text-center">
           <img src="public/assets/img/bg-sticker.png" class="avatar img-circle img-thumbnail"
             alt="avatar">
-          <h6>Upload a different sticker...</h6>
+          <h6>Select Sticker Representative</h6>
 
 
 

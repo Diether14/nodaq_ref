@@ -596,6 +596,16 @@ class Category extends BaseController
 
     }
 
+    public function sub_category(){
+        ini_set('display_errors', 1);
+
+        $data = [];
+        helper(['form']);
+
+        echo view('templates/header', $data);
+        echo view('manager-community/create-subcategory', $data);
+        echo view('templates/footer', $data); 
+    }
     public function category(){
         ini_set('display_errors', 1);
 
@@ -607,16 +617,7 @@ class Category extends BaseController
         echo view('templates/footer', $data); 
     }   
 
-    public function sub_category(){
-        ini_set('display_errors', 1);
 
-        $data = [];
-        helper(['form']);
-
-        echo view('templates/header', $data);
-        echo view('manager-community/create-subcategory', $data);
-        echo view('templates/footer', $data); 
-    }
 
     public function manager_create_community(){
         ini_set('display_errors', 1);
@@ -760,6 +761,22 @@ class Category extends BaseController
     
             return redirect()->to( 'community')->with('msg', $msg);
      
+        }
+
+        public function update_user_anounymous(){
+            $model = new UsercommunityModel();
+
+            $data = [
+                'community_id' => $this->request->getPost('community_id'),
+                'id' => session()->get('id')
+            ];
+
+            if($model->save($data)){
+                return redirect()->to( 'community-join')->with('msg', $msg);
+            }else{
+                return redirect()->to( 'dashboard')->with('msg', $msg);
+            }
+
         }
     
 }

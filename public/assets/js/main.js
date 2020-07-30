@@ -1,6 +1,27 @@
 $(document).ready(function(){
     initSample();
     
+    $(".update-anounymous").click(function(){
+        let data = {
+            'community_id': $("input[name=community_id]").val();
+        }
+
+        $.ajax({
+            type: "POST",
+            url  : "update_anounymous",
+            data: x,
+            dataType: "JSON",
+            success: function(data)
+            {
+              console.log(data);
+              location.reload();
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('There is an error!');
+            }
+        });
+    });
     
 
     $(".add-subclass").click(function(){

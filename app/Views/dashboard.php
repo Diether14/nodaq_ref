@@ -47,7 +47,101 @@
         <div class="tab-content tab-space">
             <div class="tab-pane active show" id="defCommunities">
                 <div class="team px-3">
+                <!-- Card deck -->
+                <div class="card-deck">
 
+                <div class="sortable-card col-md-4">
+                <!-- Card -->
+                <div class="card mb-4">
+
+                    <!--Card image-->
+                    <div class="view overlay">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
+                    <a href="#!">
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                    </div>
+
+                    <!--Card content-->
+                    <div class="card-body">
+
+                    <!--Title-->
+                    <h4 class="card-title">Card title</h4>
+                    <!--Text-->
+                    <p class="card-text">Some quick example text to build on the card title and make up the
+                        bulk of
+                        the card's content.</p>
+                    <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+                    <button type="button" class="btn btn-light-blue btn-md">Read more</button>
+
+                    </div>
+
+                </div>
+                <!-- Card -->
+                </div>
+
+                <div class="sortable-card col-md-4">
+                <!-- Card -->
+                <div class="card mb-4">
+
+                    <!--Card image-->
+                    <div class="view overlay">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/14.jpg" alt="Card image cap">
+                    <a href="#!">
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                    </div>
+
+                    <!--Card content-->
+                    <div class="card-body">
+
+                    <!--Title-->
+                    <h4 class="card-title">Card title</h4>
+                    <!--Text-->
+                    <p class="card-text">Some quick example text to build on the card title and make up the
+                        bulk of
+                        the card's content.</p>
+                    <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+                    <button type="button" class="btn btn-light-blue btn-md">Read more</button>
+
+                    </div>
+
+                </div>
+                <!-- Card -->
+                </div>
+
+                <div class="sortable-card col-md-4">
+                <!-- Card -->
+                <div class="card mb-4">
+
+                    <!--Card image-->
+                    <div class="view overlay">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/15.jpg" alt="Card image cap">
+                    <a href="#!">
+                        <div class="mask rgba-white-slight"></div>
+                    </a>
+                    </div>
+
+                    <!--Card content-->
+                    <div class="card-body">
+
+                    <!--Title-->
+                    <h4 class="card-title">Card title</h4>
+                    <!--Text-->
+                    <p class="card-text">Some quick example text to build on the card title and make up the
+                        bulk of
+                        the card's content.</p>
+                    <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+                    <button type="button" class="btn btn-light-blue btn-md">Read more</button>
+
+                    </div>
+
+                </div>
+                <!-- Card -->
+                </div>
+
+                </div>
+                <!-- Card deck -->
                     <div class="row">
 
                         <?php foreach ($community_list as $key => $value) : ?>
@@ -65,9 +159,14 @@
                                         </div>
                                         <div class="col-10 p-0 m-0 text-center community-title  ">
                                             <h4 class="p-3 my-0  p-3 my-0">
-                                                <a href="community-join/<?= $value->id;  ?>"
+                                                <!-- <a href="community-join/<= $value->id;  ?>"
+                                                    style="color: <= $value->text_color; ?>"><= character_limiter($value->title, 18) ?>
+                                                </a> -->
+                                                <a  href="#"   data-toggle="modal"
+                                                data-target="#anonymousModal<?= $key ?>"
                                                     style="color: <?= $value->text_color; ?>"><?= character_limiter($value->title, 18) ?>
                                                 </a>
+                                            
                                             </h4>
                                         </div>
                                         <div class="col-1 p-0 m-0">
@@ -172,6 +271,43 @@
                                 </div>
                             </div>
                         </div>
+
+
+                        
+                        <!-- Classic Modal -->
+                        <div class="modal fade" id="anonymousModal<?= $key ?>" tabindex="-1" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Anonymous mode?</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <i class="material-icons">clear</i>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <div class="text-center">
+                                            <form class="contact-form" action="/weendi/update_mode" method="post">
+                                                <div class="togglebutton">
+                                                    <label>
+                                                        <input type="checkbox" name="mode"
+                                                            <?= ($user_settings['user_mode'] == '1' ? 'checked' : null) ?>>
+                                                        <span class="toggle"></span>
+                                                        Anonymous mode
+                                                    </label>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary btn-raised mt-3" id="btnSubmit">
+                                                    Save
+                                                </button>
+                                            </form>
+                                        </div>
+                                        </hr><br>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
                         <?php endforeach; ?>
 
                     </div>
@@ -299,47 +435,10 @@
         <ul class="pagination pagination-primary mx-auto">
             <li class="page-item"><a href="javascript:void(0);" class="page-link"> prev</a></li>
             <li class="active page-item"><a href="javascript:void(0);" class="page-link">1</a></li>
-            <li class="page-item"><a href="javascript:void(0);" class="page-link">2</a></li>
-            <li class="page-item"><a href="javascript:void(0);" class="page-link">3</a></li>
-            <li class="page-item"><a href="javascript:void(0);" class="page-link">4</a></li>
-            <li class="page-item"><a href="javascript:void(0);" class="page-link">5</a></li>
+
             <li class="page-item"><a href="javascript:void(0);" class="page-link">next </a></li>
         </ul>
     </div>
 
 </div>
 
-
-<!-- Classic Modal -->
-<div class="modal fade" id="anonymousModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Anonymous mode?</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i class="material-icons">clear</i>
-                </button>
-            </div>
-
-            <div class="modal-body">
-                <div class="text-center">
-                    <form class="contact-form" action="/weendi/update_mode" method="post">
-                        <div class="togglebutton">
-                            <label>
-                                <input type="checkbox" name="mode"
-                                    <?= ($user_settings['user_mode'] == '1' ? 'checked' : null) ?>>
-                                <span class="toggle"></span>
-                                Anonymous mode
-                            </label>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-raised mt-3" id="btnSubmit">
-                            Save
-                        </button>
-                    </form>
-                </div>
-                </hr><br>
-            </div>
-
-        </div>
-    </div>
-</div>
