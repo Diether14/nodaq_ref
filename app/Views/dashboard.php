@@ -47,14 +47,14 @@
         <div class="tab-content tab-space">
             <div class="tab-pane active show" id="defCommunities">
                 <div class="team px-3">
-                <!-- Card deck -->
-                <div class="card-deck">
+ 
+                <!-- <div class="card-deck">
 
                 <div class="sortable-card col-md-4">
-                <!-- Card -->
+    
                 <div class="card mb-4">
 
-                    <!--Card image-->
+   
                     <div class="view overlay">
                     <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="Card image cap">
                     <a href="#!">
@@ -62,29 +62,29 @@
                     </a>
                     </div>
 
-                    <!--Card content-->
+      
                     <div class="card-body">
 
-                    <!--Title-->
+           
                     <h4 class="card-title">Card title</h4>
-                    <!--Text-->
+           
                     <p class="card-text">Some quick example text to build on the card title and make up the
                         bulk of
                         the card's content.</p>
-                    <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+     
                     <button type="button" class="btn btn-light-blue btn-md">Read more</button>
 
                     </div>
 
                 </div>
-                <!-- Card -->
+           
                 </div>
 
                 <div class="sortable-card col-md-4">
-                <!-- Card -->
+  
                 <div class="card mb-4">
 
-                    <!--Card image-->
+               
                     <div class="view overlay">
                     <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/14.jpg" alt="Card image cap">
                     <a href="#!">
@@ -92,29 +92,29 @@
                     </a>
                     </div>
 
-                    <!--Card content-->
+              
                     <div class="card-body">
 
-                    <!--Title-->
+                 
                     <h4 class="card-title">Card title</h4>
-                    <!--Text-->
+               
                     <p class="card-text">Some quick example text to build on the card title and make up the
                         bulk of
                         the card's content.</p>
-                    <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+      
                     <button type="button" class="btn btn-light-blue btn-md">Read more</button>
 
                     </div>
 
                 </div>
-                <!-- Card -->
+     
                 </div>
 
                 <div class="sortable-card col-md-4">
-                <!-- Card -->
+ 
                 <div class="card mb-4">
 
-                    <!--Card image-->
+          
                     <div class="view overlay">
                     <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/15.jpg" alt="Card image cap">
                     <a href="#!">
@@ -122,28 +122,34 @@
                     </a>
                     </div>
 
-                    <!--Card content-->
+ 
                     <div class="card-body">
 
-                    <!--Title-->
+             
                     <h4 class="card-title">Card title</h4>
-                    <!--Text-->
+             
                     <p class="card-text">Some quick example text to build on the card title and make up the
                         bulk of
                         the card's content.</p>
-                    <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+               
                     <button type="button" class="btn btn-light-blue btn-md">Read more</button>
 
                     </div>
 
                 </div>
-                <!-- Card -->
+       
                 </div>
 
-                </div>
+                </div> -->
                 <!-- Card deck -->
-                    <div class="row">
+                <div class="row">
+                <!-- <div class="card col-sm-12 p-3">
+                        <input type="text" id="myFilter" class="form-control" onkeyup="myFunction()" placeholder="Search for title..">
+                    </div> -->
 
+                </div>
+                    <div class="row"  id="myItems">
+                  
                         <?php foreach ($community_list as $key => $value) : ?>
 
                         <div class="col-md-3">
@@ -213,10 +219,10 @@
                                                 <label>
                                                     <i class=" fa fa-user-secret"></i>
                                                     <?php if($value->anounymous == '1'): ?>
-                                                    <input type="checkbox" checked="">
+                                                    <input type="checkbox" checked="" disabled>
                                                     <span class="toggle"></span>
                                                     <?php else: ?>
-                                                    <input type="checkbox">
+                                                    <input type="checkbox" disabled>
                                                     <span class="toggle"></span>
                                                     <?php endif; ?>
                                                 </label><br>
@@ -287,17 +293,20 @@
 
                                     <div class="modal-body">
                                         <div class="text-center">
-                                            <form class="contact-form" action="/weendi/update_mode" method="post">
+                                            <form class="contact-form" action="<?= base_url(); ?>/update_anounymous" method="post">
                                                 <div class="togglebutton">
                                                     <label>
                                                         <input type="checkbox" name="mode"
-                                                            <?= ($user_settings['user_mode'] == '1' ? 'checked' : null) ?>>
+                                                            <?= ($value->anounymous == '1' ? 'checked' : null) ?> >
                                                         <span class="toggle"></span>
-                                                        Anonymous mode
+                                                        Anonymous mode  
                                                     </label>
+
+                                                    <input type="hidden" value="<?= $value->community_id ?>" name="community_id">
+                                                    <input type="hidden" value="<?= $value->id ?>" name="id"> 
                                                 </div>
                                                 <button type="submit" class="btn btn-primary btn-raised mt-3" id="btnSubmit">
-                                                    Save
+                                                    Enter
                                                 </button>
                                             </form>
                                         </div>
@@ -432,13 +441,29 @@
             </div>
             </div>
         </div>
-        <ul class="pagination pagination-primary mx-auto">
+        <!-- <ul class="pagination pagination-primary mx-auto">
             <li class="page-item"><a href="javascript:void(0);" class="page-link"> prev</a></li>
             <li class="active page-item"><a href="javascript:void(0);" class="page-link">1</a></li>
 
             <li class="page-item"><a href="javascript:void(0);" class="page-link">next </a></li>
-        </ul>
+        </ul> -->
     </div>
 
 </div>
-
+<script type="text/javascript">
+function myFunction() {
+    var input, filter, cards, cardContainer, h5, title, i;
+    input = document.getElementById("myFilter");
+    filter = input.value.toUpperCase();
+    cardContainer = document.getElementById("myItems");
+    cards = cardContainer.getElementsByClassName("card");
+    for (i = 0; i < cards.length; i++) {
+        title = cards[i].querySelector(".card-body h5.card-title");
+        if (title.innerText.toUpperCase().indexOf(filter) > -1) {
+            cards[i].style.display = "";
+        } else {
+            cards[i].style.display = "none";
+        }
+    }
+}
+</script> 

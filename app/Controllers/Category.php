@@ -121,16 +121,41 @@ class Category extends BaseController
         $db      = \Config\Database::connect();
         $builder = $db->table('community');
         $builder->where('community.id', $id);
-        $builder->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.updated_at, community.color, community_photo.name');
+        $builder->select('community.id, community.user_id, community.com_photo_id,community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.category, community.status, community.questions, community_photo.name');
         $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
         
         $query   = $builder->get();
         $data['community_list'] = $query->getResult();
 
+        // echo '<pre>';
+        // var_dump($data['community_list']);exit;
 
-        $model = new UserscommunityModel;
+        // $model = new UserscommunityModel;
 
-        $data['users_community'] = $model->where(['user_id' => session()->get('id'), 'community_id' => $id])->first();
+        // $data['users_community'] = $model->where(['user_id' => session()->get('id'), 'community_id' => $id])->first();
+
+        $db      = \Config\Database::connect();
+        $builder = $db->table('users_community');
+    
+        $builder->select('users_community.id, users_community.user_id, users_community.community_id, users_community.status, users_community.anounymous,users_community.ban_reason,users_community.remove_ac_reason, users_community.created_at,
+        community.com_photo_id,community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.category, community.status as community_status, community.questions,
+        users.nickname, users.email, users.status as users_status,
+        community_photo.name
+        ');
+        $builder->where('users_community.user_id', session()->get('id'));
+        $builder->where('users_community.community_id', $id);
+        $builder->join('community', 'community.id = users_community.community_id');
+        $builder->join('users', 'community.user_id = users.id');
+        $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
+
+        $query   = $builder->get();
+        $data['users_community'] = $query->getResult();
+        
+
+        // echo '<pre>';
+        // var_dump($data['users_community']);exit;
+        
+
         $data['community_id'] = $id;
 
         $data['posts'] = array();
@@ -160,7 +185,7 @@ class Category extends BaseController
         
         $users_community_count = new UserscommunityModel();
 
-        $data['users_community'] = $users_community_count->where('community_id', $id)->countAllResults();
+        // $data['users_community'] = $users_community_count->where('community_id', $id)->countAllResults();
         
         $db3      = \Config\Database::connect();
         $builder3 = $db3->table('users_community');
@@ -763,19 +788,46 @@ class Category extends BaseController
      
         }
 
-        public function update_user_anounymous(){
-            $model = new UsercommunityModel();
+        public function update_anounymous(){
+            ini_set('display_errors', 1);
+            // echo '<pre>';
+            // var_dump($_POST);exit;
+    
+            helper(['form', 'url']);
 
-            $data = [
-                'community_id' => $this->request->getPost('community_id'),
-                'id' => session()->get('id')
-            ];
+            $model = new UserscommunityModel();
 
-            if($model->save($data)){
-                return redirect()->to( 'community-join')->with('msg', $msg);
+            if($this->request->getPost('mode') == 'on'){
+                $anounymous_mode = '1';
             }else{
+                $anounymous_mode = '0';
+            }
+
+            $id = $this->request->getPost('id');
+            $community_id = $this->request->getPost('community_id');
+            
+            $community = $model->where('community_id', $community_id)->where('user_id', session()->get('id'))
+                   ->findAll();
+           
+            if(!empty($community)){    
+                $data = [
+                    'anounymous' => $anounymous_mode,
+                ];
+            
+                if($model->update($id ,$data)){
+                
+                    return redirect()->to( 'community-join/'.$community_id);
+                }else{
+                    $msg = 'There is an error in joining the community!';
+                    return redirect()->to( 'dashboard')->with('msg', $msg);
+                }
+            }else{
+                $msg = 'There is an error!';
                 return redirect()->to( 'dashboard')->with('msg', $msg);
             }
+
+
+            
 
         }
     

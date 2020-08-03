@@ -57,7 +57,16 @@
     </div>
   </div> -->
 </div>
-<div class="main bg-light row community-join-page">
+
+<div class="card">
+<nav class="container mt-3  bg-white"  aria-label="breadcrumb">
+    <ol class="breadcrumb m-0  bg-white">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Communities</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Test Community</li>
+    </ol>
+</nav>
+
     <div class="container d-flex  p-0 community-join_inner">
 
         <div class="col-lg-12 bg-gray p-0">
@@ -102,7 +111,7 @@
                     </div>
                     <?php endif; ?>
                     <!-- <div class="row py-2" style="background-color:<?= $community_list[0]->color; ?>"> -->
-
+                    
                     <div class="row pt-2 bg-white community-info m-0">
                         <div class="d-flex align-items-center w-100  px-2">
                             <div class="col-lg-12 row community-info-area  align-items-center">
@@ -111,32 +120,31 @@
                                         <h3 class="community-title">
                                             <?= $community_list[0]->title; ?>
                                         </h3>
-                                        <i class="fa fa-lock"></i>
-                                        <small class="community-status fw-600">Private Community</small>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <?php if (empty($users_community)) : ?>
-                                        <form class="contact-form" action="<?= base_url(); ?>/join_community"
-                                            method="post">
-                                            <input type="hidden" name="community_id"
-                                                value="<?= $community_list[0]->id; ?>">
+                                        <?php if($community_list['community_type'] == '1'): ?>
+                                            <i class="fa fa-lock"></i>
+                                            <small class="community-status fw-600">Private Community </small>
+                                        <?php else: ?>
+                                            <i class="fa fa-lock"></i>
+                                            <small class="community-status fw-600">Public Community </small>
+                                        <?php endif; ?>    
+                                        
+                                        <div class="justify-content-center ">
+                                        <?php 
+                                        
+                                        if ($users_community[0]->status == '1') : ?>
                                             <button type="submit" class="btn btn-primary btn-raised btn-sm">
-                                                <i class="fa fa-user-plus"></i>
-                                            </button>
-                                        </form>
+                                                    Joined    
+                                                </button>
                                         <?php else : ?>
-                                        <button class="btn btn-primary btn-raised btn-sm">
-                                            <i class="fa fa-user-plus"></i>
-                                        </button>
-                                        <!-- <button class="btn btn-primary btn-raised btn-sm">
-                            <i class="fa fa-bell"></i>
-                            </button>
-                            <button class="btn btn-primary btn-raised btn-sm">
-                            <i class="fa fa-cog"></i> -->
-                                        </button>
+                                            <button class="btn btn-primary btn-raised btn-sm">
+                                                Join In
+                                            </button>
                                         <?php endif; ?>
                                     </div>
+                                        
+                                    </div>
+
+                                    
                                 </div>
                                 <div class="col-sm-8">
                                     <ul class="nav nav-pills nav-pills justify-content-end px-0 view-options"
@@ -190,17 +198,9 @@
                             </div>
 
                         </div>
-                        <div class="d-flex col-12 px-0 community-after-options">
-                            <div class="col-sm-6 m-0 p-0 page-breadcrumb">
-                                <nav aria-label="breadcrumb ">
-                                    <ol class="breadcrumb m-0  bg-white">
-                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                        <li class="breadcrumb-item"><a href="#">Communities</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Test Community</li>
-                                    </ol>
-                                </nav>
-                            </div>
-                            <div class="col-sm-6 mb-0 p-0 d-flex justify-content-end text-white view-options">
+                        <div class="d-flex col-12 px-0 community-after-options justify-content-center">
+<!--                            
+                            <div class="col-sm-6 mb-0 p-0 d-flex justify-content-end text-white view-options"> -->
                                 <ul class="nav nav-pills nav-pills-icons justify-content-center community-tab-opts px-0"
                                     role="tablist">
                                     <li class="nav-item active">
@@ -220,96 +220,15 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        <!-- </div> -->
                     </div>
                     <div class="d-flex">
-                        <div class="col-lg-3 px-0 bg-white">
-                            <!-- <div class="col-sm-12 ">
-                                <h5 class="pb-0 bold my-0">Categories</h5>
-
-                            </div> -->
-                            <div class="col-sm-12 px-0 mx-0">
-                                <div class="accordion" id="accordionExample">
-                                    <div class=" my-0 rounded-0 ">
-                                        <div class="text-center bg-custom" id="headingOne">
-                                            <h2 class="my-0 rounded-0">
-                                                <button class="btn btn-link btn-block dropdown-toggle text-left "
-                                                    type="button" data-toggle="collapse" data-target="#collapseOne"
-                                                    aria-expanded="true" aria-controls="collapseOne">
-                                                    Category 2
-                                                </button>
-                                            </h2>
-                                        </div>
-
-                                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
-                                            data-parent="#accordionExample">
-                                            <div class="card-body">
-                                                <ul class="list-group px-4">
-                                                    <li class="list-group-item">Sub Class1</li>
-                                                    <li class="list-group-item " style="background:#dcdcdc">Sub Class1
-                                                    </li>
-                                                    <li class="list-group-item">Sub Class1</li>
-                                                    <li class="list-group-item">Sub Class1</li>
-                                                    <li class="list-group-item">Sub Class1</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="my-0 rounded-0">
-                                        <div class="text-center" id="headingTwo">
-                                            <h2 class="my-0">
-                                                <button
-                                                    class="btn btn-link btn-block dropdown-toggle text-left collapsed"
-                                                    type="button" data-toggle="collapse" data-target="#collapseTwo"
-                                                    aria-expanded="false" aria-controls="collapseTwo">
-                                                    Category 3
-                                                </button>
-                                            </h2>
-                                        </div>
-                                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                                            data-parent="#accordionExample">
-                                            <div class="card-body">
-                                                <ul class="list-group px-4">
-                                                    <li class="list-group-item">Sub Class1</li>
-                                                    <li class="list-group-item">Sub Class1</li>
-                                                    <li class="list-group-item">Sub Class1</li>
-                                                    <li class="list-group-item">Sub Class1</li>
-                                                    <li class="list-group-item">Sub Class1</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="my-0 rounded-0">
-                                        <div class="text-center" id="headingThree">
-                                            <h2 class="my-0">
-                                                <button
-                                                    class="btn btn-link btn-block dropdown-toggle text-left collapsed"
-                                                    type="button" data-toggle="collapse" data-target="#collapseThree"
-                                                    aria-expanded="false" aria-controls="collapseThree">
-                                                    Category 1
-                                                </button>
-                                            </h2>
-                                        </div>
-                                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                                            data-parent="#accordionExample">
-                                            <div class="card-body">
-                                                <ul class="list-group px-4">
-                                                    <li class="list-group-item">Sub Class1</li>
-                                                    <li class="list-group-item">Sub Class1</li>
-                                                    <li class="list-group-item">Sub Class1</li>
-                                                    <li class="list-group-item">Sub Class1</li>
-                                                    <li class="list-group-item">Sub Class1</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-content tab-space pt-0 mt-0 col-lg-9">
+                      
+                        <div class="tab-content tab-space pt-0 mt-0 col-lg-12">
                             <div class="tab-pane fade show active" id="grid" role="tabpanel"
                                 aria-labelledby="community-grid-tab">
                                 <div class="card-body pt-0 row">
+                                    <?php if(!empty($posts[0])): ?>
                                     <?php foreach ($posts[0] as $key => $value) : ?>
                                     <div class="col-md-4 ">
                                         <!-- <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-1"> -->
@@ -372,6 +291,14 @@
                                         <!-- </a> -->
                                     </div>
                                     <?php endforeach; ?>
+                                    <?php else: ?>
+                                    <div class="col-lg-12">
+                                        <div class="justify-content-center text-center p-5">
+                                            <p>No post yet... </p>
+                                        </div>
+                                    </div>
+
+                                    <?php endif; ?>    
                                 </div>
                             </div>
                             <div class="tab-pane fade col-sm-12" id="bars" role="tabpanel"

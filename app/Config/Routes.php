@@ -93,7 +93,7 @@ $routes->get('manager-create-community', 'Category::manager_create_community', [
 
 $routes->match(['get','post'],'user_save_community', 'Category::save_community', ['filter' => 'auth']);
 $routes->match(['get','post'],'user_join', 'Category::user_join');
-
+$routes->match(['get','post'],'update_anounymous', 'Category::update_anounymous');
 
 
 
