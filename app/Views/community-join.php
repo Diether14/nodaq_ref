@@ -23,10 +23,10 @@
         height: 400px;
     }
 
-    .card .card-body,
+    /* .card .card-body,
     .card .card-footer {
         padding: 0 !important;
-    }
+    } */
 
     /* .rounded-circle1 {
     height: 42px !important;
@@ -59,13 +59,13 @@
 </div>
 
 <div class="card">
-<nav class="container mt-3  bg-white"  aria-label="breadcrumb">
-    <ol class="breadcrumb m-0  bg-white">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item"><a href="#">Communities</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Test Community</li>
-    </ol>
-</nav>
+    <nav class="container mt-3  bg-white" aria-label="breadcrumb">
+        <ol class="breadcrumb m-0  bg-white">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Communities</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Test Community</li>
+        </ol>
+    </nav>
 
     <div class="container d-flex  p-0 community-join_inner">
 
@@ -111,7 +111,7 @@
                     </div>
                     <?php endif; ?>
                     <!-- <div class="row py-2" style="background-color:<?= $community_list[0]->color; ?>"> -->
-                    
+
                     <div class="row pt-2 bg-white community-info m-0">
                         <div class="d-flex align-items-center w-100  px-2">
                             <div class="col-lg-12 row community-info-area  align-items-center">
@@ -121,30 +121,30 @@
                                             <?= $community_list[0]->title; ?>
                                         </h3>
                                         <?php if($community_list['community_type'] == '1'): ?>
-                                            <i class="fa fa-lock"></i>
-                                            <small class="community-status fw-600">Private Community </small>
+                                        <i class="fa fa-lock"></i>
+                                        <small class="community-status fw-600">Private Community </small>
                                         <?php else: ?>
-                                            <i class="fa fa-lock"></i>
-                                            <small class="community-status fw-600">Public Community </small>
-                                        <?php endif; ?>    
-                                        
+                                        <i class="fa fa-lock"></i>
+                                        <small class="community-status fw-600">Public Community </small>
+                                        <?php endif; ?>
+
                                         <div class="justify-content-center ">
-                                        <?php 
+                                            <?php 
                                         
                                         if ($users_community[0]->status == '1') : ?>
                                             <button type="submit" class="btn btn-primary btn-raised btn-sm">
-                                                    Joined    
-                                                </button>
-                                        <?php else : ?>
+                                                Joined
+                                            </button>
+                                            <?php else : ?>
                                             <button class="btn btn-primary btn-raised btn-sm">
                                                 Join In
                                             </button>
-                                        <?php endif; ?>
-                                    </div>
-                                        
+                                            <?php endif; ?>
+                                        </div>
+
                                     </div>
 
-                                    
+
                                 </div>
                                 <div class="col-sm-8">
                                     <ul class="nav nav-pills nav-pills justify-content-end px-0 view-options"
@@ -199,107 +199,91 @@
 
                         </div>
                         <div class="d-flex col-12 px-0 community-after-options justify-content-center">
-<!--                            
+                            <!--                            
                             <div class="col-sm-6 mb-0 p-0 d-flex justify-content-end text-white view-options"> -->
-                                <ul class="nav nav-pills nav-pills-icons justify-content-center community-tab-opts px-0"
-                                    role="tablist">
-                                    <li class="nav-item active">
-                                        <a class="nav-link active" href="#dashboard-1" role="tab" data-toggle="tab">
-                                            Hot
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link " href="#schedule-1" role="tab" data-toggle="tab">
-                                            Burning
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#tasks-1" role="tab" data-toggle="tab">
-                                            Notice
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                            <ul class="nav nav-pills nav-pills-icons justify-content-center community-tab-opts px-0"
+                                role="tablist">
+                                <li class="nav-item active">
+                                    <a class="nav-link active" href="#dashboard-1" role="tab" data-toggle="tab">
+                                        Hot
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="#schedule-1" role="tab" data-toggle="tab">
+                                        Burning
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#tasks-1" role="tab" data-toggle="tab">
+                                        Notice
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                         <!-- </div> -->
                     </div>
                     <div class="d-flex">
-                      
-                        <div class="tab-content tab-space pt-0 mt-0 col-lg-12">
+
+                        <div class="tab-content pt-0 mt-0 col-lg-12">
                             <div class="tab-pane fade show active" id="grid" role="tabpanel"
                                 aria-labelledby="community-grid-tab">
+
                                 <div class="card-body pt-0 row">
                                     <?php if(!empty($posts[0])): ?>
                                     <?php foreach ($posts[0] as $key => $value) : ?>
-                                    <div class="col-md-4 ">
-                                        <!-- <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link m-0 p-1"> -->
-                                        <div class="team-player ">
 
-                                            <div class="custom-card card p-3">
+                                    <div class="col-lg-4 mb-4">
+                                        <div class="card text-center">
+                                            <img class="card-img-top" style=" object-fit: cover;"
+                                                src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt="">
 
-                                                <div class="profile-photo-small d-flex">
+                                            <div class="card-body">
+                                                <h4 class="card-title"><?= character_limiter($value->title, 40) ?></h4>
+                                                <h6 class="card-subtitle mb-2 text-muted">Subclass</h6>
 
-                                                    <?php if (!empty($value->name)) : ?>
+                                                <span class="badge badge-pill badge-info">test</span>
+                                                <span class="badge badge-pill badge-info">test1</span>
+                                                <span class="badge badge-pill badge-info">test2</span>
+                                                <span class="badge badge-pill badge-info">test3</span>
+                                                <span class="badge badge-pill badge-info">tes5</span>
 
-                                                    <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $value->name ?>"
-                                                        alt="Circle Image" class="rounded-circle img-fluid z-depth-2">
-
-                                                    <?php else : ?>
-                                                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
-                                                        alt="Circle Image"
-                                                        class="img-raised rounded-circle img-fluid  z-depth-2"
-                                                        alt="avatar">
-
-                                                    <?php endif; ?>
-
-                                                    <div class=" m-0 p-0 ">
-                                                        <?php if (session()->get('id') == $value->user_id) : ?>
-                                                        <a href="<?= base_url(); ?>/profile">
-                                                            <h4 class="card-title pl-2 mt-0 mb-0">
-                                                                <?= $value->nickname; ?>
-                                                        </a>
-                                                        <?php else : ?>
-                                                        <a
-                                                            href="<?= base_url(); ?>/view-profile/<?= $value->user_id; ?>">
-                                                            <h4 class="card-title pl-2 mt-0 mb-0">
-                                                                <?= $value->nickname; ?>
-                                                        </a>
-                                                        <?php endif; ?>
-                                                        </h4>
-                                                        <p class="small pl-2 m-0">
-                                                            <?php
-                                                                      echo $value->updated_at;
-                                                                      // echo date('h:i A', $value->updated_at);     
-                                                                      ?>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <p class="text">
-                                                    <?= $value->content ?>
-                                                </p>
-                                                <div class="card-body">
-                                                    <h6>
-                                                        <?= character_limiter($value->title, 40) ?>
-                                                    </h6>
-                                                    <p class="m-0 p-0 card-description">
-                                                        <span
-                                                            class="badge badge-pill badge-info"><?= character_limiter($value->description, 10) ?></span>
-                                                    </p>
-                                                </div>
                                             </div>
 
+                                            <h6 class=" text-muted ">Posted By: <a href="#"><?= $value->nickname; ?></a>
+                                            </h6>
+                                            <h6 class="card-subtitle mb-2 text-muted"><?= $value->updated_at ?></h6>
+                                            <!-- <a class="px-2 " href="#"><?= $value->updated_at ?></a> -->
+                                            <div class="card-footer justify-content-center">
+                                                <button class="btn btn-primary btn-sm">read more</button>
+
+                                            </div>
+
+
+
                                         </div>
-                                        <!-- </a> -->
                                     </div>
                                     <?php endforeach; ?>
                                     <?php else: ?>
-                                    <div class="col-lg-12">
-                                        <div class="justify-content-center text-center p-5">
-                                            <p>No post yet... </p>
+                                    <div class="col-lg-4  mb-4">
+
+                                        <div class="card justify-content-center text-center">
+                                            <!-- <img class="card-img-top"style=" object-fit: cover;" src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg" alt=""> -->
+
+                                            <div class="card-body ">
+                                                <h4 class="card-title ">No Post Yet</h4>
+
+                                            </div>
+
                                         </div>
                                     </div>
 
-                                    <?php endif; ?>    
+
+                                    <?php endif; ?>
+
+
                                 </div>
+
+
                             </div>
                             <div class="tab-pane fade col-sm-12" id="bars" role="tabpanel"
                                 aria-labelledby="community-list-tab">
@@ -315,8 +299,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php for ($i = 0; $i <= 1; $i++) : ?>
-                                            <?php foreach ($posts[$i] as $key => $value) : ?>
+                                            <!-- <php for ($i = 0; $i <= 1; $i++) : ?> -->
+                                            <?php foreach ($posts[0] as $key => $value) : ?>
 
                                             <tr>
 
@@ -327,6 +311,7 @@
                                                         class="btn btn-link m-0 p-1">
                                                         <?= $value->title; ?>
                                                     </a>
+
                                                 </td>
 
                                                 <td>
@@ -340,15 +325,16 @@
 
                                             </tr>
                                             <?php endforeach; ?>
-                                            <?php endfor; ?>
+                                            <!-- <php endfor; ?> -->
                                         </tbody>
                                     </table>
                                 </div>
 
                             </div>
                             <div class="tab-pane fade" id="list" role="tabpanel" aria-labelledby="community-bars-tab">
-                                <?php for ($i = 0; $i <= 1; $i++) : ?>
-                                <?php foreach ($posts[$i] as $key => $value) : ?>
+                                <!-- <php for ($i = 0; $i <= 1; $i++) : ?> -->
+                                <?php if(!empty($posts[0])): ?>
+                                <?php foreach ($posts[0] as $key => $value) : ?>
                                 <div class="col-sm-12">
 
                                     <div class="card my-2 col-sm-12">
@@ -356,7 +342,8 @@
 
                                             <div class="col-sm-3">
                                                 <a href="#">
-                                                    <img class="img-fluid rounded" src="http://placehold.it/750x300"
+                                                    <img class="card-img-top" style=" object-fit: cover;"
+                                                        src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg"
                                                         alt="">
                                                 </a>
                                             </div>
@@ -365,10 +352,24 @@
                                                 <h4 class="card-title">
                                                     <?= $value->title; ?>
                                                 </h4>
+                                                <h6 class="card-subtitle mb-2 text-muted">Subclass</h6>
                                                 <p class="card-text">
                                                     <span
                                                         class="badge badge-pill badge-info"><?= character_limiter($value->description, 10) ?></span>
+                                                    <span
+                                                        class="badge badge-pill badge-info"><?= character_limiter($value->description, 10) ?></span>
+                                                    <span
+                                                        class="badge badge-pill badge-info"><?= character_limiter($value->description, 10) ?></span>
+                                                    <span
+                                                        class="badge badge-pill badge-info"><?= character_limiter($value->description, 10) ?></span>
+                                                    <span
+                                                        class="badge badge-pill badge-info"><?= character_limiter($value->description, 10) ?></span>
+
                                                 </p>
+                                                <div class="pl-0">
+                                                    <button class="btn btn-primary btn-sm">read more</button>
+                                                </div>
+
                                             </div>
                                             <div class="col-sm-3">
                                                 <h6 class="card-title">
@@ -382,7 +383,9 @@
                                     </div>
                                 </div>
                                 <?php endforeach; ?>
-                                <?php endfor; ?>
+                                <?php else: ?>
+                                No Post Yet
+                                <?php endif; ?>
                             </div>
                             <div class="tab-pane fade " id="longbars" role="tabpanel"
                                 aria-labelledby="community-longbars-tab">
@@ -390,68 +393,45 @@
                                 <div class="card-body pt-0">
                                     <div class="tab-content">
                                         <div class="row">
-                                            <?php for ($i = 0; $i <= 1; $i++) : ?>
-                                            <?php foreach ($posts[$i] as $key => $value) : ?>
-                                            <div class="col-md-12 ">
+                                            <?php if(!empty($posts[0])): ?>
+                                            <!-- <php for ($i = 0; $i <= 1; $i++) : ?> -->
+                                            <?php foreach ($posts[0] as $key => $value) : ?>
+                                            <div class="col-lg-12 mb-4">
+                                                <div class="card text-center">
+                                                    <img class="card-img-top" style=" object-fit: cover;"
+                                                        src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg"
+                                                        alt="">
 
-                                                <div class="team-player ">
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">
+                                                            <?= character_limiter($value->title, 40) ?></h4>
+                                                        <h6 class="card-subtitle mb-2 text-muted">Subclass</h6>
 
-                                                    <div class="custom-card card p-3 my-2">
-
-                                                        <div class="profile-photo-small d-flex">
-
-                                                            <?php if (!empty($value->name)) : ?>
-
-                                                            <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $value->name ?>"
-                                                                alt="Circle Image"
-                                                                class="rounded-circle img-fluid z-depth-2">
-
-                                                            <?php else : ?>
-                                                            <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
-                                                                alt="Circle Image"
-                                                                class="img-raised rounded-circle img-fluid  z-depth-2"
-                                                                alt="avatar">
-
-                                                            <?php endif; ?>
-
-                                                            <div class=" m-0 p-0 ">
-                                                                <?php if (session()->get('id') == $value->user_id) : ?>
-                                                                <a href="<?= base_url(); ?>/profile">
-                                                                    <h4 class="card-title pl-2 mt-0 mb-0">
-                                                                        <?= $value->nickname; ?>
-                                                                </a>
-                                                                <?php else : ?>
-                                                                <a
-                                                                    href="<?= base_url(); ?>/view-profile/<?= $value->user_id; ?>">
-                                                                    <h4 class="card-title pl-2 mt-0 mb-0">
-                                                                        <?= $value->nickname; ?>
-                                                                </a>
-                                                                <?php endif; ?>
-                                                                </h4>
-                                                                <p class="small pl-2 m-0">
-                                                                    <?php
-                                                                                                echo $value->updated_at;
-                                                                                                // echo date('h:i A', $value->updated_at);     
-                                                                                                ?>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-12">
-                                                            <h4>
-                                                                <?= $value->title; ?>
-                                                            </h4>
-                                                            <p>
-                                                                <span
-                                                                    class="badge badge-pill badge-info"><?= character_limiter($value->description, 10) ?></span>
-                                                            </p>
-                                                        </div>
+                                                        <span class="badge badge-pill badge-info">test</span>
+                                                        <span class="badge badge-pill badge-info">test1</span>
+                                                        <span class="badge badge-pill badge-info">test2</span>
+                                                        <span class="badge badge-pill badge-info">test3</span>
+                                                        <span class="badge badge-pill badge-info">tes5</span>
+                                                        <span class="badge badge-pill badge-info">test</span>
+                                                        <span class="badge badge-pill badge-info">test test test</span>
                                                     </div>
+
+                                                    <h6 class=" text-muted ">Posted By: <a
+                                                            href="#"><?= $value->nickname; ?></a></h6>
+                                                    <h6 class="card-subtitle mb-2 text-muted"><?= $value->updated_at ?>
+                                                    </h6>
+                                                    <!-- <a class="px-2 " href="#"><?= $value->updated_at ?></a> -->
+                                                    <div class="card-footer justify-content-center">
+                                                        <button class="btn btn-primary btn-sm">read more</button>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                             <?php endforeach; ?>
-
-
-                                            <?php endfor; ?>
+                                            <?php else: ?>
+                                            No Post Yet
+                                            <?php endif; ?>
+                                            <!-- <php endfor; ?> -->
                                         </div>
                                     </div>
 
@@ -486,10 +466,10 @@
             <!-- <div class="col-sm-12">
                 <hr class="py-1">
             </div> -->
-            <div class="modal-body pt-0 ">
+            <div class="modal-body card ">
 
-                <div class="card container mt-2 mb-0">
-                    <div class="form-group pt-0 mb-0 pb-2">
+                <div class=" ">
+                    <div class="form-group ">
                         <div class="input-group">
                             <input type="text" id="title" name="title" class="form-control" placeholder="Title..."
                                 value="" required>
@@ -499,35 +479,34 @@
 
 
 
-                <div class="card my-auto mx-auto">
+                <div class=" ">
                     <!-- <h4 class="h4 m-0 p-3">Post Content</h4> -->
 
 
-                    <div id="editor" class="bg-primary p-2">
+                    <div id="editor">
                         <h1>Post Content</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis in ex in leo semper semper vel
-                            eget quam.</p>
+
                     </div>
 
                 </div>
                 <!-- <div class="card container p-3 ">
-        <label for="">Tag People</label>
-        <input type="text" data-role="tagsinput" class="form-control" >
-        </div> -->
-                <!-- <div> -->
-                <!-- <div class="card container p-3">
-        <div class="input-group">
-              <input type="file" name="file" class="text-center center-block file-upload" accept=".png, .jpg, .jpeg">
-            </div>
-        </div>
-        </div> -->
+                <label for="">Tag People</label>
+                <input type="text" data-role="tagsinput" class="form-control" >
+                </div> -->
+                        <!-- <div> -->
+                        <!-- <div class="card container p-3">
+                <div class="input-group">
+                    <input type="file" name="file" class="text-center center-block file-upload" accept=".png, .jpg, .jpeg">
+                    </div>
+                </div>
+                </div> -->
                 <input type="hidden" name="community_id" id="community-id" value="<?= $community_list[0]->id; ?>">
                 <!-- <div class="mt-3">
 
                 <button id="save_post" class="btn btn-primary">Save</button>
 
             </div> -->
-                <div class="card container mt-2">
+                <div class="">
                     <div class="form-group pt-0 mb-0 pb-2">
                         <textarea name="description" class="form-control" placeholder="Tags..." cols="1"
                             rows="1"></textarea>

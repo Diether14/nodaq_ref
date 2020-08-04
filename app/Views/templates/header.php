@@ -19,7 +19,7 @@
   <link href="<?= base_url(); ?>/public/user/assets/demo/demo.css" rel="stylesheet" />
   <!-- tags input plugin -->
  
-<link href="<?= base_url(); ?>/public/assets/taginput/tagsinput.css" rel="stylesheet" type="text/css">
+<!-- <link href="<?= base_url(); ?>/public/assets/taginput/tagsinput.css" rel="stylesheet" type="text/css"> -->
 <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet"> -->
 
 <!-- <link href="<?= base_url(); ?>/public/assets/taginput/tagsinput.css" rel="stylesheet" type="text/css"> -->
