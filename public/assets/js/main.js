@@ -1,27 +1,26 @@
 $(document).ready(function(){
     initSample();
-    
-    $(".update-anounymous").click(function(){
-        let data = {
-            'community_id': $("input[name=community_id]").val();
-        }
+    // $(".update-anounymous").click(function(){
+    //     let data = {
+    //         'community_id': $("input[name=community_id]").val();
+    //     }
 
-        $.ajax({
-            type: "POST",
-            url  : "update_anounymous",
-            data: x,
-            dataType: "JSON",
-            success: function(data)
-            {
-              console.log(data);
-              location.reload();
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-                alert('There is an error!');
-            }
-        });
-    });
+    //     $.ajax({
+    //         type: "POST",
+    //         url  : "update_anounymous",
+    //         data: x,
+    //         dataType: "JSON",
+    //         success: function(data)
+    //         {
+    //           console.log(data);
+    //           location.reload();
+    //         },
+    //         error: function (jqXHR, textStatus, errorThrown)
+    //         {
+    //             alert('There is an error!');
+    //         }
+    //     });
+    // });
     
 
     $(".add-subclass").click(function(){
@@ -49,7 +48,7 @@ $(document).ready(function(){
     });
 
     $( "#save_post" ).click(function() {
-
+       
         // grecaptcha.ready(function() {
         //     // do request for recaptcha token
         //     // response is promise with passed token
@@ -66,32 +65,38 @@ $(document).ready(function(){
 		//     });
         //     });;
         // });
-        
+
+        // alert(base_url);return;
+       
         var title = $("input[name=title]").val();
         var community_id = $("input[name=community_id]").val();
         var content = CKEDITOR.instances.editor.getData();
-        var desc = $("textarea[name=description]").val();
-        // console.log(content);return;
+        var tags = $("input[name=tags]").val();
+        var base_url = $('input[name=base]').val();
+      
         var data = {
             'title': title,
             'content': content,
             'community_id': community_id,
-            'description': desc
+            'tags': tags
         }
 
-        if(title == ''  || content == ''){
-            alert('Please fill out the fields!')
+        if(title == ''  || content == '' || community_id == '' || tags == ''){
+            alert('Please fill out the fields!');
         }else{
             $.ajax({
                 type: "POST",
-                url  : "../save_post",
+                url  : base_url + '/save_post',
                 data: data,
                 dataType: "JSON",
                 success: function(data)
                 {
-                   //if success close modal and reload ajax table
-                   console.log(data);
-                  alert('Blog Added');
+                  if(data == TRUE){
+                    alert('Blog Added!');
+                  }else{
+                    alert('Failed to Add!');
+                  }
+                
                   location.reload();
                 },
                 error: function (jqXHR, textStatus, errorThrown)

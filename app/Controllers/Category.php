@@ -830,6 +830,32 @@ class Category extends BaseController
             
 
         }
+
+        
+    public function save_post(){
+        ini_set('display_errors', 1);
+        helper(['form', 'url']);
+        echo '<pre>';
+        var_dump($_POST);exit;
+        $model = new UserspostModel();
+
+        $data = array(
+            'user_id' => session()->get('id'),
+            'title' => $this->request->getPost('title'),
+            'content' => $this->request->getPost('content'),
+            'community_id' => $this->request->getPost('community_id'),
+            'tags' => $this->request->getPost('tags')
+        );
+
+        $insert = $model->save($data);
+        if($insert){
+            echo json_encode(array("status" => TRUE));
+        }else{
+            echo json_encode(array("status" => FALSE));
+        }
+
+        
+    }
     
 }
 

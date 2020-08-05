@@ -1,4 +1,4 @@
-<footer class="footer footer-default bg-dark" style="color:#ffffff">
+<footer class="footer footer-default bg-dark w-footer" style="color:#ffffff">
     <div class="container">
       <nav class="float-left">
         <ul>

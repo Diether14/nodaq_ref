@@ -40,7 +40,7 @@ $routes->match(['get','post'],'settings', 'Users::settings', ['filter' => 'auth'
 $routes->match(['get','post'],'update_profile', 'Users::update_profile', ['filter' => 'auth']);
 $routes->match(['get','post'],'update_mode', 'Users::update_mode', ['filter' => 'auth']);
 $routes->match(['get','post'],'update_profile_info', 'Users::update_profile_info', ['filter' => 'auth']);
-$routes->match(['get','post'],'save_post', 'Users::save_post', ['filter' => 'auth']);
+
 $routes->match(['get','post'],'edit_post', 'Users::edit_post', ['filter' => 'auth']);
 $routes->match(['get','post'],'edit_shared_post', 'Users::edit_shared_post', ['filter' => 'auth']);
 $routes->match(['get','post'],'add_comment', 'Users::add_comment', ['filter' => 'auth']);
@@ -50,6 +50,7 @@ $routes->match(['get','post'],'report_post', 'Category::report_post', ['filter' 
 $routes->match(['get','post'],'share_post', 'Category::share_post', ['filter' => 'auth']);
 $routes->match(['get','post'],'add_upvote', 'Category::add_upvote', ['filter' => 'auth']);
 $routes->match(['get', 'post'], 'add_devote', 'Category::add_devote', ['filter' => 'auth']);
+$routes->match(['get','post'],'save_post', 'Category::save_post', ['filter' => 'auth']);
 
 $routes->get('delete-shared-post/(:num)', 'Category::delete_shared_post/$1', ['filter' => 'auth']);
 // $routes->match(['get', 'post'], 'Search::search', ['filter' => 'auth']);

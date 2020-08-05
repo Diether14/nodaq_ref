@@ -86,7 +86,7 @@
                         <?= session('msg') ?>
                     </div>
                 </div>
-
+               
                 <br>
                 <?php endif; ?>
 
@@ -466,52 +466,62 @@
             <!-- <div class="col-sm-12">
                 <hr class="py-1">
             </div> -->
-            <div class="modal-body card ">
-
-                <div class=" ">
+            <div class="modal-body ">
+            <input type="hidden" name="base" value="<?= base_url(); ?>">
+                <div class="card p-3 m-1">
+                <label for="">Title</label>
                     <div class="form-group ">
                         <div class="input-group">
-                            <input type="text" id="title" name="title" class="form-control" placeholder="Title..."
+                            <input type="text" id="title" name="title" class="form-control" placeholder="Type here..."
                                 value="" required>
                         </div>
                     </div>
                 </div>
 
-
-
-                <div class=" ">
-                    <!-- <h4 class="h4 m-0 p-3">Post Content</h4> -->
-
-
+                <div class="card p-3 m-1">      
                     <div id="editor">
                         <h1>Post Content</h1>
-
                     </div>
-
                 </div>
-                <!-- <div class="card container p-3 ">
-                <label for="">Tag People</label>
-                <input type="text" data-role="tagsinput" class="form-control" >
-                </div> -->
-                        <!-- <div> -->
-                        <!-- <div class="card container p-3">
-                <div class="input-group">
+                <!-- <div class="card p-3 m-1">
+                    <label for="">Thumbnail Photo</label>
+                    <div class="input-group">
+             
                     <input type="file" name="file" class="text-center center-block file-upload" accept=".png, .jpg, .jpeg">
                     </div>
-                </div>
                 </div> -->
-                <input type="hidden" name="community_id" id="community-id" value="<?= $community_list[0]->id; ?>">
-                <!-- <div class="mt-3">
-
-                <button id="save_post" class="btn btn-primary">Save</button>
-
-            </div> -->
-                <div class="">
-                    <div class="form-group pt-0 mb-0 pb-2">
-                        <textarea name="description" class="form-control" placeholder="Tags..." cols="1"
-                            rows="1"></textarea>
-                    </div>
+                <div class="row  ">
+                <div class="col-lg-6">
+                <div class="card p-3 m-1">
+                    <label for="">Select Category</label>
+                    <select name="category" class="form-control">
+                        <option value="category1">category1</option>
+                        <option value="category2">category2</option>
+                        <option value="category3">category3</option>
+                    </select>
+                </div> 
+                </div> 
+                <div class="col-lg-6">
+                <div class="card p-3 m-1 disabled">
+                    <label for="">Select Subclass</label>
+                    <select name="subclass" class="form-control">
+                        <option value="test1">test1</option>
+                        <option value="test2">test2</option>
+                        <option value="test3">test3</option>
+                    </select>
+                </div> 
                 </div>
+                </div>
+                
+                <div class="card p-3 m-1">
+                    <label for="">Tag</label>
+                    <input type="text" data-role="tagsinput" class="form-control" id="tags" name="tags" placeholder="Type here..." >
+                </div> 
+                <div> 
+               
+                </div>
+                <input type="hidden" name="community_id" id="community-id" value="<?= $community_list[0]->id; ?>">
+               
             </div>
             <div class="modal-footer d-block">
                 <button type="button" class="btn bg-danger text-white btn-link float-right"

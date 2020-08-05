@@ -416,22 +416,6 @@ class Users extends BaseController
        
     }
 
-    public function save_post(){
-        ini_set('display_errors', 1);
-        helper(['form', 'url']);
-        $model = new UserspostModel();
-
-        $data = array(
-            'user_id' => session()->get('id'),
-            'title' => $this->request->getPost('title'),
-            'content' => $this->request->getPost('content'),
-            'community_id' => $this->request->getPost('community_id'),
-            'description' => $this->request->getPost('description')
-        );
-
-        $insert = $model->save($data);
-        echo json_encode(array("status" => TRUE));
-    }
 
     public function edit_post(){
      
