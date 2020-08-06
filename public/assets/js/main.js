@@ -72,14 +72,19 @@ $(document).ready(function(){
         var community_id = $("input[name=community_id]").val();
         var content = CKEDITOR.instances.editor.getData();
         var tags = $("input[name=tags]").val();
+        var category_id = $("select[name=category_id]").val();
+        var subclass_id = $("select[name=subclass_id]").val();
         var base_url = $('input[name=base]').val();
       
         var data = {
             'title': title,
             'content': content,
             'community_id': community_id,
+            'category_id': category_id,
+            'subclass_id': subclass_id,
             'tags': tags
         }
+        // console.log(data);return;
 
         if(title == ''  || content == '' || community_id == '' || tags == ''){
             alert('Please fill out the fields!');
@@ -91,11 +96,9 @@ $(document).ready(function(){
                 dataType: "JSON",
                 success: function(data)
                 {
-                  if(data == TRUE){
+                 
                     alert('Blog Added!');
-                  }else{
-                    alert('Failed to Add!');
-                  }
+                  
                 
                   location.reload();
                 },

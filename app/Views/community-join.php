@@ -239,13 +239,15 @@
 
                                             <div class="card-body">
                                                 <h4 class="card-title"><?= character_limiter($value->title, 40) ?></h4>
-                                                <h6 class="card-subtitle mb-2 text-muted">Subclass</h6>
-
-                                                <span class="badge badge-pill badge-info">test</span>
-                                                <span class="badge badge-pill badge-info">test1</span>
-                                                <span class="badge badge-pill badge-info">test2</span>
-                                                <span class="badge badge-pill badge-info">test3</span>
-                                                <span class="badge badge-pill badge-info">tes5</span>
+                                                <h6 class="card-subtitle mb-2 text-muted"><?= $value->category_name ?> | <?= $value->subclass ?></h6>
+                                                <?php if($value->tags): ?>
+                                                <?php 
+                                                       $tags = explode (",", $value->tags);      
+                                                ?>
+                                                <?php foreach ($tags as $key1 => $value1): ?>
+                                                    <span class="badge badge-pill badge-info"><?= $value1 ?></span>
+                                                <?php endforeach; ?>
+                                                <?php endif; ?>
 
                                             </div>
 
@@ -293,6 +295,7 @@
                                         <thead>
                                             <tr class="bg-primary text-white">
                                                 <th scope="col">Subclass</th>
+                                                
                                                 <th scope="col">Title</th>
                                                 <th scope="col">User</th>
                                                 <th scope="col">Time</th>
@@ -352,7 +355,7 @@
                                                 <h4 class="card-title">
                                                     <?= $value->title; ?>
                                                 </h4>
-                                                <h6 class="card-subtitle mb-2 text-muted">Subclass</h6>
+                                                <h6 class="card-subtitle mb-2 text-muted"><?= $value->category_name ?> | <?= $value->subclass ?></h6>
                                                 <p class="card-text">
                                                     <span
                                                         class="badge badge-pill badge-info"><?= character_limiter($value->description, 10) ?></span>
@@ -405,7 +408,7 @@
                                                     <div class="card-body">
                                                         <h4 class="card-title">
                                                             <?= character_limiter($value->title, 40) ?></h4>
-                                                        <h6 class="card-subtitle mb-2 text-muted">Subclass</h6>
+                                                        <h6 class="card-subtitle mb-2 text-muted"><?= $value->category_name ?> | <?= $value->subclass ?></h6>
 
                                                         <span class="badge badge-pill badge-info">test</span>
                                                         <span class="badge badge-pill badge-info">test1</span>
@@ -466,9 +469,9 @@
             <!-- <div class="col-sm-12">
                 <hr class="py-1">
             </div> -->
-            <div class="modal-body ">
+            <div class="modal-body card">
             <input type="hidden" name="base" value="<?= base_url(); ?>">
-                <div class="card p-3 m-1">
+                <div class="">
                 <label for="">Title</label>
                     <div class="form-group ">
                         <div class="input-group">
@@ -478,43 +481,43 @@
                     </div>
                 </div>
 
-                <div class="card p-3 m-1">      
+                <div class="">      
                     <div id="editor">
-                        <h1>Post Content</h1>
+                        <h1>Create Blog...</h1>
                     </div>
                 </div>
-                <!-- <div class="card p-3 m-1">
+                <!-- <div class="">
                     <label for="">Thumbnail Photo</label>
                     <div class="input-group">
              
                     <input type="file" name="file" class="text-center center-block file-upload" accept=".png, .jpg, .jpeg">
                     </div>
                 </div> -->
-                <div class="row  ">
+                <div class="row my-2">
                 <div class="col-lg-6">
-                <div class="card p-3 m-1">
+                <div class="">
                     <label for="">Select Category</label>
-                    <select name="category" class="form-control">
-                        <option value="category1">category1</option>
-                        <option value="category2">category2</option>
-                        <option value="category3">category3</option>
+                    <select name="category_id" class="form-control">
+                    <?php foreach ($category as $key => $value): ?>
+                        <option value="<?= $value->id ?>"><?= $value->category_name ?></option>
+                    <?php endforeach; ?>
                     </select>
                 </div> 
                 </div> 
                 <div class="col-lg-6">
-                <div class="card p-3 m-1 disabled">
+                <div class="">
                     <label for="">Select Subclass</label>
-                    <select name="subclass" class="form-control">
-                        <option value="test1">test1</option>
-                        <option value="test2">test2</option>
-                        <option value="test3">test3</option>
+                    <select name="subclass_id" class="form-control">
+                        <option value="1">test1</option>
+                        <option value="2">test2</option>
+                        <option value="3">test3</option>
                     </select>
                 </div> 
                 </div>
                 </div>
                 
-                <div class="card p-3 m-1">
-                    <label for="">Tag</label>
+                <div class="">
+                    <label for="">Tags</label>
                     <input type="text" data-role="tagsinput" class="form-control" id="tags" name="tags" placeholder="Type here..." >
                 </div> 
                 <div> 

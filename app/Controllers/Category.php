@@ -162,10 +162,11 @@ class Category extends BaseController
         $db1      = \Config\Database::connect();
         $builder1 = $db1->table('users_post');
         $builder1->where('users_post.community_id', $id);
-        $builder1->select('users_post.id,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.updated_at, users.nickname, profile_photo.name, user_settings.user_mode'  );
+        $builder1->select('users_post.id,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.updated_at, users_post.tags, users_post.category_id, users_post.subclass_id, users.nickname, profile_photo.name, community_category.category_name, community_category_subclass.subclass'  );
         $builder1->join('users', 'users.id = users_post.user_id');
         $builder1->join('profile_photo', 'users.id = profile_photo.user_id');
-        $builder1->join('user_settings', 'users.id = user_settings.user_id');
+        $builder1->join('community_category', 'community_category.id = users_post.category_id', 'left');
+        $builder1->join('community_category_subclass', 'community_category_subclass.id = users_post.subclass_id', 'left');
         $query1  = $builder1->get();
         $data['posts'][] = $query1->getResult();  
 
@@ -198,6 +199,16 @@ class Category extends BaseController
         
         // echo '<pre>';
         // var_dump($data['users']);exit;
+
+        $category = \Config\Database::connect();
+        $builderCategory = $category->table('community_category');
+        $builderCategory->where('community_id', $id);
+        $builderCategory->select('*');
+        $queryCategory = $builderCategory->get();
+        $data['category'] = $queryCategory->getResult();
+
+        // echo '<pre>';
+        // var_dump($data['category']);exit;
 
         echo view('templates/header', $data);
         echo view('community-join', $data);
@@ -790,9 +801,7 @@ class Category extends BaseController
 
         public function update_anounymous(){
             ini_set('display_errors', 1);
-            // echo '<pre>';
-            // var_dump($_POST);exit;
-    
+          
             helper(['form', 'url']);
 
             $model = new UserscommunityModel();
@@ -835,8 +844,9 @@ class Category extends BaseController
     public function save_post(){
         ini_set('display_errors', 1);
         helper(['form', 'url']);
-        echo '<pre>';
-        var_dump($_POST);exit;
+        // echo '<pre>';
+        // var_dump($_POST);exit;
+
         $model = new UserspostModel();
 
         $data = array(
@@ -844,10 +854,12 @@ class Category extends BaseController
             'title' => $this->request->getPost('title'),
             'content' => $this->request->getPost('content'),
             'community_id' => $this->request->getPost('community_id'),
-            'tags' => $this->request->getPost('tags')
+            'tags' => $this->request->getPost('tags'),
+            'category_id' => $this->request->getPost('category_id'),
+            'subclass_id' => $this->request->getPost('subclass_id')
         );
 
-        $insert = $model->save($data);
+        $insert = $model->insert($data);
         if($insert){
             echo json_encode(array("status" => TRUE));
         }else{
