@@ -47,7 +47,7 @@ $(document).ready(function(){
 
     });
 
-    $( "#save_post" ).click(function() {
+    $('#upload_form').on('submit', function(e){  
        
         // grecaptcha.ready(function() {
         //     // do request for recaptcha token
@@ -67,7 +67,19 @@ $(document).ready(function(){
         // });
 
         // alert(base_url);return;
-       
+        
+        e.preventDefault();  
+        if($('#file').val() == '')  
+        {  
+             alert("Please Select the File"); 
+           
+             document.getElementById("upload_form").reset(); 
+        }  
+        else  
+        {  
+
+        var form = new FormData(this);
+        console.log(form);return;
         var title = $("input[name=title]").val();
         var community_id = $("input[name=community_id]").val();
         var content = CKEDITOR.instances.editor.getData();
@@ -94,6 +106,9 @@ $(document).ready(function(){
                 url  : base_url + '/save_post',
                 data: data,
                 dataType: "JSON",
+                contentType: false,  
+                cache: false,  
+                processData:false, 
                 success: function(data)
                 {
                  
@@ -108,7 +123,7 @@ $(document).ready(function(){
                 }
             });
         }
-        
+    }
 
         
 

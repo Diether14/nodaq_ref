@@ -357,20 +357,18 @@
                                                 </h4>
                                                 <h6 class="card-subtitle mb-2 text-muted"><?= $value->category_name ?> | <?= $value->subclass ?></h6>
                                                 <p class="card-text">
-                                                    <span
-                                                        class="badge badge-pill badge-info"><?= character_limiter($value->description, 10) ?></span>
-                                                    <span
-                                                        class="badge badge-pill badge-info"><?= character_limiter($value->description, 10) ?></span>
-                                                    <span
-                                                        class="badge badge-pill badge-info"><?= character_limiter($value->description, 10) ?></span>
-                                                    <span
-                                                        class="badge badge-pill badge-info"><?= character_limiter($value->description, 10) ?></span>
-                                                    <span
-                                                        class="badge badge-pill badge-info"><?= character_limiter($value->description, 10) ?></span>
+                                                <?php if($value->tags): ?>
+                                                <?php 
+                                                       $tags = explode (",", $value->tags);      
+                                                ?>
+                                                <?php foreach ($tags as $key1 => $value1): ?>
+                                                    <span class="badge badge-pill badge-info"><?= $value1 ?></span>
+                                                <?php endforeach; ?>
+                                                <?php endif; ?>
 
                                                 </p>
                                                 <div class="pl-0">
-                                                    <button class="btn btn-primary btn-sm">read more</button>
+                                                    <button class="btn btn-primary btn-sm">read mores</button>
                                                 </div>
 
                                             </div>
@@ -399,25 +397,26 @@
                                             <?php if(!empty($posts[0])): ?>
                                             <!-- <php for ($i = 0; $i <= 1; $i++) : ?> -->
                                             <?php foreach ($posts[0] as $key => $value) : ?>
-                                            <div class="col-lg-12 mb-4">
+                                            <div class="col-lg-12">
                                                 <div class="card text-center">
-                                                    <img class="card-img-top" style=" object-fit: cover;"
-                                                        src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg"
-                                                        alt="">
+                                                   
 
                                                     <div class="card-body">
                                                         <h4 class="card-title">
                                                             <?= character_limiter($value->title, 40) ?></h4>
                                                         <h6 class="card-subtitle mb-2 text-muted"><?= $value->category_name ?> | <?= $value->subclass ?></h6>
-
-                                                        <span class="badge badge-pill badge-info">test</span>
-                                                        <span class="badge badge-pill badge-info">test1</span>
-                                                        <span class="badge badge-pill badge-info">test2</span>
-                                                        <span class="badge badge-pill badge-info">test3</span>
-                                                        <span class="badge badge-pill badge-info">tes5</span>
-                                                        <span class="badge badge-pill badge-info">test</span>
-                                                        <span class="badge badge-pill badge-info">test test test</span>
-                                                    </div>
+                                                         <img class="card-img-top" style=" object-fit: cover;"
+                                                        src="https://mdbootstrap.com/img/Photos/Others/images/16.jpg"
+                                                        alt="">
+                                                        <?php if($value->tags): ?>
+                                                        <?php 
+                                                            $tags = explode (",", $value->tags);      
+                                                        ?>
+                                                        <?php foreach ($tags as $key1 => $value1): ?>
+                                                            <span class="badge badge-pill badge-info"><?= $value1 ?></span>
+                                                        <?php endforeach; ?>
+                                                        <?php endif; ?>
+                                                            </div>
 
                                                     <h6 class=" text-muted ">Posted By: <a
                                                             href="#"><?= $value->nickname; ?></a></h6>
@@ -470,55 +469,62 @@
                 <hr class="py-1">
             </div> -->
             <div class="modal-body card">
+            <form method="post" id="upload_form" enctype="multipart/form-data">
             <input type="hidden" name="base" value="<?= base_url(); ?>">
-                <div class="">
-                <label for="">Title</label>
-                    <div class="form-group ">
+            <div class="row">
+                <div class="col-lg-6">
+              
+                    <div class="pb-1">
                         <div class="input-group">
-                            <input type="text" id="title" name="title" class="form-control" placeholder="Type here..."
+                            <input type="text" id="title" name="title" class="form-control" placeholder="Title"
                                 value="" required>
                         </div>
                     </div>
                 </div>
-
+                   <div class="col-lg-6">
+                    <div class="input-group">
+             
+                    <input type="file" id="file" name="file" class="text-center center-block file-upload" accept=".png, .jpg, .jpeg" placeholder="Thumbnail">
+                    </div>
+                </div>
+                </div>
                 <div class="">      
                     <div id="editor">
                         <h1>Create Blog...</h1>
                     </div>
                 </div>
-                <!-- <div class="">
-                    <label for="">Thumbnail Photo</label>
-                    <div class="input-group">
              
-                    <input type="file" name="file" class="text-center center-block file-upload" accept=".png, .jpg, .jpeg">
-                    </div>
-                </div> -->
                 <div class="row my-2">
                 <div class="col-lg-6">
-                <div class="">
-                    <label for="">Select Category</label>
+                <div class="input-group">
+                  
+                 
                     <select name="category_id" class="form-control">
                     <?php foreach ($category as $key => $value): ?>
+                        <option >Select Category</option>
                         <option value="<?= $value->id ?>"><?= $value->category_name ?></option>
                     <?php endforeach; ?>
                     </select>
-                </div> 
+               
+                </div>
+               
                 </div> 
                 <div class="col-lg-6">
-                <div class="">
-                    <label for="">Select Subclass</label>
-                    <select name="subclass_id" class="form-control">
-                        <option value="1">test1</option>
-                        <option value="2">test2</option>
-                        <option value="3">test3</option>
+                <div class="input-group">
+                  
+                    <select name="category_id" class="form-control">
+                    <?php foreach ($category as $key => $value): ?>
+                        <option >Select Subclass</option>
+                        <option value="<?= $value->id ?>"><?= $value->category_name ?></option>
+                    <?php endforeach; ?>
                     </select>
+               
+                </div>
+               
                 </div> 
-                </div>
-                </div>
-                
+                </div> 
                 <div class="">
-                    <label for="">Tags</label>
-                    <input type="text" data-role="tagsinput" class="form-control" id="tags" name="tags" placeholder="Type here..." >
+                    <input type="text" data-role="tagsinput" class="form-control" id="tags" name="tags" placeholder="Tags" >
                 </div> 
                 <div> 
                
@@ -529,8 +535,9 @@
             <div class="modal-footer d-block">
                 <button type="button" class="btn bg-danger text-white btn-link float-right"
                     data-dismiss="modal">Close</button>
-                <button id="save_post" class="btn btn-primary float-left">Save</button>
+                <button type="submit" class="btn btn-primary float-left">Save</button>
             </div>
+            </form>
         </div>
     </div>
 </div>

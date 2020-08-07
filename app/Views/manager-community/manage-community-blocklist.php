@@ -19,7 +19,7 @@
 
 
 
-
+<!-- 
 <div class="page-header header-filter" data-parallax="true"
   style="background-image: url('<?= base_url(); ?>/public/user/assets/img/bg3.jpg')">
   <div class="container">
@@ -27,20 +27,20 @@
       <div class="col-md-8 ml-auto mr-auto">
         <div class="brand text-center">
           <h1>Manage Community</h1>
-          <!-- <h3 class="title text-center">Subtitle</h3> -->
+          <h3 class="title text-center">Subtitle</h3>
         </div>
       </div>
     </div>
   </div>
-</div>
+</div> -->
 <div class="main">
-  <div id="users">
+  <div class="container card" id="users">
     <div class="section p-0">
 
       <div class="col-lg-12">
         <div class="row">
           <div class="col-md-3">
-            <ul class="nav nav-pills nav-pills-icons flex-column  card p-3" role="tablist">
+            <ul class="nav nav-pills nav-pills-icons flex-column p-3" role="tablist">
 
               <li class="nav-item">
                 <a class="nav-link " href="<?= base_url() ?>/manage-community/<?= $community_id ?>">

@@ -46,27 +46,27 @@
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-<div class="page-header header-filter" data-parallax="true"
+<!-- <div class="page-header header-filter" data-parallax="true"
   style="background-image: url('<?= base_url(); ?>/public/user/assets/img/bg3.jpg')">
   <div class="container">
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto">
         <div class="brand text-center">
           <h1>Manage Community</h1>
-          <!-- <h3 class="title text-center">Subtitle</h3> -->
+          <h3 class="title text-center">Subtitle</h3>
         </div>
       </div>
     </div>
   </div>
-</div>
+</div> -->
 <div class="main">
-  <div class="">
+  <div class="card container">
     <div class="section p-0">
 
       <div class="col-lg-12">
         <div class="row">
           <div class="col-md-3">
-            <ul class="nav nav-pills nav-pills-icons flex-column  card p-3" role="tablist">
+            <ul class="nav nav-pills nav-pills-icons flex-column  p-3" role="tablist">
 
               <li class="nav-item">
                 <a class="nav-link " href="<?= base_url() ?>/manage-community/<?= $community_id ?>">
@@ -132,7 +132,7 @@
                 <div class="card">
                   <div class="" id="headingOne">
                     <h2 class="m-0">
-                      <button type="button" class="btn btn-link" data-toggle="collapse"
+                      <button type="button" class="btn btn-link w-100 text-left bg-light" data-toggle="collapse"
                         data-target="#collapseOne<?= $key ?>">
                         <b><?= $value['category_name'] ?></b></button>
                     </h2>
@@ -214,10 +214,9 @@
 
                                     </div>
                                     <div class="modal-footer">
-                                      <button type="submit" class="btn btn-link">Submit</button>
+                                      <button type="submit" class="btn bg-success text-white btn-link">Update</button>
                                       </form>
-                                      <button type="button" class="btn btn-danger btn-link"
-                                        data-dismiss="modal">Close</button>
+                                    
                                     </div>
                                   </div>
                                 </div>
@@ -243,10 +242,9 @@
                                     <div class="modal-footer">
                                       <a
                                         href="<?= base_url() ?>/delete_subclass/<?= $value1['id'] ?>/<?= $value1['community_id'] ?>">
-                                        <button type="submit" class="btn btn-link">Delete Subclass</button>
+                                        <button type="submit" class="btn bg-success text-white btn-link">Confirm</button>
                                       </a>
-                                      <button type="button" class="btn btn-danger btn-link"
-                                        data-dismiss="modal">Close</button>
+                                     
                                     </div>
                                   </div>
                                 </div>
@@ -280,7 +278,6 @@
                             <div class="col-lg-12">
 
                               <div id="new_chq">
-                                <label>Subclass</label>
 
                               </div>
 
@@ -289,16 +286,16 @@
                               </div>
                               <input type="hidden" value="<?= $value['community_id'] ?>" name="community_id">
                               <input type="hidden" value="<?= $value['id'] ?>" name="category_id">
-                              <input class='form-control' name='subclass' type='text' placeholder='Type here...'>
+                              <input class='form-control' name='subclass' type='text' placeholder='Enter Subclass'>
                             </div>
                           </div>
 
 
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-link">Save</button>
+                        <button type="submit" class="btn bg-success text-white btn-link">Add</button>
                         </form>
-                        <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+                        <!-- <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button> -->
                       </div>
                     </div>
                   </div>
@@ -333,9 +330,9 @@
 
                       </div>
                       <div class="modal-footer">
-                        <button type="submit" class="btn btn-link">Submit</button>
+                        <button type="submit" class="btn bg-success text-white btn-link">Submit</button>
                         </form>
-                        <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+                        <!-- <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button> -->
                       </div>
                     </div>
                   </div>
@@ -360,9 +357,9 @@
                       </div>
                       <div class="modal-footer">
                         <a href="<?= base_url() ?>/delete_category/<?= $value['id'] ?>/<?= $value['community_id'] ?>">
-                          <button type="submit" class="btn btn-link">Delete Category</button>
+                          <button type="submit" class="btn bg-success text-white btn-link">Confirm</button>
                         </a>
-                        <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+                        <!-- <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button> -->
                       </div>
                     </div>
                   </div>
@@ -406,9 +403,9 @@
 
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-link">Submit</button>
+          <button type="submit" class="btn bg-success text-white btn-link">Submit</button>
           </form>
-          <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+          <!-- <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button> -->
         </div>
       </div>
     </div>

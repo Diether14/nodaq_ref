@@ -20,27 +20,27 @@
 
 
 
-<div class="page-header header-filter" data-parallax="true"
+<!-- <div class="page-header header-filter" data-parallax="true"
   style="background-image: url('<?= base_url(); ?>/public/user/assets/img/bg3.jpg')">
   <div class="container">
     <div class="row">
       <div class="col-md-8 ml-auto mr-auto">
         <div class="brand text-center">
           <h1>Manage Community</h1>
-          <!-- <h3 class="title text-center">Subtitle</h3> -->
+          <h3 class="title text-center">Subtitle</h3>
         </div>
       </div>
     </div>
   </div>
-</div>
+</div> -->
 <div class="main">
-  <div id="users">
+  <div class="container card" id="users">
     <div class="section p-0">
 
       <div class="col-lg-12">
         <div class="row">
           <div class="col-md-3">
-            <ul class="nav nav-pills nav-pills-icons flex-column  card p-3" role="tablist">
+            <ul class="nav nav-pills nav-pills-icons flex-column p-3" role="tablist">
 
               <li class="nav-item">
                 <a class="nav-link " href="<?= base_url() ?>/manage-community/<?= $community_id ?>">
@@ -68,12 +68,12 @@
                   Reported Posts
                 </a>
               </li>
-              <!-- <li class="nav-item">
+              <li class="nav-item">
                 <a class="nav-link" href="<?= base_url(); ?>/manage-community/block-list/<?= $community_id ?>">
                   <i class="material-icons">block</i>
                   Block List
                 </a>
-              </li> -->
+              </li>
 
               <li class="nav-item">
                 <a class="nav-link" href="<?= base_url(); ?>/manage-community/community-settings/<?= $community_id ?>">
@@ -96,14 +96,13 @@
 
                 <h2>Community Users</h2>
                 <!-- <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add_ac">Add Assistant Manager</button> -->
-                <div class="row">
+                <div class="row ">
 
 
                   <div class="table-responsive">
                     <table id="myTable" class="table table-striped table-bordered" style="width:100%">
                       <thead>
                         <tr>
-                          <th width="20%;">ID</th>
                           <th>Username</th>
                           <th>Status</th>
                           <th>Action</th>
@@ -113,7 +112,6 @@
                       <tbody>
                         <?php foreach ($users as $key => $value): ?>
                         <tr>
-                          <td><?= $value->id ?></td>
                           <td><?= $value->nickname ?></td>
 
                           <td><?php if($value->status == 1){
@@ -153,9 +151,9 @@
                         <div class="modal fade" id="view<?= $key ?>" tabindex="-1" role="dialog">
                           <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title">View Profile</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <div class="modal-header bg-primary py-3 align-items-center">
+                                <h5 class="create-post-title modal-title w-100 fw600 m-0 text-white">View Profile</h5>
+                                <button type="button" class="close bg-danger text-white btn-link p-2 rounded-circle" data-dismiss="modal" aria-label="Close">
                                   <i class="material-icons">clear</i>
                                 </button>
                               </div>
@@ -191,9 +189,9 @@
                                   </div>
                                 </div>
                                 <div class="modal-footer">
-
+<!-- 
                                   <button type="button" class="btn btn-danger btn-link"
-                                    data-dismiss="modal">Close</button>
+                                    data-dismiss="modal">Close</button> -->
                                 </div>
 
                               </div>
@@ -206,7 +204,7 @@
                           <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h5 class="modal-title">Assistant manager Settings</h5>
+                                <h5 class="modal-title">Assistant Manager Settings</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <i class="material-icons">clear</i>
                                 </button>
@@ -237,7 +235,7 @@
                                             <h4 class="header"><?= $value->nickname; ?></h4>
                                           </div>
 
-                                          <h4>Permission</h4>
+                                          <h4>Permissions</h4>
                                           <div class="card card-body">
                                             <h6>Community Settings</h6>
                                             <div class="form-check">
@@ -368,10 +366,7 @@
                                 </div>
                                 <div class="modal-footer">
 
-                                  <button type="submit" class="btn btn-link">Save Settings</button>
-
-                                  <button type="button" class="btn btn-danger btn-link"
-                                    data-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn bg-success text-white btn-link">Save Settings</button>
                                 </div>
                               </form>
                             </div>
@@ -494,9 +489,9 @@
                         <div class="modal fade" id="accept_user<?= $key ?>" tabindex="-1" role="dialog">
                           <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title">Accept User</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <div class="modal-header bg-primary py-3 align-items-center">
+                                <h5 class="create-post-title modal-title w-100 fw600 m-0 text-white">Accept User</h5>
+                                <button type="button" class="close bg-danger text-white btn-link p-2 rounded-circle" data-dismiss="modal" aria-label="Close">
                                   <i class="material-icons">clear</i>
                                 </button>
                               </div>
@@ -509,10 +504,10 @@
                               </div>
                               <div class="modal-footer">
                                 <a href="<?= base_url() ?>/accept_user/<?= $value->id ?>/<?= $value->community_id ?>">
-                                  <button type="submit" class="btn btn-link">Accept</button>
+                                  <button type="submit" class="btn bg-success text-white btn-link float-right">Accept</button>
                                 </a>
-                                <button type="button" class="btn btn-danger btn-link"
-                                  data-dismiss="modal">Close</button>
+                                <!-- <button type="button" class="btn btn-danger btn-link"
+                                  data-dismiss="modal">Close</button> -->
                               </div>
                             </div>
                           </div>
@@ -523,9 +518,9 @@
                         <div class="modal fade" id="reject_user<?= $key ?>" tabindex="-1" role="dialog">
                           <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title">Reject User</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <div class="modal-header bg-primary py-3 align-items-center">
+                                <h5 class="create-post-title modal-title w-100 fw600 m-0 text-white">Reject User</h5>
+                                <button type="button" class="close bg-danger text-white btn-link p-2 rounded-circle" data-dismiss="modal" aria-label="Close">
                                   <i class="material-icons">clear</i>
                                 </button>
                               </div>
@@ -538,10 +533,10 @@
                               </div>
                               <div class="modal-footer">
                                 <a href="<?= base_url() ?>/reject_user/<?= $value->id ?>/<?= $value->community_id ?>">
-                                  <button type="submit" class="btn btn-link">Reject</button>
+                                  <button type="submit" class="btn bg-danger text-white btn-link float-right">Reject</button>
                                 </a>
-                                <button type="button" class="btn btn-danger btn-link"
-                                  data-dismiss="modal">Close</button>
+                                <!-- <button type="button" class="btn btn-danger btn-link"
+                                  data-dismiss="modal">Close</button> -->
                               </div>
                             </div>
                           </div>

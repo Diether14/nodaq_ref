@@ -151,11 +151,6 @@ class Category extends BaseController
         $query   = $builder->get();
         $data['users_community'] = $query->getResult();
         
-
-        // echo '<pre>';
-        // var_dump($data['users_community']);exit;
-        
-
         $data['community_id'] = $id;
 
         $data['posts'] = array();
@@ -291,6 +286,36 @@ class Category extends BaseController
         echo view('community-private', $data);
         echo view('templates/footer', $data); 
     }
+
+       
+    public function save_post(){
+        ini_set('display_errors', 1);
+        helper(['form', 'url']);
+        // echo '<pre>';
+        // var_dump($_POST);exit;
+
+        $model = new UserspostModel();
+
+        $data = array(
+            'user_id' => session()->get('id'),
+            'title' => $this->request->getPost('title'),
+            'content' => $this->request->getPost('content'),
+            'community_id' => $this->request->getPost('community_id'),
+            'tags' => $this->request->getPost('tags'),
+            'category_id' => $this->request->getPost('category_id'),
+            'subclass_id' => $this->request->getPost('subclass_id')
+        );
+
+        $insert = $model->insert($data);
+        if($insert){
+            echo json_encode(array("status" => TRUE));
+        }else{
+            echo json_encode(array("status" => FALSE));
+        }
+
+        
+    }
+    
 
     //community accept user
     public function accept_user_community(){
@@ -840,35 +865,7 @@ class Category extends BaseController
 
         }
 
-        
-    public function save_post(){
-        ini_set('display_errors', 1);
-        helper(['form', 'url']);
-        // echo '<pre>';
-        // var_dump($_POST);exit;
-
-        $model = new UserspostModel();
-
-        $data = array(
-            'user_id' => session()->get('id'),
-            'title' => $this->request->getPost('title'),
-            'content' => $this->request->getPost('content'),
-            'community_id' => $this->request->getPost('community_id'),
-            'tags' => $this->request->getPost('tags'),
-            'category_id' => $this->request->getPost('category_id'),
-            'subclass_id' => $this->request->getPost('subclass_id')
-        );
-
-        $insert = $model->insert($data);
-        if($insert){
-            echo json_encode(array("status" => TRUE));
-        }else{
-            echo json_encode(array("status" => FALSE));
-        }
-
-        
-    }
-    
+ 
 }
 
 
