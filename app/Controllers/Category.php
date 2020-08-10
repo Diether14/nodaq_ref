@@ -157,7 +157,7 @@ class Category extends BaseController
         $db1      = \Config\Database::connect();
         $builder1 = $db1->table('users_post');
         $builder1->where('users_post.community_id', $id);
-        $builder1->select('users_post.id,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.updated_at, users_post.tags, users_post.category_id, users_post.subclass_id, users.nickname, profile_photo.name, community_category.category_name, community_category_subclass.subclass'  );
+        $builder1->select('users_post.id,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.updated_at, users_post.tags, users_post.category_id, users_post.subclass_id, users_post.thumbnail, users.nickname, profile_photo.name, community_category.category_name, community_category_subclass.subclass'  );
         $builder1->join('users', 'users.id = users_post.user_id');
         $builder1->join('profile_photo', 'users.id = profile_photo.user_id');
         $builder1->join('community_category', 'community_category.id = users_post.category_id', 'left');
@@ -165,19 +165,19 @@ class Category extends BaseController
         $query1  = $builder1->get();
         $data['posts'][] = $query1->getResult();  
 
-        $db2      = \Config\Database::connect();
-        $builder2 = $db2->table('users_shared_posts');
-        $builder2->select('users_shared_posts.post_id, users_post.id, users_shared_posts.content ,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.updated_at, users.nickname,profile_photo.name, user_settings.user_mode');
-        $builder2->where('users_shared_posts.community_id', $id );
+        // $db2      = \Config\Database::connect();
+        // $builder2 = $db2->table('users_shared_posts');
+        // $builder2->select('users_shared_posts.post_id, users_post.id, users_shared_posts.content ,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.updated_at, users.nickname,profile_photo.name, user_settings.user_mode');
+        // $builder2->where('users_shared_posts.community_id', $id );
         
-        $builder2->join('users', 'users.id = users_shared_posts.user_id');
-        $builder2->join('users_post', 'users_post.id = users_shared_posts.post_id');
-        $builder2->join('profile_photo', 'users.id = profile_photo.user_id');
-        $builder2->join('user_settings', 'users.id = user_settings.user_id');
+        // $builder2->join('users', 'users.id = users_shared_posts.user_id');
+        // $builder2->join('users_post', 'users_post.id = users_shared_posts.post_id');
+        // $builder2->join('profile_photo', 'users.id = profile_photo.user_id');
+        // $builder2->join('user_settings', 'users.id = user_settings.user_id');
         
-        $query2  = $builder2->get();
+        // $query2  = $builder2->get();
 
-        $data['posts'][] = $query2->getResult();  
+        // $data['posts'][] = $query2->getResult();  
         
         $users_community_count = new UserscommunityModel();
 
@@ -291,29 +291,55 @@ class Category extends BaseController
     public function save_post(){
         ini_set('display_errors', 1);
         helper(['form', 'url']);
-        // echo '<pre>';
-        // var_dump($_POST);exit;
-
-        $model = new UserspostModel();
-
-        $data = array(
-            'user_id' => session()->get('id'),
-            'title' => $this->request->getPost('title'),
-            'content' => $this->request->getPost('content'),
-            'community_id' => $this->request->getPost('community_id'),
-            'tags' => $this->request->getPost('tags'),
-            'category_id' => $this->request->getPost('category_id'),
-            'subclass_id' => $this->request->getPost('subclass_id')
-        );
-
-        $insert = $model->insert($data);
-        if($insert){
-            echo json_encode(array("status" => TRUE));
-        }else{
-            echo json_encode(array("status" => FALSE));
-        }
 
         
+        $title = $this->request->getPost('title');
+        $content = $this->request->getPost('editor');
+        $community_id = $this->request->getPost('community_id');
+        $category_id = $this->request->getPost('category_id');
+        $subclass_id = $this->request->getPost('subclass_id');
+        $tags = $this->request->getPost('tags');
+
+        $db      = \Config\Database::connect();
+            $builder = $db->table('users_post');
+
+
+            $file = $this->request->getFile('file');
+            $file->move('public/post_photos');
+      
+
+          $data = [
+            'user_id' => session()->get('id'),
+            'community_id' => $community_id,
+            'title' => $title,
+            'content' => $content,
+            'tags' => $tags,
+            'category_id' => $category_id,
+            'subclass_id' => $subclass_id,
+            'thumbnail' =>  $file->getClientName(),
+          ];
+
+
+          $save = $builder->insert($data);
+          if($save){
+
+          $response = [
+           'success' => true,
+           'data' => $save,
+           'msg' => "Blog has been posted!"
+          ];
+        }else{
+            $response = [
+                'success' => false,
+                'data' => '',
+                'msg' => "There is an error!"
+               ];
+        }
+          return $this->response->setJSON($response);
+       
+
+      
+    
     }
     
 
@@ -740,10 +766,9 @@ class Category extends BaseController
     }
 
     public function save_community(){
-            ini_set('display_errors', 1);
-            // echo '<pre>';
-            // var_dump($_POST);exit;
+        ini_set('display_errors', 1);
     
+     
             helper(['form', 'url']);
             
     

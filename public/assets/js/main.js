@@ -1,5 +1,7 @@
 $(document).ready(function(){
     initSample();
+    
+
     // $(".update-anounymous").click(function(){
     //     let data = {
     //         'community_id': $("input[name=community_id]").val();
@@ -78,41 +80,42 @@ $(document).ready(function(){
         else  
         {  
 
-        var form = new FormData(this);
-        console.log(form);return;
         var title = $("input[name=title]").val();
         var community_id = $("input[name=community_id]").val();
-        var content = CKEDITOR.instances.editor.getData();
+        var content = $("input[name=edtor]").val();
+        // var content = CKEDITOR.instances.editor.getData();
         var tags = $("input[name=tags]").val();
         var category_id = $("select[name=category_id]").val();
         var subclass_id = $("select[name=subclass_id]").val();
         var base_url = $('input[name=base]').val();
-      
-        var data = {
-            'title': title,
-            'content': content,
-            'community_id': community_id,
-            'category_id': category_id,
-            'subclass_id': subclass_id,
-            'tags': tags
-        }
-        // console.log(data);return;
+        
+        
+        // let data = {
+        //     'title': title,
+        //     'content': content,
+        //     'community_id': community_id,
+        //     'category_id': category_id,
+        //     'subclass_id': subclass_id,
+        //     'tags': tags,
+        //     'form':  new FormData(this)
+        // }
+        // console.log(data);
 
-        if(title == ''  || content == '' || community_id == '' || tags == ''){
+        if(title == ''  || content == '' || community_id == '' || tags == ''  || category_id == '' || subclass_id == ''){
             alert('Please fill out the fields!');
         }else{
             $.ajax({
                 type: "POST",
                 url  : base_url + '/save_post',
-                data: data,
+                data:  new FormData(this), 
                 dataType: "JSON",
                 contentType: false,  
                 cache: false,  
-                processData:false, 
+                processData:false,  
                 success: function(data)
                 {
                  
-                    alert('Blog Added!');
+                    alert(data.msg);
                   
                 
                   location.reload();
