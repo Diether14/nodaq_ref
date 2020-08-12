@@ -3,12 +3,12 @@
 
 
 <body class="login-page sidebar-collapse" >
-<div class="page-header bg-primary" >
+<div class="page-header " >
     <div class="container">
 
       <div class="row">
         <div class="col-lg-5 col-md-6 ml-auto mr-auto">
-          <div class="card card-login rounded-0">
+          <div class="card card-login rounded-0 p-3">
             <form class="user" action="/weendi/login" method="post">
               <!-- <div class="card-header card-header-primary text-center">
                 <h4 class="card-title">Welcome to Weendi</h4> -->
@@ -27,7 +27,7 @@
               <div class="text-center my-3 site-title">
               <img src="<?= base_url(); ?>/public/images/weendi.png" alt="" width="300" > </a>
               </div>
-              <p class="lead text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <!-- <p class="lead text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> -->
               <div class="card-body my-5">
               <?php if(session()->get('success')): ?>
                 <div class="alert alert-success" role="alert">
@@ -42,21 +42,21 @@
                   </div>
                   <input type="text" class="form-control" placeholder="First Name...">
                 </div> -->
-                <div class="input-group m-1">
-                  <div class="input-group-prepend">
+                <div class="input-group m-2 d-block">
+                  <div class="input-group-prepend ">
                     <span class="input-group-text px-0">
                       Email
                     </span>
                   </div>
-                  <input type="email" name="email" class="form-control" placeholder="Email...">
+                  <input type="email" name="email" class="form-control w-100" placeholder="Email...">
                 </div>
-                <div class="input-group m-1">
+                <div class="input-group m-2 d-block">
                   <div class="input-group-prepend">
                     <span class="input-group-text px-0">
                      Password
                     </span>
                   </div>
-                  <input type="password" name="password" class="form-control" placeholder="Password...">
+                  <input type="password" name="password" class="form-control w-100" placeholder="Password...">
                 </div>
                 <?php if(isset($validation)): ?> 
                 <div class="col-12"> 
@@ -70,9 +70,15 @@
                 <button type="submit" class="btn btn-primary btn-wd btn-s">Sign In</button>
               </div>
               <hr style="width:80%; margin-top:0;">
-              <div class="text-center mb-4 d-flex">
-              <a class="small" href="#">Forgot your Password?</a><br>
-              <p>Don't have an account?</p><a class="small" href="/weendi/register" class="btn btn-primary btn-link btn-wd btn-lg h3">Register</a>
+              <div class="text-center mb-4 d-flex row px-5">
+                <div class="col-sm-12 ">
+
+                  <a class="" href="#">Forgot your Password?</a>
+                </div>
+                <div class="col-sm-12  d-block">
+                  
+                  <p>Don't have an account? <a class="" href="/weendi/register" class="btn btn-primary btn-link btn-wd btn-lg h3">Register here</a></p>
+                </div>
               </div>
             </form>
           </div>

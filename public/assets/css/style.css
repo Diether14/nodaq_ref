@@ -27,6 +27,7 @@ footer {
 
 .main .container {
     background-color: #fff!important;
+    min-height: 100vh;
 }
 
 .container.bg-white.card {
@@ -378,6 +379,14 @@ ul.nav.nav-pills.view-options li.nav-item a {
 
 .table-responsive {
     height: 100vh;
+}
+
+body nav.navbar.bg-primary {
+    background-color: #6A4E9C !important;
+}
+
+button.btn.btn-primary {
+    background-color: #6A4E9C !important;
 }
 
 

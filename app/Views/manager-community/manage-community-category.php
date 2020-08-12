@@ -94,6 +94,12 @@
                   Reported Posts
                 </a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<?= base_url(); ?>/manage-community/block-list/<?= $community_id ?>">
+                  <i class="material-icons">block</i>
+                  Block List
+                </a>
+              </li>
 
 
               <li class="nav-item">

@@ -724,7 +724,7 @@ class Users extends BaseController
         $data['profile_photo'] = $profile_photo->where('user_id', session()->get('id'))
             ->first();   
         
-
+        
  
 
 

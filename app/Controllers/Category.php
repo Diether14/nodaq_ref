@@ -121,7 +121,7 @@ class Category extends BaseController
         $db      = \Config\Database::connect();
         $builder = $db->table('community');
         $builder->where('community.id', $id);
-        $builder->select('community.id, community.user_id, community.com_photo_id,community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.category, community.status, community.questions, community_photo.name');
+        $builder->select('community.id, community.user_id, community.com_photo_id,community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.category, community.status, community.questions, community_photo.name, community.questions');
         $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
         
         $query   = $builder->get();
@@ -291,7 +291,6 @@ class Category extends BaseController
     public function save_post(){
         ini_set('display_errors', 1);
         helper(['form', 'url']);
-
         
         $title = $this->request->getPost('title');
         $content = $this->request->getPost('editor');
@@ -483,14 +482,16 @@ class Category extends BaseController
         $model = new UserscommunityModel;
 
         $community_id = $this->request->getPost('community_id');
+        $answer = $this->request->getPost('answer');
 
         $data = [
             'user_id' => session()->get('id'),
-            'community_id' => $community_id
+            'community_id' => $community_id,
+            'answer' => $answer
         ];
 
         if($model->save($data)){
-            $msg = 'You has been joined the community';
+            $msg = 'Your request has been sent';
         }else{
             $msg = 'There is an error';
         }
@@ -766,11 +767,10 @@ class Category extends BaseController
     }
 
     public function save_community(){
-        ini_set('display_errors', 1);
+            ini_set('display_errors', 1);
     
-     
             helper(['form', 'url']);
-            
+
     
             $community_photo = new CommunityphotoModel();
      
@@ -787,6 +787,7 @@ class Category extends BaseController
                 'content' => 'required|min_length[3]|max_length[500]',
                 'upvote' => 'required|min_length[3]|max_length[12]',
                 'devote' => 'required|min_length[3]|max_length[12]',   
+                'questions' => 'required|min_length[3]|max_length[50]'
             ];
     
             $msg = 'Please select a valid file';
@@ -812,9 +813,7 @@ class Category extends BaseController
                     }else{
                         $community_type = '0';
                     }
-            
-                    
-              
+                          
                     $newData = [
                         'com_photo_id' => $last_id,
                         'user_id' => session()->get('id'),
@@ -825,7 +824,7 @@ class Category extends BaseController
                         'text_color' => $this->request->getPost('text_color'),
                         'upvote_name' => $this->request->getPost('upvote'),
                         'devote_name' => $this->request->getPost('devote'),
-                        'category' => $this->request->getPost('category')
+                        'questions' => $this->request->getPost('questions'),
                         ];
                     
                     if($model->insert($newData)){

@@ -138,7 +138,7 @@ class Managers extends BaseController
 
         $db      = \Config\Database::connect();
         $builder = $db->table('users_community');
-        $builder->select('users_community.id, users_community.user_id, users_community.community_id, users_community.status, users_community.anounymous, users.nickname, users.email, profile_photo.name, 
+        $builder->select('users_community.id, users_community.user_id, users_community.community_id, users_community.status, users_community.anounymous, users.nickname, users.email, profile_photo.name, users_community.answer, 
         community_ac_settings.remove_comments,community_ac_settings.remove_posts,community_ac_settings.punish_users,community_ac_settings.remove_posts_from_hotboard,
         community_ac_settings.edit_cover_photo, community_ac_settings.edit_categories, community_ac_settings.edit_subclass, community_ac_settings.notice,
         community_ac_settings.general, community_ac_settings.politic');

@@ -1,4 +1,4 @@
-<!-- <footer class="footer footer-default bg-dark w-footer" style="color:#ffffff">
+<footer class="footer footer-default bg-dark w-footer" style="color:#ffffff">
     <div class="container">
       <nav class="float-left">
         <ul>
@@ -28,7 +28,7 @@
         <a href="#" style="color:#ffffff" target="_blank">Weendi</a>
       </div>
     </div>
-  </footer> -->
+  </footer>
 
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

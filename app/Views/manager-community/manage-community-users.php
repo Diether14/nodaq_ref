@@ -105,6 +105,7 @@
                         <tr>
                           <th>Username</th>
                           <th>Status</th>
+                          <th>Request Join Answer</th>
                           <th>Action</th>
 
                         </tr>
@@ -122,6 +123,7 @@
                           echo 'Assistant Manager';
                         }
                          ?></td>
+                         <td><?= $value->answer ?></td>
                           <td>
 
                             <button class="btn btn-primary btn-sm" data-toggle="modal"

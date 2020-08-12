@@ -12,7 +12,10 @@
             <div class="card card-login">
               <div class="p-4">
                 <div class="text-center">
-                  <div class="h3  mb-2">Register</div>
+                <div class="text-center my-3 site-title">
+              <img src="<?= base_url(); ?>/public/images/weendi.png" alt="" width="300" > </a>
+              </div>
+                  <div class="h4 text-left mb-2">Register</div>
                 </div>
                 <form class="user" action="/weendi/register" method="post">
 
@@ -112,7 +115,7 @@
                   </div>
                   <?php endif; ?>
                   <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-link btn-wd btn-s">Register</button>
+                    <button type="submit" class="btn btn-primary btn-link btn-wd text-white btn-s">Register</button>
                   </div>
 
                   <!-- <hr> -->

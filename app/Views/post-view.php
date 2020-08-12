@@ -42,7 +42,7 @@
         font-size: 1.3rem;
     }
 </style>
-<div class="container m-auto page-header header-filter" data-parallax="true" style="background-image: url(<?= base_url(); ?>/public/admin/uploads/community/<?= $community_current[0]->name; ?>)">
+<div class="page-header header-filter m-auto" data-parallax="true" style="background-image: url(<?= base_url(); ?>/public/admin/uploads/community/<?= $community_current[0]->name; ?>)">
     <div class="container">
         <div class="row">
             <div class="col-md-12 ml-auto mr-auto">
@@ -50,9 +50,7 @@
                     <h1 class="title">
                         <?= $community_current[0]->title; ?>
                     </h1>
-                    <h4 class="small-description">
-                        <?= $community_current[0]->content ?>
-                    </h4>
+                
                     <a href="<?= base_url(); ?>/community-join/<?= $blog['community_id'] ?>"><button
                             class="btn btn-primary btn-raised btn-lg">View Community</button></a>
                 </div>
@@ -94,52 +92,29 @@
                         </nav>
                     </div>
                     <div class="col-sm-12 community-single-card_title">
-                        <div class="community-single-card_profile d-flex align-items-center">
-                            <?php if($user_settings['user_mode'] == '1'): ?>
-                            <div class="profile-photo-small mr-2">
-
-                                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image" class="img-raised rounded-circle1 img-fluid  z-depth-2" alt="avatar">
-                            </div>
-                            <?php if(session()->get('id') == $user['id']): ?>
-                            <a href="<?= base_url(); ?>/profile">
-                                <h4 class="card-title mt-0 pt-2">Anounymous
-                                </h4>
-                            </a>
-                            <?php else: ?>
-                            <a href="<?= base_url(); ?>/view-profile/<?= $user['id']; ?>">
-                                <h4 class="card-title mt-0 pt-2">Anounymous
-                                </h4>
-                            </a>
-                            <?php endif; ?>
-
-
-                            <?php else: ?>
-                            <div class="profile-photo-small mr-2">
-                                <?php if(!empty($profile_photo1['name'])): ?>
-
-                                <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $profile_photo1['name'] ?>" alt="Circle Image" class="rounded-circle1 img-fluid z-depth-2">
-
-                                <?php else: ?>
-                                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image" class="img-raised rounded-circle1 img-fluid  z-depth-2" alt="avatar">
-
-                                <?php endif; ?>
-                                <?php endif; ?>
-                            </div>
+                        <div class="community-single-card_profile">
+                            
                             <div class="community-single_nickname">
                                 <?php if(session()->get('id') == $user['id']): ?>
+                                
                                 <a href="<?= base_url(); ?>/profile">
-                                    <h4 class="card-title mt-0 pt-2">
+                                    <h4 class="card-title mt-0 pt-3">
+                                    <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $profile_photo1['name'] ?>" alt="Circle Image" class="rounded-circle1 img-fluid z-depth-2">
+
                                         <?= $user['nickname']; ?>
                                     </h4>
                                 </a>
                                 <?php else: ?>
                                 <a href="<?= base_url(); ?>/view-profile/<?= $user['id']; ?>">
-                                    <h4 class="card-title mt-0 pt-2">
+                                    <h4 class="card-title mt-0 pt-3">
+                                    <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $profile_photo1['name'] ?>" alt="Circle Image" class="rounded-circle1 img-fluid z-depth-2">
+
                                         <?= $user['nickname']; ?>
                                     </h4>
                                 </a>
                                 <?php endif; ?>
-                                <p class="text m-0 p-0 ">
+                                <p class="text ">
+                                    
                                     <?php echo $blog['updated_at']; ?>
                                 </p>
                             </div>
@@ -190,7 +165,7 @@
                                                 echo '50';
                                               } ?>
                                     Comments</a>
-                                <a href="#" class="btn btn-link not_joined h6"><i class="fa fa-share pr-1"></i>
+                                <!-- <a href="#" class="btn btn-link not_joined h6"><i class="fa fa-share pr-1"></i>
                                     <?php 
                                               if(1000 >= 1000){ 
                                                 echo round((1200/1000),1). 'K'; 
@@ -199,7 +174,7 @@
                                               }else{
                                                 echo '50';
                                               } ?>
-                                    Share Post</a>
+                                    Share Post</a> -->
 
                                 <?php if(empty($report)): ?>
                                 <a href="#" class="btn btn-link not_joined h6" class="btn btn-link"><i
@@ -222,7 +197,7 @@
                                                 echo '50';
                                               } ?>
                                     Comments</a>
-                                <a href="#" data-toggle="modal" data-target="#share" class="btn btn-link h6"><i
+                                <!-- <a href="#" data-toggle="modal" data-target="#share" class="btn btn-link h6"><i
                                         class="fa fa-share pr-1"></i>
                                     <?php 
                                               if(1000 >= 1000){ 
@@ -232,7 +207,7 @@
                                               }else{
                                                 echo '50';
                                               } ?>
-                                    Share Post</a>
+                                    Share Post</a> -->
 
                                 <?php if(empty($report)): ?>
                                 <a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-link h6" class="btn btn-link"><i class="fa fa-exclamation pr-1"></i> Report Post</a>

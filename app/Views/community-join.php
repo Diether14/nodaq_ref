@@ -74,25 +74,27 @@
 
 
                 <?php if (session('msg')) : ?>
-                <div class="alert alert-info">
-                    <div class="container">
-                        <div class="alert-icon">
-                            <i class="material-icons">info_outline</i>
+                    <div class="alert alert-success m-0">
+                        <div class="container">
+                            <div class="alert-icon">
+                                <i class="material-icons">check</i>
+                            </div>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                            </button>
+                          <?= session('msg'); ?>
                         </div>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true"><i class="material-icons">clear</i></span>
-                        </button>
-                        <b>Info alert:</b>
-                        <?= session('msg') ?>
                     </div>
-                </div>
-                <br>
                 <?php endif; ?>
+
+
+
+
                 <?php if (empty($users_community) && $community_list[0]->community_type == '1') : ?>
                 <?php else : ?>
                 <div class="col-md-12 px-0 of-hidden">
-                    <?php if (empty($users_community)) : ?>
-                    <div class="alert alert-info">
+                    <?php if ($users_community[0]->status == '0') : ?>
+                    <div class="alert alert-danger m-0">
                         <div class="container">
                             <div class="alert-icon">
                                 <i class="material-icons">info_outline</i>
@@ -100,7 +102,7 @@
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true"><i class="material-icons">clear</i></span>
                             </button>
-                            <b>Info alert:</b> You must join to the community first, inorder to be able to add post and
+                             You must join to the community first, inorder to be able to add post and
                             add comments.
                         </div>
                     </div>
@@ -110,7 +112,7 @@
                         <div class="d-flex align-items-center w-100  px-2">
                             <div class="col-lg-12 row community-info-area  align-items-center">
                                 <div class="col-sm-4 d-flex justify-content-start">
-                                    <div class="col-12 ">
+                                    <div class="col-12 justify-content-center text-center">
                                         <h3 class="community-title">
                                             <?= $community_list[0]->title; ?>
                                         </h3>
@@ -121,16 +123,21 @@
                                         <i class="fa fa-lock"></i>
                                         <small class="community-status fw-600">Public Community </small>
                                         <?php endif; ?>
-                                        <div class="justify-content-center ">
+                                        <div class="">
                                         <?php 
-                                        if ($users_community[0]->status == '1') : ?>
-                                            <button type="submit" class="btn btn-primary btn-raised btn-sm">
+                                            if ($users_community[0]->status == '1') : ?>
+                                            <button type="submit" class="btn btn-block btn-primary ">
                                                 Joined
                                             </button>
+                                            <?php elseif($users_community[0]->status == '0'): ?>
+                                                <button type="submit" class="btn btn-block btn-primary ">
+                                                Requested To Join
+                                                </button>
                                             <?php else : ?>
-                                            <button class="btn btn-primary btn-raised btn-sm">
+                                                <button class="btn btn-block btn-primary" data-toggle="modal" data-target="#join-in">
+                                                <!-- <i class="fa fa-handshake-o" aria-hidden="true"></i> -->
                                                 Join In
-                                            </button>
+                                                </button>
                                             <?php endif; ?>
                                         </div>
                                     </div>
@@ -139,27 +146,27 @@
                                     <ul class="nav nav-pills nav-pills justify-content-end px-0 view-options"
                                         role="tablist">
                                         <li class="nav-item ">
-                                            <a class="nav-link p-0 m-0 active show" href="#grid" role="tab"
+                                            <a class="nav-link p-0 m-0 active show rounded" href="#grid" role="tab"
                                                 id="community-grid-tab" data-toggle="pill" aria-controls="grid"
                                                 aria-selected="true">
                                                 <i class="fa fa-th"></i>
                                             </a>
                                         </li>
                                         <li class="nav-item ">
-                                            <a class="nav-link p-0 m-0" href="#list" role="tab" data-toggle="pill"
+                                            <a class="nav-link p-0 m-0 rounded" href="#list" role="tab" data-toggle="pill"
                                                 aria-controls="list" id="community-list-tab" aria-selected="false">
                                                 <i class="fa fa-list "></i>
                                             </a>
                                         </li>
                                         <li class="nav-item ">
-                                            <a class="nav-link p-0 m-0" href="#longbars" role="tab" data-toggle="pill"
+                                            <a class="nav-link p-0 m-0 rounded" href="#longbars" role="tab" data-toggle="pill"
                                                 aria-controls="longbars" id="community-longbars-tab"
                                                 aria-selected="false">
                                                 <i class="fa fa-bars"></i>
                                             </a>
                                         </li>
                                         <li class="nav-item ">
-                                            <a class="nav-link p-0 m-0" href="#bars" role="tab" data-toggle="pill"
+                                            <a class="nav-link p-0 m-0 rounded" href="#bars" role="tab" data-toggle="pill"
                                                 aria-controls="bars" id="community-bars-tab" aria-selected="false">
                                                 <i class="fa fa-align-justify"></i>
                                             </a>
@@ -167,7 +174,7 @@
                                         <li class="nav-item ">
                                             <div class="team-player create-post">
                                                 <div class="card custom-card card-body justify-content-center m-0 p-0">
-                                                    <?php if (!empty($users_community)) : ?>
+                                                    <?php if($users_community[0]->status == '1'): ?>
                                                     <a class="nav-link" data-toggle="modal" data-target="#myModal">
                                                         <i class="fa fa-plus"></i></a>
                                                     <?php else : ?>
@@ -487,3 +494,33 @@
     </div>
 </div>
 <!--  End Modal -->
+
+
+  <!-- Classic Modal -->
+  <div class="modal fade" id="join-in" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Question</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i class="material-icons">clear</i>
+          </button>
+        </div>
+        <form action="<?= base_url(); ?>/join_community" method="POST">
+        <div class="modal-body">
+          <h4 class=""><?= $community_list[0]->questions ?></h4>
+          <div class="input-group">
+            <textarea name="answer" class="form-control" placeholder="Your answer...."  required rows="5"></textarea>
+            <input type="hidden" name="community_id" value="<?=  $community_list[0]->id ?>">
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!--  End Modal -->
