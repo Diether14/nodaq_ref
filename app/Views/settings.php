@@ -63,7 +63,20 @@
                         Show Nickname
                       </label>
                     </div>
+<hr class="m-3">
+<div class="card-title">
+                    <h4>Display</h4>
+                  </div>
+                  <div class="togglebutton">
+                      <label>
 
+                        <input type="checkbox" name="nickname"
+                          <?= ($user_settings['user_nickname'] == '1' ? 'checked': null)?>>
+
+                        <span class="toggle"></span>
+                        Dark Mode
+                      </label>
+                    </div>
                     <button type="submit" class="btn btn-primary btn-raised mt-3" id="btnSubmit">
                       Save
                     </button>

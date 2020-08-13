@@ -389,6 +389,13 @@ button.btn.btn-primary {
     background-color: #6A4E9C !important;
 }
 
+.community-create-post .modal-dialog.modal-dialog-centered.modal-lg {
+    width: 80vw !important;
+    min-width: 90vw;
+    min-height: 100vh;
+    margin: auto !important;
+}
+
 
 /*Media Queries*/
 

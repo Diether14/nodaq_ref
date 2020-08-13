@@ -9,7 +9,8 @@ CKEDITOR.editorConfig = function(config) {
     // config.language = 'fr';
     config.uiColor = '#6a4e9c';
     config.height = '500px';
-
+    config.extraPlugins = 'uploadimage';
+    config.uploadUrl = '/uploader/upload.php';
 
     config.toolbar = [
         { name: 'document', groups: ['mode', 'document', 'doctools'], items: ['Source', '-', , 'Preview', 'Print', '-', 'Templates'] },
@@ -20,8 +21,8 @@ CKEDITOR.editorConfig = function(config) {
         { name: 'basicstyles', groups: ['basicstyles', 'cleanup'], items: ['Bold', 'Italic', 'Underline'] },
         { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'], items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', ] },
         { name: 'links', items: ['Link', 'Unlink'] },
-        { name: 'insert', items: ['Image', 'Table', 'Smiley', 'Iframe'] },
-
+        // { name: 'insert', items: ['Image', 'Table', 'Smiley', 'Iframe'] },
+        { name: 'insert',  items : ['Image', 'addFile', 'addImage','Smiley' ] },
         { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
         { name: 'colors', items: ['TextColor', 'BGColor'] },
         { name: 'tools', items: ['Maximize', 'ShowBlocks'] },

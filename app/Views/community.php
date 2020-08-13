@@ -112,7 +112,7 @@
                                                 <div class="col-sm-11 px-0">
                                                     <a href="community-join/<?= $value->id;  ?>">
                                                         <h4 class="card-title p-3 my-0">
-                                                            <p class="text text-center justify-content-center m-0 p-0" style="color: <?=  $value->text_color ?>">
+                                                            <p class="text text-center justify-content-center m-0 p-0">
                                                                 <?= character_limiter($value->title, 18) ?> </p>
                                                         </h4>
                                                     </a>
@@ -383,15 +383,8 @@
                                 <?php endforeach; ?>
                                 <?php else: ?>
 
-                                <div class="col-md-4">
-
-
-                                    <div class="team-player">
-                                        <div class="card custom-card card-body justify-content-center">
-
-                                            <p class="text-center">No Created Community Yet</p>
-                                        </div>
-                                    </div>
+                                    <div class="col-sm-12 justify-content-center align-items-center text-dark text-center">
+                                    <h3 >Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic illum, velit perferendis sequi aut repellendus labore voluptatum minima at necessitatibus molestiae eos nulla rerum dicta, unde magnam. Sapiente, rem earum!</h3>
                                 </div>
                                 <?php endif; ?>
 
@@ -433,24 +426,24 @@
                     accept-charset="utf-8" enctype="multipart/form-data">
 
                     <div class="form-group col-sm-12">
-                        <input type="text" name="title" class="form-control" placeholder="Title" required>
+                        <input type="text" name="title" class="form-control" placeholder="Title">
                     </div>
                     <div class="form-group col-sm-12">
-                        <textarea name="content" class="form-control" cols="5" rows="5"
-                            placeholder="Description" required></textarea>
+                        <textarea name="content" class="form-control" cols="5" rows="1"
+                            placeholder="Content"></textarea>
                     </div>
                     <div class="d-flex align-items-center">
 
                         <div class="col-sm-6">
                             <label for="">Community Photo</label>
                             <input type="file" name="file" class="text-center center-block file-upload form-control"
-                                accept=".png, .jpg, .jpeg" required>
+                                accept=".png, .jpg, .jpeg">
                         </div>
                         <div class="col-sm-6">
                             <div class="togglebutton d-flex align-items-center">
                                 <label>
                                     <input type="checkbox" name="community_type"
-                                        <?= ($user_settings['user_mode'] == '1' ? 'checked': null)?> >
+                                        <?= ($user_settings['user_mode'] == '1' ? 'checked': null)?>>
                                     <span class="toggle"></span>
                                 </label>
                                 <h6> Private Community</h6>
@@ -465,7 +458,7 @@
                             <label for="color">Select your theme color:</label>
                           </div>
                           <div class="col-sm-4">
-                            <input type="hidden" name="color" value="#FFFFFF" class="myField" required>
+                            <input type="hidden" name="color" value="#FFFFFF" class="myField">
                         </div>
                                 </div>
                                 <div class="col-sm-6 d-flex">
@@ -474,29 +467,24 @@
                           <label for="color">Select your text color:</label>
                           </div>
                           <div class="col-sm-4">
-                          <input type="color" name="text_color" value="#333333" required>
+                          <input type="color" name="text_color" value="#555555">
                         </div>
                                 </div>
                                 </div>
                     <hr>
-                    <label>Set Question When The User Join In</label>
                     <div class="form-group row col-sm-12">
-                        <textarea name="questions" class="form-control" placeholder="Type here..." rows="2" required></textarea>
-                    </div>
-                    <div class="form-group row">
                         <div class="col-lg-6">
                             <label>Upvote Name</label>
-                            <input type="text" name="upvote" class="form-control" placeholder="upvote, like, agree and etc..." required>
+                            <input type="text" name="upvote" class="form-control">
                         </div>
 
                         <div class="col-lg-6">
                             <label>Devote Name</label>
-                            <input type="text" name="devote" class="form-control" placeholder="devote, dislike, disagree and etc..." required>
+                            <input type="text" name="devote" class="form-control">
                         </div>
 
                     </div>
-                    
-                    
+
                     <button type="submit" class="btn btn-primary float-right">CREATE</button>
 
                 </form>
