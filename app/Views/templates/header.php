@@ -27,11 +27,12 @@
 
 
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <script src="<?= base_url(); ?>/public/assets/ckeditor/ckeditor.js"></script>
-    <script src="<?= base_url(); ?>/public/assets/ckeditor/samples/js/sample.js"></script>
+    <!-- <script src="<?= base_url(); ?>/public/assets/ckeditor/ckeditor.js"></script> -->
+    <!-- <script src="<?= base_url(); ?>/public/assets/ckeditor/samples/js/sample.js"></script> -->
     <!-- <link rel="stylesheet" href="<?= base_url(); ?>/public/assets/ckeditor/samples/css/samples.css"> -->
-    <link rel="stylesheet"
+    <!-- <link rel="stylesheet"
         href="<?= base_url(); ?>/public/assets/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css">
+         -->
 
     <style>
     .rounded-circle {

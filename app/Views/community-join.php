@@ -447,7 +447,7 @@
                     </div>
                 </div> -->
                 </div>
-                <textarea cols="80" id="editor" name="editor" rows="10" data-sample-short>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</textarea>
+                <textarea cols="80" id="editor1" name="editor" rows="10" data-sample-short>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</textarea>
                 <div class="row my-2">
                 <div class="col-lg-6">
                 <div class="input-group"> 
@@ -486,4 +486,4 @@
         </div>
     </div>
 </div>
-<!--  End Modal -->
+ 

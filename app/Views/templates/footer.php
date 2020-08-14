@@ -68,7 +68,62 @@
   <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
   <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.14.1/standard-all/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('editor1', {
+      extraPlugins: 'image2,uploadimage',
 
+      toolbar: [{
+          name: 'clipboard',
+          items: ['Undo', 'Redo']
+        },
+        {
+          name: 'styles',
+          items: ['Styles', 'Format']
+        },
+        {
+          name: 'basicstyles',
+          items: ['Bold', 'Italic', 'Strike', '-', 'RemoveFormat']
+        },
+        {
+          name: 'paragraph',
+          items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote']
+        },
+        {
+          name: 'links',
+          items: ['Link', 'Unlink']
+        },
+        {
+          name: 'insert',
+          items: ['Image', 'Table']
+        },
+        {
+          name: 'tools',
+          items: ['Maximize']
+        },
+        {
+          name: 'editing',
+          items: ['Scayt']
+        }
+      ],
+
+      // Upload images to a CKFinder connector (note that the response type is set to JSON).
+      uploadUrl: '<?= base_url(); ?>/public/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
+
+      // Configure your file manager integration. This example uses CKFinder 3 for PHP.
+      filebrowserBrowseUrl: '<?= base_url(); ?>/public/ckfinderckfinder.html',
+      filebrowserImageBrowseUrl: '<?= base_url(); ?>/public/ckfinderckfinder.html?type=Images',
+      filebrowserUploadUrl: '<?= base_url(); ?>/public/ckfindercore/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
+      filebrowserImageUploadUrl: '<?= base_url(); ?>/public/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
+
+      // Reduce the list of block elements listed in the Format drop-down to the most commonly used.
+      format_tags: 'p;h1;h2;h3;pre',
+      // Simplify the Image and Link dialog windows. The "Advanced" tab is not needed in most cases.
+      removeDialogTabs: 'image:advanced;link:advanced',
+
+      height: 450
+    });
+  </script>
   <script>
     $(document).ready( function () {
         $('#myTable').DataTable();
