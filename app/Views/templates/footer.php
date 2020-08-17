@@ -70,9 +70,17 @@
   <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.ckeditor.com/4.14.1/standard-all/ckeditor.js"></script>
 <script>
-    CKEDITOR.replace('editor1', {
-      extraPlugins: 'image2,uploadimage',
+   CKEDITOR.addCss('figure[class*=easyimage-gradient]::before { content: ""; position: absolute; top: 0; bottom: 0; left: 0; right: 0; }' +
+      'figure[class*=easyimage-gradient] figcaption { position: relative; z-index: 2; }' +
+      '.easyimage-gradient-1::before { background-image: linear-gradient( 135deg, rgba( 115, 110, 254, 0 ) 0%, rgba( 66, 174, 234, .72 ) 100% ); }' +
+      '.easyimage-gradient-2::before { background-image: linear-gradient( 135deg, rgba( 115, 110, 254, 0 ) 0%, rgba( 228, 66, 234, .72 ) 100% ); }');
 
+
+    CKEDITOR.replace('editor1', {
+      // extraPlugins: 'image2,uploadimage',
+      extraPlugins: 'image2,uploadimage',
+      removePlugins: 'image',
+      removeDialogTabs: 'link:advanced',
       toolbar: [{
           name: 'clipboard',
           items: ['Undo', 'Redo']
@@ -95,7 +103,7 @@
         },
         {
           name: 'insert',
-          items: ['Image', 'Table']
+          items: ['Image', 'EasyImageUpload','Table']
         },
         {
           name: 'tools',
@@ -110,11 +118,12 @@
       // Upload images to a CKFinder connector (note that the response type is set to JSON).
       uploadUrl: '<?= base_url(); ?>/public/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
 
-      // Configure your file manager integration. This example uses CKFinder 3 for PHP.
-      filebrowserBrowseUrl: '<?= base_url(); ?>/public/ckfinderckfinder.html',
-      filebrowserImageBrowseUrl: '<?= base_url(); ?>/public/ckfinderckfinder.html?type=Images',
-      filebrowserUploadUrl: '<?= base_url(); ?>/public/ckfindercore/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
-      filebrowserImageUploadUrl: '<?= base_url(); ?>/public/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
+      // Configure your file manager integration. 
+      filebrowserBrowseUrl: '<?= base_url(); ?>/public/ckfinder/ckfinder.html',
+      filebrowserImageBrowseUrl: '<?= base_url(); ?>/public/ckfinder/ckfinder.html?type=Images',
+
+      filebrowserUploadUrl: '<?= base_url(); ?>/public/ckfindercore/connector/php/connector.php?command=QuickUpload&type=Files',
+      filebrowserImageUploadUrl: '<?= base_url(); ?>/public/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
 
       // Reduce the list of block elements listed in the Format drop-down to the most commonly used.
       format_tags: 'p;h1;h2;h3;pre',

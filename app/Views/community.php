@@ -484,6 +484,12 @@
                         </div>
 
                     </div>
+                    <div class="form-group row col-sm-12"> 
+                        <div class="col-lg-12">
+                            <label>Join In Question (set question when user join in)</label>
+                            <input type="text" name="questions" class="form-control">
+                        </div>
+                    </div>
 
                     <button type="submit" class="btn btn-primary float-right">CREATE</button>
 

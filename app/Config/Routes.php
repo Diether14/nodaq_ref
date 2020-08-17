@@ -45,21 +45,21 @@ $routes->match(['get','post'],'edit_post', 'Users::edit_post', ['filter' => 'aut
 $routes->match(['get','post'],'edit_shared_post', 'Users::edit_shared_post', ['filter' => 'auth']);
 $routes->match(['get','post'],'add_comment', 'Users::add_comment', ['filter' => 'auth']);
 $routes->match(['get','post'],'add_shared_comment', 'Users::add_shared_comment', ['filter' => 'auth']);
-$routes->match(['get','post'],'join_community', 'Category::join_community', ['filter' => 'auth']);
-$routes->match(['get','post'],'report_post', 'Category::report_post', ['filter' => 'auth']);
-$routes->match(['get','post'],'share_post', 'Category::share_post', ['filter' => 'auth']);
-$routes->match(['get','post'],'add_upvote', 'Category::add_upvote', ['filter' => 'auth']);
-$routes->match(['get', 'post'], 'add_devote', 'Category::add_devote', ['filter' => 'auth']);
-$routes->match(['get','post'],'save_post', 'Category::save_post', ['filter' => 'auth']);
+$routes->match(['get','post'],'join_community', 'Community::join_community', ['filter' => 'auth']);
+$routes->match(['get','post'],'report_post', 'Community::report_post', ['filter' => 'auth']);
+$routes->match(['get','post'],'share_post', 'Community::share_post', ['filter' => 'auth']);
+$routes->match(['get','post'],'add_upvote', 'Community::add_upvote', ['filter' => 'auth']);
+$routes->match(['get', 'post'], 'add_devote', 'Community::add_devote', ['filter' => 'auth']);
+$routes->match(['get','post'],'save_post', 'Community::save_post', ['filter' => 'auth']);
 
-$routes->get('delete-shared-post/(:num)', 'Category::delete_shared_post/$1', ['filter' => 'auth']);
+$routes->get('delete-shared-post/(:num)', 'Community::delete_shared_post/$1', ['filter' => 'auth']);
 // $routes->match(['get', 'post'], 'Search::search', ['filter' => 'auth']);
 
 //search
 // $routes->get('search/(:any)', 'Search::search', ['filter' => 'auth']);
 
 // $routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth']);
-$routes->get('dashboard', 'Category::dashboard', ['filter' => 'auth']);
+$routes->get('dashboard', 'Community::dashboard', ['filter' => 'auth']);
 $routes->get('post', 'Users::post', ['filter' => 'auth']);
 $routes->get('post-view', 'Users::post_view', ['filter' => 'auth']);
 $routes->get('post-view/(:num)', 'Users::post_view/$1', ['filter' => 'auth']);
@@ -72,29 +72,29 @@ $routes->get('settings', 'Users::settings', ['filter' => 'auth']);
 $routes->get('article', 'Users::article', ['filter' => 'auth']);
 $routes->get('article-publish', 'Users::article_publish', ['filter' => 'auth']);
 
-$routes->get('category-create', 'Category::categoryCreate', ['filter' => 'auth']);
-$routes->get('cafe-style', 'Category::cafeStyle', ['filter' => 'auth']);
-$routes->get('cafe-view', 'Category::cafeStyleView', ['filter' => 'auth']);
-$routes->get('blog-style', 'Category::blogStyle', ['filter' => 'auth']);
-$routes->get('cartoon-style', 'Category::cartoonStyle', ['filter' => 'auth']);
-$routes->get('meeting-style', 'Category::meetingStyle', ['filter' => 'auth']);
-$routes->get('settings-gallery', 'Category::settingsGallery', ['filter' => 'auth']);
-$routes->get('gallery-settings', 'Category::settingsGallery1', ['filter' => 'auth']);
-$routes->get('community-join/(:num)', 'Category::community_join/$1', ['filter' => 'auth']);
-$routes->get('community-private/(:num)', 'Category::community_private/$1', ['filter' => 'auth']);
-$routes->get('accept_user_community/(:num)', 'Category::accept_user_community/$1', ['filter' => 'auth']);
-$routes->get('reject_user_community/(:num)', 'Category::reject_user_community/$1', ['filter' => 'auth']);
+$routes->get('category-create', 'Community::categoryCreate', ['filter' => 'auth']);
+$routes->get('cafe-style', 'Community::cafeStyle', ['filter' => 'auth']);
+$routes->get('cafe-view', 'Community::cafeStyleView', ['filter' => 'auth']);
+$routes->get('blog-style', 'Community::blogStyle', ['filter' => 'auth']);
+$routes->get('cartoon-style', 'Community::cartoonStyle', ['filter' => 'auth']);
+$routes->get('meeting-style', 'Community::meetingStyle', ['filter' => 'auth']);
+$routes->get('settings-gallery', 'Community::settingsGallery', ['filter' => 'auth']);
+$routes->get('gallery-settings', 'Community::settingsGallery1', ['filter' => 'auth']);
+$routes->get('community-join/(:num)', 'Community::community_join/$1', ['filter' => 'auth']);
+$routes->get('community-private/(:num)', 'Community::community_private/$1', ['filter' => 'auth']);
+$routes->get('accept_user_community/(:num)', 'Community::accept_user_community/$1', ['filter' => 'auth']);
+$routes->get('reject_user_community/(:num)', 'Community::reject_user_community/$1', ['filter' => 'auth']);
 
 //community
-$routes->get('community', 'Category::community', ['filter' => 'auth']);
-$routes->get('manager-create-community', 'Category::manager_create_community', ['filter' => 'auth']);
+$routes->get('community', 'Community::community', ['filter' => 'auth']);
+$routes->get('manager-create-community', 'Community::manager_create_community', ['filter' => 'auth']);
 // $routes->get('sub-category', 'Category::sub_category', ['filter' => 'auth']);
 
 
 
-$routes->match(['get','post'],'user_save_community', 'Category::save_community', ['filter' => 'auth']);
-$routes->match(['get','post'],'user_join', 'Category::user_join');
-$routes->match(['get','post'],'update_anounymous', 'Category::update_anounymous');
+$routes->match(['get','post'],'user_save_community', 'Community::save_community', ['filter' => 'auth']);
+$routes->match(['get','post'],'user_join', 'Community::user_join');
+$routes->match(['get','post'],'update_anounymous', 'Community::update_anounymous');
 
 
 
@@ -121,7 +121,7 @@ $routes->get('/emoticon-store', 'Emoticonstore::index', ['filter' => 'auth']);
 $routes->get('/my-emoticon-store', 'Emoticonstore::my_emoticon_store', ['filter' => 'auth']);
 $routes->get('/emoticon-store-list/(:num)', 'Emoticonstore::my_emoticon_store_list/$1', ['filter' => 'auth']);
 $routes->get('/delete-single-sticker/(:num)/(:num)', 'Emoticonstore::delete_single_sticker/$1/$2', ['filter' => 'auth']);
-$routes->get('/smile', 'Category::smile', ['filter' => 'auth']);
+$routes->get('/smile', 'Community::smile', ['filter' => 'auth']);
 
 
 //admin functions
