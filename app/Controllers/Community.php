@@ -437,7 +437,7 @@ class Community extends BaseController
         // var_dump($data['community_list']);exit;
 
         echo view('templates/header', $data);
-        echo view('dashboard', $data);
+        echo view('community/dashboard', $data);
         echo view('templates/footer', $data);
 
     }

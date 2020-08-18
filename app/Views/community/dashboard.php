@@ -30,14 +30,25 @@
         <div class="mx-auto mt-3">
             <ul class="nav nav-pills nav-pills-icons " role="tablist">
 
+             
                 <li class="nav-item">
-                    <a class="nav-link p-4 active" href="#defCommunities" role="tab" data-toggle="tab">
+                    <a class="nav-link p-4 active" href="#recomCommunities" role="tab" data-toggle="tab">
+                        Recommended
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link p-4 " href="#defCommunities" role="tab" data-toggle="tab">
                         Communities
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link p-4 " href="#recomCommunities" role="tab" data-toggle="tab">
-                        Recommended
+                    <a class="nav-link p-4 " href="#defCommunities" role="tab" data-toggle="tab">
+                        My Communities
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link p-4 " href="#defCommunities" role="tab" data-toggle="tab">
+                        Assistant Manager
                     </a>
                 </li>
             </ul>
@@ -45,7 +56,7 @@
         </div>
 
         <div class="tab-content tab-space">
-            <div class="tab-pane active show" id="defCommunities">
+            <div class="tab-pane " id="defCommunities">
                 <div class="team px-3">
  
                 <div class="row">
@@ -228,7 +239,7 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane " id="recomCommunities">
+            <div class="tab-pane active show" id="recomCommunities">
             <div class="team px-3">
 
             <div class="row">
