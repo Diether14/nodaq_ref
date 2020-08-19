@@ -80,7 +80,6 @@ $routes->get('cartoon-style', 'Community::cartoonStyle', ['filter' => 'auth']);
 $routes->get('meeting-style', 'Community::meetingStyle', ['filter' => 'auth']);
 $routes->get('settings-gallery', 'Community::settingsGallery', ['filter' => 'auth']);
 $routes->get('gallery-settings', 'Community::settingsGallery1', ['filter' => 'auth']);
-$routes->get('community-join/(:num)', 'Community::community_join/$1', ['filter' => 'auth']);
 $routes->get('community-private/(:num)', 'Community::community_private/$1', ['filter' => 'auth']);
 $routes->get('accept_user_community/(:num)', 'Community::accept_user_community/$1', ['filter' => 'auth']);
 $routes->get('reject_user_community/(:num)', 'Community::reject_user_community/$1', ['filter' => 'auth']);
@@ -172,6 +171,17 @@ $routes->get('/accept_user/(:num)/(:num)', 'Managers::accept_user/$1/$2', ['filt
 $routes->get('/reject_user/(:num)/(:num)', 'Managers::reject_user/$1/$2', ['filter' => 'auth']);
 $routes->get('/make_ac/(:num)/(:num)', 'Managers::make_ac/$1/$2', ['filter' => 'auth']);
 $routes->get('/unblock/(:num)/(:num)', 'Managers::unblock/$1/$2', ['filter' => 'auth']);
+
+
+
+//community
+$routes->get('community/(:num)', 'Community::community_join/$1', ['filter' => 'auth']);
+$routes->match(['get', 'post'], 'community/upload-picture', 'Community::upload_picture');
+
+
+
+
+
 // $routes->get('/remove_ac/(:num)/(:num)', 'Managers::remove_ac/$1/$2', ['filter' => 'auth']);
 
 

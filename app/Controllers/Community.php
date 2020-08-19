@@ -206,8 +206,32 @@ class Community extends BaseController
         // var_dump($data['category']);exit;
 
         echo view('templates/header', $data);
-        echo view('community-join', $data);
+        echo view('community/community', $data);
         echo view('templates/footer', $data); 
+    }
+
+    public function upload_picture(){
+        ini_set('display_errors', 1);
+        helper(['form']);
+
+        $target_dir = base_url()."/public/editorjs/uploads/";
+        $target_file = $target_dir . basename($_FILES["image"]["name"]);
+        $url = base_url().'/public/editorjs/uploads/'.basename($_FILES["image"]["name"]);
+        $file = $this->request->getFile('image');
+       
+        if ($file->move('public/editorjs/uploads')) {
+            $data = ['success' => 1, 
+            'file' => ['url' => $url] 
+            ];
+            echo json_encode($data);
+        } else {
+            $data = ['success' => 0, 
+            'file' => ['url' => $url] 
+            ];
+            echo json_encode($data);
+        }
+    
+
     }
 
     public function community_private($id = null){
@@ -291,31 +315,34 @@ class Community extends BaseController
     public function save_post(){
         ini_set('display_errors', 1);
         helper(['form', 'url']);
+
+        echo '<pre>';
+        // var_dump($_POST['blocks']);exit;
         
-        $title = $this->request->getPost('title');
-        $content = $this->request->getPost('editor');
-        $community_id = $this->request->getPost('community_id');
-        $category_id = $this->request->getPost('category_id');
-        $subclass_id = $this->request->getPost('subclass_id');
-        $tags = $this->request->getPost('tags');
+        // $title = $this->request->getPost('title');
+        $content = $this->request->getPost('blocks');
+        // var_dump($content);exit;
+        // $community_id = $this->request->getPost('community_id');
+        // $category_id = $this->request->getPost('category_id');
+        // $subclass_id = $this->request->getPost('subclass_id');
+        // $tags = $this->request->getPost('tags');
 
         $db      = \Config\Database::connect();
             $builder = $db->table('users_post');
 
 
-            $file = $this->request->getFile('file');
-            $file->move('public/post_photos');
+        //     $file = $this->request->getFile('file');
+        //     $file->move('public/post_photos');
       
-
           $data = [
             'user_id' => session()->get('id'),
-            'community_id' => $community_id,
-            'title' => $title,
-            'content' => $content,
-            'tags' => $tags,
-            'category_id' => $category_id,
-            'subclass_id' => $subclass_id,
-            'thumbnail' =>  $file->getClientName(),
+        //     'community_id' => $community_id,
+        //     'title' => $title,
+            'content' => serialize($content),
+        //     'tags' => $tags,
+        //     'category_id' => $category_id,
+        //     'subclass_id' => $subclass_id,
+        //     'thumbnail' =>  $file->getClientName(),
           ];
 
 

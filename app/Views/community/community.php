@@ -182,8 +182,7 @@
                             </div>
                         </div>
                         <div class="d-flex col-12 px-0 community-after-options justify-content-center">
-                            <!--                            
-                            <div class="col-sm-6 mb-0 p-0 d-flex justify-content-end text-white view-options"> -->
+                        
                             <ul class="nav nav-pills nav-pills-icons justify-content-center community-tab-opts px-0"
                                 role="tablist">
                                 <li class="nav-item active">
@@ -203,7 +202,6 @@
                                 </li>
                             </ul>
                         </div>
-                        <!-- </div> -->
                     </div>
                     <div class="d-flex">
                         <div class="tab-content pt-0 mt-0 col-lg-12">
@@ -260,152 +258,9 @@
                                     <?php endif; ?>
                                 </div>
                             </div>
-                            <div class="tab-pane fade col-sm-12" id="bars" role="tabpanel"
-                                aria-labelledby="community-list-tab">
-
-                                <div class="card">
-                                    <table class="table table-hover pt-3 rounded">
-                                        <thead>
-                                            <tr class="bg-primary text-white">
-                                                <th scope="col">Subclass</th>
-                                                <th scope="col">Title</th>
-                                                <th scope="col">User</th>
-                                                <th scope="col">Time</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <!-- <php for ($i = 0; $i <= 1; $i++) : ?> -->
-                                            <?php foreach ($posts[0] as $key => $value) : ?>
-                                            <tr>
-                                                <td scope="row"><a href="#facebook">Coffee</a></td>
-                                                <td>
-                                                    <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>"
-                                                        class="btn btn-link m-0 p-1">
-                                                        <?= $value->title; ?>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <a href="<?= base_url(); ?>/profile">
-                                                        <?= $value->nickname; ?>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <?= $value->updated_at; ?>
-                                                </td>
-                                            </tr>
-                                            <?php endforeach; ?>
-                                            <!-- <php endfor; ?> -->
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="list" role="tabpanel" aria-labelledby="community-bars-tab">
-                                <!-- <php for ($i = 0; $i <= 1; $i++) : ?> -->
-                                <?php if(!empty($posts[0])): ?>
-                                <?php foreach ($posts[0] as $key => $value) : ?>
-                                <div class="col-sm-12">
-                                    <div class="card my-2 col-sm-12">
-                                        <div class="row py-3 px-3 align-items-center">
-                                            <div class="col-sm-3">
-                                            <?php if($value->thumbnail): ?>
-                                                <img class="card-img-top" style=" object-fit: cover;"
-                                                    src="<?= base_url(); ?>/public/post_photos/<?= $value->thumbnail; ?>" alt="">
-                                            <?php else: ?>
-                                                <img class="card-img-top" style=" object-fit: cover;"
-                                                src="<?= base_url(); ?>/public/dummy/post.jpg" alt="">
-                                            <?php endif; ?>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <h4 class="card-title">
-                                                    <?= $value->title; ?>
-                                                </h4>
-                                                <h6 class="card-subtitle mb-2 text-muted"><?= $value->category_name ?> | <?= $value->subclass ?></h6>
-                                                <p class="card-text">
-                                                <?php if($value->tags): ?>
-                                                <?php 
-                                                       $tags = explode (",", $value->tags);      
-                                                ?>
-                                                <?php foreach ($tags as $key1 => $value1): ?>
-                                                    <span class="badge badge-pill badge-info"><?= $value1 ?></span>
-                                                <?php endforeach; ?>
-                                                <?php endif; ?>
-
-                                                </p>
-                                                <div class="pl-0">
-                                                <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>">
-                                                <button class="btn btn-primary btn-sm">read more</button>
-                                                </a>
-                                                </div>
-
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <h6 class="card-title">
-                                                    <?= $value->nickname; ?>
-                                                </h6>
-                                                <p>
-                                                    <?= $value->updated_at; ?>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <?php endforeach; ?>
-                                <?php else: ?>
-                                No Post Yet
-                                <?php endif; ?>
-                            </div>
-                            <div class="tab-pane fade " id="longbars" role="tabpanel"
-                                aria-labelledby="community-longbars-tab">
-                                <div class="card-body pt-0">
-                                    <div class="tab-content">
-                                        <div class="row">
-                                            <?php if(!empty($posts[0])): ?>
-                                            <!-- <php for ($i = 0; $i <= 1; $i++) : ?> -->
-                                            <?php foreach ($posts[0] as $key => $value) : ?>
-                                            <div class="col-lg-12">
-                                                <div class="card text-center">
-                                                    <div class="card-body">
-                                                        <h4 class="card-title">
-                                                            <?= character_limiter($value->title, 40) ?></h4>
-                                                        <h6 class="card-subtitle mb-2 text-muted"><?= $value->category_name ?> | <?= $value->subclass ?></h6>
-                                                        <?php if($value->thumbnail): ?>
-                                                            <img class="card-img-top" style=" object-fit: cover;"
-                                                                src="<?= base_url(); ?>/public/post_photos/<?= $value->thumbnail; ?>" alt="">
-                                                        <?php else: ?>
-                                                            <img class="card-img-top" style=" object-fit: cover;"
-                                                            src="<?= base_url(); ?>/public/dummy/post.jpg" alt="">
-                                                        <?php endif; ?>
-                                                        <?php if($value->tags): ?>
-                                                        <?php 
-                                                            $tags = explode (",", $value->tags);      
-                                                        ?>
-                                                        <?php foreach ($tags as $key1 => $value1): ?>
-                                                            <span class="badge badge-pill badge-info"><?= $value1 ?></span>
-                                                        <?php endforeach; ?>
-                                                        <?php endif; ?>
-                                                            </div>
-                                                    <h6 class=" text-muted ">Posted By: <a
-                                                            href="#"><?= $value->nickname; ?></a></h6>
-                                                    <h6 class="card-subtitle mb-2 text-muted"><?= $value->updated_at ?>
-                                                    </h6>
-                                                    <!-- <a class="px-2 " href="#"><?= $value->updated_at ?></a> -->
-                                                    <div class="card-footer justify-content-center">
-                                                    <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>">
-                                                        <button class="btn btn-primary btn-sm">read more</button>
-                                                    </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <?php endforeach; ?>
-                                            <?php else: ?>
-                                            No Post Yet
-                                            <?php endif; ?>
-                                            <!-- <php endfor; ?> -->
-                                        </div>
-                                    </div>
-                                </div>
-                                </a>
-                            </div>
+                            
+                            
+                            
                         </div>
                     </div>
                 </div>
@@ -418,7 +273,7 @@
 <!-- Classic Modal -->
 <div class="modal  fade community-create-post" id="myModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content bg-light">
+        <div class="modal-content ">
             <div class="modal-header bg-primary py-3 align-items-center">
                 <h5 class="create-post-title modal-title w-100 fw600 m-0 text-white">Create Post</h5>
                 <button type="button " class="close bg-danger text-white btn-link p-2 rounded-circle"
@@ -426,9 +281,7 @@
                     <i class="material-icons">clear</i>
                 </button>
             </div>
-            <!-- <div class="col-sm-12">
-                <hr class="py-1">
-            </div> -->
+          
             <div class="modal-body ">
             <form method="post" id="upload_form" enctype="multipart/form-data">
             <input type="hidden" name="base" value="<?= base_url(); ?>">
@@ -441,42 +294,24 @@
                         </div>
                     </div>
                 </div>
-                   <!-- <div class="col-lg-6">
-                    <div class="input-group"> 
-                    <input type="file" id="file" name="file" class="text-center center-block file-upload" accept=".png, .jpg, .jpeg" placeholder="Thumbnail">
-                    </div>
-                </div> -->
+
                 </div>
-                <textarea cols="80" id="editor1" name="editor" rows="10" data-sample-short>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</textarea>
-                <div class="row my-2">
-                <div class="col-lg-6">
-                <div class="input-group"> 
-                    <select name="category_id" class="form-control">
-                    <option >Select Category</option>
-                    <?php foreach ($category as $key => $value): ?>
-                        <option value="<?= $value->id ?>"><?= $value->category_name ?></option>
-                    <?php endforeach; ?>
-                    </select>
+                
+                <div class="ce-example__content _ce-example__content--small"  style="padding-bottom: 0px !important;">
+                    <div id="editorjs"></div>
                 </div>
-                </div> 
-                <div class="col-lg-6">
-                <div class="input-group">  
-                    <select name="subclass_id" class="form-control">
-                        <option >Select Subclass</option>
-                    <?php foreach ($category as $key => $value): ?>
-                        <option value="<?= $value->id ?>"><?= $value->category_name ?></option>
-                    <?php endforeach; ?>
-                    </select>
-                </div>
-                </div> 
-                </div> 
+               
                 <div class="">
                     <input type="text" data-role="tagsinput" class="form-control" id="tags" name="tags" placeholder="Tags" >
                 </div> 
                 <div>    
                 </div>
                 <input type="hidden" name="community_id" id="community-id" value="<?= $community_list[0]->id; ?>">
+                <div class="ce-example__button" id="saveButton">
+                    Save Post
+                </div>
             </div>
+          
             <div class="modal-footer d-block">
                 <button type="button" class="btn bg-danger text-white btn-link float-right"
                     data-dismiss="modal">Close</button>
