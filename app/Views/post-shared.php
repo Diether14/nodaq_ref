@@ -51,7 +51,7 @@
         <div class="brand">
           <h1 class="title"><?= $community_current[0]->title; ?></h1>
           <h4 class="small-description"><?= $community_current[0]->content ?></h4>
-          <a href="<?= base_url(); ?>/community-join/<?= $community_current[0]->id ?>"><button
+          <a href="<?= base_url(); ?>/community/<?= $community_current[0]->id ?>"><button
               class="btn btn-primary btn-raised btn-lg">View Community </button></a>
         </div>
       </div>

@@ -71,7 +71,7 @@
               <li class="nav-item">
                 <a class="nav-link active" href="<?= base_url(); ?>/manage-community/block-list/<?= $community_id ?>">
                   <i class="material-icons">block</i>
-                  Block List
+                  Blocked Users
                 </a>
               </li>
 
@@ -104,7 +104,6 @@
                     <table id="myTable" class="table table-striped table-bordered" style="width:100%">
                       <thead>
                         <tr>
-                          <th width="20%;">ID</th>
                           <th>Nickname</th>
                           <th>Ban Reason</th>
                           <th>Action</th>
@@ -113,8 +112,7 @@
                       </thead>
                       <tbody>
                         <?php foreach ($users as $key => $value): ?>
-                        <tr>
-                          <td><?= $value->id ?></td>
+                        <tr> 
                           <td><?= $value->nickname; ?></td>
                           <td><?= $value->ban_reason; ?></td>
                           <td>

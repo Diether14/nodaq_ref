@@ -1,25 +1,16 @@
-<style>
-.dashboard-card {
-    min-height: 130px;
-    max-height: 130px;
-}
-
-/* modal show */
-.modal-backdrop {
-    z-index: 1040 !important;
-    display: none;
-}
-
-.modal-dialog {
-    margin: 80px auto;
-    z-index: 1100 !important;
-}
-</style>
-
 <div class="main">
-    <div id="users" class="container card">
+    <div id="users" class="container">
         <div class="section p-0">
-
+        <div class="col-sm-12">
+            <nav class="mt-3  bg-white" aria-label="breadcrumb">
+        <ol class="breadcrumb m-0  bg-white">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Manage Community</a></li>
+            <li class="breadcrumb-item" ><a href="#"> Test Community</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Settings</li>
+        </ol>
+    </nav>
+            </div>
             <div class="col-lg-12">
                 <div class="row">
                     <div class="col-md-3">
@@ -32,39 +23,29 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link"
-                                    href="<?= base_url() ?>/manage-community/category/<?= $community_id ?>">
+                                <a class="nav-link" href="<?= base_url() ?>/manage-community/category/<?= $community_id ?>">
                                     <i class="material-icons">category</i>
                                     Category
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link"
-                                    href="<?= base_url(); ?>/manage-community/users/<?= $community_id ?>">
+                                <a class="nav-link" href="<?= base_url(); ?>/manage-community/users/<?= $community_id ?>">
                                     <i class="material-icons">people</i>
                                     Community Users
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link"
-                                    href="<?= base_url(); ?>/manage-community/reported-posts/<?= $community_id ?>">
+                                <a class="nav-link" href="<?= base_url(); ?>/manage-community/reported-posts/<?= $community_id ?>">
                                     <i class="material-icons">report</i>
                                     Reported Posts
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="<?= base_url(); ?>/manage-community/block-list/<?= $community_id ?>">
-                                <i class="material-icons">block</i>
-                                Block List
-                                </a>
-                            </li>
-        
+
 
                             <li class="nav-item">
-                                <a class="nav-link active"
-                                    href="<?= base_url(); ?>/manage-community/community-settings/<?= $community_id ?>">
+                                <a class="nav-link active" href="<?= base_url(); ?>/manage-community/community-settings/<?= $community_id ?>">
                                     <i class="material-icons">settings</i>
                                     Settings
                                 </a>
@@ -75,10 +56,10 @@
                         <div class="tab-content">
 
                             <div class="tab-pane active" id="settings">
-                                <?php if(session('msg')): ?>
-                                <div class="alert alert-success" role="alert">
-                                    <?= session('msg') ?>
-                                </div>
+                                <?php if (session('msg')) : ?>
+                                    <div class="alert alert-success" role="alert">
+                                        <?= session('msg') ?>
+                                    </div>
                                 <?php endif; ?>
                                 <!-- Users in community -->
 
@@ -87,48 +68,36 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form ">
-                                            <form class="contact-form"
-                                                action="<?= base_url(); ?>/manager/save-community" method="post"
-                                                accept-charset="utf-8" enctype="multipart/form-data">
+                                            <form class="contact-form" action="<?= base_url(); ?>/manager/save-community" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 
                                                 <div class="form-group">
-                                                    <input type="text" name="title" class="form-control h3"
-                                                        placeholder="Title" value="<?= $community[0]->title ?>">
+                                                    <input type="text" name="title" class="form-control h3" placeholder="Title" value="<?= $community[0]->title ?>">
                                                 </div>
-                                                <input type="hidden" name="com_photo_id"
-                                                    value="<?= $community[0]->com_photo_id; ?>">
+                                                <input type="hidden" name="com_photo_id" value="<?= $community[0]->com_photo_id; ?>">
                                                 <input type="hidden" name="id" value="<?= $community[0]->id; ?>">
 
                                                 <div class="form-group">
-                                                    <textarea name="content" class="form-control" cols="5" rows="2"
-                                                        placeholder="Description"><?= $community[0]->content ?></textarea>
+                                                    <textarea name="content" class="form-control" cols="5" rows="2" placeholder="Description"><?= $community[0]->content ?></textarea>
                                                 </div>
 
                                                 <div class="togglebutton">
                                                     <label>
-                                                        <input type="checkbox" name="community_type"
-                                                            <?= ($community[0]->community_type	 == '1' ? 'checked': null)?>>
+                                                        <input type="checkbox" name="community_type" <?= ($community[0]->community_type     == '1' ? 'checked' : null) ?>>
                                                         <span class="toggle"></span>
                                                         Private Community
                                                     </label>
                                                 </div>
                                                 <label for="color">Select your theme color:</label>
-                                                <input type="color" name="color" value="<?= $community[0]->color; ?>"
-                                                    class="myField"><br>
+                                                <input type="color" name="color" value="<?= $community[0]->color; ?>" class="myField"><br>
                                                 <label for="color">Select your text color:</label>
-                                                <input type="color" name="text_color"
-                                                    value="<?= $community[0]->text_color; ?>">
+                                                <input type="color" name="text_color" value="<?= $community[0]->text_color; ?>">
                                                 <hr>
                                                 <div class="form-group">
                                                     <h6>Edit Community Cover Photo</h6>
-                                                    <a href="#" data-toggle="modal"
-                                                        data-target="#edit_cover<?= $key ?>">
-                                                        <img src="<?= base_url(); ?>/public/admin/uploads/community/<?= $community[0]->name ?>"
-                                                            alt="" width="50%" height="50%">
+                                                    <a href="#" data-toggle="modal" data-target="#edit_cover<?= $key ?>">
+                                                        <img src="<?= base_url(); ?>/public/admin/uploads/community/<?= $community[0]->name ?>" alt="" width="50%" height="50%">
                                                     </a>
-                                                    <input type="file" name="file"
-                                                        class="text-center center-block file-upload form-control"
-                                                        accept=".png, .jpg, .jpeg">
+                                                    <input type="file" name="file" class="text-center center-block file-upload form-control" accept=".png, .jpg, .jpeg">
                                                 </div>
                                                 <hr>
                                                 <div class="row">
@@ -137,15 +106,11 @@
                                                     </div>
                                                     <div class="form-group col-sm-6">
                                                         <label>Upvote Name</label><br>
-                                                        <input name="upvote_name"
-                                                            value=" <?= $community[0]->upvote_name ?>" type="text"
-                                                            class="form-control">
+                                                        <input name="upvote_name" value=" <?= $community[0]->upvote_name ?>" type="text" class="form-control">
                                                     </div>
                                                     <div class="form-group col-sm-6">
                                                         <label>Devote Name</label><br>
-                                                        <input name="devote_name"
-                                                            value="<?= $community[0]->devote_name ?> " type="text"
-                                                            class="form-control">
+                                                        <input name="devote_name" value="<?= $community[0]->devote_name ?> " type="text" class="form-control">
                                                     </div>
                                                 </div>
 
@@ -167,10 +132,8 @@
                                     <div class="form-group">
                                         <form action="<?= base_url(); ?>/community_questions" method="post">
                                             <label>Question</label>
-                                            <input type="text" name="questions" class="form-control"
-                                                value="<?= $community[0]->questions ?>">
-                                            <input type="hidden" name="community_id" class="form-control"
-                                                value="<?= $community[0]->id ?>">
+                                            <input type="text" name="questions" class="form-control" value="<?= $community[0]->questions ?>">
+                                            <input type="hidden" name="community_id" class="form-control" value="<?= $community[0]->id ?>">
                                             <button type="submit" class="btn btn-primary btn-sm"> Save</button>
                                         </form>
                                     </div>
@@ -183,8 +146,7 @@
                                     <div class="form-group">
                                         <label>Remove Community</label><br>
 
-                                        <button class="btn btn-danger btn-sm" data-toggle="modal"
-                                            data-target="#remove-community">Remove</button>
+                                        <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#remove-community">Remove</button>
 
                                     </div>
                                 </div>
@@ -242,8 +204,7 @@
         <div class="modal-content">
             <div class="modal-header bg-primary py-3 text-white align-items-center">
                 <h5 class="modal-title m-0">Update Cover Photo</h5>
-                <button type="button" class="close bg-danger text-white btn-link p-2 rounded-circle"
-                    data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close bg-danger text-white btn-link p-2 rounded-circle" data-dismiss="modal" aria-label="Close">
                     <i class="material-icons">clear</i>
                 </button>
             </div>
@@ -254,11 +215,9 @@
                         <div class="text-center">
                             <img src="" class="avatar img-circle img-thumbnail">
                             <h6>Upload a different photo...</h6>
-                            <form action="<?php echo base_url('/update_community_cover');?>" name="ajax_form"
-                                id="ajax_form" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                            <form action="<?php echo base_url('/update_community_cover'); ?>" name="ajax_form" id="ajax_form" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 
-                                <input type="file" name="file" class="text-center center-block file-upload"
-                                    accept=".png, .jpg, .jpeg">
+                                <input type="file" name="file" class="text-center center-block file-upload" accept=".png, .jpg, .jpeg">
                                 <input type="hidden" name="com_photo_id" value="<?= $community[0]->com_photo_id ?>">
                                 <input type="hidden" name="community_id" value="<?= $community[0]->id ?>">
                                 <div class="form-group"><br>
@@ -283,42 +242,42 @@
 
 
 <script>
-$(document).ready(function() {
+    $(document).ready(function() {
 
 
-    var readURL = function(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
+        var readURL = function(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
 
-            reader.onload = function(e) {
-                $('.avatar').attr('src', e.target.result);
+                reader.onload = function(e) {
+                    $('.avatar').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
             }
-
-            reader.readAsDataURL(input.files[0]);
         }
-    }
 
 
-    $(".file-upload").on('change', function() {
-        readURL(this);
+        $(".file-upload").on('change', function() {
+            readURL(this);
+        });
+
     });
 
-});
 
+    // function readURL(input, id) {
+    //     id = id || '#blah';
+    //     if (input.files &amp;&amp; input.files[0]) {
+    //         var reader = new FileReader();
 
-// function readURL(input, id) {
-//     id = id || '#blah';
-//     if (input.files &amp;&amp; input.files[0]) {
-//         var reader = new FileReader();
+    //         reader.onload = function (e) {
+    //             $(id)
+    //                     .attr('src', e.target.result)
+    //                     .width(200)
+    //                     .height(150);
+    //         };
 
-//         reader.onload = function (e) {
-//             $(id)
-//                     .attr('src', e.target.result)
-//                     .width(200)
-//                     .height(150);
-//         };
-
-//         reader.readAsDataURL(input.files[0]);
-//     }
-//  }
+    //         reader.readAsDataURL(input.files[0]);
+    //     }
+    //  }
 </script>

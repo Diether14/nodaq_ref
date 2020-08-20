@@ -271,10 +271,6 @@
                                                                 </div>
 
                                                                 <?php endif; ?>
-
-
-
-
                                                                 <div class="card-body  m-0 p-0">
                                                                     <p class="m-0 p-0 card-description">
                                                                         <p>Lorem ipsum dolor sit amet, consectetur
@@ -285,21 +281,83 @@
 
                                                                     </p>
                                                                 </div>
-                                                                <div class="card-footer justify-content-center m-0 p-0">
-                                                                    <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>"
-                                                                        class="btn btn-link m-0 p-2"><i
-                                                                            class="fa fa-eye m-0 p-0"></i> View Post
-                                                                    </a>
-                                                                    <a href="#" data-toggle="modal"
-                                                                        data-target="#edit-post<?= $key?>"
-                                                                        class="btn btn-link m-0 p-2"><i
-                                                                            class="fa fa-recycle m-0 p-0"></i> Edit
-                                                                        Post</a>
-                                                                    <a href="#" data-toggle="modal"
-                                                                        data-target="#delete-post<?= $key?>"
-                                                                        class="btn btn-link m-0 p-2"><i
-                                                                            class="fa fa-trash m-0 p-0"></i> Delete</a>
-                                                                </div>
+                                                                <div class="card-footer m-0 py-0">
+                            <!-- <div class="btn-group btn-group-sm" role="group" aria-label="">
+                            <button type="button" class="btn"><i class="fa fa-chevron-circle-up"></i></button>
+                            <button type="button" class="btn "><i class="fa fa-chevron-circle-down"></i></button>
+                        </div> -->
+                            <div class="col-sm-12 text-center">
+                                <a href="#comments" class="btn btn-link not_joined h6"><i class="fa fa-chevron-up pr-1 text-success"></i>
+                                12 Upvotes
+                            </a>
+                                <a href="#comments" class="btn btn-link not_joined h6"><i class="fa fa-chevron-down pr-1 text-danger"></i>
+                                3 Devotes
+                            </a>
+                                <?php if(empty($users_community)) : ?>
+
+                                <a href="#comments" class="btn btn-link not_joined h6"><i class="fa fa-comment pr-1"></i>
+                                    <?php 
+                                              if(1000 >= 1000){ 
+                                                echo round((1200/1000),1). 'K'; 
+                                              }elseif(1000000 >= 1000000){
+                                                echo round((1000000/1000000),1). 'M';
+                                              }else{
+                                                echo '50';
+                                              } ?>
+                                    Comments</a>
+                                <!-- <a href="#" class="btn btn-link not_joined h6"><i class="fa fa-share pr-1"></i>
+                                    <?php 
+                                              if(1000 >= 1000){ 
+                                                echo round((1200/1000),1). 'K'; 
+                                              }elseif(1000000 >= 1000000){
+                                                echo round((1000000/1000000),1). 'M';
+                                              }else{
+                                                echo '50';
+                                              } ?>
+                                    Share Post</a> -->
+
+                                <?php if(empty($report)): ?>
+                                <a href="#" class="btn btn-link not_joined h6" class="btn btn-link"><i
+                                        class="fa fa-exclamation pr-1 "></i>
+                                    Report Post</a>
+                                <?php else: ?>
+
+                                <a href="#" class="btn btn-link not_joined h6"><i class="fa fa-exclamation pr-1 text-danger"></i>
+                                    Reported</a>
+                                <?php endif; ?>
+
+                                <?php else: ?>
+                                <a href="#comments" class="btn btn-link h6"><i class="fa fa-comment pr-1"></i>
+                                    <?php 
+                                              if(1000 >= 1000){ 
+                                                echo round((1200/1000),1). 'K'; 
+                                              }elseif(1000000 >= 1000000){
+                                                echo round((1000000/1000000),1). 'M';
+                                              }else{
+                                                echo '50';
+                                              } ?>
+                                    Comments</a>
+                                <!-- <a href="#" data-toggle="modal" data-target="#share" class="btn btn-link h6"><i
+                                        class="fa fa-share pr-1"></i>
+                                    <?php 
+                                              if(1000 >= 1000){ 
+                                                echo round((1200/1000),1). 'K'; 
+                                              }elseif(1000000 >= 1000000){
+                                                echo round((1000000/1000000),1). 'M';
+                                              }else{
+                                                echo '50';
+                                              } ?>
+                                    Share Post</a> -->
+
+                                <?php if(empty($report)): ?>
+                                <a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-link h6" class="btn btn-link"><i class="fa fa-exclamation pr-1"></i> Report Post</a>
+                                <?php else: ?>
+
+                                <a href="#" class="btn btn-lin h5k"><i class="fa fa-exclamation pr-1"></i> Reported</a>
+                                <?php endif; ?>
+                                <?php endif; ?>
+                            </div>
+                        </div>
                                                             </div>
                                                         </div>
                                                     </div>

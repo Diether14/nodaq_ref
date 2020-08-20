@@ -110,7 +110,7 @@
                                                 <a href="#" data-toggle="modal" data-target="#edit<?= $key ?>"><i class="fa fa-cogs px-3" style="float:left;"></i></a>
                                                 </div> -->
                                                 <div class="col-sm-11 px-0">
-                                                    <a href="community-join/<?= $value->id;  ?>">
+                                                    <a href="community/<?= $value->id;  ?>">
                                                         <h4 class="card-title p-3 my-0">
                                                             <p class="text text-center justify-content-center m-0 p-0">
                                                                 <?= character_limiter($value->title, 18) ?> </p>
@@ -151,7 +151,7 @@
                                                 <div class="row">
 
                                                     <div class="col-lg-6">
-                                                        <a href="community-join/<?= $value->id;  ?>"
+                                                        <a href="community/<?= $value->id;  ?>"
                                                             style="color: <?= $value->text_color; ?>">
                                                             <div class="card">
                                                                 <div class="card-body text-center">
@@ -275,7 +275,7 @@
 
                                                 <a data-toggle="modal" data-target="#edit1<?= $key ?>"><i
                                                         class="fa fa-cog pl-3" style="float:left;"></i></a>
-                                                <a href="community-join/<?= $value->id;  ?>"
+                                                <a href="community/<?= $value->id;  ?>"
                                                     style="color: <?= $value->text_color; ?>">
                                                     <p class="text-center justify-content-center m-0 p-0">
                                                         <?= character_limiter($value->title, 18); ?> </p>

@@ -29,8 +29,18 @@
   </div>
 </div> -->
 <div class="main">
-  <div class="container card">
+  <div class="container">
     <div class="section p-0">
+            <div class="col-sm-12">
+            <nav class="mt-3  bg-white" aria-label="breadcrumb">
+        <ol class="breadcrumb m-0  bg-white">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Manage Community</a></li>
+            <li class="breadcrumb-item" ><a href="#"> Test Community</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+        </ol>
+    </nav>
+            </div>
 
       <div class="col-lg-12">
         <div class="row">
@@ -53,7 +63,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="<?= base_url(); ?>/manage-community/users/<?= $community_id ?>">
                   <i class="material-icons">people</i>
-                  Community Users
+                  User roles
                 </a>
               </li>
 
@@ -63,12 +73,7 @@
                   Reported Posts
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="<?= base_url(); ?>/manage-community/block-list/<?= $community_id ?>">
-                  <i class="material-icons">block</i>
-                  Block List
-                </a>
-              </li>
+
 
               <li class="nav-item">
                 <a class="nav-link" href="<?= base_url(); ?>/manage-community/community-settings/<?= $community_id ?>">

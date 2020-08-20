@@ -1,8 +1,16 @@
 
 <div class="main">
-  <div class="container card">
+  <div class="container ">
     <div class="section">
-
+    <div class="col-sm-12">
+            <nav class="mt-3  bg-white" aria-label="breadcrumb">
+        <ol class="breadcrumb m-0  bg-white">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Settings</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Personal Settings</li>
+        </ol>
+    </nav>
+            </div>
       <div class="col-lg-12 col-md-12">
         <div class="row">
           <div class="col-md-3">

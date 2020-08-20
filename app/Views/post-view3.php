@@ -54,7 +54,7 @@
                     <h4 class="small-description">
                         <?= $community_current[0]->content ?>
                     </h4>
-                    <a href="<?= base_url(); ?>/community-join/<?= $blog['community_id'] ?>"><button
+                    <a href="<?= base_url(); ?>/community/<?= $blog['community_id'] ?>"><button
               class="btn btn-primary btn-raised btn-lg">View Community</button></a>
                 </div>
             </div>

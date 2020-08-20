@@ -1,24 +1,3 @@
-<style>
-.dashboard-card {
-    min-height: 130px;
-    max-height: 130px;
-}
-
-/* modal show */
-.modal-backdrop {
-    z-index: 1040 !important;
-    display: none;
-}
-
-.modal-dialog {
-    margin: 80px auto;
-    z-index: 1100 !important;
-}
-</style>
-
-
-
-
 
 <!-- <div class="page-header header-filter" data-parallax="true"
   style="background-image: url('<?= base_url(); ?>/public/user/assets/img/bg3.jpg')">
@@ -34,7 +13,7 @@
   </div>
 </div> -->
 <div class="main">
-    <div id="users" class=" container card">
+    <div id="users" class=" containerE">
         <div class="section p-0">
 
             <div class="col-lg-12">
@@ -60,7 +39,7 @@
                                 <a class="nav-link"
                                     href="<?= base_url(); ?>/manage-community/users/<?= $community_id ?>">
                                     <i class="material-icons">people</i>
-                                    Community Users
+                                    User roles
                                 </a>
                             </li>
 
@@ -71,12 +50,6 @@
                                     Reported Posts
                                 </a>
                             </li>
-                            <li class="nav-item">
-                            <a class="nav-link" href="<?= base_url(); ?>/manage-community/block-list/<?= $community_id ?>">
-                            <i class="material-icons">block</i>
-                            Block List
-                            </a>
-                        </li>
 
 
                             <li class="nav-item">

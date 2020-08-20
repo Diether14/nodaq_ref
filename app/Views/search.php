@@ -55,7 +55,7 @@
                                                     <div class="col-md-9">
                                                         <h4 class="card-title py-3 my-0">
 
-                                                            <a href="community-join/<?= $value->id;  ?> "><?= character_limiter($value->title, 15) ?>
+                                                            <a href="community/<?= $value->id;  ?> "><?= character_limiter($value->title, 15) ?>
                                                             </a>
                                                             <a href="#" data-toggle="modal" data-target="#myModal"><i
                                                                     class="fa fa-ellipsis-h pl-3"
@@ -156,7 +156,7 @@
                                                     <div class="col-md-9">
                                                         <h4 class="card-title py-3 my-0">
 
-                                                            <a href="community-join/<?= $value->id;  ?> "><?= character_limiter($value->title, 15) ?>
+                                                            <a href="community/<?= $value->id;  ?> "><?= character_limiter($value->title, 15) ?>
                                                             </a>
                                                             <a href="#" data-toggle="modal" data-target="#myModal"><i
                                                                     class="fa fa-ellipsis-h pl-3"

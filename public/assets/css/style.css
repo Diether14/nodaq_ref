@@ -22,7 +22,7 @@ footer {
 .main {
     min-height: 100vh;
     margin-top: 6%;
-    background-color: #ebebeb !important;
+    background-color: #fff !important;
 }
 
 .main .container {
@@ -396,6 +396,61 @@ button.btn.btn-primary {
     margin: auto !important;
 }
 
+.carousel-inner .carousel-item img {
+    height: 50vh !important;
+    object-fit: cover;
+}
+
+.community-sidebar {
+    min-width: 360px;
+    max-width: 360px;
+    margin-top: 70px;
+    border-right: 2px solid #ced0d4;
+}
+
+.community-feed {
+    width: calc(100% - 360px);
+}
+
+.community-sidebar .list-group-item.active {
+    background-color: #EAE5F2;
+    color: #050505;
+}
+
+.community-sidebar .list-group-item {
+    min-height: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.row {
+    margin-left: unset !important;
+    margin-right: unset !important;
+}
+
+.community_managed_section,
+.community_header,
+.community_new,
+.community_joined {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+h4.community_subtitle {
+    font-weight: 600;
+}
+
+.community_hr {
+    border-bottom: 1px solid #ced0d4;
+    width: 90%;
+    margin: auto;
+}
+
+.community_new_btn {
+    color: #896FB7 !important;
+    border: 1px solid #896FB7 !important;
+}
+
 
 /*Media Queries*/
 
@@ -408,4 +463,3 @@ button.btn.btn-primary {
         margin: 0 auto;
     }
 }
-

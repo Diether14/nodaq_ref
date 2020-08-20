@@ -46,7 +46,7 @@
     <nav class="navbar  fixed-top navbar-expand-lg bg-primary">
         <div class="container">
             <div class="navbar-translate">
-                <a class="navbar-brand" href="/weendi/dashboard">
+                <a class="navbar-brand" href="<?= base_url(); ?>/weendi/community-home">
                     <img src="<?= base_url(); ?>/public/images/weendi-white.png" alt="" width="100"> </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -73,8 +73,8 @@
                         </form>
                     </li>
                     <li class="nav-item">
-                        <a href="<?= base_url(); ?>/dashboard" class="nav-link">
-                            <i class="fa fa-home"></i> Simple SNS
+                        <a href="<?= base_url(); ?>/community-home" class="nav-link">
+                            <i class="fa fa-home"></i> Home
                         </a>
                     </li>
                     <li class="nav-item">

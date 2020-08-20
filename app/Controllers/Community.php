@@ -316,7 +316,7 @@ class Community extends BaseController
         ini_set('display_errors', 1);
         helper(['form', 'url']);
 
-        echo '<pre>';
+        // echo '<pre>';
         // var_dump($_POST['blocks']);exit;
         
         // $title = $this->request->getPost('title');
@@ -328,8 +328,7 @@ class Community extends BaseController
         // $tags = $this->request->getPost('tags');
 
         $db      = \Config\Database::connect();
-            $builder = $db->table('users_post');
-
+        $builder = $db->table('users_post');
 
         //     $file = $this->request->getFile('file');
         //     $file->move('public/post_photos');
@@ -419,7 +418,7 @@ class Community extends BaseController
         }
     }
 
-    public function dashboard(){
+    public function community_home(){
         ini_set('display_errors', 1);
        
         $data = [];
@@ -436,17 +435,18 @@ class Community extends BaseController
         $db      = \Config\Database::connect();
         $builder = $db->table('community');
     
-        $builder->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.created_at, community.color , community.text_color, community_photo.name, users.nickname, community_users_anonymous.status');
-        // $builder->where('community.community_type', '0');
+        $builder->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.created_at, community.color , community.text_color, community_photo.name, users.nickname');
+        $builder->where('community.community_type', '0');
+        $builder->where('community.user_id !=', session()->get('id'));
+        //add where for recommended
         $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
         $builder->join('users', 'community.user_id = users.id');
-        $builder->join('community_users_anonymous', 'community.id = community_users_anonymous.community_id', 'left');
+    
         $query   = $builder->get();
         $data['recommended_community'] = $query->getResult();
 
         $db      = \Config\Database::connect();
         $builder = $db->table('users_community');
-    
         $builder->select('users_community.id, users_community.user_id, users_community.community_id, users_community.status, users_community.anounymous,users_community.ban_reason,users_community.remove_ac_reason, users_community.created_at,
         community.com_photo_id,community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.category, community.status as community_status, community.questions,
         users.nickname, users.email, users.status as users_status,
@@ -458,13 +458,24 @@ class Community extends BaseController
         $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
         
         $query   = $builder->get();
-        $data['community_list'] = $query->getResult();
-        
+        $data['your_communities'] = $query->getResult();
+
         // echo '<pre>';
         // var_dump($data['community_list']);exit;
 
+        $builder1 = $db->table('community');
+    
+        $builder1->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.updated_at, community.color , community.text_color, community_photo.name, users.nickname');
+        $builder1->where('community.user_id', session()->get('id'));
+        $builder1->join('community_photo', 'community_photo.id = community.com_photo_id');
+        $builder1->join('users', 'community.user_id = users.id');
+        
+        $query1   = $builder1->get();
+        $data['communities_you_manage'] = $query1->getResult();
+
+
         echo view('templates/header', $data);
-        echo view('community/dashboard', $data);
+        echo view('community/community-home', $data);
         echo view('templates/footer', $data);
 
     }
@@ -525,7 +536,7 @@ class Community extends BaseController
 
         
         
-        return redirect()->to( base_url().'/community-join/'.$community_id)->with('msg', $msg);
+        return redirect()->to( base_url().'/community/'.$community_id)->with('msg', $msg);
     }
 
     public function report_post(){
@@ -794,40 +805,34 @@ class Community extends BaseController
     }
 
     public function save_community(){
-            ini_set('display_errors', 1);
-    
+            ini_set('display_errors', 1);    
             helper(['form', 'url']);
 
-    
             $community_photo = new CommunityphotoModel();
      
-             $validated = $this->validate([
-                'file' => [
-                    'uploaded[file]',
-                    'mime_in[file,image/jpg,image/jpeg,image/gif,image/png]',
-                    'max_size[file,4096]',
-                ],
-            ]);
+            //  $validated = $this->validate([
+            //     'file' => [
+            //         'uploaded[file]',
+            //         'mime_in[file,image/jpg,image/jpeg,image/gif,image/png]',
+            //         'max_size[file,4096]',
+            //     ],
+            // ]);
     
             $rules = [
                 'title' => 'required|min_length[3]|max_length[100]',
                 'content' => 'required|min_length[3]|max_length[500]',
-                'upvote' => 'required|min_length[3]|max_length[12]',
-                'devote' => 'required|min_length[3]|max_length[12]',   
-                'questions' => 'required|min_length[3]|max_length[50]'
             ];
     
             $msg = 'Please select a valid file';
-        if(! $this->validate($rules)){
-            $msg = $this->validator;
-        }else{
-            if ($validated ) {
-                $avatar = $this->request->getFile('file');
-                $avatar->move('public/admin/uploads/community');
+        // if(! $this->validate($rules)){
+        //     $msg = $this->validator;
+        // }else{
+            // if ($validated ) {
+                // $avatar = $this->request->getFile('file');
+                // $avatar->move('public/admin/uploads/community');
      
                 $data = [
-                    'name' =>  $avatar->getClientName(),
-                    'type'  => $avatar->getClientMimeType()
+                    'name' =>  'profile_city.jpg'
                 ];
             
                 if($community_photo->insert($data)){
@@ -847,16 +852,12 @@ class Community extends BaseController
                         'title' => $this->request->getPost('title'),
                         'content' => $this->request->getPost('content'),
                         'community_type' => $community_type,
-                        'color' => $this->request->getPost('color'),
-                        'text_color' => $this->request->getPost('text_color'),
-                        'upvote_name' => $this->request->getPost('upvote'),
-                        'devote_name' => $this->request->getPost('devote'),
-                        'questions' => $this->request->getPost('questions'),
+                        
                         ];
                     
                     if($model->insert($newData)){
                         $last_id = $model->insertID();
-    
+
                         $msg = 'Successfully added!';   
                     }
                 }else{
@@ -864,14 +865,14 @@ class Community extends BaseController
                 }
     
                 
-            }
+            // }
     
-        }
+        // }
     
            
     
     
-            return redirect()->to( 'community')->with('msg', $msg);
+            return redirect()->to( 'community-home')->with('msg', $msg);
      
         }
 
@@ -901,14 +902,14 @@ class Community extends BaseController
             
                 if($model->update($id ,$data)){
                 
-                    return redirect()->to( 'community-join/'.$community_id);
+                    return redirect()->to( 'community/'.$community_id);
                 }else{
                     $msg = 'There is an error in joining the community!';
-                    return redirect()->to( 'dashboard')->with('msg', $msg);
+                    return redirect()->to( 'community-home')->with('msg', $msg);
                 }
             }else{
                 $msg = 'There is an error!';
-                return redirect()->to( 'dashboard')->with('msg', $msg);
+                return redirect()->to( 'community-home')->with('msg', $msg);
             }
 
 

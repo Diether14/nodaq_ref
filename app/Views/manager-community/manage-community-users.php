@@ -1,25 +1,3 @@
-<style>
-  .dashboard-card {
-    min-height: 130px;
-    max-height: 130px;
-  }
-
-  /* modal show */
-  .modal-backdrop {
-    z-index: 1040 !important;
-    display: none;
-  }
-
-  .modal-dialog {
-    margin: 80px auto;
-    z-index: 1100 !important;
-  }
-</style>
-
-
-
-
-
 <!-- <div class="page-header header-filter" data-parallax="true"
   style="background-image: url('<?= base_url(); ?>/public/user/assets/img/bg3.jpg')">
   <div class="container">
@@ -34,9 +12,18 @@
   </div>
 </div> -->
 <div class="main">
-  <div class="container card" id="users">
+  <div class="container" id="users">
     <div class="section p-0">
-
+    <div class="col-sm-12">
+            <nav class="mt-3  bg-white" aria-label="breadcrumb">
+        <ol class="breadcrumb m-0  bg-white">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Manage Community</a></li>
+            <li class="breadcrumb-item" ><a href="#"> Test Community</a></li>
+            <li class="breadcrumb-item active" aria-current="page">User Roles</li>
+        </ol>
+    </nav>
+            </div>
       <div class="col-lg-12">
         <div class="row">
           <div class="col-md-3">
@@ -58,7 +45,7 @@
               <li class="nav-item">
                 <a class="nav-link active" href="<?= base_url(); ?>/manage-community/users/<?= $community_id ?>">
                   <i class="material-icons">people</i>
-                  Community Users
+                  User roles
                 </a>
               </li>
 
@@ -68,12 +55,12 @@
                   Reported Posts
                 </a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="nav-link" href="<?= base_url(); ?>/manage-community/block-list/<?= $community_id ?>">
                   <i class="material-icons">block</i>
                   Block List
                 </a>
-              </li>
+              </li> -->
 
               <li class="nav-item">
                 <a class="nav-link" href="<?= base_url(); ?>/manage-community/community-settings/<?= $community_id ?>">
@@ -105,7 +92,6 @@
                         <tr>
                           <th>Username</th>
                           <th>Status</th>
-                          <th>Request Join Answer</th>
                           <th>Action</th>
 
                         </tr>
@@ -123,7 +109,6 @@
                           echo 'Assistant Manager';
                         }
                          ?></td>
-                         <td><?= $value->answer ?></td>
                           <td>
 
                             <button class="btn btn-primary btn-sm" data-toggle="modal"

@@ -59,7 +59,7 @@ $routes->get('delete-shared-post/(:num)', 'Community::delete_shared_post/$1', ['
 // $routes->get('search/(:any)', 'Search::search', ['filter' => 'auth']);
 
 // $routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth']);
-$routes->get('dashboard', 'Community::dashboard', ['filter' => 'auth']);
+$routes->get('community-home', 'Community::community_home', ['filter' => 'auth']);
 $routes->get('post', 'Users::post', ['filter' => 'auth']);
 $routes->get('post-view', 'Users::post_view', ['filter' => 'auth']);
 $routes->get('post-view/(:num)', 'Users::post_view/$1', ['filter' => 'auth']);
@@ -91,7 +91,6 @@ $routes->get('manager-create-community', 'Community::manager_create_community', 
 
 
 
-$routes->match(['get','post'],'user_save_community', 'Community::save_community', ['filter' => 'auth']);
 $routes->match(['get','post'],'user_join', 'Community::user_join');
 $routes->match(['get','post'],'update_anounymous', 'Community::update_anounymous');
 
@@ -177,7 +176,7 @@ $routes->get('/unblock/(:num)/(:num)', 'Managers::unblock/$1/$2', ['filter' => '
 //community
 $routes->get('community/(:num)', 'Community::community_join/$1', ['filter' => 'auth']);
 $routes->match(['get', 'post'], 'community/upload-picture', 'Community::upload_picture');
-
+$routes->match(['get','post'],'user_save_community', 'Community::save_community', ['filter' => 'auth']);
 
 
 
