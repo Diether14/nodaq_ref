@@ -59,7 +59,7 @@ $routes->get('delete-shared-post/(:num)', 'Community::delete_shared_post/$1', ['
 // $routes->get('search/(:any)', 'Search::search', ['filter' => 'auth']);
 
 // $routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth']);
-$routes->get('community-home', 'Community::community_home', ['filter' => 'auth']);
+
 $routes->get('post', 'Users::post', ['filter' => 'auth']);
 $routes->get('post-view', 'Users::post_view', ['filter' => 'auth']);
 $routes->get('post-view/(:num)', 'Users::post_view/$1', ['filter' => 'auth']);
@@ -150,21 +150,18 @@ $routes->get('/manage-community/ip-management/(:num)', 'Managers::ip_management/
 $routes->get('/manage-community/block-list/(:num)', 'Managers::block_list/$1', ['filter' => 'auth']);
 
 //managers functions
-$routes->match(['get','post'],'add_category', 'Managers::add_category');
-$routes->get('/delete_category/(:num)/(:num)', 'Managers::delete_category/$1/$2', ['filter' => 'auth']);
-$routes->match(['get','post'],'update_category', 'Managers::update_category');
+
+
 $routes->match(['get','post'],'remove_ac', 'Managers::remove_ac');
 $routes->match(['get','post'],'ban_user', 'Managers::ban_user');
 $routes->match(['get', 'post'], 'ac_settings', 'Managers::ac_settings');
 $routes->match(['get', 'post'], 'block_settings', 'Managers::block_settings');
-$routes->match(['get', 'post'], 'add_subclass', 'Managers::add_subclass');
 $routes->match(['get', 'post'], '/manager/save-community', 'Managers::save_community');
 $routes->match(['get', 'post'], 'update_community_cover', 'Managers::update_community_cover');
-$routes->match(['get', 'post'], 'update_subclass', 'Managers::update_subclass');
 $routes->match(['get', 'post'], 'community_questions', 'Managers::community_questions');
 $routes->match(['get', 'post'], 'remove_community', 'Managers::remove_community');
 
-$routes->get('/delete_subclass/(:num)/(:num)', 'Managers::delete_subclass/$1/$2', ['filter' => 'auth']);
+
 
 $routes->get('/accept_user/(:num)/(:num)', 'Managers::accept_user/$1/$2', ['filter' => 'auth']);
 $routes->get('/reject_user/(:num)/(:num)', 'Managers::reject_user/$1/$2', ['filter' => 'auth']);
@@ -177,10 +174,20 @@ $routes->get('/unblock/(:num)/(:num)', 'Managers::unblock/$1/$2', ['filter' => '
 $routes->get('community/(:num)', 'Community::community_join/$1', ['filter' => 'auth']);
 $routes->match(['get', 'post'], 'community/upload-picture', 'Community::upload_picture');
 $routes->match(['get','post'],'user_save_community', 'Community::save_community', ['filter' => 'auth']);
+$routes->get('community-home', 'Community::community_home', ['filter' => 'auth']);
+$routes->get('communities', 'Community::communities', ['filter' => 'auth']);
+$routes->get('community-manage/(:num)', 'Community::manage_community/$1', ['filter' => 'auth']);
+$routes->match(['get','post'],'add_category', 'Community::add_category');
 
-
-
-
+$routes->get('community-manage/members/(:num)', 'Community::manage_members/$1', ['filter' => 'auth']);
+$routes->get('community-manage/reports/(:num)', 'Community::manage_reports/$1', ['filter' => 'auth']);
+$routes->get('community-manage/blocked-users/(:num)', 'Community::manage_blocked_users/$1', ['filter' => 'auth']);
+$routes->get('community-manage/settings/(:num)', 'Community::manage_settings/$1', ['filter' => 'auth']);
+$routes->get('/delete_category/(:num)/(:num)', 'Community::delete_category/$1/$2', ['filter' => 'auth']);
+$routes->match(['get','post'],'update_category', 'Community::update_category');
+$routes->match(['get', 'post'], 'add_subclass', 'Community::add_subclass');
+$routes->match(['get', 'post'], 'update_subclass', 'Community::update_subclass');
+$routes->get('/delete_subclass/(:num)/(:num)', 'Community::delete_subclass/$1/$2', ['filter' => 'auth']);
 // $routes->get('/remove_ac/(:num)/(:num)', 'Managers::remove_ac/$1/$2', ['filter' => 'auth']);
 
 

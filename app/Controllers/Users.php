@@ -89,7 +89,7 @@ class Users extends BaseController
                     return redirect()->to('admin');
                 }elseif($user['user_type'] == '0'){
                     $session->setFlashdata('success', 'Login Successfully!');
-                    return redirect()->to('/weendi/dashboard');
+                    return redirect()->to('/weendi/community-home');
                 }else{
                     $session->setFlashdata('success', 'Invalid Username or Password!');
                     return redirect()->to('weendi/');

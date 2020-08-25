@@ -37,12 +37,12 @@
             </div>
             <div class="community_hr my-4"></div>
             <div class="list-group">
-                <a href="<?= base_url(); ?>/community-home"><button type="button" class="list-group-item list-group-item-action active ">
+                <a href="<?= base_url(); ?>/community-home"><button type="button" class="list-group-item list-group-item-action  ">
                     Recommended
                 </button>
                 </a>
                 <a href="<?= base_url(); ?>/communities">
-                <button type="button" class="list-group-item list-group-item-action">Communities</button>
+                <button type="button" class="list-group-item list-group-item-action active">Communities</button>
                 </a>
             </div>
 
@@ -64,9 +64,7 @@
                                     </a>
                                 </div>
                                 <div class="col-lg-6">
-                                    <a href="<?= base_url(); ?>/community-manage/<?= $value->id ?>">
-                                        <p class="card-title"><?= character_limiter($value->title, 12); ?></p>
-                                    </a>
+                                    <p class="card-title"><?= character_limiter($value->title, 12); ?></p>
                                     <?php if($value->community_type == '0'): ?>
                                         <span class="badge badge-pill badge-secondary">Public</span>
                                     <?php else: ?>
@@ -214,18 +212,18 @@
 
                             <div class="row">
 
-                                <?php foreach ($recommended_community as $key => $value) : ?>
+                                <?php foreach ($your_communities as $key => $value) : ?>
 
                                 <div class="col-lg-4">
                                     <div class="team-player">
 
                                         <div class="card h-100 custom-card ">
-                                        <div class="row m-0 align-items-center"
+                                            <div class="row m-0 align-items-center"
                                                 style="background-color: <?= $value->color; ?>">
                                             
                                                 <div class="col-10 community-title  ">
                                                     <h6>
-                                                        <a href="<?= base_url(); ?>/community/<?= $value->id;  ?>"
+                                                        <a href="community-join/<?= $value->id;  ?>" data-toggle="modal" data-target="#anonymousModal_<?= $key ?>"
                                                             style="color: <?= $value->text_color; ?>"><?= character_limiter($value->title, 15) ?>
                                                         </a>
                                                     </h6>
@@ -247,7 +245,7 @@
                                             </div>
                                             <p class="text-muted mx-3 mt-2"><?= character_limiter($value->content, 70); ?></p>
                 
-                                            <div class="card-footer justify-content-center p-0 my-2">
+                                            <div class="card-footer justify-content-center p-0 my-3">
                                                 <div class="togglebutton d-flex w-100">
 
                                                     <div class="float-right col-sm-8 ">
@@ -256,15 +254,27 @@
                                                         <?php else: ?>
                                                         <span class="badge badge-pill badge-dark">Private</span>
                                                         <?php endif; ?>
-                                                        <!-- <php if($value->status == '0'): ?>
-                                    <span class="badge badge-pill badge-success">Pending</span>
-                                    <php elseif($value->status == '1'): ?>
-                                    <span class="badge badge-pill badge-primary">Joined</span>
-                                    <php elseif($value->status == '2'): ?>
-                                    <span class="badge badge-pill badge-info">AC</span>
-                                    <php elseif($value->status == '3'): ?>
-                                    <span class="badge badge-pill badge-danger">Banned</span>
-                                    <php endif; ?> -->
+                                                        <?php if($value->status == '0'): ?>
+                                                        <span class="badge badge-pill badge-success">Pending</span>
+                                                        <?php elseif($value->status == '1'): ?>
+                                                        <span class="badge badge-pill badge-primary">Joined</span>
+                                                        <?php elseif($value->status == '2'): ?>
+                                                        <span class="badge badge-pill badge-info">AC</span>
+                                                        <?php elseif($value->status == '3'): ?>
+                                                        <span class="badge badge-pill badge-danger">Banned</span>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                    <div class="col-sm-4 p-0">
+                                                        <label>
+                                                            <i class=" fa fa-user-secret"></i>
+                                                            <?php if($value->anounymous == '1'): ?>
+                                                            <input type="checkbox" checked="" disabled>
+                                                            <span class="toggle"></span>
+                                                            <?php else: ?>
+                                                            <input type="checkbox" disabled>
+                                                            <span class="toggle"></span>
+                                                            <?php endif; ?>
+                                                        </label><br>
                                                     </div>
 
                                                 </div>
@@ -290,16 +300,7 @@
                                             <div class="modal-body">
                                                 <div class="text-center">
                                                     <h3>Created by: <strong><?= $value->nickname ?></strong></h3>
-                                                    <!-- <p>Status: <strong>
-                                        <php if($value->status == '0'): ?>
-                                        Pending
-                                        <php elseif($value->status == '1'): ?>
-                                        Joined
-                                        <php elseif($value->status == '2'): ?>
-                                        AC
-                                        <php elseif($value->status == '3'): ?>
-                                        Banned
-                                        <php endif; ?> -->
+                                      
                                                     </strong></p>
                                                     <p>Type: <strong>
                                                             <?php if($value->community_type == '0'): ?>
@@ -310,6 +311,48 @@
                                                         </strong></p>
 
                                                     <p>Created At: <strong><?= $value->created_at ?></strong></p>
+                                                </div>
+                                                </hr><br>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                 <!-- Classic Modal -->
+                                 <div class="modal fade" id="anonymousModal_<?= $key ?>" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Anonymous mode?</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <i class="material-icons">clear</i>
+                                                </button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <div class="text-center">
+                                                    <form class="contact-form"
+                                                        action="<?= base_url(); ?>/update_anounymous" method="post">
+                                                        <div class="togglebutton">
+                                                            <label>
+                                                                <input type="checkbox" name="mode"
+                                                                    <?= ($value->anounymous == '1' ? 'checked' : null) ?>>
+                                                                <span class="toggle"></span>
+                                                                Anonymous mode
+                                                            </label>
+
+                                                            <input type="hidden" value="<?= $value->community_id ?>"
+                                                                name="community_id">
+                                                            <input type="hidden" value="<?= $value->id ?>" name="id">
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary btn-raised mt-3"
+                                                            id="btnSubmit">
+                                                            Enter
+                                                        </button>
+                                                    </form>
                                                 </div>
                                                 </hr><br>
                                             </div>
@@ -358,7 +401,7 @@
                     </div>
                     <div class="form-group col-sm-12">
                         <textarea name="content" class="form-control" cols="5" rows="5"
-                            placeholder="Details"></textarea>
+                            placeholder="Content"></textarea>
                     </div>
                     <div class="d-flex align-items-center">
 <!-- 

@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col-lg-5 col-md-6 ml-auto mr-auto">
           <div class="card card-login rounded-0 p-3">
-            <form class="user" action="/weendi/login" method="post">
+            <form class="user" action="<?= base_url(); ?>/login" method="post">
               <!-- <div class="card-header card-header-primary text-center">
                 <h4 class="card-title">Welcome to Weendi</h4> -->
                 <!-- <div class="social-line">
