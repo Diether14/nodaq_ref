@@ -1,3 +1,5 @@
+
+
 <style>
     .modal-lg {
         max-width: 80% !important;
@@ -252,10 +254,7 @@
                                                         <h4 class="card-title">
                                                             <?= character_limiter($value->title, 40) ?>
                                                         </h4>
-                                                        <h6 class="card-subtitle mb-2 text-muted">
-                                                            <?= $value->category_name ?> |
-                                                                <?= $value->subclass ?>
-                                                        </h6>
+                                                      
                                                         <?php if($value->tags): ?>
                                                         <?php 
                                                                    $tags = explode (",", $value->tags);      

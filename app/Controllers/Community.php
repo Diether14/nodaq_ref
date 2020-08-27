@@ -164,13 +164,16 @@ class Community extends BaseController
         $db1      = \Config\Database::connect();
         $builder1 = $db1->table('users_post');
         $builder1->where('users_post.community_id', $id);
-        $builder1->select('users_post.id,users_post.user_id, users_post.community_id, users_post.title, users_post.updated_at, users_post.tags, users_post.category_id, users_post.subclass_id, users.nickname, profile_photo.name, community_category.category_name, community_category_subclass.subclass'  );
+        $builder1->select('users_post.id,users_post.user_id, users_post.community_id, users_post.title, users_post.content, users_post.updated_at, users_post.tags, users_post.category_id, users_post.subclass_id, users.nickname, profile_photo.name, community_category.category_name, community_category_subclass.subclass'  );
         $builder1->join('users', 'users.id = users_post.user_id');
         $builder1->join('profile_photo', 'users.id = profile_photo.user_id');
         $builder1->join('community_category', 'community_category.id = users_post.category_id', 'left');
         $builder1->join('community_category_subclass', 'community_category_subclass.id = users_post.subclass_id', 'left');
         $query1  = $builder1->get();
         $data['posts'][] = $query1->getResult();  
+        
+        // echo '<pre>';
+        // var_dump(unserialize($data['posts'][0][2]->content)); exit;
 
         // $db2      = \Config\Database::connect();
         // $builder2 = $db2->table('users_shared_posts');
@@ -1318,10 +1321,11 @@ class Community extends BaseController
         $builder->where('community.user_id', session()->get('id'));
         $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
         $builder->join('users', 'community.user_id = users.id');
-        
-
+    
         $query   = $builder->get();
         $data['community_list'] = $query->getResult();
+
+
 
         $assistant = new CommunityassistantmanagersModel();
         $get_assistant = $assistant->where('user_id', session()->get('id'))->findAll();
@@ -1441,7 +1445,7 @@ class Community extends BaseController
             
                 if($model->update($id ,$data)){
                 
-                    return redirect()->to( 'community/'.$community_id);
+                    return redirect()->to( 'community/'.$community_id.'/0');
                 }else{
                     $msg = 'There is an error in joining the community!';
                     return redirect()->to( 'community-home')->with('msg', $msg);

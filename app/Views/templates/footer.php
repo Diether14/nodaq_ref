@@ -437,7 +437,7 @@
         'category_id': category_id,
         'subclass_id': subclass_id
       };
-      
+
       if(title == ''  || content == '' || community_id == '' || tags == ''  || category_id == '' || subclass_id == ''){
             alert('Please fill out the fields!');
       }else{
@@ -448,7 +448,8 @@
           dataType: "JSON",  
           success: function(data)
           {
-                  
+            alert(data.msg);
+            location.reload();
           },
           error: function (jqXHR, textStatus, errorThrown)
             {
