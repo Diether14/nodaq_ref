@@ -265,8 +265,6 @@ class Community extends BaseController
             ];
             echo json_encode($data);
         }
-    
-
     }
 
     public function community_private($id = null){
