@@ -2,6 +2,9 @@ $(document).ready(function(){
     initSample();
     
 
+
+    
+
     // $(".update-anounymous").click(function(){
     //     let data = {
     //         'community_id': $("input[name=community_id]").val();

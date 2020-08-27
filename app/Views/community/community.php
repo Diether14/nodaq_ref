@@ -316,7 +316,6 @@
                     </div>
 
                     <div class="modal-body ">
-                        <form method="post" id="upload_form" enctype="multipart/form-data">
                             <input type="hidden" name="base" value="<?= base_url(); ?>">
                             <div class="row">
                                 <div class="col-lg-12">
@@ -338,15 +337,16 @@
                             </div>
                             <div>
                             </div>
+                            <input type="hidden" name="category_id" value="<?= $subclass['category_id']; ?>">
+                            <input type="hidden" name="subclass_id" value="<?= $subclass['id']; ?>">
                             <input type="hidden" name="community_id" id="community-id" value="<?= $community_list[0]->id; ?>">
                             <div class="ce-example__button" id="saveButton">
                                 Save Post
                             </div>
-                    </div>
+                          </div>
 
                     <div class="modal-footer d-block">
                         <button type="button" class="btn bg-danger text-white btn-link float-right" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary float-left">Save</button>
                     </div>
                     </form>
                 </div>

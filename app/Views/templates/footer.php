@@ -408,23 +408,10 @@
             text : 'We have been working on this project more than three years. Several large media projects help us to test and debug the Editor, to make its core more stable. At the same time we significantly improved the API. Now, it can be used to create any plugin for any task. Hope you enjoy. 😏'
           }
         },
-        // {
-        //   type: 'image',
-        //   data: {
-        //     file : {
-        //       url: 'assets/codex2x.png',
-        //     },
-        //     caption: '',
-        //     stretched: false,
-        //     withBorder: true,
-        //     withBackground: false,
-        //   }
-        // },
+     
       ]
     },
-    onReady: function(){
-      saveButton.click();
-    },
+   
   });
 
   /**
@@ -435,26 +422,40 @@
       // cPreview.show(savedData, document.getElementById("output"));
       console.log(savedData.blocks);
       var base_url = $('input[name=base]').val();
-    
-      $.ajax({
-                type: "POST",
-                url  : base_url + '/save_post',
-                data:  savedData, 
-                dataType: "JSON",  
-                success: function(data)
-                {
-                 
-                    // alert(data.msg);
-                  
-                
-                  // location.reload();
-                },
-                error: function (jqXHR, textStatus, errorThrown)
-                {
-                    alert('There is an error!');
-                }
-            });
+      var title = $("input[name=title]").val();
+      var community_id = $("input[name=community_id]").val();
+      var content = savedData;
+      var tags = $("input[name=tags]").val();
+      var category_id = $("input[name=category_id]").val();
+      var subclass_id = $("input[name=subclass_id]").val();
 
+      var data = {
+        'content': content,
+        'title': title,
+        'community_id': community_id,
+        'tags': tags,
+        'category_id': category_id,
+        'subclass_id': subclass_id
+      };
+      
+      if(title == ''  || content == '' || community_id == '' || tags == ''  || category_id == '' || subclass_id == ''){
+            alert('Please fill out the fields!');
+      }else{
+        $.ajax({
+          type: "POST",
+          url  : base_url + '/save_post',
+          data:  data, 
+          dataType: "JSON",  
+          success: function(data)
+          {
+                  
+          },
+          error: function (jqXHR, textStatus, errorThrown)
+            {
+              alert('There is an error!');
+            }
+              });
+      }
     });
   });
 </script>

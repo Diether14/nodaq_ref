@@ -277,7 +277,7 @@
                                                                             adipiscing elit. Donec aliquet pharetra
                                                                             sapien,</p>
                                                                         <span
-                                                                            class="badge badge-pill badge-info"><?= character_limiter($value->description, 10) ?></span>
+                                                                            class="badge badge-pill badge-info"><?= character_limiter('test', 10) ?></span>
 
                                                                     </p>
                                                                 </div>
@@ -396,7 +396,7 @@
                                                                             <textarea name="description"
                                                                                 class="form-control"
                                                                                 placeholder="Description..." cols="30"
-                                                                                rows="5"><?= $value->description ?></textarea>
+                                                                                rows="5"></textarea>
                                                                         </div>
                                                                     </div>
 

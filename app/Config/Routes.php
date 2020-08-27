@@ -188,6 +188,7 @@ $routes->match(['get','post'],'update_category', 'Community::update_category');
 $routes->match(['get', 'post'], 'add_subclass', 'Community::add_subclass');
 $routes->match(['get', 'post'], 'update_subclass', 'Community::update_subclass');
 $routes->get('/delete_subclass/(:num)/(:num)', 'Community::delete_subclass/$1/$2', ['filter' => 'auth']);
+
 // $routes->get('/remove_ac/(:num)/(:num)', 'Managers::remove_ac/$1/$2', ['filter' => 'auth']);
 
 

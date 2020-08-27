@@ -116,6 +116,11 @@ class Community extends BaseController
         helper(['form']);
         helper('text');
 
+        $subclass = new CommunitysubclassModel();
+        $get_subclass = $subclass->where('id', $subclass_id)->first();
+        
+        $data['subclass'] = $get_subclass;
+
         $profile_photo = new ProfilephotoModel();
         $data['profile_photo'] = $profile_photo->where('user_id', session()->get('id'))
             ->first();
@@ -349,34 +354,25 @@ class Community extends BaseController
         ini_set('display_errors', 1);
         helper(['form', 'url']);
 
-        // echo '<pre>';
-        // var_dump($_POST['blocks']);exit;
-        
-        // $title = $this->request->getPost('title');
-        $content = $this->request->getPost('blocks');
-        // var_dump($content);exit;
-        // $community_id = $this->request->getPost('community_id');
-        // $category_id = $this->request->getPost('category_id');
-        // $subclass_id = $this->request->getPost('subclass_id');
-        // $tags = $this->request->getPost('tags');
+        $title = $this->request->getPost('title');
+        $content = $_POST['content']['blocks'];
+        $community_id = $this->request->getPost('community_id');
+        $category_id = $this->request->getPost('category_id');
+        $subclass_id = $this->request->getPost('subclass_id');
+        $tags = $this->request->getPost('tags');
 
         $db      = \Config\Database::connect();
         $builder = $db->table('users_post');
 
-        //     $file = $this->request->getFile('file');
-        //     $file->move('public/post_photos');
-      
           $data = [
             'user_id' => session()->get('id'),
-        //     'community_id' => $community_id,
-        //     'title' => $title,
+            'community_id' => $community_id,
+            'title' => $title,
             'content' => serialize($content),
-        //     'tags' => $tags,
-        //     'category_id' => $category_id,
-        //     'subclass_id' => $subclass_id,
-        //     'thumbnail' =>  $file->getClientName(),
+            'tags' => $tags,
+            'category_id' => $category_id,
+            'subclass_id' => $subclass_id,
           ];
-
 
           $save = $builder->insert($data);
           if($save){
@@ -394,10 +390,6 @@ class Community extends BaseController
                ];
         }
           return $this->response->setJSON($response);
-       
-
-      
-    
     }
     
 
