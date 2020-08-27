@@ -225,7 +225,7 @@
                                             
                                                 <div class="col-10 community-title  ">
                                                     <h6>
-                                                        <a href="<?= base_url(); ?>/community/<?= $value->id;  ?>"
+                                                        <a href="<?= base_url(); ?>/community/<?= $value->id;  ?>/0"
                                                             style="color: <?= $value->text_color; ?>"><?= character_limiter($value->title, 15) ?>
                                                         </a>
                                                     </h6>

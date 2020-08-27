@@ -88,7 +88,7 @@ $(document).ready(function(){
         var category_id = $("select[name=category_id]").val();
         var subclass_id = $("select[name=subclass_id]").val();
         var base_url = $('input[name=base]').val();
-        
+     
         
         // let data = {
         //     'title': title,

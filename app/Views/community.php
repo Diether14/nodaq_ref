@@ -183,63 +183,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="modal fade" id="edit<?= $key ?>" tabindex="-1" role="dialog"
-                  aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title">Update Community </h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">×</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-
-                        <form class="contact-form" action="update_community" method="post" accept-charset="utf-8"
-                          enctype="multipart/form-data">
-
-                          <div class="form-group">
-                            <input type="text" name="title" class="form-control" placeholder="Title"
-                              value="<?= $value->title ?>">
-                          </div>
-                          <input type="hidden" name="com_photo_id" value="<?= $value->com_photo_id; ?>">
-                          <input type="hidden" name="id" value="<?= $value->id; ?>">
-
-                          <div class="form-group">
-                            <textarea name="content" class="form-control" cols="30" rows="10"
-                              placeholder="Content"><?= $value->content ?></textarea>
-                          </div>
-
-                          <div class="togglebutton">
-                            <label>
-                              <input type="checkbox" name="community_type"
-                                <?= ($value->community_type	 == '1' ? 'checked': null)?>>
-                              <span class="toggle"></span>
-                              Private Community
-                            </label>
-                          </div>
-                          <label for="color">Select your theme color:</label><br>
-                          <input class="myField" type="hidden" name="color" value="<?= $value->color; ?>" >
-                          <label for="color">Select your text color:</label><br>
-                          <input type="color" name="text_color" value="<?= $value->text_color; ?>">
-
-                          <br>
-
-                          <button type="submit" class="btn btn-primary">Save Community</button>
-
-                        </form>
-
-
-
-
-                      </div>
-                      <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
+            
 
 
                                 <?php endforeach; ?>
