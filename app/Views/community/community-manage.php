@@ -32,7 +32,7 @@
   } */
 </style>
 <div class="row">
-  <div class="community-sidebar">
+  <div class="community-sidebar overflow-auto" >
     <div class="community_header row align-items-center">
       <div class="community_title text-center col-sm">
         <h3 class="community-title my-2">
@@ -48,285 +48,184 @@
       </div>
     </div>
 
-    <div class="community_hr my-4"></div>
-    <div class="community_joined">
-      <div class="community_joined_row">
-        <h4 class="community_subtitle">
-          Community Settings
-        </h4>
+    <div class="community_hr my-2"></div>
+      <div class="community_joined">
+        <div class="community_joined_row">
+          <h4 class="community_subtitle">
+            Community Settings
+          </h4>
 
-        <div class="row mb-2">
-          <div class="col-12 row align-items-center">
-            <h5 class="m-0">Categories</h5>
-            <div class="float-right">
+          <div class="row mb-2">
+            <div class="col-12 row align-items-center">
+              <h5 class="m-0">Categories</h5>
+              <div class="float-right">
 
-              <button type="button" class="btn btn-sm bg-transparent" data-toggle="modal" data-target="#add_category"><i
-                  class="fa fa-plus text-primary shadow-none"></i></button>
-            </div>
-
-          </div>
-          <?php foreach ($community_category as $key => $value) : ?>
-          <div class="d-flex p-3 bg-light align-items-center col-sm-12 pt-4">
-
-            <div class="col-sm-11 p-0" id="headingOne">
-              <a href="#" class="d-block text-left" data-toggle="collapse" data-target="#collapseOne<?= $key ?>">
-                <b><?= $value['category_name'] ?></b></a>
-            </div>
-            <div class="col-sm">
-              <div class="dropdown float-right">
-                <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  <!-- <i class="fa fa-cog"></i> -->
-                </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item " data-toggle="modal" data-target="#add_subclass<?= $key ?>">Add Subclass</a>
-                  <a class="dropdown-item" data-toggle="modal" data-target="#edit_category<?= $key ?>">Edit</a>
-                  <a class="dropdown-item" data-toggle="modal" data-target="#delete_category<?= $key ?>">Delete</a>
-                </div>
+                <button type="button" class="btn btn-sm bg-transparent" data-toggle="modal" data-target="#add_category"><i
+                    class="fa fa-plus text-primary shadow-none"></i></button>
               </div>
 
             </div>
 
-          </div>
 
-          <?php if (empty($value['subclass'])) : ?>
-          <div id="collapseOne<?= $key ?>" class="collapse" aria-labelledby="headingOne"
-            data-parent="#accordionExample">
-            <?php else : ?>
-            <div id="collapseOne<?= $key ?>" class="collapse show" aria-labelledby="headingOne"
-              data-parent="#accordionExample">
-              <?php endif; ?>
-              
-              
-                  <?php foreach ($value['subclass'] as $key1 => $value1) : ?>
-                    <div class="d-flex p-3 bg-light align-items-center col-sm-12">
-
-                      <div class="col-sm-11 p-0" id="headingOne">
-                        <a href="#" class="d-block text-left" data-toggle="collapse" data-target="#collapseOne<?= $key ?>">
-                          <b><?= $value1['subclass'] ?></b></a>
-                      </div>
-                      <div class="col-sm">
-                        <div class="dropdown float-right">
-                          <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <!-- <i class="fa fa-cog"></i> -->
-                          </a>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" data-toggle="modal" data-target="#edit_subclass<?= $key ?><?= $key1 ?>">Edit</a>
-                            <?php if($key1 != 0): ?>
-                              <a class="dropdown-item" data-toggle="modal" data-toggle="modal" data-target="#delete_subclass<?= $key ?><?= $key1 ?>">Delete</a>
-                            <?php endif; ?>
-                           
-                          </div>
-                        </div>
-
-                      </div>
-
-                      </div>
-
-
-
-                    <!-- Classic Modal -->
-                    <div class="modal fade" id="edit_subclass<?= $key ?><?= $key1 ?>" tabindex="-1" role="dialog">
-                      <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title">Edit Category</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <i class="material-icons">clear</i>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            <form class="contact-form" action="<?= base_url(); ?>/update_subclass" method="post"
-                              accept-charset="utf-8" enctype="multipart/form-data">
-                              <div class="form-group row">
-                                <div class="col-lg-12">
-                                  <label>Subclass Name</label>
-                                  <input type="text" name="subclass" class="form-control"
-                                    value="<?= $value1['subclass'] ?>">
-                                  <input type="hidden" name="community_id" value="<?= $value1['community_id']; ?>">
-                                  <input type="hidden" name="id" value="<?= $value1['id']; ?>">
-                                </div>
-                              </div>
-
-
-                          </div>
-                          <div class="modal-footer">
-                            <button type="submit" class="btn bg-success text-white btn-link">Update</button>
-                            </form>
-
-                          </div>
+            
+              <div id="accordion-sidebar" class="w-100">
+                <div class="btn-group-vertical w-100">
+                  <?php foreach ($community_category as $key => $value) : ?>
+                    <button class="btn btn-block m-0 text-left" data-toggle="collapse" data-target="#collapseCategory<?= $key ?>">
+                      <?= $value["category_name"]?>
+                      <div class="dropdown float-right">
+                        <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false">
+                          <!-- <i class="fa fa-cog"></i> -->
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item " data-toggle="modal" data-target="#add_subclass<?= $key ?>">Add Subclass</a>
+                          <a class="dropdown-item" data-toggle="modal" data-target="#edit_category<?= $key ?>">Edit</a>
+                          <a class="dropdown-item" data-toggle="modal" data-target="#delete_category<?= $key ?>">Delete</a>
                         </div>
                       </div>
-                    </div>
-                    <!--  End Modal -->
-                    <!-- Classic Modal -->
-                    <div class="modal fade" id="delete_subclass<?= $key ?><?= $key1 ?>" tabindex="-1" role="dialog">
-                      <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title">Delete Subclass</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <i class="material-icons">clear</i>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            <div class="form-group row">
-                              <div class="col-lg-12">
-                                <h6 class="text">Are you sure do you want to delete?</h6>
-                              </div>
+                    </button>
+                    <div id="collapseCategory<?= $key ?>" class="collapse <?= ($key == 0)? "show":"" ?> w-100" data-parent="#accordion-sidebar">
+                      
+                    <?php foreach ($value['subclass'] as $key1 => $value1) : ?>
+                      <div class="d-flex p-3 bg-light align-items-center col-sm-12">
+
+                        <div class="col-sm-11 p-0" id="headingOne">
+                          <a href="#" class="d-block text-left" data-toggle="collapse" data-target="#collapseOne<?= $key ?>">
+                            <b><?= $value1['subclass'] ?></b></a>
+                        </div>
+                        <div class="col-sm">
+                          <div class="dropdown float-right">
+                            <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                              aria-haspopup="true" aria-expanded="false">
+                              <!-- <i class="fa fa-cog"></i> -->
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" data-toggle="modal" data-target="#edit_subclass<?= $key ?><?= $key1 ?>">Edit</a>
+                              <?php if($key1 != 0): ?>
+                                <a class="dropdown-item" data-toggle="modal" data-toggle="modal" data-target="#delete_subclass<?= $key ?><?= $key1 ?>">Delete</a>
+                              <?php endif; ?>
+                              
                             </div>
                           </div>
-                          <div class="modal-footer">
-                            <a
-                              href="<?= base_url() ?>/delete_subclass/<?= $value1['id'] ?>/<?= $value1['community_id'] ?>">
-                              <button type="submit" class="btn bg-success text-white btn-link">Confirm</button>
-                            </a>
 
+                        </div>
+
+                        </div>
+
+
+
+                      <!-- Classic Modal -->
+                      <div class="modal fade" id="edit_subclass<?= $key ?><?= $key1 ?>" tabindex="-1" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">Edit Category</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i class="material-icons">clear</i>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <form class="contact-form" action="<?= base_url(); ?>/update_subclass" method="post"
+                                accept-charset="utf-8" enctype="multipart/form-data">
+                                <div class="form-group row">
+                                  <div class="col-lg-12">
+                                    <label>Subclass Name</label>
+                                    <input type="text" name="subclass" class="form-control"
+                                      value="<?= $value1['subclass'] ?>">
+                                    <input type="hidden" name="community_id" value="<?= $value1['community_id']; ?>">
+                                    <input type="hidden" name="id" value="<?= $value1['id']; ?>">
+                                  </div>
+                                </div>
+
+
+                            </div>
+                            <div class="modal-footer">
+                              <button type="submit" class="btn bg-success text-white btn-link">Update</button>
+                              </form>
+
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <!--  End Modal -->
+                      <!--  End Modal -->
+                      <!-- Classic Modal -->
+                      <div class="modal fade" id="delete_subclass<?= $key ?><?= $key1 ?>" tabindex="-1" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">Delete Subclass</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i class="material-icons">clear</i>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="form-group row">
+                                <div class="col-lg-12">
+                                  <h6 class="text">Are you sure do you want to delete?</h6>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <a
+                                href="<?= base_url() ?>/delete_subclass/<?= $value1['id'] ?>/<?= $value1['community_id'] ?>">
+                                <button type="submit" class="btn bg-success text-white btn-link">Confirm</button>
+                              </a>
 
-                  <?php endforeach; ?>
-          
-               
-            </div>
-          
-
-          <div class="modal fade" id="add_subclass<?= $key ?>" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Add Subclass</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i class="material-icons">clear</i>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <form action="<?= base_url(); ?>/add_subclass" method="post">
-                    <div class="form-group row">
-                      <div class="col-lg-12">
-
-                        <input type="hidden" value="<?= $value['community_id'] ?>" name="community_id">
-                        <input type="hidden" value="<?= $value['id'] ?>" name="category_id">
-                        <input class='form-control' name='subclass' type='text' placeholder='Enter Subclass'>
+                            </div>
+                          </div>
+                        </div>
                       </div>
+                      <!--  End Modal -->
+
+                    <?php endforeach; ?>
+
                     </div>
 
-
-                </div>
-                <div class="modal-footer">
-                  <button type="submit" class="btn bg-success text-white btn-link">Add</button>
-                  </form>
-                  <!-- <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button> -->
+                  <?php endforeach;?>
                 </div>
               </div>
+
+
+
+          </div>
+          <div class="community_hr my-2"></div>
+          <div class="row mb-2">
+            <div class="col-12">
+              <a href="<?= base_url(); ?>/community-manage/members/<?= $community_list[0]->id; ?>">
+                <h5 class="m-0">Members</h5>
+              </a>
             </div>
           </div>
-          <!--  End Modal -->
-
-
-          <!-- Classic Modal -->
-          <div class="modal fade" id="edit_category<?= $key ?>" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Edit Category</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i class="material-icons">clear</i>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <form class="contact-form" action="<?= base_url(); ?>/update_category" method="post"
-                    accept-charset="utf-8" enctype="multipart/form-data">
-                    <div class="form-group row">
-                      <div class="col-lg-12">
-                        <label>Category Name</label>
-                        <input type="text" name="category_name" class="form-control"
-                          value="<?= $value['category_name'] ?>">
-                        <input type="hidden" name="community_id" value="<?= $value['community_id']; ?>">
-                        <input type="hidden" name="id" value="<?= $value['id']; ?>">
-                      </div>
-                    </div>
-
-
-                </div>
-                <div class="modal-footer">
-                  <button type="submit" class="btn bg-success text-white btn-link">Submit</button>
-                  </form>
-                  <!-- <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button> -->
-                </div>
-              </div>
+          <div class="community_hr my-2"></div>
+          <div class="row mb-2">
+            <div class="col-12">
+              <a href="<?= base_url(); ?>/community-manage/reports/<?= $community_list[0]->id; ?>">
+                <h5 class="m-0">Reports</h5>
+              </a>
             </div>
           </div>
-          <!--  End Modal -->
-          <!-- Classic Modal -->
-          <div class="modal fade" id="delete_category<?= $key ?>" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Delete Category</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i class="material-icons">clear</i>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <div class="form-group row">
-                    <div class="col-lg-12">
-                      <h6 class="text">Are you sure do you want to delete?</h6>
-                    </div>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <a href="<?= base_url() ?>/delete_category/<?= $value['id'] ?>/<?= $value['community_id'] ?>">
-                    <button type="submit" class="btn bg-success text-white btn-link">Confirm</button>
-                  </a>
-                  <!-- <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button> -->
-                </div>
-              </div>
+          <div class="community_hr my-2"></div>
+          <div class="row mb-2">
+            <div class="col-12">
+              <a href="<?= base_url(); ?>/community-manage/blocked-users/<?= $community_list[0]->id; ?>">
+                <h5 class="m-0">Blocked Users</h5>
+              </a>
             </div>
           </div>
-          <!--  End Modal -->
-
-          <?php endforeach; ?>
-        </div>
-        <div class="community_hr my-4"></div>
-        <div class="row mb-2">
-          <div class="col-12">
-            <a href="<?= base_url(); ?>/community-manage/members/<?= $community_list[0]->id; ?>">
-              <h5 class="m-0">Members</h5>
-            </a>
-          </div>
-        </div>
-        <div class="community_hr my-4"></div>
-        <div class="row mb-2">
-          <div class="col-12">
-            <a href="<?= base_url(); ?>/community-manage/reports/<?= $community_list[0]->id; ?>">
-              <h5 class="m-0">Reports</h5>
-            </a>
-          </div>
-        </div>
-        <div class="community_hr my-4"></div>
-        <div class="row mb-2">
-          <div class="col-12">
-            <a href="<?= base_url(); ?>/community-manage/blocked-users/<?= $community_list[0]->id; ?>">
-              <h5 class="m-0">Blocked Users</h5>
-            </a>
-          </div>
-        </div>
-        <div class="community_hr my-4"></div>
-        <div class="row mb-2">
-          <div class="col-12">
-            <a href="<?= base_url(); ?>/community-manage/settings/<?= $community_list[0]->id; ?>">
-              <h5 class="m-0">Settings</h5>
-            </a>
+          <div class="community_hr my-2"></div>
+          <div class="row mb-2">
+            <div class="col-12">
+              <a href="<?= base_url(); ?>/community-manage/settings/<?= $community_list[0]->id; ?>">
+                <h5 class="m-0">Settings</h5>
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
   </div>
+
+
   <div class="community-feed">
 
     <div class="page-header header-filter m-auto"

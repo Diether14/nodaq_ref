@@ -128,8 +128,8 @@
                 <div class="">
                     <nav class="nav" aria-label="breadcrumb">
                         <ol class="breadcrumb bg-white">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Communities</a></li>
+                            <li class="breadcrumb-item"><a href="<?= base_url()?>/community-home">Home</a></li>
+                            <li class="breadcrumb-item"><a href="<?= base_url()?>/communities">Communities</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Test Community</li>
 
                         </ol>

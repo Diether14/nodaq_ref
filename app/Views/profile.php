@@ -178,68 +178,365 @@
 
                         </div>
                     </div> -->
-                <div class="col-sm-12 px-0">
+                <div class="col-sm-12 px-0 j">
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item">
+                            <a href="#user-profile-section" class="nav-link active" data-toggle="tab">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#user-posts-section" class="nav-link" data-toggle="tab">Posts</a>
+                        </li>
+                    </ul>
 
-                    <div class="mx-4">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="user-profile-section">
+                            <div class="mx-4">
+                                <h4 class="title mb-0  my-0 p-3">Profile</h4>
+                                <hr class="m-0"/>
+                                <script>
+                                    console.log(<?= json_encode($user)?>)
+                                </script>
+                                <table class="table">
+                                    <tr>
+                                        <th class="text-left">Name</th>
+                                        <td class="text-left"><?= $user["nickname"]?></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-left">Date Registered</th>
+                                        <td class="text-left"><?= date("F d, Y", strtotime($user['created_at']))?></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-left">Email</th>
+                                        <td class="text-left"><?= $user["email"]?></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-left">Role</th>
+                                        <td class="text-left"><?= ($user["user_type"] == 0) ? "<span class='badge badge-default'>User</span>" : "<span class='badge badge-info'>Administrator</span>" ?><td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="user-posts-section">
+                            <div class="mx-4">
 
-                        <div class="tab-content tab-space">
-                            <div class="tab-pane active" id="dashboard-1">
-                                <div class=" posts-nav-card card-nav-tabs card-plain my-1">
-                                    <div class="px-0 py-0">
-                                        <div class="nav-tabs-navigation">
-                                            <div class="nav-tabs-wrapper">
-                                                <h4 class="title mb-0  my-0 p-3">Posts</h4>
-                                                <hr class="m-0">
-                                                <!-- <ul class="nav nav-tabs post-tabs" data-tabs="tabs">
-                                                        <li class="nav-item active">
-                                                            <a class="nav-link active" href="#home" data-toggle="tab">All Post</a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link" href="#updates" data-toggle="tab">Posts</a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link" href="#history" data-toggle="tab">Shared Posts</a>
-                                                        </li>
-                                                    </ul> -->
+                                <div class="tab-content tab-space">
+                                    <div class="tab-pane active" id="dashboard-1">
+                                        <div class=" posts-nav-card card-nav-tabs card-plain my-1">
+                                            <div class="px-0 py-0">
+                                                <div class="nav-tabs-navigation">
+                                                    <div class="nav-tabs-wrapper">
+                                                        <h4 class="title mb-0  my-0 p-3">Posts</h4>
+                                                        <hr class="m-0">
+                                                        <!-- <ul class="nav nav-tabs post-tabs" data-tabs="tabs">
+                                                                <li class="nav-item active">
+                                                                    <a class="nav-link active" href="#home" data-toggle="tab">All Post</a>
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link" href="#updates" data-toggle="tab">Posts</a>
+                                                                </li>
+                                                                <li class="nav-item">
+                                                                    <a class="nav-link" href="#history" data-toggle="tab">Shared Posts</a>
+                                                                </li>
+                                                            </ul> -->
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                            <hr class="m-0">
+                                            <div class="card-body ">
+                                                <div class="text-center">
+                                                    <div class="tab-pane active" id="home">
+
+
+
+                                                    </div>
+                                                    <div class="tab-pane" id="updates">
+                                                        <!-- content -->
+                                                        <div class="row m-3">
+                                                            <?php if(!empty($posts)): ?>
+                                                            <?php foreach($posts as $key => $value): ?>
+                                                            <div class="col-md-12">
+
+                                                                <div class="team-player">
+                                                                    <div class="card custom-card1 p-3 my-1">
+                                                                        <?php if($value->user_mode == '1'): ?>
+                                                                        <div class="profile-photo-small d-flex">
+
+                                                                            <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                                                                                alt="Circle Image"
+                                                                                class="img-raised rounded-circle img-fluid  z-depth-2"
+                                                                                alt="avatar">
+
+                                                                            <div class="m-0 p-0">
+                                                                                <h4 class="card-title pl-2 mt-0 mb-0">Anonymous
+                                                                                </h4>
+                                                                                <p class="small pl-2 m-0">1 hour ago</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <hr class="m-0">
+                                                                        <?php else: ?>
+
+                                                                        <div class="profile-photo-small d-flex">
+                                                                            <div class="col-sm px-0 align-items-center">
+                                                                                <?php if(!empty($value->name)): ?>
+
+                                                                                <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $value->name ?>"
+                                                                                    alt="Circle Image"
+                                                                                    class="rounded-circle img-fluid z-depth-2">
+
+                                                                                <?php else: ?>
+                                                                                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                                                                                    alt="Circle Image"
+                                                                                    class="img-raised rounded-circle img-fluid  z-depth-2"
+                                                                                    alt="avatar">
+
+                                                                                <?php endif; ?>
+                                                                            </div>
+                                                                                    
+                                                                            <div class="m-0 p-0 col-sm-10">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <h5 class="card-title pl-2 mt-0 mb-0">
+                                                                                        <?= $value->nickname;?> </h5> <i
+                                                                                        class="fa fa-chevron-right pl-2"></i>
+                                                                                    <h5 class="card-title pl-2 mt-0 mb-0">Test
+                                                                                        Community<h3>
+                                                                                </div>
+                                                                                <p class="small pl-2 m-0">1 hour ago</p>
+                                                                            </div>
+                                                                            <div class="col-sm">
+                                                                            <a href=""><i class="fa fa-ellipsis-h"></i></a>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <?php endif; ?>
+                                                                        <div class="card-body  m-0 p-0">
+                                                                            <p class="m-0 p-0 card-description">
+                                                                                <p>Lorem ipsum dolor sit amet, consectetur
+                                                                                    adipiscing elit. Donec aliquet pharetra
+                                                                                    sapien,</p>
+                                                                                <span
+                                                                                    class="badge badge-pill badge-info"><?= character_limiter('test', 10) ?></span>
+
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="card-footer m-0 py-0">
+                                    <!-- <div class="btn-group btn-group-sm" role="group" aria-label="">
+                                    <button type="button" class="btn"><i class="fa fa-chevron-circle-up"></i></button>
+                                    <button type="button" class="btn "><i class="fa fa-chevron-circle-down"></i></button>
+                                </div> -->
+                                    <div class="col-sm-12 text-center">
+                                        <a href="#comments" class="btn btn-link not_joined h6"><i class="fa fa-chevron-up pr-1 text-success"></i>
+                                        12 Upvotes
+                                    </a>
+                                        <a href="#comments" class="btn btn-link not_joined h6"><i class="fa fa-chevron-down pr-1 text-danger"></i>
+                                        3 Devotes
+                                    </a>
+                                        <?php if(empty($users_community)) : ?>
+
+                                        <a href="#comments" class="btn btn-link not_joined h6"><i class="fa fa-comment pr-1"></i>
+                                            <?php 
+                                                    if(1000 >= 1000){ 
+                                                        echo round((1200/1000),1). 'K'; 
+                                                    }elseif(1000000 >= 1000000){
+                                                        echo round((1000000/1000000),1). 'M';
+                                                    }else{
+                                                        echo '50';
+                                                    } ?>
+                                            Comments</a>
+                                        <!-- <a href="#" class="btn btn-link not_joined h6"><i class="fa fa-share pr-1"></i>
+                                            <?php 
+                                                    if(1000 >= 1000){ 
+                                                        echo round((1200/1000),1). 'K'; 
+                                                    }elseif(1000000 >= 1000000){
+                                                        echo round((1000000/1000000),1). 'M';
+                                                    }else{
+                                                        echo '50';
+                                                    } ?>
+                                            Share Post</a> -->
+
+                                        <?php if(empty($report)): ?>
+                                        <a href="#" class="btn btn-link not_joined h6" class="btn btn-link"><i
+                                                class="fa fa-exclamation pr-1 "></i>
+                                            Report Post</a>
+                                        <?php else: ?>
+
+                                        <a href="#" class="btn btn-link not_joined h6"><i class="fa fa-exclamation pr-1 text-danger"></i>
+                                            Reported</a>
+                                        <?php endif; ?>
+
+                                        <?php else: ?>
+                                        <a href="#comments" class="btn btn-link h6"><i class="fa fa-comment pr-1"></i>
+                                            <?php 
+                                                    if(1000 >= 1000){ 
+                                                        echo round((1200/1000),1). 'K'; 
+                                                    }elseif(1000000 >= 1000000){
+                                                        echo round((1000000/1000000),1). 'M';
+                                                    }else{
+                                                        echo '50';
+                                                    } ?>
+                                            Comments</a>
+                                        <!-- <a href="#" data-toggle="modal" data-target="#share" class="btn btn-link h6"><i
+                                                class="fa fa-share pr-1"></i>
+                                            <?php 
+                                                    if(1000 >= 1000){ 
+                                                        echo round((1200/1000),1). 'K'; 
+                                                    }elseif(1000000 >= 1000000){
+                                                        echo round((1000000/1000000),1). 'M';
+                                                    }else{
+                                                        echo '50';
+                                                    } ?>
+                                            Share Post</a> -->
+
+                                        <?php if(empty($report)): ?>
+                                        <a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-link h6" class="btn btn-link"><i class="fa fa-exclamation pr-1"></i> Report Post</a>
+                                        <?php else: ?>
+
+                                        <a href="#" class="btn btn-lin h5k"><i class="fa fa-exclamation pr-1"></i> Reported</a>
+                                        <?php endif; ?>
+                                        <?php endif; ?>
                                     </div>
-                                    <hr class="m-0">
-                                    <div class="card-body ">
-                                        <div class="text-center">
-                                            <div class="tab-pane active" id="home">
-
-
-
-                                            </div>
-                                            <div class="tab-pane" id="updates">
-                                                <!-- content -->
-                                                <div class="row m-3">
-                                                    <?php if(!empty($posts)): ?>
-                                                    <?php foreach($posts as $key => $value): ?>
-                                                    <div class="col-md-12">
-
-                                                        <div class="team-player">
-                                                            <div class="card custom-card1 p-3 my-1">
-                                                                <?php if($value->user_mode == '1'): ?>
-                                                                <div class="profile-photo-small d-flex">
-
-                                                                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
-                                                                        alt="Circle Image"
-                                                                        class="img-raised rounded-circle img-fluid  z-depth-2"
-                                                                        alt="avatar">
-
-                                                                    <div class="m-0 p-0">
-                                                                        <h4 class="card-title pl-2 mt-0 mb-0">Anonymous
-                                                                        </h4>
-                                                                        <p class="small pl-2 m-0">1 hour ago</p>
+                                </div>
                                                                     </div>
                                                                 </div>
-                                                                <hr class="m-0">
-                                                                <?php else: ?>
+                                                            </div>
 
-                                                                <div class="profile-photo-small d-flex">
-                                                                    <div class="col-sm px-0 align-items-center">
+                                                            <!-- Classic Modal -->
+                                                            <div class="modal fade" id="edit-post<?= $key ?>" tabindex="-1"
+                                                                role="dialog">
+                                                                <div class="modal-dialog modal-dialog-centered modal-lg"
+                                                                    role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title">Edit Post</h5>
+                                                                            <button type="button" class="close"
+                                                                                data-dismiss="modal" aria-label="Close">
+                                                                                <i class="material-icons">clear</i>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+
+                                                                            <div class="card container">
+                                                                                <div class="form-group ">
+                                                                                    <label>Title</label>
+                                                                                    <div class="input-group">
+                                                                                        <input type="text" id="title"
+                                                                                            name="title"
+                                                                                            value="<?= $value->title ?>"
+                                                                                            class="form-control"
+                                                                                            placeholder="Title..." value=""
+                                                                                            required>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="card container">
+                                                                                <div class="form-group">
+                                                                                    <label>Tags</label>
+                                                                                    <textarea name="description"
+                                                                                        class="form-control"
+                                                                                        placeholder="Description..." cols="30"
+                                                                                        rows="5"></textarea>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="card my-auto mx-auto">
+                                                                                <h4 class="h4 p-3">Post Content</h4>
+                                                                                <div id="editor">
+                                                                                    <?= $value->content ?>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <input type="hidden" name="community_id"
+                                                                                id="community-id"
+                                                                                value="<?= $value->community_id; ?>">
+                                                                            <input type="hidden" name="id" id="id"
+                                                                                value="<?= $value->id; ?>">
+                                                                            <div class="mt-3">
+
+                                                                                <button id="edit_post"
+                                                                                    class="btn btn-primary">Save</button>
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button"
+                                                                                class="btn btn-danger btn-link"
+                                                                                data-dismiss="modal">Close</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--  End Modal -->
+
+
+                                                            <!-- Classic Modal -->
+                                                            <div class="modal fade" id="delete-post<?= $key ?>" tabindex="-1"
+                                                                role="dialog">
+                                                                <div class="modal-dialog modal-dialog-centered modal-lg"
+                                                                    role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title">Are you sure do you want to
+                                                                                delete your post?</h5>
+                                                                            <button type="button" class="close"
+                                                                                data-dismiss="modal" aria-label="Close">
+                                                                                <i class="material-icons">clear</i>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+
+
+
+
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button"
+                                                                                class="btn btn-primary btn-link"
+                                                                                data-dismiss="modal">Close</button>
+                                                                            <a href="<?= base_url() ?>/delete-post/<?= $value->id ?>"
+                                                                                class="btn btn-danger">
+                                                                                Delete</a>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--  End Modal -->
+
+
+                                                            <?php endforeach; ?>
+                                                            <?php else: ?>
+
+                                                            <div class="col-md-4">
+
+
+                                                                <div class="team-player">
+                                                                    <div
+                                                                        class="card custom-card1 card-body justify-content-center">
+
+                                                                        <p class="text-center">No Post Yet</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <?php endif; ?>
+
+
+
+                                                        </div>
+
+                                                        <!-- end content -->
+
+                                                    </div>
+                                                    <div class="tab-pane" id="history">
+                                                        <!-- shared content -->
+                                                        <div class="row m-3">
+                                                            <?php if(!empty($shared)): ?>
+                                                            <?php foreach($shared as $key => $value): ?>
+
+                                                            <div class="col-md-4">
+                                                                <div class="card custom-card1 p-3">
+
+                                                                    <div class="profile-photo-small d-flex">
+
                                                                         <?php if(!empty($value->name)): ?>
 
                                                                         <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $value->name ?>"
@@ -253,415 +550,159 @@
                                                                             alt="avatar">
 
                                                                         <?php endif; ?>
-                                                                    </div>
-                                                                            
-                                                                    <div class="m-0 p-0 col-sm-10">
-                                                                        <div class="d-flex align-items-center">
-                                                                            <h5 class="card-title pl-2 mt-0 mb-0">
-                                                                                <?= $value->nickname;?> </h5> <i
-                                                                                class="fa fa-chevron-right pl-2"></i>
-                                                                            <h5 class="card-title pl-2 mt-0 mb-0">Test
-                                                                                Community<h3>
+                                                                        <hr class="m-0">
+                                                                        <div class="m-0 p-0">
+
+                                                                            <h4 class="card-title pl-2 mt-0 mb-0">
+                                                                                <?= $value->nickname; ?>
+                                                                                <span class="fa fa-share small"
+                                                                                    style="float-right"></span>
+                                                                            </h4>
+                                                                            <p class="small pl-2 m-0">1 hour ago </p>
+
+
                                                                         </div>
-                                                                        <p class="small pl-2 m-0">1 hour ago</p>
+
                                                                     </div>
-                                                                    <div class="col-sm">
-                                                                    <a href=""><i class="fa fa-ellipsis-h"></i></a>
+
+                                                                    <div class="card-body m-0 p-0">
+                                                                        <p class="card-description">
+                                                                            <?= character_limiter($value->content, 180); ?>
+                                                                        </p>
+                                                                    </div>
+
+                                                                    <div class="card-footer justify-content-center m-0 p-0">
+
+                                                                        <a href="<?= base_url(); ?>/post-share/<?= $value->post_id ?>/<?= $value->community_id ?>"
+                                                                            class="btn btn-link m-0 p-2"><i
+                                                                                class="fa fa-eye m-0 p-0"></i> View Post </a>
+                                                                        <a href="#" data-toggle="modal"
+                                                                            data-target="#edit-shared-post<?= $key?>"
+                                                                            class="btn btn-link m-0 p-2"><i
+                                                                                class="fa fa-recycle m-0 p-0"></i> Edit Post</a>
+                                                                        <a href="#" data-toggle="modal"
+                                                                            data-target="#delete-shared-post<?= $key?>"
+                                                                            class="btn btn-link m-0 p-2"><i
+                                                                                class="fa fa-trash m-0 p-0"></i> Delete</a>
+
                                                                     </div>
                                                                 </div>
-
-                                                                <?php endif; ?>
-                                                                <div class="card-body  m-0 p-0">
-                                                                    <p class="m-0 p-0 card-description">
-                                                                        <p>Lorem ipsum dolor sit amet, consectetur
-                                                                            adipiscing elit. Donec aliquet pharetra
-                                                                            sapien,</p>
-                                                                        <span
-                                                                            class="badge badge-pill badge-info"><?= character_limiter('test', 10) ?></span>
-
-                                                                    </p>
-                                                                </div>
-                                                                <div class="card-footer m-0 py-0">
-                            <!-- <div class="btn-group btn-group-sm" role="group" aria-label="">
-                            <button type="button" class="btn"><i class="fa fa-chevron-circle-up"></i></button>
-                            <button type="button" class="btn "><i class="fa fa-chevron-circle-down"></i></button>
-                        </div> -->
-                            <div class="col-sm-12 text-center">
-                                <a href="#comments" class="btn btn-link not_joined h6"><i class="fa fa-chevron-up pr-1 text-success"></i>
-                                12 Upvotes
-                            </a>
-                                <a href="#comments" class="btn btn-link not_joined h6"><i class="fa fa-chevron-down pr-1 text-danger"></i>
-                                3 Devotes
-                            </a>
-                                <?php if(empty($users_community)) : ?>
-
-                                <a href="#comments" class="btn btn-link not_joined h6"><i class="fa fa-comment pr-1"></i>
-                                    <?php 
-                                              if(1000 >= 1000){ 
-                                                echo round((1200/1000),1). 'K'; 
-                                              }elseif(1000000 >= 1000000){
-                                                echo round((1000000/1000000),1). 'M';
-                                              }else{
-                                                echo '50';
-                                              } ?>
-                                    Comments</a>
-                                <!-- <a href="#" class="btn btn-link not_joined h6"><i class="fa fa-share pr-1"></i>
-                                    <?php 
-                                              if(1000 >= 1000){ 
-                                                echo round((1200/1000),1). 'K'; 
-                                              }elseif(1000000 >= 1000000){
-                                                echo round((1000000/1000000),1). 'M';
-                                              }else{
-                                                echo '50';
-                                              } ?>
-                                    Share Post</a> -->
-
-                                <?php if(empty($report)): ?>
-                                <a href="#" class="btn btn-link not_joined h6" class="btn btn-link"><i
-                                        class="fa fa-exclamation pr-1 "></i>
-                                    Report Post</a>
-                                <?php else: ?>
-
-                                <a href="#" class="btn btn-link not_joined h6"><i class="fa fa-exclamation pr-1 text-danger"></i>
-                                    Reported</a>
-                                <?php endif; ?>
-
-                                <?php else: ?>
-                                <a href="#comments" class="btn btn-link h6"><i class="fa fa-comment pr-1"></i>
-                                    <?php 
-                                              if(1000 >= 1000){ 
-                                                echo round((1200/1000),1). 'K'; 
-                                              }elseif(1000000 >= 1000000){
-                                                echo round((1000000/1000000),1). 'M';
-                                              }else{
-                                                echo '50';
-                                              } ?>
-                                    Comments</a>
-                                <!-- <a href="#" data-toggle="modal" data-target="#share" class="btn btn-link h6"><i
-                                        class="fa fa-share pr-1"></i>
-                                    <?php 
-                                              if(1000 >= 1000){ 
-                                                echo round((1200/1000),1). 'K'; 
-                                              }elseif(1000000 >= 1000000){
-                                                echo round((1000000/1000000),1). 'M';
-                                              }else{
-                                                echo '50';
-                                              } ?>
-                                    Share Post</a> -->
-
-                                <?php if(empty($report)): ?>
-                                <a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-link h6" class="btn btn-link"><i class="fa fa-exclamation pr-1"></i> Report Post</a>
-                                <?php else: ?>
-
-                                <a href="#" class="btn btn-lin h5k"><i class="fa fa-exclamation pr-1"></i> Reported</a>
-                                <?php endif; ?>
-                                <?php endif; ?>
-                            </div>
-                        </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
 
-                                                    <!-- Classic Modal -->
-                                                    <div class="modal fade" id="edit-post<?= $key ?>" tabindex="-1"
-                                                        role="dialog">
-                                                        <div class="modal-dialog modal-dialog-centered modal-lg"
-                                                            role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title">Edit Post</h5>
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="modal" aria-label="Close">
-                                                                        <i class="material-icons">clear</i>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
 
-                                                                    <div class="card container">
-                                                                        <div class="form-group ">
-                                                                            <label>Title</label>
-                                                                            <div class="input-group">
-                                                                                <input type="text" id="title"
-                                                                                    name="title"
-                                                                                    value="<?= $value->title ?>"
-                                                                                    class="form-control"
-                                                                                    placeholder="Title..." value=""
-                                                                                    required>
+                                                            <!-- Classic Modal -->
+                                                            <div class="modal fade" id="edit-shared-post<?= $key ?>"
+                                                                tabindex="-1" role="dialog">
+                                                                <div class="modal-dialog modal-dialog-centered modal-lg"
+                                                                    role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title">Edit Shared Post</h5>
+                                                                            <button type="button" class="close"
+                                                                                data-dismiss="modal" aria-label="Close">
+                                                                                <i class="material-icons">clear</i>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+
+
+                                                                            <div class="card container">
+                                                                                <div class="form-group">
+                                                                                    <label>Tags</label>
+                                                                                    <textarea name="shared_content"
+                                                                                        class="form-control" placeholder="Tags"
+                                                                                        cols="30"
+                                                                                        rows="5"><?= $value->content ?></textarea>
+                                                                                </div>
                                                                             </div>
+
+
+                                                                            <input type="hidden" name="shared_id" id="id"
+                                                                                value="<?= $value->id; ?>">
+                                                                            <div class="mt-3">
+
+                                                                                <button id="edit_shared_post"
+                                                                                    class="btn btn-primary">Save</button>
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button"
+                                                                                class="btn btn-danger btn-link"
+                                                                                data-dismiss="modal">Close</button>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="card container">
-                                                                        <div class="form-group">
-                                                                            <label>Tags</label>
-                                                                            <textarea name="description"
-                                                                                class="form-control"
-                                                                                placeholder="Description..." cols="30"
-                                                                                rows="5"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <!--  End Modal -->
+
+                                                            <!-- Classic Modal -->
+                                                            <div class="modal fade" id="delete-shared-post<?= $key ?>"
+                                                                tabindex="-1" role="dialog">
+                                                                <div class="modal-dialog modal-dialog-centered modal-lg"
+                                                                    role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title">Are you sure do you want to
+                                                                                delete your shared post?</h5>
+                                                                            <button type="button" class="close"
+                                                                                data-dismiss="modal" aria-label="Close">
+                                                                                <i class="material-icons">clear</i>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+
+
+
+
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button"
+                                                                                class="btn btn-primary btn-link"
+                                                                                data-dismiss="modal">Close</button>
+                                                                            <a href="<?= base_url() ?>/delete-shared-post/<?= $value->id ?>"
+                                                                                class="btn btn-danger m-0 p-2">
+                                                                                Delete</a>
+
                                                                         </div>
                                                                     </div>
-
-                                                                    <div class="card my-auto mx-auto">
-                                                                        <h4 class="h4 p-3">Post Content</h4>
-                                                                        <div id="editor">
-                                                                            <?= $value->content ?>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <input type="hidden" name="community_id"
-                                                                        id="community-id"
-                                                                        value="<?= $value->community_id; ?>">
-                                                                    <input type="hidden" name="id" id="id"
-                                                                        value="<?= $value->id; ?>">
-                                                                    <div class="mt-3">
-
-                                                                        <button id="edit_post"
-                                                                            class="btn btn-primary">Save</button>
-
-                                                                    </div>
-
                                                                 </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button"
-                                                                        class="btn btn-danger btn-link"
-                                                                        data-dismiss="modal">Close</button>
+                                                            </div>
+                                                            <!--  End Modal -->
+
+
+
+
+                                                            <?php endforeach; ?>
+                                                        </div>
+                                                        <?php else: ?>
+
+                                                        <div class="col-md-4">
+
+
+                                                            <div class="team-player">
+                                                                <div class="card custom-card1 card-body justify-content-center">
+
+                                                                    <p class="text-center">No Shared Post Yet</p>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <!--  End Modal -->
+                                                        <?php endif; ?>
 
-
-                                                    <!-- Classic Modal -->
-                                                    <div class="modal fade" id="delete-post<?= $key ?>" tabindex="-1"
-                                                        role="dialog">
-                                                        <div class="modal-dialog modal-dialog-centered modal-lg"
-                                                            role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title">Are you sure do you want to
-                                                                        delete your post?</h5>
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="modal" aria-label="Close">
-                                                                        <i class="material-icons">clear</i>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-
-
-
-
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button"
-                                                                        class="btn btn-primary btn-link"
-                                                                        data-dismiss="modal">Close</button>
-                                                                    <a href="<?= base_url() ?>/delete-post/<?= $value->id ?>"
-                                                                        class="btn btn-danger">
-                                                                        Delete</a>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!--  End Modal -->
-
-
-                                                    <?php endforeach; ?>
-                                                    <?php else: ?>
-
-                                                    <div class="col-md-4">
-
-
-                                                        <div class="team-player">
-                                                            <div
-                                                                class="card custom-card1 card-body justify-content-center">
-
-                                                                <p class="text-center">No Post Yet</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <?php endif; ?>
-
-
-
-                                                </div>
-
-                                                <!-- end content -->
-
-                                            </div>
-                                            <div class="tab-pane" id="history">
-                                                <!-- shared content -->
-                                                <div class="row m-3">
-                                                    <?php if(!empty($shared)): ?>
-                                                    <?php foreach($shared as $key => $value): ?>
-
-                                                    <div class="col-md-4">
-                                                        <div class="card custom-card1 p-3">
-
-                                                            <div class="profile-photo-small d-flex">
-
-                                                                <?php if(!empty($value->name)): ?>
-
-                                                                <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $value->name ?>"
-                                                                    alt="Circle Image"
-                                                                    class="rounded-circle img-fluid z-depth-2">
-
-                                                                <?php else: ?>
-                                                                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
-                                                                    alt="Circle Image"
-                                                                    class="img-raised rounded-circle img-fluid  z-depth-2"
-                                                                    alt="avatar">
-
-                                                                <?php endif; ?>
-                                                                <hr class="m-0">
-                                                                <div class="m-0 p-0">
-
-                                                                    <h4 class="card-title pl-2 mt-0 mb-0">
-                                                                        <?= $value->nickname; ?>
-                                                                        <span class="fa fa-share small"
-                                                                            style="float-right"></span>
-                                                                    </h4>
-                                                                    <p class="small pl-2 m-0">1 hour ago </p>
-
-
-                                                                </div>
-
-                                                            </div>
-
-                                                            <div class="card-body m-0 p-0">
-                                                                <p class="card-description">
-                                                                    <?= character_limiter($value->content, 180); ?>
-                                                                </p>
-                                                            </div>
-
-                                                            <div class="card-footer justify-content-center m-0 p-0">
-
-                                                                <a href="<?= base_url(); ?>/post-share/<?= $value->post_id ?>/<?= $value->community_id ?>"
-                                                                    class="btn btn-link m-0 p-2"><i
-                                                                        class="fa fa-eye m-0 p-0"></i> View Post </a>
-                                                                <a href="#" data-toggle="modal"
-                                                                    data-target="#edit-shared-post<?= $key?>"
-                                                                    class="btn btn-link m-0 p-2"><i
-                                                                        class="fa fa-recycle m-0 p-0"></i> Edit Post</a>
-                                                                <a href="#" data-toggle="modal"
-                                                                    data-target="#delete-shared-post<?= $key?>"
-                                                                    class="btn btn-link m-0 p-2"><i
-                                                                        class="fa fa-trash m-0 p-0"></i> Delete</a>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-
-                                                    <!-- Classic Modal -->
-                                                    <div class="modal fade" id="edit-shared-post<?= $key ?>"
-                                                        tabindex="-1" role="dialog">
-                                                        <div class="modal-dialog modal-dialog-centered modal-lg"
-                                                            role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title">Edit Shared Post</h5>
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="modal" aria-label="Close">
-                                                                        <i class="material-icons">clear</i>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-
-
-                                                                    <div class="card container">
-                                                                        <div class="form-group">
-                                                                            <label>Tags</label>
-                                                                            <textarea name="shared_content"
-                                                                                class="form-control" placeholder="Tags"
-                                                                                cols="30"
-                                                                                rows="5"><?= $value->content ?></textarea>
-                                                                        </div>
-                                                                    </div>
-
-
-                                                                    <input type="hidden" name="shared_id" id="id"
-                                                                        value="<?= $value->id; ?>">
-                                                                    <div class="mt-3">
-
-                                                                        <button id="edit_shared_post"
-                                                                            class="btn btn-primary">Save</button>
-
-                                                                    </div>
-
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button"
-                                                                        class="btn btn-danger btn-link"
-                                                                        data-dismiss="modal">Close</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!--  End Modal -->
-
-                                                    <!-- Classic Modal -->
-                                                    <div class="modal fade" id="delete-shared-post<?= $key ?>"
-                                                        tabindex="-1" role="dialog">
-                                                        <div class="modal-dialog modal-dialog-centered modal-lg"
-                                                            role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title">Are you sure do you want to
-                                                                        delete your shared post?</h5>
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="modal" aria-label="Close">
-                                                                        <i class="material-icons">clear</i>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-
-
-
-
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button"
-                                                                        class="btn btn-primary btn-link"
-                                                                        data-dismiss="modal">Close</button>
-                                                                    <a href="<?= base_url() ?>/delete-shared-post/<?= $value->id ?>"
-                                                                        class="btn btn-danger m-0 p-2">
-                                                                        Delete</a>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!--  End Modal -->
-
-
-
-
-                                                    <?php endforeach; ?>
-                                                </div>
-                                                <?php else: ?>
-
-                                                <div class="col-md-4">
-
-
-                                                    <div class="team-player">
-                                                        <div class="card custom-card1 card-body justify-content-center">
-
-                                                            <p class="text-center">No Shared Post Yet</p>
-                                                        </div>
+                                                        <!-- end shared content -->
                                                     </div>
                                                 </div>
-                                                <?php endif; ?>
-
-                                                <!-- end shared content -->
                                             </div>
                                         </div>
+                                        <!-- end tabs -->
                                     </div>
                                 </div>
-                                <!-- end tabs -->
                             </div>
                         </div>
                     </div>
+
+                    
                 </div>
             </div>
         </div>
