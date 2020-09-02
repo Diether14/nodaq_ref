@@ -420,7 +420,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content bg-light">
             <div class="modal-header bg-primary py-3 align-items-center">
-                <h5 class="create-post-title modal-title w-100 fw600 m-0 text-white">Create Post</h5>
+                <h5 class="create-post-title modal-title w-100 fw600 m-0 text-white">Create Pssost</h5>
                 <button type="button " class="close bg-danger text-white btn-link p-2 rounded-circle"
                     data-dismiss="modal" aria-label="Close">
                     <i class="material-icons">clear</i>
@@ -480,7 +480,7 @@
             <div class="modal-footer d-block">
                 <button type="button" class="btn bg-danger text-white btn-link float-right"
                     data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary float-left">Save</button>
+                <button type="submit" class="btn btn-primary float-left"></button>
             </div>
             </form>
         </div>

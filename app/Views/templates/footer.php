@@ -57,6 +57,7 @@
   <script src="<?= base_url(); ?>/public/user/assets/js/plugins/moment.min.js"></script>
   <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
   <script src="<?= base_url(); ?>/public/user/assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
+  <script src="<?= base_url(); ?>/public/user/assets/js/plugins/jquery.timeago.js" type="text/javascript"></script>
   <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
   <script src="<?= base_url(); ?>/public/user/assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
   <!--  Google Maps Plugin    -->
@@ -417,53 +418,13 @@
   /**
    * Saving example
    */
-  saveButton.addEventListener('click', function () {
-    editor.save().then((savedData) => {
-      // cPreview.show(savedData, document.getElementById("output"));
-      console.log(savedData.blocks);
-      var base_url = $('input[name=base]').val();
-      var title = $("input[name=title]").val();
-      var community_id = $("input[name=community_id]").val();
-      var content = savedData;
-      var tags = $("input[name=tags]").val();
-      var category_id = $("input[name=category_id]").val();
-      var subclass_id = $("input[name=subclass_id]").val();
-
-      var data = {
-        'content': content,
-        'title': title,
-        'community_id': community_id,
-        'tags': tags,
-        'category_id': category_id,
-        'subclass_id': subclass_id
-      };
-
-      if(title == ''  || content == '' || community_id == '' || tags == ''  || category_id == '' || subclass_id == ''){
-            alert('Please fill out the fields!');
-      }else{
-        $.ajax({
-          type: "POST",
-          url  : base_url + '/save_post',
-          data:  data, 
-          dataType: "JSON",  
-          success: function(data)
-          {
-            alert(data.msg);
-            location.reload();
-          },
-          error: function (jqXHR, textStatus, errorThrown)
-            {
-              alert('There is an error!');
-            }
-              });
-      }
-    });
-  });
 </script>
 
 <script>
     $(document).ready( function () {
         $('#myTable').DataTable();
+        jQuery("time.timeago").timeago();
+                                            
     } );
   </script>
 </body>

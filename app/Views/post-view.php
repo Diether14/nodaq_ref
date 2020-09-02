@@ -114,8 +114,10 @@
                                 </a>
                                 <?php endif; ?>
                                 <p class="text ">
+                                
+                                    <time class="timeago" datetime="<?= $blog['updated_at']; ?>"></time>
+                                        
                                     
-                                    <?php echo $blog['updated_at']; ?>
                                 </p>
                             </div>
 
@@ -131,9 +133,11 @@
                             </div>
                             <div class="col-sm-12">
                                 <div class="collapse-content" contenteditable="false">
-
-                                    <?= $blog['content']; ?>
-
+                                
+                                    <div id="blog-content">
+                                        <?= $blog['content']?>
+                                    </div>
+                                    
                                 </div>
                                 <p>
                                     <span class="badge badge-pill badge-info"><?= $blog['description']; ?></span>
@@ -325,7 +329,30 @@
         </div>
     </div>
 
+    <script src="<?= base_url(); ?>/public/editorjs/dist/editor.js"></script>
     <script>
+    
+        const editor2 = new EditorJS({
+            /**
+             * Create a holder for the Editor and pass its ID
+             */
+            holder : 'blog-content',
+
+            /**
+             * Available Tools list.
+             * Pass Tool's class or Settings object for each Tool you want to use
+             */
+            tools: {
+                
+                // ...
+            },
+
+            /**
+             * Previously saved data that should be rendered
+             */
+            data: <?= $blog["content"]?>
+        });
+
         var users = [{
                     id: 1,
                     avatar: 'm_1',
