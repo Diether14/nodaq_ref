@@ -36,6 +36,12 @@
                         class="fa fa-plus pr-2"></i>New Community</button>
             </div>
             <div class="community_hr my-4"></div>
+            <div class="input-group mb-3 community_search">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-search"></i></span>
+                </div>
+                <input type="text" name="txtSearchCommunity" id="txtSearchCommunity" class="form-control" placeholder="Search..">
+            </div>
             <div class="list-group">
                 <a href="<?= base_url(); ?>/community-home"><button type="button" class="list-group-item list-group-item-action  ">
                     Recommended
@@ -299,18 +305,19 @@
 
                                             <div class="modal-body">
                                                 <div class="text-center">
-                                                    <h3>Created by: <strong><?= $value->nickname ?></strong></h3>
+                                                    <!-- <h3>Created by: <strong><?= $value->nickname ?></strong></h3> -->
                                       
-                                                    </strong></p>
-                                                    <p>Type: <strong>
+                                                    <!-- </strong></p> -->
+                                                    <!-- <p>Type: <strong>
                                                             <?php if($value->community_type == '0'): ?>
                                                             Public
                                                             <?php else: ?>
                                                             Private
                                                             <?php endif; ?>
-                                                        </strong></p>
+                                                        </strong></p> -->
+                                                        
 
-                                                    <p>Created At: <strong><?= $value->created_at ?></strong></p>
+                                                    <p>Date Created: <strong><?= date("F j, Y g:i A",strtotime($value->created_at)) ?></strong></p>
                                                 </div>
                                                 </hr><br>
                                             </div>
@@ -340,7 +347,7 @@
                                                             <label>
                                                                 <input type="checkbox" name="mode"
                                                                     <?= ($value->anounymous == '1' ? 'checked' : null) ?>>
-                                                                <span class="toggle"></span>
+                                                               <span class="toggle"></span>
                                                                 Anonymous mode
                                                             </label>
 
@@ -398,6 +405,9 @@
 
                     <div class="form-group col-sm-12">
                         <input type="text" name="title" class="form-control" placeholder="Title">
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <input type="text" name="community-slug" class="form-control" placeholder="Community URL" minlength="4">
                     </div>
                     <div class="form-group col-sm-12">
                         <textarea name="content" class="form-control" cols="5" rows="5"

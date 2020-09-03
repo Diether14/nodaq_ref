@@ -42,11 +42,11 @@
     </style>
 
 <?php if(session()->get('isLoggedIn')): ?>
-<body class="profile-page sidebar-collapse">
+<body class="profile-page sidebar-collapse" id="noodaq-body">
     <?php 
       $uri = service('uri');
     ?>
-    <nav class="navbar  fixed-top navbar-expand-lg p-0 m-0">
+    <nav id="main-nav" class="navbar  fixed-top navbar-expand-lg p-0 m-0">
         <div class="container">
             <div class="navbar-translate">
                 <a class="navbar-brand" href="<?= base_url(); ?>/community-home">
@@ -126,20 +126,17 @@
             <!-- Topbar Search -->
             <form class="d-none d-sm-inline-block form-inline ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                 <div class="input-group">
-                <input type="text" class="form-control bg-light rounded small hide " placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                <input type="text" class="form-control " placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <button class="btn bg-transparent" type="button">
+                    <button class="btn bg-transparent rounded-circle p-2" type="button">
                     <i class="fas fa-search fa-sm text-primary"></i>
                     </button>
                 </div>
                 </div>
-            </form>                 
-            <li class="nav-item">
-            <span>|</span>
-            </li>
+            </form>
                <!-- Nav Item - Alerts -->
-               <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               <li class="nav-item  no-arrow mx-1">
+              <a class="nav-link btn bg-transparent  rounded-circle p-2 text-center d-flex justify-content-center align-items-center" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw text-primary"><span class="notification-badge bg-danger"></span></i>
                 <!-- Counter - Alerts -->
                 
@@ -147,7 +144,7 @@
               <!-- Dropdown - Alerts -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
-                  Alerts Center
+                  NOTIFICATIONS
                 </h6>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="mr-3">
@@ -186,9 +183,7 @@
               </div>
             </li>
 
-          <li class="nav-item">
-          <span>|</span>
-          </li>
+        
              <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= session()->get('nickname') ?></span>
@@ -207,6 +202,10 @@
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                   Activity Log
+                </a>
+                <a class="dropdown-item" href="#" id="dm-switch">
+                  <i class="fas fa-moon fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Dark Mode
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">

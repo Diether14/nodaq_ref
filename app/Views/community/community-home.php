@@ -316,7 +316,7 @@
 
                                             <div class="modal-body">
                                                 <div class="text-center">
-                                                    <h3>Created by: <strong><?= $value->nickname ?></strong></h3>
+                                                    <!-- <h3>Created by: <strong><?= $value->nickname ?></strong></h3> -->
                                                     <!-- <p>Status: <strong>
                                         <php if($value->status == '0'): ?>
                                         Pending
@@ -327,16 +327,16 @@
                                         <php elseif($value->status == '3'): ?>
                                         Banned
                                         <php endif; ?> -->
-                                                    </strong></p>
+                                                    <!-- </strong></p>
                                                     <p>Type: <strong>
                                                             <?php if($value->community_type == '0'): ?>
                                                             Public
                                                             <?php else: ?>
                                                             Private
                                                             <?php endif; ?>
-                                                        </strong></p>
+                                                        </strong></p> -->
 
-                                                    <p>Created At: <strong><?= $value->created_at ?></strong></p>
+                                                        <p>Date Created: <strong><?= date("F j, Y g:i A",strtotime($value->created_at)) ?></strong></p>
                                                 </div>
                                                 </hr><br>
                                             </div>
@@ -382,6 +382,9 @@
 
                     <div class="form-group col-sm-12">
                         <input type="text" name="title" class="form-control" placeholder="Title">
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <input type="text" name="community_slug" class="form-control" placeholder="1234" minlength="4">
                     </div>
                     <div class="form-group col-sm-12">
                         <textarea name="content" class="form-control" cols="5" rows="5"

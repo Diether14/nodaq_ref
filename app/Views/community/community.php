@@ -137,22 +137,22 @@
                 </div>
                 <div class="col-sm">
                     <ul class="nav nav-pills nav-pills justify-content-end px-0 align-items-center view-options" role="tablist">
-                        <li class="nav-item " onclick="toggleView(0)">
+                        <li class="nav-item ">
                             <a class="nav-link p-0 m-0 rounded active show" href="#grid" role="tab" id="community-grid-tab" data-toggle="pill" aria-controls="grid" aria-selected="true">
                                 <i class="fa fa-th"></i>
                             </a>
                         </li>
-                        <li class="nav-item " onclick="toggleView(1)">
+                        <li class="nav-item ">
                             <a class="nav-link p-0 m-0 rounded" href="#list" role="tab" data-toggle="pill" aria-controls="list" id="community-list-tab" aria-selected="false">
                                 <i class="fa fa-list "></i>
                             </a>
                         </li>
-                        <li class="nav-item " onclick="toggleView(2)">
+                        <li class="nav-item ">
                             <a class="nav-link p-0 m-0 rounded" href="#longbars" role="tab" data-toggle="pill" aria-controls="longbars" id="community-longbars-tab" aria-selected="false">
                                 <i class="fa fa-bars"></i>
                             </a>
                         </li>
-                        <li class="nav-item " onclick="toggleView(3)">
+                        <li class="nav-item ">
                             <a class="nav-link p-0 m-0 rounded" href="#bars" role="tab" data-toggle="pill" aria-controls="bars" id="community-bars-tab" aria-selected="false">
                                 <i class="fa fa-align-justify"></i>
                             </a>
@@ -161,7 +161,7 @@
                             <div class="team-player create-post">
                                 <div class="card bg-white custom-card card-body justify-content-center m-0 p-0">
                                     <?php if (!empty($users_community)) : ?>
-                                    <a class="nav-link" data-toggle="modal" data-target="#myModal">
+                                    <a class="nav-link rounded-0" data-toggle="modal" data-target="#myModal">
                                         <i class="fa fa-plus"></i></a>
                                     <?php else : ?>
                                     <a id="not_joined" class="btn btn-link">
@@ -232,7 +232,7 @@
                                             <a class="nav-link" href="#tasks-1" role="tab" data-toggle="tab">
                                                     Notice
                                                 </a>
-                                        </li>save
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -242,47 +242,47 @@
                                     <div class="tab-pane fade show active" id="grid" role="tabpanel" aria-labelledby="community-grid-tab">
                                         <div id="grid-layout" class="card-body pt-0" >
                                             <?php if(!empty($posts[0])): ?>
-                                                <div class="row">
-                                                    <?php foreach ($posts[0] as $key => $value) : ?>
-                                                        
-                                                        <div class="col-xs-12 col-sm-6 col-md-3">
-                                                            <div class="card text-center">
-                                                                <?php if($value->thumbnail): ?>
-                                                                <img class="card-img-top" style=" object-fit: cover;" src="<?= base_url(); ?>/public/post_photos/<?= $value->thumbnail; ?>" alt="">
-                                                                <?php else: ?>
-                                                                <img class="card-img-top" style=" object-fit: cover;" src="<?= base_url(); ?>/public/dummy/post.jpg" alt="">
-                                                                <?php endif; ?>
-                                                                <div class="card-body">
-                                                                    <h4 class="card-title">
-                                                                        <?= character_limiter($value->title, 40) ?>
-                                                                    </h4>
-                                                                
-                                                                    <?php if($value->tags): ?>
-                                                                    <?php 
-                                                                            $tags = explode (",", $value->tags);      
-                                                                        ?>
-                                                                    <?php foreach ($tags as $key1 => $value1): ?>
-                                                                    <span class="badge badge-pill badge-info"><?= $value1 ?></span>
-                                                                    <?php endforeach; ?>
-                                                                    <?php endif; ?>
+                                            <div class="row">
+                                            <?php foreach ($posts[0] as $key => $value) : ?>
 
-                                                                </div>
+                                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                                <div class="card text-center">
+                                                    <?php if($value->thumbnail): ?>
+                                                    <img class="card-img-top" style=" object-fit: cover;" src="<?= base_url(); ?>/public/post_photos/<?= $value->thumbnail; ?>" alt="">
+                                                    <?php else: ?>
+                                                    <img class="card-img-top" style=" object-fit: cover;" src="<?= base_url(); ?>/public/dummy/post.jpg" alt="">
+                                                    <?php endif; ?>
+                                                    <div class="card-body">
+                                                        <h4 class="card-title">
+                                                            <?= character_limiter($value->title, 40) ?>
+                                                        </h4>
+                                                      
+                                                        <?php if($value->tags): ?>
+                                                        <?php 
+                                                                   $tags = explode (",", $value->tags);      
+                                                            ?>
+                                                        <?php foreach ($tags as $key1 => $value1): ?>
+                                                        <span class="badge badge-pill badge-info"><?= $value1 ?></span>
+                                                        <?php endforeach; ?>
+                                                        <?php endif; ?>
 
-                                                                <h6 class=" text-muted ">Posted By: <a href="#"><?= $value->nickname; ?></a>
-                                                                </h6>
-                                                                <h6 class="card-subtitle mb-2 text-muted">
-                                                                    <?= $value->updated_at ?>
-                                                                </h6>
-                                                                <!-- <a class="px-2 " href="#"><?= $value->updated_at ?></a> -->
-                                                                <div class="card-footer justify-content-center">
-                                                                    <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>">
-                                                                        <button class="btn btn-primary btn-sm">read more</button>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                    </div>
 
-                                                    <?php endforeach; ?>
+                                                    <h6 class=" text-muted ">Posted By: <a href="#"><?= $value->nickname; ?></a>
+                                                    </h6>
+                                                    <h6 class="card-subtitle mb-2 text-muted">
+                                                        <?= $value->updated_at ?>
+                                                    </h6>
+                                                    <!-- <a class="px-2 " href="#"><?= $value->updated_at ?></a> -->
+                                                    <div class="card-footer justify-content-center">
+                                                        <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>">
+                                                            <button class="btn btn-primary btn-sm">read more</button>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <?php endforeach; ?>
                                                 </div>
                                             <?php else: ?>
                                                 <div class="col-lg-4  mb-4" >
@@ -435,13 +435,13 @@
                                                     </tbody>
                                                 </table>
                                             <?php else: ?>
-                                                <div class="col-lg-4  mb-4" >
-                                                    <div class="card justify-content-center text-center" style="height:30vh;">
-                                                        <div class="card-bod" >
-                                                            <h4 class="card-title justify-content-center">No Post Yet</h4>
-                                                        </div>
+                                            <div class="col-lg-4  mb-4" >
+                                                <div class="card justify-content-center text-center" style="height:30vh;">
+                                                    <div class="card-bod" >
+                                                        <h4 class="card-title justify-content-center">No Post Yet</h4>
                                                     </div>
                                                 </div>
+                                            </div>
                                             <?php endif; ?>
                                         </div>
                                     </div>
@@ -506,6 +506,7 @@
             </div>
         </div>
     </div>
+</div>
 
 <script>
     var viewLayout = 0
