@@ -65,31 +65,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
 
-                    <!-- <li class="nav-item">
-                        <form action="<?= base_url() ?>/search/all" class="form-inline ml-2">
-                            <div class="form-group has-white">
-                                <input type="text" name="q" class="form-control" placeholder="Search">
-                            </div>
-                            <button type="submit" class="btn btn-white btn-raised btn-fab btn-round">
-                                <i class="material-icons">search</i>
-                            </button>
-                        </form>
-                    </li> -->
-                    <!-- <li class="nav-item">
-                        <a href="<?= base_url(); ?>/community-home" class="nav-link">
-                            <i class="fa fa-home"></i> Home
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="javascript:;" class="nav-link">
-                            <i class="fa fa-key"></i> Authentication
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<?= base_url(); ?>/emoticon-store" class="nav-link">
-                            <i class="fa fa-smile-o"></i> Emoticon Store
-                        </a>
-                    </li> -->
+            
                     <!-- <li class="dropdown nav-item">
                         <a href="javascript:;" class="profile-photo dropdown-toggle nav-link" data-toggle="dropdown">
                             <div class="profile-photo-small">
@@ -106,34 +82,21 @@
 
                             </div>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right">
-
-                            <a href="<?= base_url() ?>/community" class="dropdown-item">My Community</a>
-                            <a href="<?= base_url() ?>/Admin" class="dropdown-item">Manage Community</a>
-                            <a href="<?= base_url() ?>/my-emoticon-store" class="dropdown-item">My Emoticon Store</a>
-                            <hr>
-                            <a href="/weendi/profile" class="dropdown-item">Profile</a>
-
-                            <a href="/weendi/settings" class="dropdown-item">Settings</a>
-
-                            <a href="#" data-toggle="modal" data-target="#logoutModal" class="dropdown-item">Sign
-                                out</a>
-
-                        </div>
-                    </li> -->
+                    
 
               
             <!-- Topbar Search -->
-            <form class="d-none d-sm-inline-block form-inline ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <form action="<?= base_url() ?>/search/all" class="d-none d-sm-inline-block form-inline ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                 <div class="input-group">
-                <input type="text" class="form-control " placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                <input type="text" class="form-control " name="q" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <button class="btn bg-transparent rounded-circle p-2" type="button">
+                    <button class="btn bg-transparent rounded-circle p-2" type="submit">
                     <i class="fas fa-search fa-sm text-primary"></i>
                     </button>
                 </div>
                 </div>
             </form>
+
                <!-- Nav Item - Alerts -->
                <li class="nav-item  no-arrow mx-1">
               <a class="nav-link btn bg-transparent  rounded-circle p-2 text-center d-flex justify-content-center align-items-center" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

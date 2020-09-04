@@ -115,11 +115,10 @@
                                             </div>
                                         </div>
                                         <hr>
-                                        <!-- <p class="card-text"><?= $value->description ?></p> -->
 
                                         <div class="card-body  m-0 p-0">
-                                            <p class="m-0 p-0 card-description">
-                                                <?= character_limiter($value->description, 180) ?>
+                                            <p class="m-0    p-0 card-description">
+                                                test
                                             </p>
                                         </div>
 
@@ -216,11 +215,11 @@
                                             </div>
                                         </div>
                                         <hr>
-                                        <!-- <p class="card-text"><?= $value->description ?></p> -->
+                                     
 
                                         <div class="card-body  m-0 p-0">
                                             <p class="m-0 p-0 card-description">
-                                                <?= character_limiter($value->description, 180) ?>
+                                                test description
                                             </p>
                                         </div>
 
