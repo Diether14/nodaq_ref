@@ -1419,46 +1419,6 @@ class Community extends BaseController
      
         }
 
-        public function update_anounymous(){
-            ini_set('display_errors', 1);
-          
-            helper(['form', 'url']);
-
-            $model = new UserscommunityModel();
-
-            if($this->request->getPost('mode') == 'on'){
-                $anounymous_mode = '1';
-            }else{
-                $anounymous_mode = '0';
-            }
-
-            $id = $this->request->getPost('id');
-            $community_id = $this->request->getPost('community_id');
-            
-            $community = $model->where('community_id', $community_id)->where('user_id', session()->get('id'))
-                   ->findAll();
-           
-            if(!empty($community)){    
-                $data = [
-                    'anounymous' => $anounymous_mode,
-                ];
-            
-                if($model->update($id ,$data)){
-                
-                    return redirect()->to( 'community/'.$community_id.'/0');
-                }else{
-                    $msg = 'There is an error in joining the community!';
-                    return redirect()->to( 'community-home')->with('msg', $msg);
-                }
-            }else{
-                $msg = 'There is an error!';
-                return redirect()->to( 'community-home')->with('msg', $msg);
-            }
-
-
-            
-
-        }
 
  
 }

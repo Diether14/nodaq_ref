@@ -90,11 +90,7 @@ $routes->get('manager-create-community', 'Community::manager_create_community', 
 // $routes->get('sub-category', 'Category::sub_category', ['filter' => 'auth']);
 
 
-
 $routes->match(['get','post'],'user_join', 'Community::user_join');
-$routes->match(['get','post'],'update_anounymous', 'Community::update_anounymous');
-
-
 
 //administrator
 $routes->get('/admin', 'Admin::index', ['filter' => 'auth']);

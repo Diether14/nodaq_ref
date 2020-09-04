@@ -229,7 +229,7 @@
                                             
                                                 <div class="col-10 community-title  ">
                                                     <h6>
-                                                        <a href="community-join/<?= $value->id;  ?>" data-toggle="modal" data-target="#anonymousModal_<?= $key ?>"
+                                                        <a href="<?= base_url(); ?>/community/<?= $value->id;  ?>/0"
                                                             style="color: <?= $value->text_color; ?>"><?= character_limiter($value->title, 15) ?>
                                                         </a>
                                                     </h6>
@@ -252,9 +252,9 @@
                                             <p class="text-muted mx-3 mt-2"><?= character_limiter($value->content, 70); ?></p>
                 
                                             <div class="card-footer justify-content-center p-0 my-3">
-                                                <div class="togglebutton d-flex w-100">
+                                                <div class="togglebutton d-flex w-100 text-center">
 
-                                                    <div class="float-right col-sm-8 ">
+                                                    <div class="col-sm-12">
                                                         <?php if($value->community_type == '0'): ?>
                                                         <span class="badge badge-pill badge-secondary">Public</span>
                                                         <?php else: ?>
@@ -270,18 +270,7 @@
                                                         <span class="badge badge-pill badge-danger">Banned</span>
                                                         <?php endif; ?>
                                                     </div>
-                                                    <div class="col-sm-4 p-0">
-                                                        <label>
-                                                            <i class=" fa fa-user-secret"></i>
-                                                            <?php if($value->anounymous == '1'): ?>
-                                                            <input type="checkbox" checked="" disabled>
-                                                            <span class="toggle"></span>
-                                                            <?php else: ?>
-                                                            <input type="checkbox" disabled>
-                                                            <span class="toggle"></span>
-                                                            <?php endif; ?>
-                                                        </label><br>
-                                                    </div>
+                                                    
 
                                                 </div>
                                             </div>
@@ -325,48 +314,7 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-                                 <!-- Classic Modal -->
-                                 <div class="modal fade" id="anonymousModal_<?= $key ?>" tabindex="-1" role="dialog">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Anonymous mode?</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <i class="material-icons">clear</i>
-                                                </button>
-                                            </div>
-
-                                            <div class="modal-body">
-                                                <div class="text-center">
-                                                    <form class="contact-form"
-                                                        action="<?= base_url(); ?>/update_anounymous" method="post">
-                                                        <div class="togglebutton">
-                                                            <label>
-                                                                <input type="checkbox" name="mode"
-                                                                    <?= ($value->anounymous == '1' ? 'checked' : null) ?>>
-                                                               <span class="toggle"></span>
-                                                                Anonymous mode
-                                                            </label>
-
-                                                            <input type="hidden" value="<?= $value->community_id ?>"
-                                                                name="community_id">
-                                                            <input type="hidden" value="<?= $value->id ?>" name="id">
-                                                        </div>
-                                                        <button type="submit" class="btn btn-primary btn-raised mt-3"
-                                                            id="btnSubmit">
-                                                            Enter
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                                </hr><br>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
+                                 
                                 <?php endforeach; ?>
 
                             </div>
@@ -414,12 +362,6 @@
                             placeholder="Content"></textarea>
                     </div>
                     <div class="d-flex align-items-center">
-<!-- 
-                        <div class="col-sm-6">
-                            <label for="">Community Photo</label>
-                            <input type="file" name="file" class="text-center center-block file-upload form-control"
-                                accept=".png, .jpg, .jpeg">
-                        </div> -->
                         <div class="col-12">
                             <div class="togglebutton d-flex align-items-center">
                                 <label>
@@ -432,46 +374,6 @@
                         </div>
                     </div>
                     <hr>
-                    <!-- <div class="d-flex align-items-center">
-                        <div class="col-sm-6 d-flex">
-                          <div class="col-sm-8 pl-0">
-
-                            <label for="color">Select your theme color:</label>
-                          </div>
-                          <div class="col-sm-4">
-                            <input type="hidden" name="color" value="#FFFFFF" class="myField">
-                        </div>
-                                </div>
-                                <div class="col-sm-6 d-flex">
-                          <div class="col-sm-8 pl-0">
-
-                          <label for="color">Select your text color:</label>
-                          </div>
-                            <div class="col-sm-4">
-                                <input type="color" name="text_color" value="#555555">
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- <hr> -->
-                    <!-- <div class="form-group row col-sm-12">
-                        <div class="col-lg-6">
-                            <label>Upvote Name</label>
-                            <input type="text" name="upvote" class="form-control">
-                        </div>
-
-                        <div class="col-lg-6">
-                            <label>Devote Name</label>
-                            <input type="text" name="devote" class="form-control">
-                        </div>
-
-                    </div> -->
-                    <!-- <div class="form-group row col-sm-12"> 
-                        <div class="col-lg-12">
-                            <label>Join In Question (set question when user join in)</label>
-                            <input type="text" name="questions" class="form-control">
-                        </div>
-                    </div> -->
-
                     <button type="submit" class="btn btn-primary float-right">CREATE</button>
 
                 </form>
