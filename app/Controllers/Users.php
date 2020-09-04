@@ -780,6 +780,7 @@ class Users extends BaseController
     public function post_share($id = NULL, $community_id = NULL){
         ini_set('display_errors', 1);
 
+
         $data = [];
         helper(['form', 'url']);
         // $db      = \Config\Database::connect();
