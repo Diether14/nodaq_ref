@@ -134,8 +134,97 @@
                             <div class="col-sm-12">
                                 <div class="collapse-content" contenteditable="false">
                                 
-                                    <div id="blog-content">
-                                        <?= $blog['content']?>
+                                    <div id="blog-content" class="container-fluid">
+                                    <!-- <pre> -->
+                                        <?php
+                                            $content = unserialize($blog['content']);
+                                            // var_dump($content);
+                                            // exit;
+                                            array_map(function($item){
+                                                switch($item["type"]){
+                                                    case "header":
+                                                        switch($item["data"]["level"]){
+                                                            case "1";
+                                                                ?>
+                                                                    <h1><?= $item["data"]["text"]?> </h1>  
+                                                                <?php
+                                                                break;
+                                                            case "2";
+                                                                ?>
+                                                                    <h2><?= $item["data"]["text"]?> </h2>  
+                                                                <?php
+                                                                break;
+                                                            case "3";
+                                                                ?>
+                                                                    <h3><?= $item["data"]["text"]?> </h3>  
+                                                                <?php
+                                                                break;
+                                                            case "4";
+                                                                ?>
+                                                                    <h4><?= $item["data"]["text"]?> </h4>  
+                                                                <?php
+                                                                break;
+                                                            case "5";
+                                                                ?>
+                                                                    <h5><?= $item["data"]["text"]?> </h5>  
+                                                                <?php
+                                                                break;
+                                                            case "6";
+                                                                ?>
+                                                                    <h6><?= $item["data"]["text"]?> </h6>  
+                                                                <?php
+                                                                break;
+                                                            default:
+                                                                break;
+                                                        }
+                                                        
+                                                        break;
+                                                    case "paragraph":
+                                                        ?>
+                                                            <p><?= $item["data"]["text"]?> </p>  
+                                                        <?php
+                                                        break;
+                                                    case "list":
+                                                        if($item["data"]["style"] == "unordered"){
+                                                            ?>
+                                                                <ul>
+                                                                    <?php
+                                                                        array_map(function($string){
+                                                                            echo "<li>{$string}</li>";
+                                                                        }, $item["data"]["items"]);
+                                                                    ?>
+                                                                </ul>
+                                                            <?php
+                                                        }else{
+                                                            ?>
+                                                                <ol>
+                                                                    <?php
+                                                                        array_map(function($string){
+                                                                            echo "<li>{$string}</li>";
+                                                                        }, $item["data"]["items"]);
+                                                                    ?>
+                                                                </ol>
+                                                            <?php
+                                                        }
+                                                        break;
+                                                    case "delimiter":
+                                                        ?>
+                                                            <div class="text-center">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                            </div>
+                                                        <?php
+                                                    case "image":
+                                                        ?>
+                                                            <img src="<?= $item["data"]["file"]["url"]?>">
+                                                        <?php
+                                                    default:
+                                                    
+                                                        break;
+                                                }
+                                            }, $content)
+                                        ?>
                                     </div>
                                     
                                 </div>
@@ -332,27 +421,6 @@
     <script src="<?= base_url(); ?>/public/editorjs/dist/editor.js"></script>
     <script>
     
-        const editor2 = new EditorJS({
-            /**
-             * Create a holder for the Editor and pass its ID
-             */
-            holder : 'blog-content',
-
-            /**
-             * Available Tools list.
-             * Pass Tool's class or Settings object for each Tool you want to use
-             */
-            tools: {
-                
-                // ...
-            },
-
-            /**
-             * Previously saved data that should be rendered
-             */
-            data: <?= $blog["content"]?>
-        });
-
         var users = [{
                     id: 1,
                     avatar: 'm_1',

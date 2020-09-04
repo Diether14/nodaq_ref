@@ -367,18 +367,18 @@ class Community extends BaseController
         $db      = \Config\Database::connect();
         $builder = $db->table('users_post');
 
-          $data = [
-            'user_id' => session()->get('id'),
-            'community_id' => $community_id,
-            'title' => $title,
-            'content' => serialize($content),
-            'tags' => $tags,
-            'category_id' => $category_id,
-            'subclass_id' => $subclass_id,
-          ];
-
-          $save = $builder->insert($data);
-          if($save){
+        $data = [
+        'user_id' => session()->get('id'),
+        'community_id' => $community_id,
+        'title' => $title,
+        'content' => serialize($content),
+        'tags' => $tags,
+        'category_id' => $category_id,
+        'subclass_id' => $subclass_id,
+        ];
+        
+        $save = $builder->insert($data);
+        if($save){
 
           $response = [
            'success' => true,

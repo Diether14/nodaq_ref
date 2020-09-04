@@ -137,22 +137,22 @@
                 </div>
                 <div class="col-sm">
                     <ul class="nav nav-pills nav-pills justify-content-end px-0 align-items-center view-options" role="tablist">
-                        <li class="nav-item ">
+                        <li class="nav-item " onclick="toggleView(0)">
                             <a class="nav-link p-0 m-0 rounded active show" href="#grid" role="tab" id="community-grid-tab" data-toggle="pill" aria-controls="grid" aria-selected="true">
                                 <i class="fa fa-th"></i>
                             </a>
                         </li>
-                        <li class="nav-item ">
+                        <li class="nav-item " onclick="toggleView(1)">
                             <a class="nav-link p-0 m-0 rounded" href="#list" role="tab" data-toggle="pill" aria-controls="list" id="community-list-tab" aria-selected="false">
                                 <i class="fa fa-list "></i>
                             </a>
                         </li>
-                        <li class="nav-item ">
+                        <li class="nav-item " onclick="toggleView(2)">
                             <a class="nav-link p-0 m-0 rounded" href="#longbars" role="tab" data-toggle="pill" aria-controls="longbars" id="community-longbars-tab" aria-selected="false">
                                 <i class="fa fa-bars"></i>
                             </a>
                         </li>
-                        <li class="nav-item ">
+                        <li class="nav-item " onclick="toggleView(3)">
                             <a class="nav-link p-0 m-0 rounded" href="#bars" role="tab" data-toggle="pill" aria-controls="bars" id="community-bars-tab" aria-selected="false">
                                 <i class="fa fa-align-justify"></i>
                             </a>
@@ -230,13 +230,13 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="#tasks-1" role="tab" data-toggle="tab">
-                                                    Notice
-                                                </a>
+                                                Notice
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
-                            
+
                             <div class="d-flex">
                                 <div class="tab-content bg-white pt-0 mt-0 col-lg-12">
                                     <div class="tab-pane fade show active" id="grid" role="tabpanel" aria-labelledby="community-grid-tab">
@@ -245,13 +245,32 @@
                                             <div class="row">
                                             <?php foreach ($posts[0] as $key => $value) : ?>
 
+
                                             <div class="col-xs-12 col-sm-6 col-md-3">
                                                 <div class="card text-center">
-                                                    <?php if($value->thumbnail): ?>
-                                                    <img class="card-img-top" style=" object-fit: cover;" src="<?= base_url(); ?>/public/post_photos/<?= $value->thumbnail; ?>" alt="">
-                                                    <?php else: ?>
-                                                    <img class="card-img-top" style=" object-fit: cover;" src="<?= base_url(); ?>/public/dummy/post.jpg" alt="">
-                                                    <?php endif; ?>
+                                                    <?php
+                                                        $postContent = unserialize($value->content);
+                                                        $hasImage = false;
+                                                        $thumbnail = null;
+                                                        foreach($postContent as $key => $content){
+                                                            if($content["type"] == "image"){
+                                                                $thumbnail = $content["data"]["file"]["url"];
+                                                                break;
+                                                            }
+                                                        }
+                                                        ?>
+                                                        <?php
+                                                            if($thumbnail != null){
+                                                                ?>
+                                                                    <img class="card-img-top" style=" object-fit: cover; height: 200px" src="<?= $thumbnail?>" alt="">
+                                                                <?php
+                                                            }else{
+                                                                ?>
+                                                                    <img class="card-img-top" style=" object-fit: cover;" src="<?= base_url(); ?>/public/dummy/post.jpg" alt="">
+                                                                    <!-- <img class="card-img-top" style=" object-fit: cover;" src="<?= base_url(); ?>/public/dummy/post.jpg" alt=""> -->
+                                                                <?php
+                                                            }
+                                                        ?>
                                                     <div class="card-body">
                                                         <h4 class="card-title">
                                                             <?= character_limiter($value->title, 40) ?>
@@ -510,7 +529,9 @@
 
 <script>
     var viewLayout = 0
-    
+    window.onload = ()=>{
+        console.log("page onload function")
+    }
     toggleView = id => {
         viewLayout = id
         document.querySelector('#grid-layout').style.display = "none";
@@ -540,44 +561,44 @@
 
     document.querySelector("#saveButton").addEventListener('click', function () {
         editor.save().then((savedData) => {
-        // cPreview.show(savedData, document.getElementById("output"));
-        console.log(savedData.blocks);
-        var base_url = $('input[name=base]').val();
-        var title = $("input[name=title]").val();
-        var community_id = $("input[name=community_id]").val();
-        var content = savedData;
-        var tags = $("input[name=tags]").val();
-        var category_id = $("input[name=category_id]").val();
-        var subclass_id = $("input[name=subclass_id]").val();
+            // cPreview.show(savedData, document.getElementById("output"));
+            console.log(savedData.blocks);
+            var base_url = $('input[name=base]').val();
+            var title = $("input[name=title]").val();
+            var community_id = $("input[name=community_id]").val();
+            var content = savedData;
+            var tags = $("input[name=tags]").val();
+            var category_id = $("input[name=category_id]").val();
+            var subclass_id = $("input[name=subclass_id]").val();
 
-        var data = {
-            'content': content,
-            'title': title,
-            'community_id': community_id,
-            'tags': tags,
-            'category_id': category_id,
-            'subclass_id': subclass_id
-        };
-
-        if(title == ''  || content == '' || community_id == '' || tags == ''  || category_id == '' || subclass_id == ''){
-                alert('Please fill out the fields!');
-        }else{
-            $.ajax({
-            type: "POST",
-            url  : base_url + '/save_post',
-            data:  data, 
-            dataType: "JSON",  
-            success: function(data)
-            {
-                alert(data.msg);
-                location.reload();
-            },
-            error: function (jqXHR, textStatus, errorThrown)
+            var data = {
+                'content': content,
+                'title': title,
+                'community_id': community_id,
+                'tags': tags,
+                'category_id': category_id,
+                'subclass_id': subclass_id
+            };
+            
+            if(title == ''  || content == '' || community_id == '' || tags == ''  || category_id == '' || subclass_id == ''){
+                    alert('Please fill out the fields!');
+            }else{
+                $.ajax({
+                type: "POST",
+                url  : base_url + '/save_post',
+                data:  data, 
+                dataType: "JSON",  
+                success: function(data)
                 {
-                alert('There is an error!');
-                }
-                });
-        }
+                    alert(data.msg);
+                    location.reload();
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                    {
+                    alert('There is an error!');
+                    }
+                    });
+            }
         });
     });
 </script>
