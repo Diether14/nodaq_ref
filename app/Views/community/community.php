@@ -285,19 +285,17 @@
                                                         <?php endforeach; ?>
                                                         <?php endif; ?>
 
-                                                    </div>
-
-                                                    <h6 class=" text-muted ">Posted By: <a href="#"><?= $value->nickname; ?></a>
-                                                    </h6>
-                                                    <h6 class="card-subtitle mb-2 text-muted">
-                                                        <?= $value->updated_at ?>
-                                                    </h6>
-                                                    <!-- <a class="px-2 " href="#"><?= $value->updated_at ?></a> -->
-                                                    <div class="card-footer justify-content-center">
-                                                        <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>">
-                                                            <button class="btn btn-primary btn-sm">read more</button>
+                                                        <h6 class=" text-muted ">Posted By: <a href="#"><?= $value->nickname; ?></a>
+                                                        </h6>
+                                                        <h6 class="card-subtitle mb-2 text-muted">
+                                                            <?= $value->updated_at ?>
+                                                        </h6>
+                                                        <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class=" btn btn-primary btn-sm stretched-link">
+                                                            Read More
                                                         </a>
                                                     </div>
+
+
                                                 </div>
                                             </div>
 

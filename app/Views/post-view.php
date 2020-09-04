@@ -217,7 +217,7 @@
                                                         <?php
                                                     case "image":
                                                         ?>
-                                                            <img src="<?= $item["data"]["file"]["url"]?>">
+                                                            <img src="<?= $item["data"]["file"]["url"]?>" class="img-fluid">
                                                         <?php
                                                     default:
                                                     
