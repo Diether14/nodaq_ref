@@ -239,11 +239,22 @@
                             <button type="button" class="btn"><i class="fa fa-chevron-circle-up"></i></button>
                             <button type="button" class="btn "><i class="fa fa-chevron-circle-down"></i></button>
                         </div> -->
-                            <div class="col-sm-12 text-center">
-                                <a href="#comments" class="btn btn-link not_joined h6"><i class="fa fa-chevron-up pr-1 text-success"></i>
-                                Upvote
-                            </a>
-                              
+                            <div class="col-sm-12 d-flex    justify-content-center">
+                           
+                            <form action="<?= base_url() ?>/upvote" method="POST">
+                                 <input name="post_id" type="hidden" value="<?= $blog['id'] ?>">
+                                 <input name="community_id" type="hidden" value="<?= $blog['community_id'] ?>">
+                                <?php if($upvote == NULL): ?>   
+                                    <button type="submit" class="btn btn-link not_joined h6"><i class="fa fa-chevron-up pr-1 "></i>
+                                    Upvote
+                                    </button>
+                                <?php else: ?>
+                                    <button type="submit" class="btn btn-link text-success not_joined h6"><i class="fa fa-chevron-up pr-1 text-success"></i>
+                                    Upvote
+                                    </button>
+                                <?php endif; ?>
+                            </form>
+
                                 <?php if(empty($users_community)) : ?>
 
                                 <a href="#comments" class="btn btn-link not_joined h6"><i class="fa fa-comment pr-1"></i>
@@ -256,29 +267,9 @@
                                                 echo '50';
                                               } ?>
                                     Comments</a>
-                                <!-- <a href="#" class="btn btn-link not_joined h6"><i class="fa fa-share pr-1"></i>
-                                    <?php 
-                                              if(1000 >= 1000){ 
-                                                echo round((1200/1000),1). 'K'; 
-                                              }elseif(1000000 >= 1000000){
-                                                echo round((1000000/1000000),1). 'M';
-                                              }else{
-                                                echo '50';
-                                              } ?>
-                                    Share Post</a> -->
-
-                                <?php if(empty($report)): ?>
-                                <a href="#" class="btn btn-link not_joined h6" class="btn btn-link"><i
-                                        class="fa fa-exclamation pr-1 "></i>
-                                    Report Post</a>
+                           
                                 <?php else: ?>
-
-                                <a href="#" class="btn btn-link not_joined h6"><i class="fa fa-exclamation pr-1 text-danger"></i>
-                                    Reported</a>
-                                <?php endif; ?>
-
-                                <?php else: ?>
-                                <a href="#comments" class="btn btn-link h6"><i class="fa fa-comment pr-1"></i>
+                                <a href="#comments" class="btn btn-link text-primary h6"><i class="fa fa-comment pr-1"></i>
                                     <?php 
                                               if(1000 >= 1000){ 
                                                 echo round((1200/1000),1). 'K'; 
@@ -304,7 +295,7 @@
                                 <a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-link h6" class="btn btn-link"><i class="fa fa-exclamation pr-1"></i> Report Post</a>
                                 <?php else: ?>
 
-                                <a href="#" class="btn btn-lin h5k"><i class="fa fa-exclamation pr-1"></i> Reported</a>
+                                <a href="#" class="btn btn-link h6 text-danger"><i class="text-danger fa fa-exclamation pr-1"></i> Reported</a>
                                 <?php endif; ?>
                                 <?php endif; ?>
                             </div>
@@ -406,6 +397,41 @@
             </div>
         </div>
     </div>
+
+        <!-- Classic Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Report Post</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <i class="material-icons">clear</i>
+            </button>
+                </div>
+                <div class="modal-body">
+                    <form class="form" action="<?= base_url(); ?>/report_post" method="post">
+                        <input type="hidden" name="post_id" value="<?= $blog['id']?>">
+                        <input type="hidden" name="community_id" value="<?= $blog['community_id']?>">
+                        <label>Select Report</label>
+                         <select name="report_option" class="form-control" required>
+                         <option value=""></option>
+                         <?php foreach ($report_options as $key => $value): ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['content'] ?></option>
+                           
+                         <?php endforeach ?>
+                         </select>
+
+                        <textarea name="report_content" class="form-control" cols="30" rows="5" placeholder="Reason..." required></textarea>
+                        <button class="btn btn-danger" type="submit">Send Report</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  End Modal -->
 
 <script type="text/javascript">
     document.querySelector("#saveButton").addEventListener('click', function () {

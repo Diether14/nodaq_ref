@@ -48,8 +48,6 @@ $routes->match(['get','post'],'add_shared_comment', 'Users::add_shared_comment',
 $routes->match(['get','post'],'join_community', 'Community::join_community', ['filter' => 'auth']);
 $routes->match(['get','post'],'report_post', 'Community::report_post', ['filter' => 'auth']);
 $routes->match(['get','post'],'share_post', 'Community::share_post', ['filter' => 'auth']);
-$routes->match(['get','post'],'add_upvote', 'Community::add_upvote', ['filter' => 'auth']);
-$routes->match(['get', 'post'], 'add_devote', 'Community::add_devote', ['filter' => 'auth']);
 $routes->match(['get','post'],'save_post', 'Community::save_post', ['filter' => 'auth']);
 
 $routes->get('delete-shared-post/(:num)', 'Community::delete_shared_post/$1', ['filter' => 'auth']);
@@ -186,6 +184,7 @@ $routes->match(['get', 'post'], 'add_subclass', 'Community::add_subclass');
 $routes->match(['get', 'post'], 'update_subclass', 'Community::update_subclass');
 $routes->get('/delete_subclass/(:num)/(:num)', 'Community::delete_subclass/$1/$2', ['filter' => 'auth']);
 $routes->get('post-view/(:num)', 'Community::post_view/$1', ['filter' => 'auth']);
+$routes->match(['get','post'],'upvote', 'Community::upvote', ['filter' => 'auth']);
 // $routes->get('/remove_ac/(:num)/(:num)', 'Managers::remove_ac/$1/$2', ['filter' => 'auth']);
 
 

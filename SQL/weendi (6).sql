@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 01, 2020 at 01:32 PM
+-- Generation Time: Sep 06, 2020 at 01:21 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -85,30 +85,6 @@ CREATE TABLE `community_ac_settings` (
 
 INSERT INTO `community_ac_settings` (`id`, `user_id`, `community_id`, `remove_comments`, `remove_posts`, `punish_users`, `remove_posts_from_hotboard`, `edit_cover_photo`, `edit_categories`, `edit_subclass`, `notice`, `general`, `politic`, `created_at`, `update_at`) VALUES
 (1, 21, 30, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2020-07-15 15:33:25', '2020-07-15 15:33:25');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `community_assistant_managers`
---
-
-CREATE TABLE `community_assistant_managers` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `community_id` int(11) NOT NULL,
-  `manager_id` int(11) NOT NULL,
-  `status` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `community_assistant_managers`
---
-
-INSERT INTO `community_assistant_managers` (`id`, `user_id`, `community_id`, `manager_id`, `status`, `created_at`, `updated_at`) VALUES
-(2, 21, 29, 18, 0, '2020-06-03 16:19:15', '2020-06-03 16:19:15'),
-(6, 18, 29, 18, 0, '2020-06-18 15:47:01', '2020-06-18 15:47:01');
 
 -- --------------------------------------------------------
 
@@ -229,21 +205,6 @@ INSERT INTO `community_photo` (`id`, `name`, `type`, `created_at`, `updated_at`)
 (40, 'profile_city.jpg', '', '2020-08-20 23:22:03', '2020-08-20 23:22:03'),
 (41, 'profile_city.jpg', '', '2020-08-20 23:40:52', '2020-08-20 23:40:52'),
 (42, 'profile_city.jpg', '', '2020-08-20 23:57:21', '2020-08-20 23:57:21');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `community_users_anonymous`
---
-
-CREATE TABLE `community_users_anonymous` (
-  `id` int(11) NOT NULL,
-  `users_id` int(11) NOT NULL,
-  `community_id` int(11) NOT NULL,
-  `status` int(11) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -396,7 +357,11 @@ INSERT INTO `post_comments` (`id`, `user_id`, `post_id`, `content`, `created_at`
 (23, 18, 40, '<p>test</p>', '2020-08-11 22:13:14', '2020-08-11 22:13:14'),
 (24, 18, 40, '<p>tsetset</p>', '2020-08-11 22:13:23', '2020-08-11 22:13:23'),
 (25, 18, 40, '<p>????test</p>', '2020-08-11 22:13:34', '2020-08-11 22:13:34'),
-(26, 18, 219, '<p>test</p>', '2020-08-28 21:02:26', '2020-08-28 21:02:26');
+(26, 18, 219, '<p>test</p>', '2020-08-28 21:02:26', '2020-08-28 21:02:26'),
+(27, 18, 219, '<p>test</p>', '2020-09-04 22:32:48', '2020-09-04 22:32:48'),
+(28, 18, 220, 'a:3:{s:4:\"time\";s:13:\"1599232390914\";s:6:\"blocks\";a:1:{i:0;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:12:\"test comment\";}}}s:7:\"version\";s:6:\"2.18.0\";}', '2020-09-04 23:13:11', '2020-09-04 23:13:11'),
+(29, 18, 220, 'a:3:{s:4:\"time\";s:13:\"1599232420254\";s:6:\"blocks\";a:1:{i:0;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:4:\"test\";}}}s:7:\"version\";s:6:\"2.18.0\";}', '2020-09-04 23:13:40', '2020-09-04 23:13:40'),
+(30, 18, 220, 'a:1:{i:0;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:4:\"test\";}}}', '2020-09-06 13:24:50', '2020-09-06 13:24:50');
 
 -- --------------------------------------------------------
 
@@ -459,30 +424,6 @@ INSERT INTO `report_options` (`id`, `users_id`, `content`, `created_at`, `update
 (2, 1, 'test2', '2020-08-31 14:05:11', '2020-08-31 14:05:11'),
 (3, 1, 'test3', '2020-08-31 14:05:29', '2020-08-31 14:05:29'),
 (4, 1, 'test4', '2020-08-31 14:05:29', '2020-08-31 14:05:29');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `shared_comments`
---
-
-CREATE TABLE `shared_comments` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `post_id` int(11) NOT NULL,
-  `content` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `shared_comments`
---
-
-INSERT INTO `shared_comments` (`id`, `user_id`, `post_id`, `content`, `created_at`, `updated_at`) VALUES
-(11, 18, 10, 'Test shared Comment', '2020-05-28 23:18:02', '2020-05-28 23:18:02'),
-(12, 18, 11, 'Test share comment', '2020-05-29 00:31:37', '2020-05-29 00:31:37'),
-(13, 18, 21, 'Test', '2020-06-12 22:18:17', '2020-06-12 22:18:17');
 
 -- --------------------------------------------------------
 
@@ -569,21 +510,6 @@ INSERT INTO `users_community` (`id`, `user_id`, `community_id`, `status`, `anoun
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users_deleted_post`
---
-
-CREATE TABLE `users_deleted_post` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `community_id` int(11) NOT NULL,
-  `post_id` int(11) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `users_ip`
 --
 
@@ -638,7 +564,8 @@ INSERT INTO `users_post` (`id`, `user_id`, `community_id`, `title`, `content`, `
 (218, 18, 0, '', 'a:13:{i:0;a:2:{s:4:\"type\";s:6:\"header\";s:4:\"data\";a:2:{s:4:\"text\";s:9:\"Editor.js\";s:5:\"level\";s:1:\"2\";}}i:1;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:168:\"Hey. Meet the new Editor. On this page you can see it in action — try to edit this text. Source code of the page contains the example of connection and configuration.\";}}i:2;a:2:{s:4:\"type\";s:6:\"header\";s:4:\"data\";a:2:{s:4:\"text\";s:12:\"Key features\";s:5:\"level\";s:1:\"3\";}}i:3;a:2:{s:4:\"type\";s:4:\"list\";s:4:\"data\";a:2:{s:5:\"style\";s:9:\"unordered\";s:5:\"items\";a:3:{i:0;s:27:\"It is a block-styled editor\";i:1;s:36:\"It returns clean data output in JSON\";i:2;s:57:\"Designed to be extendable and pluggable with a simple API\";}}}i:4;a:2:{s:4:\"type\";s:6:\"header\";s:4:\"data\";a:2:{s:4:\"text\";s:41:\"What does it mean «block-styled editor»\";s:5:\"level\";s:1:\"3\";}}i:5;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:374:\"Workspace in classic editors is made of a single contenteditable element, used to create different HTML markups. Editor.js <mark class=\"cdx-marker\">workspace consists of separate Blocks: paragraphs, headings, images, lists, quotes, etc</mark>. Each of them is an independent contenteditable element (or more complex structure) provided by Plugin and united by Editor\'s Core.\";}}i:6;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:304:\"There are dozens of <a href=\"https://github.com/editor-js\">ready-to-use Blocks</a> and the <a href=\"https://editorjs.io/creating-a-block-tool\">simple API</a> for creation any Block you need. For example, you can implement Blocks for Tweets, Instagram posts, surveys and polls, CTA-buttons and even games.\";}}i:7;a:2:{s:4:\"type\";s:6:\"header\";s:4:\"data\";a:2:{s:4:\"text\";s:35:\"What does it mean clean data output\";s:5:\"level\";s:1:\"3\";}}i:8;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:195:\"Classic WYSIWYG-editors produce raw HTML-markup with both content data and content appearance. On the contrary, Editor.js outputs JSON object with data of each Block. You can see an example below\";}}i:9;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:363:\"Given data can be used as you want: render with HTML for <code class=\"inline-code\">Web clients</code>, render natively for <code class=\"inline-code\">mobile apps</code>, create markup for <code class=\"inline-code\">Facebook Instant Articles</code> or <code class=\"inline-code\">Google AMP</code>, generate an <code class=\"inline-code\">audio version</code> and so on.\";}}i:10;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:70:\"Clean data is useful to sanitize, validate and process on the backend.\";}}i:11;a:1:{s:4:\"type\";s:9:\"delimiter\";}i:12;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:284:\"We have been working on this project more than three years. Several large media projects help us to test and debug the Editor, to make its core more stable. At the same time we significantly improved the API. Now, it can be used to create any plugin for any task. Hope you enjoy. ????\";}}}', 0, '', '', 0, 0, '2020-08-27 20:45:49', '2020-08-27 20:45:49'),
 (219, 18, 39, 'tset', 'a:13:{i:0;a:2:{s:4:\"type\";s:6:\"header\";s:4:\"data\";a:2:{s:4:\"text\";s:9:\"Editor.js\";s:5:\"level\";s:1:\"2\";}}i:1;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:168:\"Hey. Meet the new Editor. On this page you can see it in action — try to edit this text. Source code of the page contains the example of connection and configuration.\";}}i:2;a:2:{s:4:\"type\";s:6:\"header\";s:4:\"data\";a:2:{s:4:\"text\";s:12:\"Key features\";s:5:\"level\";s:1:\"3\";}}i:3;a:2:{s:4:\"type\";s:4:\"list\";s:4:\"data\";a:2:{s:5:\"style\";s:9:\"unordered\";s:5:\"items\";a:3:{i:0;s:27:\"It is a block-styled editor\";i:1;s:36:\"It returns clean data output in JSON\";i:2;s:57:\"Designed to be extendable and pluggable with a simple API\";}}}i:4;a:2:{s:4:\"type\";s:6:\"header\";s:4:\"data\";a:2:{s:4:\"text\";s:41:\"What does it mean «block-styled editor»\";s:5:\"level\";s:1:\"3\";}}i:5;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:374:\"Workspace in classic editors is made of a single contenteditable element, used to create different HTML markups. Editor.js <mark class=\"cdx-marker\">workspace consists of separate Blocks: paragraphs, headings, images, lists, quotes, etc</mark>. Each of them is an independent contenteditable element (or more complex structure) provided by Plugin and united by Editor\'s Core.\";}}i:6;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:304:\"There are dozens of <a href=\"https://github.com/editor-js\">ready-to-use Blocks</a> and the <a href=\"https://editorjs.io/creating-a-block-tool\">simple API</a> for creation any Block you need. For example, you can implement Blocks for Tweets, Instagram posts, surveys and polls, CTA-buttons and even games.\";}}i:7;a:2:{s:4:\"type\";s:6:\"header\";s:4:\"data\";a:2:{s:4:\"text\";s:35:\"What does it mean clean data output\";s:5:\"level\";s:1:\"3\";}}i:8;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:195:\"Classic WYSIWYG-editors produce raw HTML-markup with both content data and content appearance. On the contrary, Editor.js outputs JSON object with data of each Block. You can see an example below\";}}i:9;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:363:\"Given data can be used as you want: render with HTML for <code class=\"inline-code\">Web clients</code>, render natively for <code class=\"inline-code\">mobile apps</code>, create markup for <code class=\"inline-code\">Facebook Instant Articles</code> or <code class=\"inline-code\">Google AMP</code>, generate an <code class=\"inline-code\">audio version</code> and so on.\";}}i:10;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:70:\"Clean data is useful to sanitize, validate and process on the backend.\";}}i:11;a:1:{s:4:\"type\";s:9:\"delimiter\";}i:12;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:284:\"We have been working on this project more than three years. Several large media projects help us to test and debug the Editor, to make its core more stable. At the same time we significantly improved the API. Now, it can be used to create any plugin for any task. Hope you enjoy. ????\";}}}', 0, '', 'test,tset2', 20, 16, '2020-08-27 21:16:09', '2020-08-27 21:16:09'),
 (220, 18, 39, 'test', 'a:14:{i:0;a:2:{s:4:\"type\";s:6:\"header\";s:4:\"data\";a:2:{s:4:\"text\";s:9:\"Editor.js\";s:5:\"level\";s:1:\"2\";}}i:1;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:168:\"Hey. Meet the new Editor. On this page you can see it in action — try to edit this text. Source code of the page contains the example of connection and configuration.\";}}i:2;a:2:{s:4:\"type\";s:5:\"image\";s:4:\"data\";a:5:{s:4:\"file\";a:1:{s:3:\"url\";s:58:\"http://localhost/weendi/public/editorjs/uploads/xmFj7k.png\";}s:7:\"caption\";s:0:\"\";s:10:\"withBorder\";s:5:\"false\";s:9:\"stretched\";s:5:\"false\";s:14:\"withBackground\";s:5:\"false\";}}i:3;a:2:{s:4:\"type\";s:6:\"header\";s:4:\"data\";a:2:{s:4:\"text\";s:12:\"Key features\";s:5:\"level\";s:1:\"3\";}}i:4;a:2:{s:4:\"type\";s:4:\"list\";s:4:\"data\";a:2:{s:5:\"style\";s:9:\"unordered\";s:5:\"items\";a:3:{i:0;s:27:\"It is a block-styled editor\";i:1;s:36:\"It returns clean data output in JSON\";i:2;s:57:\"Designed to be extendable and pluggable with a simple API\";}}}i:5;a:2:{s:4:\"type\";s:6:\"header\";s:4:\"data\";a:2:{s:4:\"text\";s:41:\"What does it mean «block-styled editor»\";s:5:\"level\";s:1:\"3\";}}i:6;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:374:\"Workspace in classic editors is made of a single contenteditable element, used to create different HTML markups. Editor.js <mark class=\"cdx-marker\">workspace consists of separate Blocks: paragraphs, headings, images, lists, quotes, etc</mark>. Each of them is an independent contenteditable element (or more complex structure) provided by Plugin and united by Editor\'s Core.\";}}i:7;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:304:\"There are dozens of <a href=\"https://github.com/editor-js\">ready-to-use Blocks</a> and the <a href=\"https://editorjs.io/creating-a-block-tool\">simple API</a> for creation any Block you need. For example, you can implement Blocks for Tweets, Instagram posts, surveys and polls, CTA-buttons and even games.\";}}i:8;a:2:{s:4:\"type\";s:6:\"header\";s:4:\"data\";a:2:{s:4:\"text\";s:35:\"What does it mean clean data output\";s:5:\"level\";s:1:\"3\";}}i:9;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:195:\"Classic WYSIWYG-editors produce raw HTML-markup with both content data and content appearance. On the contrary, Editor.js outputs JSON object with data of each Block. You can see an example below\";}}i:10;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:363:\"Given data can be used as you want: render with HTML for <code class=\"inline-code\">Web clients</code>, render natively for <code class=\"inline-code\">mobile apps</code>, create markup for <code class=\"inline-code\">Facebook Instant Articles</code> or <code class=\"inline-code\">Google AMP</code>, generate an <code class=\"inline-code\">audio version</code> and so on.\";}}i:11;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:70:\"Clean data is useful to sanitize, validate and process on the backend.\";}}i:12;a:1:{s:4:\"type\";s:9:\"delimiter\";}i:13;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:284:\"We have been working on this project more than three years. Several large media projects help us to test and debug the Editor, to make its core more stable. At the same time we significantly improved the API. Now, it can be used to create any plugin for any task. Hope you enjoy. ????\";}}}', 0, '', 'test,tset213', 20, 16, '2020-08-27 21:25:24', '2020-08-27 21:25:24'),
-(221, 18, 39, 'tset', 'a:14:{i:0;a:2:{s:4:\"type\";s:5:\"image\";s:4:\"data\";a:5:{s:4:\"file\";a:1:{s:3:\"url\";s:58:\"http://localhost/weendi/public/editorjs/uploads/xmFj7k.png\";}s:7:\"caption\";s:4:\"test\";s:10:\"withBorder\";s:5:\"false\";s:9:\"stretched\";s:5:\"false\";s:14:\"withBackground\";s:5:\"false\";}}i:1;a:2:{s:4:\"type\";s:6:\"header\";s:4:\"data\";a:2:{s:4:\"text\";s:9:\"Editor.js\";s:5:\"level\";s:1:\"2\";}}i:2;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:168:\"Hey. Meet the new Editor. On this page you can see it in action — try to edit this text. Source code of the page contains the example of connection and configuration.\";}}i:3;a:2:{s:4:\"type\";s:6:\"header\";s:4:\"data\";a:2:{s:4:\"text\";s:12:\"Key features\";s:5:\"level\";s:1:\"3\";}}i:4;a:2:{s:4:\"type\";s:4:\"list\";s:4:\"data\";a:2:{s:5:\"style\";s:9:\"unordered\";s:5:\"items\";a:3:{i:0;s:27:\"It is a block-styled editor\";i:1;s:36:\"It returns clean data output in JSON\";i:2;s:57:\"Designed to be extendable and pluggable with a simple API\";}}}i:5;a:2:{s:4:\"type\";s:6:\"header\";s:4:\"data\";a:2:{s:4:\"text\";s:41:\"What does it mean «block-styled editor»\";s:5:\"level\";s:1:\"3\";}}i:6;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:374:\"Workspace in classic editors is made of a single contenteditable element, used to create different HTML markups. Editor.js <mark class=\"cdx-marker\">workspace consists of separate Blocks: paragraphs, headings, images, lists, quotes, etc</mark>. Each of them is an independent contenteditable element (or more complex structure) provided by Plugin and united by Editor\'s Core.\";}}i:7;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:304:\"There are dozens of <a href=\"https://github.com/editor-js\">ready-to-use Blocks</a> and the <a href=\"https://editorjs.io/creating-a-block-tool\">simple API</a> for creation any Block you need. For example, you can implement Blocks for Tweets, Instagram posts, surveys and polls, CTA-buttons and even games.\";}}i:8;a:2:{s:4:\"type\";s:6:\"header\";s:4:\"data\";a:2:{s:4:\"text\";s:35:\"What does it mean clean data output\";s:5:\"level\";s:1:\"3\";}}i:9;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:195:\"Classic WYSIWYG-editors produce raw HTML-markup with both content data and content appearance. On the contrary, Editor.js outputs JSON object with data of each Block. You can see an example below\";}}i:10;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:363:\"Given data can be used as you want: render with HTML for <code class=\"inline-code\">Web clients</code>, render natively for <code class=\"inline-code\">mobile apps</code>, create markup for <code class=\"inline-code\">Facebook Instant Articles</code> or <code class=\"inline-code\">Google AMP</code>, generate an <code class=\"inline-code\">audio version</code> and so on.\";}}i:11;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:70:\"Clean data is useful to sanitize, validate and process on the backend.\";}}i:12;a:1:{s:4:\"type\";s:9:\"delimiter\";}i:13;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:284:\"We have been working on this project more than three years. Several large media projects help us to test and debug the Editor, to make its core more stable. At the same time we significantly improved the API. Now, it can be used to create any plugin for any task. Hope you enjoy. ????\";}}}', 0, '', 'tset,test2', 20, 16, '2020-08-27 21:38:18', '2020-08-27 21:38:18');
+(221, 18, 39, 'tset', 'a:14:{i:0;a:2:{s:4:\"type\";s:5:\"image\";s:4:\"data\";a:5:{s:4:\"file\";a:1:{s:3:\"url\";s:58:\"http://localhost/weendi/public/editorjs/uploads/xmFj7k.png\";}s:7:\"caption\";s:4:\"test\";s:10:\"withBorder\";s:5:\"false\";s:9:\"stretched\";s:5:\"false\";s:14:\"withBackground\";s:5:\"false\";}}i:1;a:2:{s:4:\"type\";s:6:\"header\";s:4:\"data\";a:2:{s:4:\"text\";s:9:\"Editor.js\";s:5:\"level\";s:1:\"2\";}}i:2;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:168:\"Hey. Meet the new Editor. On this page you can see it in action — try to edit this text. Source code of the page contains the example of connection and configuration.\";}}i:3;a:2:{s:4:\"type\";s:6:\"header\";s:4:\"data\";a:2:{s:4:\"text\";s:12:\"Key features\";s:5:\"level\";s:1:\"3\";}}i:4;a:2:{s:4:\"type\";s:4:\"list\";s:4:\"data\";a:2:{s:5:\"style\";s:9:\"unordered\";s:5:\"items\";a:3:{i:0;s:27:\"It is a block-styled editor\";i:1;s:36:\"It returns clean data output in JSON\";i:2;s:57:\"Designed to be extendable and pluggable with a simple API\";}}}i:5;a:2:{s:4:\"type\";s:6:\"header\";s:4:\"data\";a:2:{s:4:\"text\";s:41:\"What does it mean «block-styled editor»\";s:5:\"level\";s:1:\"3\";}}i:6;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:374:\"Workspace in classic editors is made of a single contenteditable element, used to create different HTML markups. Editor.js <mark class=\"cdx-marker\">workspace consists of separate Blocks: paragraphs, headings, images, lists, quotes, etc</mark>. Each of them is an independent contenteditable element (or more complex structure) provided by Plugin and united by Editor\'s Core.\";}}i:7;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:304:\"There are dozens of <a href=\"https://github.com/editor-js\">ready-to-use Blocks</a> and the <a href=\"https://editorjs.io/creating-a-block-tool\">simple API</a> for creation any Block you need. For example, you can implement Blocks for Tweets, Instagram posts, surveys and polls, CTA-buttons and even games.\";}}i:8;a:2:{s:4:\"type\";s:6:\"header\";s:4:\"data\";a:2:{s:4:\"text\";s:35:\"What does it mean clean data output\";s:5:\"level\";s:1:\"3\";}}i:9;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:195:\"Classic WYSIWYG-editors produce raw HTML-markup with both content data and content appearance. On the contrary, Editor.js outputs JSON object with data of each Block. You can see an example below\";}}i:10;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:363:\"Given data can be used as you want: render with HTML for <code class=\"inline-code\">Web clients</code>, render natively for <code class=\"inline-code\">mobile apps</code>, create markup for <code class=\"inline-code\">Facebook Instant Articles</code> or <code class=\"inline-code\">Google AMP</code>, generate an <code class=\"inline-code\">audio version</code> and so on.\";}}i:11;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:70:\"Clean data is useful to sanitize, validate and process on the backend.\";}}i:12;a:1:{s:4:\"type\";s:9:\"delimiter\";}i:13;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:284:\"We have been working on this project more than three years. Several large media projects help us to test and debug the Editor, to make its core more stable. At the same time we significantly improved the API. Now, it can be used to create any plugin for any task. Hope you enjoy. ????\";}}}', 0, '', 'tset,test2', 20, 16, '2020-08-27 21:38:18', '2020-08-27 21:38:18'),
+(222, 18, 39, 'tset', 'a:13:{i:0;a:2:{s:4:\"type\";s:6:\"header\";s:4:\"data\";a:2:{s:4:\"text\";s:9:\"Editor.js\";s:5:\"level\";s:1:\"2\";}}i:1;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:168:\"Hey. Meet the new Editor. On this page you can see it in action — try to edit this text. Source code of the page contains the example of connection and configuration.\";}}i:2;a:2:{s:4:\"type\";s:6:\"header\";s:4:\"data\";a:2:{s:4:\"text\";s:12:\"Key features\";s:5:\"level\";s:1:\"3\";}}i:3;a:2:{s:4:\"type\";s:4:\"list\";s:4:\"data\";a:2:{s:5:\"style\";s:9:\"unordered\";s:5:\"items\";a:3:{i:0;s:27:\"It is a block-styled editor\";i:1;s:36:\"It returns clean data output in JSON\";i:2;s:57:\"Designed to be extendable and pluggable with a simple API\";}}}i:4;a:2:{s:4:\"type\";s:6:\"header\";s:4:\"data\";a:2:{s:4:\"text\";s:41:\"What does it mean «block-styled editor»\";s:5:\"level\";s:1:\"3\";}}i:5;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:374:\"Workspace in classic editors is made of a single contenteditable element, used to create different HTML markups. Editor.js <mark class=\"cdx-marker\">workspace consists of separate Blocks: paragraphs, headings, images, lists, quotes, etc</mark>. Each of them is an independent contenteditable element (or more complex structure) provided by Plugin and united by Editor\'s Core.\";}}i:6;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:304:\"There are dozens of <a href=\"https://github.com/editor-js\">ready-to-use Blocks</a> and the <a href=\"https://editorjs.io/creating-a-block-tool\">simple API</a> for creation any Block you need. For example, you can implement Blocks for Tweets, Instagram posts, surveys and polls, CTA-buttons and even games.\";}}i:7;a:2:{s:4:\"type\";s:6:\"header\";s:4:\"data\";a:2:{s:4:\"text\";s:35:\"What does it mean clean data output\";s:5:\"level\";s:1:\"3\";}}i:8;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:195:\"Classic WYSIWYG-editors produce raw HTML-markup with both content data and content appearance. On the contrary, Editor.js outputs JSON object with data of each Block. You can see an example below\";}}i:9;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:363:\"Given data can be used as you want: render with HTML for <code class=\"inline-code\">Web clients</code>, render natively for <code class=\"inline-code\">mobile apps</code>, create markup for <code class=\"inline-code\">Facebook Instant Articles</code> or <code class=\"inline-code\">Google AMP</code>, generate an <code class=\"inline-code\">audio version</code> and so on.\";}}i:10;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:70:\"Clean data is useful to sanitize, validate and process on the backend.\";}}i:11;a:1:{s:4:\"type\";s:9:\"delimiter\";}i:12;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:284:\"We have been working on this project more than three years. Several large media projects help us to test and debug the Editor, to make its core more stable. At the same time we significantly improved the API. Now, it can be used to create any plugin for any task. Hope you enjoy. ????\";}}}', 0, '', 'tset', 20, 16, '2020-09-01 22:47:06', '2020-09-01 22:47:06');
 
 -- --------------------------------------------------------
 
@@ -664,7 +591,9 @@ CREATE TABLE `users_report` (
 
 INSERT INTO `users_report` (`id`, `reported_by_user_id`, `community_id`, `post_id`, `user_id`, `report_content`, `report_option_id`, `created_at`, `updated_at`) VALUES
 (1, 18, 30, 19, 31, 'I want to report this post!', 0, '2020-07-16 21:24:57', '2020-07-16 21:24:57'),
-(3, 0, 39, 221, 18, 'testtsete', 1, '2020-08-31 22:42:10', '2020-08-31 22:42:10');
+(3, 0, 39, 221, 18, 'testtsete', 1, '2020-08-31 22:42:10', '2020-08-31 22:42:10'),
+(4, 0, 39, 219, 18, 'tset', 1, '2020-09-03 20:53:14', '2020-09-03 20:53:14'),
+(5, 0, 39, 220, 18, 'test', 0, '2020-09-06 12:34:59', '2020-09-06 12:34:59');
 
 -- --------------------------------------------------------
 
@@ -754,12 +683,6 @@ ALTER TABLE `community_ac_settings`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- Indexes for table `community_assistant_managers`
---
-ALTER TABLE `community_assistant_managers`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `community_banned_users`
 --
 ALTER TABLE `community_banned_users`
@@ -781,12 +704,6 @@ ALTER TABLE `community_category_subclass`
 -- Indexes for table `community_photo`
 --
 ALTER TABLE `community_photo`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `community_users_anonymous`
---
-ALTER TABLE `community_users_anonymous`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -844,12 +761,6 @@ ALTER TABLE `report_options`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `shared_comments`
---
-ALTER TABLE `shared_comments`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -859,12 +770,6 @@ ALTER TABLE `users`
 -- Indexes for table `users_community`
 --
 ALTER TABLE `users_community`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `users_deleted_post`
---
-ALTER TABLE `users_deleted_post`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -920,12 +825,6 @@ ALTER TABLE `community_ac_settings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `community_assistant_managers`
---
-ALTER TABLE `community_assistant_managers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
 -- AUTO_INCREMENT for table `community_banned_users`
 --
 ALTER TABLE `community_banned_users`
@@ -948,12 +847,6 @@ ALTER TABLE `community_category_subclass`
 --
 ALTER TABLE `community_photo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=43;
-
---
--- AUTO_INCREMENT for table `community_users_anonymous`
---
-ALTER TABLE `community_users_anonymous`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `cover_photo`
@@ -989,7 +882,7 @@ ALTER TABLE `join_community_files`
 -- AUTO_INCREMENT for table `post_comments`
 --
 ALTER TABLE `post_comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `post_photo`
@@ -1010,12 +903,6 @@ ALTER TABLE `report_options`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `shared_comments`
---
-ALTER TABLE `shared_comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -1028,12 +915,6 @@ ALTER TABLE `users_community`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- AUTO_INCREMENT for table `users_deleted_post`
---
-ALTER TABLE `users_deleted_post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `users_ip`
 --
 ALTER TABLE `users_ip`
@@ -1043,13 +924,13 @@ ALTER TABLE `users_ip`
 -- AUTO_INCREMENT for table `users_post`
 --
 ALTER TABLE `users_post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=222;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=223;
 
 --
 -- AUTO_INCREMENT for table `users_report`
 --
 ALTER TABLE `users_report`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users_shared_posts`
@@ -1061,7 +942,7 @@ ALTER TABLE `users_shared_posts`
 -- AUTO_INCREMENT for table `users_vote`
 --
 ALTER TABLE `users_vote`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `user_settings`

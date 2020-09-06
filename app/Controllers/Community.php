@@ -17,6 +17,7 @@ use App\Models\SharedcommentsModel;
 use App\Models\JoincommunityfilesModel;
 use App\Models\CommunitycategoryModel;
 use App\Models\CommunitysubclassModel;
+use App\Models\ReportOptionsModel;
 
 class Community extends BaseController
 {
@@ -1093,7 +1094,8 @@ class Community extends BaseController
             'user_id' => session()->get('id'),
             'post_id' => $this->request->getPost('post_id'),
             'community_id' => $community_id,
-            'report_content' => $this->request->getPost('report_content')
+            'report_content' => $this->request->getPost('report_content'),
+            'report_option_id' => $this->request->getPost('report_option')
         ];
 
         if($model->insert($data)){
@@ -1158,9 +1160,9 @@ class Community extends BaseController
         }
     }
 
-    public function add_upvote(){
+    public function upvote(){
         ini_set('display_errors', 1);
-
+     
         $data = [];
         helper(['form', 'url']);
 
@@ -1172,8 +1174,6 @@ class Community extends BaseController
         $model =  new UsersvoteModel();
         
         $user_vote = $model->where('user_id', $user_id)->where('community_id', $community_id)->where('post_id', $post_id)->first();
-     
-
         if($user_vote == NULL){
             
         $data = [
@@ -1194,75 +1194,16 @@ class Community extends BaseController
             }
         
         }else{
-                
-            $data = [
-                'user_id' => $user_id,
-                'post_id' => $post_id,
-                'community_id' => $community_id,
-                'status' => '1'
-            ];
+            
 
-            $update = $model->update($user_vote['id'], $data);
+            $update = $model->delete($user_vote['id']);
 
             $msg = 'Upvoted';
-            return redirect()->to( base_url(). '/post-view/'. $post_id)->with('vote', $msg);
+            return redirect()->back()->with('msg', $msg);
 
         }
     }
 
-    public function add_devote(){
-        ini_set('display_errors', 1);
-
-        $data = [];
-        helper(['form', 'url']);
-
-
-        $post_id = $this->request->getPost('post_id');
-        $community_id = $this->request->getPost('community_id');
-        $user_id = session()->get('id');
-        $status = "0";
-        
-
-        $data = [
-            'user_id' => $user_id,
-            'post_id' => $post_id,
-            'community_id' => $community_id,
-            'status' => '0'
-        ];
-
-        $model =  new UsersvoteModel();
-        
-        $user_vote = $model->where('user_id', $user_id)->where('community_id', $community_id)->where('post_id', $post_id)->first();
-
-
-        if($user_vote == NULL){
-            $insert = $model->insert($data);
-
-            if($insert){
-                $msg = 'Devoted';
-                return redirect()->to( base_url(). '/post-view/'. $post_id)->with('vote', $msg);
-            }else{
-                $msg = 'Failed to Upvote';
-                return redirect()->to( base_url(). '/post-view/'. $post_id)->with('vote', $msg);
-            }
-        
-        }else{
-
-            $data = [
-                'user_id' => $user_id,
-                'post_id' => $post_id,
-                'community_id' => $community_id,
-                'status' => '0'
-            ];
-
-            $update = $model->update($user_vote['id'], $data);
-
-            $msg = 'Devoted';
-            return redirect()->to( base_url(). '/post-view/'. $post_id)->with('vote', $msg);
-
-        }
-
-    }
 
     public function sub_category(){
         ini_set('display_errors', 1);
@@ -1485,14 +1426,17 @@ class Community extends BaseController
             // var_dump($data['com']);exit;
             $voteModel = new UsersvoteModel(); 
     
-            $data['vote'] = $voteModel->where('user_id', session()->get('id'))->where('post_id', $id)->where('community_id', $data['blog']['community_id'])->first();
-            // var_dump($data[''])
-    
-    
+            $data['upvote'] = $voteModel->where('user_id', session()->get('id'))->where('post_id', $id)->where('community_id', $data['blog']['community_id'])->first();
+            // var_dump($data['upvote']);exit;
+
+            $report_model = new ReportOptionsModel();
+
+            $data['report_options'] = $report_model->findAll();
+
             $data['vote_totals'] = $voteModel->where('post_id', $id)->where('community_id', $data['blog']['community_id'])->where('status', '1')->countAllResults();
     
             echo view('templates/header', $data);
-            echo view('post-view', $data);
+            echo view('community/post-view', $data);
             echo view('templates/footer', $data);
         }
 
@@ -1505,7 +1449,7 @@ class Community extends BaseController
 
         $model = new PostcommentsModel;
         $post_id = $this->request->getPost('post_id');
-        $content = $this->request->getPost('content');
+        $content = $_POST['content']['blocks'];
         $data = [
             'user_id' => session()->get('id'),
             'post_id' => $post_id,
