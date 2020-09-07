@@ -89,7 +89,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <a href="<?= base_url(); ?>/community-manage/<?= $value->id ?>">
-                                            <p class="card-title"><?= character_limiter($value->title, 12); ?></p>
+                                            <p class="card-title"><?= character_limiter($value->title, 20); ?></p>
                                         </a>
                                         <?php if($value->community_type == '0'): ?>
                                             <span class="badge badge-pill badge-secondary">Public</span>
@@ -124,7 +124,7 @@
                                         </a>
                                     </div>
                                     <div class="col-lg-6">
-                                        <p class="card-title"><?= character_limiter($value->title, 12); ?></p>
+                                        <p class="card-title"><?= character_limiter($value->title, 20); ?></p>
                                         <?php if($value->community_type == '0'): ?>
                                             <span class="badge badge-pill badge-secondary">Public</span>
                                         <?php else: ?>
@@ -252,8 +252,8 @@
                                             
                                                 <div class="col-10 community-title  ">
                                                     <h6>
-                                                        <a href="<?= base_url(); ?>/community/<?= $value->id;  ?>/0"
-                                                            style="color: <?= $value->text_color; ?>"><?= character_limiter($value->title, 15) ?>
+                                                        <a href="<?= base_url(); ?>/play/<?= $value->slug ?>/<?= $value->id;  ?>/<?= $value->subclass_id ?>"
+                                                            style="color: <?= $value->text_color; ?>"><?= character_limiter($value->title, 20) ?>
                                                         </a>
                                                     </h6>
                                                 </div>
@@ -305,7 +305,7 @@
                                         <div class="modal-content">
                                             <div class="modal-header bg-primary py-3 text-white align-items-center">
                                                 <h5 class="modal-title m-0">
-                                                    <?= character_limiter($value->title, 18) ?>
+                                                    <?= character_limiter($value->title, 20) ?>
                                                 </h5>
                                                 <button type="button"
                                                     class="close bg-danger text-white btn-link p-2 rounded-circle"
@@ -381,14 +381,14 @@
                     accept-charset="utf-8" enctype="multipart/form-data">
 
                     <div class="form-group col-sm-12">
-                        <input type="text" name="title" class="form-control" placeholder="Title">
+                        <input type="text" name="title" class="form-control" placeholder="Title" required>
                     </div>
                     <div class="form-group col-sm-12">
-                        <input type="text" name="community_slug" class="form-control" placeholder="1234" minlength="4">
+                        <input type="text" name="community_slug" class="form-control" placeholder="Community URL" minlength="4" maxlength="20" required>
                     </div>
                     <div class="form-group col-sm-12">
                         <textarea name="content" class="form-control" cols="5" rows="5"
-                            placeholder="Details"></textarea>
+                            placeholder="Details" required></textarea>
                     </div>
                     <div class="d-flex align-items-center">
 <!-- 
