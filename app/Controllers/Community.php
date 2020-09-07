@@ -1449,11 +1449,11 @@ class Community extends BaseController
 
         $model = new PostcommentsModel;
         $post_id = $this->request->getPost('post_id');
-        $content = $_POST['content']['blocks'];
+        $content = $_POST['content'];
         $data = [
             'user_id' => session()->get('id'),
             'post_id' => $post_id,
-            'content' => serialize($content)
+            'content' => $content
         ];
 
         if($model->save($data)){

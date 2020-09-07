@@ -41,6 +41,12 @@
         line-height: 70px;
         font-size: 1.3rem;
     }
+
+    #txtUserComment{
+        border: 1px solid #999;
+        padding: 10px;
+        border-radius: 5px;
+    }
 </style>
 <div class="page-header header-filter m-auto" data-parallax="true" style="background-image: url(<?= base_url(); ?>/public/admin/uploads/community/<?= $community_current[0]->name; ?>)">
     <div class="container">
@@ -303,86 +309,95 @@
                         <hr>
                         <div id="comments" class=" my-4">
                             <h5 class="card-title p-3 m-0">Leave a Comment:</h5>
-
+                            
                             <div class="card-body">  
-                            <input type="hidden" name="post_id" value="<?= $blog['id']?>">
+                                <input type="hidden" name="post_id" value="<?= $blog['id']?>">
                                 <div class="ce-example__content _ce-example__content--small" style="padding-bottom: 0px !important;">
-                                <div id="editorjs"></div>
+                                <div class="form-group">
+                                    <textarea name="txtUserComment" id="txtUserComment" class=" w-100" placeholder="Place your comments here" cols="30" rows="5" ></textarea>
+                                </div>
+                                <div class="text-right">
+                                    <button class="btn btn-primary text-right" id="saveButton">Comment</button>
+                                </div>
+                                <!-- <div id="editorjs" class="cdx-block"></div> -->
                                 <input type="hidden" name="base" value="<?= base_url(); ?>">
-                            <button class="btn btn-primary btn-sm" id="saveButton">Comment</button>
                             </div>
-                            </div>
-                            <div class="title ">
+                        </div>
+                            <div class="">
                                 <?php if (session('msg')) : ?>
                                 <div class="alert alert-success" role="alert">
                                     <?= session('msg') ?>
                                 </div>
                                 <?php endif ?>
-                                <h5 class="title p-4 m-0">Comments</h5>
+                                <h5 class="title py-4 m-0">Comments</h5>
                                 <div class="col-sm-12">
                                     <?php if(empty($post_comments)): ?>
                                     <p class="text-center">No comment yet</p>
                                     <?php else: ?>
                                     <?php foreach ($post_comments as $key => $value): ?>
-                                    <div class="media mb-5">
+                                    <div class="media mb-3 p-2 border rounded">
                                         <?php if($value->user_mode == '1'): ?>
-                                        <div class="profile-photo-small mr-2 d-flex">
-                                            <div class="col-4">
-
-                                                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image" class="img-raised rounded-circle1 img-fluid  z-depth-2" alt="avatar">
-                                            </div>
-                                            <div class="col-8">
-
-                                                <div class="media-body" contenteditable="false">
-                                                    <?php if(session()->get('id') == $value->user_id): ?>
-                                                    <a href="<?= base_url(); ?>/profile">
-                                                        <h5 class="my-0">Anounymous</h5>
-                                                        <input type="hidden" name="base" value="<?= base_url(); ?>">                      </a>
-                                                    <?php else: ?>
-                                                    <a href="<?= base_url(); ?>/view-profile/<?= $user['id']; ?>">
-                                                        <h5 class="my-0">Anounymous</h5>
-                                                    </a>
-                                                    <?php endif; ?>
-                                                    <?= $value->content; ?>
+                                            <div class="profile-photo-small mr-2 d-flex">
+                                                <div class="col-4">
+                                                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image" class="img-raised rounded-circle1 img-fluid  z-depth-2" alt="avatar">
                                                 </div>
+                                                <div class="col-8">
+                                                    <div class="media-body" contenteditable="false">
+                                                        <?php if(session()->get('id') == $value->user_id): ?>
+                                                            <a href="<?= base_url(); ?>/profile">
+                                                                <h5 class="my-0">Anonymous</h5>
+                                                                <input type="hidden" name="base" value="<?= base_url(); ?>">
+                                                            </a>
+                                                        <?php else: ?>
+                                                            <a href="<?= base_url(); ?>/view-profile/<?= $user['id']; ?>">
+                                                                <h5 class="my-0">Anonymous</h5>
+                                                            </a>
+                                                        <?php endif; ?>
+                                                        <?= $value->content; ?>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        <?php else: ?>
+                                            <div class="profile-photo-small mr-2">
+                                                <?php if(!empty($value->name)): ?>
+                                                    <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $value->name ?>" alt="Circle Image" class="rounded-circle1 img-fluid z-depth-2">
+                                                <?php else: ?>
+                                                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image" class="img-raised rounded-circle1 img-fluid  z-depth-2" alt="avatar">
+                                                <?php endif; ?>
                                             </div>
 
-                                        </div>
+                                            <div class="media-body" contenteditable="false">
+                                                <?php if(session()->get('id') == $value->user_id): ?>
+                                                    <div class="d-flex justify-content-left">
+                                                        <a href="<?= base_url(); ?>/profile">
+                                                            <h5 class="my-0">
+                                                                <strong>
+                                                                    <?= $value->nickname; ?>
+                                                                </strong>
+                                                            </h5>
+                                                        </a>
+                                                    </div>
+                                                    <time class="timeago" datetime="<?= $value->created_at; ?>"></time>
+                                                    
+                                                <?php else: ?>
+                                                    <div class="d-flex justify-content-left">
+                                                        <a href="<?= base_url(); ?>/view-profile/<?= $user['id']; ?>">
+                                                            <h5 class="my-0">
+                                                                <strong>
+                                                                    <?= $value->nickname; ?>
+                                                                </strong>
+                                                            </h5>
+                                                        </a>
+                                                    </div>
+                                                <?php endif; ?>
+                                                
+                                                <?= $value->content?>
+                                                <br/>
+                                                <button class="btn btn-sm btn-link"><i class="fa fa-reply"></i> Reply</button>
+                                            </div>
+                                            <time class="timeago" datetime=" <?= $value->created_at ?>"></time>
 
-
-                                        <?php else: ?>
-
-                                        <div class="profile-photo-small mr-2">
-                                            <?php if(!empty($value->name)): ?>
-
-                                            <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $value->name ?>" alt="Circle Image" class="rounded-circle1 img-fluid z-depth-2">
-
-                                            <?php else: ?>
-                                            <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image" class="img-raised rounded-circle1 img-fluid  z-depth-2" alt="avatar">
-
-                                            <?php endif; ?>
-
-                                        </div>
-
-                                        <div class="media-body" contenteditable="false">
-                                            <?php if(session()->get('id') == $value->user_id): ?>
-                                            <a href="<?= base_url(); ?>/profile">
-                                                <h5 class="my-0">
-                                                    <?= $value->nickname; ?>
-                                                </h5>
-                                            </a>
-                                            <?php else: ?>
-                                            <a href="<?= base_url(); ?>/view-profile/<?= $user['id']; ?>">
-                                                <h5 class="my-0">
-                                                    <?= $value->nickname; ?>
-                                                </h5>
-                                            </a>
-                                            <?php endif; ?>
-
-
-                                            <?= $value->content; ?>
-
-                                        </div>
                                         <?php endif; ?>
                                     </div>
                                     <?php endforeach; ?>
@@ -435,38 +450,38 @@
 
 <script type="text/javascript">
     document.querySelector("#saveButton").addEventListener('click', function () {
-        editor.save().then((savedData) => {
-            // cPreview.show(savedData, document.getElementById("output"));
-            console.log(savedData.blocks);
-            var base_url = $('input[name=base]').val();
-            var post_id = $("input[name=post_id]").val();
-            var content = savedData;
-         
+        
+        // cPreview.show(savedData, document.getElementById("output"));
+        var base_url = $('input[name=base]').val();
+        var post_id = $("input[name=post_id]").val();
+        var content = document.querySelector("#txtUserComment").value;
+        
 
-            var data = {
-                'content': content,
-                'post_id': post_id,
-            };
-            
-            if(post_id == ''  || content == ''){
-                    alert('Please fill out the fields!');
-            }else{
-                $.ajax({
-                type: "POST",
-                url  : base_url + '/add_comment',
-                data:  data, 
-                dataType: "JSON",  
-                success: function(data)
+        var data = {
+            'content': content,
+            'post_id': post_id,
+        };
+
+
+        if(post_id == ''  || content == ''){
+                alert('Please fill out the fields!');
+        }else{
+            $.ajax({
+            type: "POST",
+            url  : base_url + '/add_comment',
+            data:  data, 
+            dataType: "JSON",  
+            success: function(data)
+            {
+                alert(data.msg);
+                location.reload();
+            },
+            error: function (jqXHR, textStatus, errorThrown)
                 {
-                    alert(data.msg);
-                    location.reload();
-                },
-                error: function (jqXHR, textStatus, errorThrown)
-                    {
-                    alert('There is an error!');
-                    }
-                    });
-            }
-        });
+                alert('There is an error!');
+                }
+                });
+        }
+            
     });
 </script>

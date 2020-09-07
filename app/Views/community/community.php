@@ -242,12 +242,12 @@
                                     <div class="tab-pane fade show active" id="grid" role="tabpanel" aria-labelledby="community-grid-tab">
                                         <div id="grid-layout" class="card-body pt-0" >
                                             <?php if(!empty($posts[0])): ?>
-                                            <div class="row">
+                                            <div class="row ">
                                             <?php foreach ($posts[0] as $key => $value) : ?>
 
 
                                             <div class="col-xs-12 col-sm-6 col-md-3">
-                                                <div class="card text-center">
+                                                <div class="card ">
                                                     <?php
                                                         $postContent = unserialize($value->content);
                                                         $hasImage = false;
@@ -258,41 +258,31 @@
                                                                 break;
                                                             }
                                                         }
-                                                        ?>
-                                                        <?php
-                                                            if($thumbnail != null){
-                                                                ?>
-                                                                    <img class="card-img-top" style=" object-fit: cover; height: 200px" src="<?= $thumbnail?>" alt="">
-                                                                <?php
-                                                            }else{
-                                                                ?>
-                                                                    <img class="card-img-top" style=" object-fit: cover;" src="<?= base_url(); ?>/public/dummy/post.jpg" alt="">
-                                                                    <!-- <img class="card-img-top" style=" object-fit: cover;" src="<?= base_url(); ?>/public/dummy/post.jpg" alt=""> -->
-                                                                <?php
-                                                            }
-                                                        ?>
-                                                    <div class="card-body">
+                                                        if($thumbnail != null){
+                                                            ?>
+                                                                <img class="card-img-top" style=" object-fit: cover; height: 200px" src="<?= $thumbnail?>" alt="">
+                                                            <?php
+                                                        }else{
+                                                            ?>
+                                                                <img class="card-img-top" style=" object-fit: cover;" src="<?= base_url(); ?>/public/dummy/post.jpg" alt="">
+                                                                <!-- <img class="card-img-top" style=" object-fit: cover;" src="<?= base_url(); ?>/public/dummy/post.jpg" alt=""> -->
+                                                            <?php
+                                                        }
+                                                    ?>
+                                                    <div class="card-body ">
                                                         <h4 class="card-title">
                                                             <?= character_limiter($value->title, 40) ?>
                                                         </h4>
                                                       
                                                         <?php if($value->tags): ?>
-                                                        <?php 
-                                                                   $tags = explode (",", $value->tags);      
-                                                            ?>
-                                                        <?php foreach ($tags as $key1 => $value1): ?>
-                                                        <span class="badge badge-pill badge-info"><?= $value1 ?></span>
-                                                        <?php endforeach; ?>
+                                                            <?php $tags = explode (",", $value->tags); ?>
+                                                            <?php foreach ($tags as $key1 => $value1): ?>
+                                                                <span class="badge badge-pill badge-info"><?= $value1 ?></span>
+                                                            <?php endforeach; ?>
                                                         <?php endif; ?>
-
-                                                        <h6 class=" text-muted ">Posted By: <a href="#"><?= $value->nickname; ?></a>
-                                                        </h6>
-                                                        <h6 class="card-subtitle mb-2 text-muted">
-                                                            <?= $value->updated_at ?>
-                                                        </h6>
-                                                        <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class=" btn btn-primary btn-sm stretched-link">
-                                                            Read More
-                                                        </a>
+                                                        <h6 class=" text-muted ">Posted By: <a href="#"><?= $value->nickname; ?></a></h6>
+                                                        <h6 class="card-subtitle mb-2 text-muted"> <?= $value->updated_at ?> </h6>
+                                                        <a href="<?= base_url() ?>/post-view/<?= $value->id ?>" class="btn btn-secondary btn-block stretched-link">Read more</a>
                                                     </div>
 
 
@@ -343,11 +333,7 @@
                                                                             <?= $value->updated_at ?>
                                                                         </h6>
                                                                     </span>
-                                                                    <span>
-                                                                        <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>">
-                                                                            <button class="btn btn-primary btn-sm">read more</button>
-                                                                        </a>
-                                                                    </span>
+                                                                    <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link stretched-link">Read more</a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -392,11 +378,7 @@
                                                                             <?= $value->updated_at ?>
                                                                         </h6>
                                                                     </span>
-                                                                    <span>
-                                                                        <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>">
-                                                                            <button class="btn btn-primary btn-sm">read more</button>
-                                                                        </a>
-                                                                    </span>
+                                                                    <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class="btn btn-link stretched-link">Read more</a>
                                                                 </div>
                                                             </div>
                                                         </div>
