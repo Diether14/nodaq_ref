@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 06, 2020 at 01:21 PM
+-- Generation Time: Sep 07, 2020 at 05:44 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -41,6 +41,7 @@ CREATE TABLE `community` (
   `category` varchar(1000) NOT NULL,
   `status` int(11) NOT NULL COMMENT '1 = remove, 2 = reset',
   `questions` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -49,11 +50,12 @@ CREATE TABLE `community` (
 -- Dumping data for table `community`
 --
 
-INSERT INTO `community` (`id`, `user_id`, `com_photo_id`, `title`, `community_type`, `content`, `color`, `text_color`, `upvote_name`, `devote_name`, `category`, `status`, `questions`, `created_at`, `updated_at`) VALUES
-(38, 18, 39, 'Test Community', 0, '\"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...\"', '', '', '', '', '', 0, '', '2020-08-20 22:07:42', '2020-08-20 22:07:42'),
-(39, 24, 40, 'Test Public Community', 0, '\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"', '', '', '', '', '', 0, '', '2020-08-20 23:22:04', '2020-08-20 23:22:04'),
-(40, 18, 41, 'Test Recommended', 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', '', '', '', '', '', 0, '', '2020-08-20 23:40:52', '2020-08-20 23:40:52'),
-(41, 24, 42, 'Test Test', 0, 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s', '', '', '', '', '', 0, '', '2020-08-20 23:57:21', '2020-08-20 23:57:21');
+INSERT INTO `community` (`id`, `user_id`, `com_photo_id`, `title`, `community_type`, `content`, `color`, `text_color`, `upvote_name`, `devote_name`, `category`, `status`, `questions`, `slug`, `created_at`, `updated_at`) VALUES
+(38, 18, 39, 'Test Community', 0, '\"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...\"', '', '', '', '', '', 0, '', 'test', '2020-08-20 22:07:42', '2020-08-20 22:07:42'),
+(39, 24, 40, 'Test Public Community', 0, '\"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...\"', '', '', '', '', '', 0, '', 'test2', '2020-08-20 23:22:04', '2020-08-20 23:22:04'),
+(40, 18, 41, 'Test Recommended', 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', '', '', '', '', '', 0, '', 'tset3', '2020-08-20 23:40:52', '2020-08-20 23:40:52'),
+(41, 24, 42, 'Test Test', 0, 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s', '', '', '', '', '', 0, '', 'tset5', '2020-08-20 23:57:21', '2020-08-20 23:57:21'),
+(42, 18, 43, 'Test', 0, 'This is a test community', '', '', '', '', '', 0, '', 'test-slug', '2020-09-07 22:26:51', '2020-09-07 22:26:51');
 
 -- --------------------------------------------------------
 
@@ -140,7 +142,8 @@ INSERT INTO `community_category` (`id`, `user_id`, `community_id`, `category_nam
 (20, 24, 39, 'Test', '2020-08-26 13:47:01', '2020-08-26 13:47:01'),
 (21, 24, 39, 'Test', '2020-08-26 13:47:01', '2020-08-26 13:47:01'),
 (23, 18, 38, 'Test 2', '2020-08-27 08:02:58', '2020-08-27 08:02:58'),
-(24, 18, 38, 'test', '2020-08-27 11:19:30', '2020-08-27 11:19:30');
+(24, 18, 38, 'test', '2020-08-27 11:19:30', '2020-08-27 11:19:30'),
+(25, 18, 42, 'Test Category', '2020-09-07 15:06:40', '2020-09-07 15:06:40');
 
 -- --------------------------------------------------------
 
@@ -180,7 +183,8 @@ INSERT INTO `community_category_subclass` (`id`, `user_id`, `community_id`, `cat
 (19, 18, 38, 23, 'Notice test', '2020-08-27 08:02:58', '2020-08-27 08:02:58'),
 (20, 18, 38, 23, 'testsetest', '2020-08-27 08:10:46', '2020-08-27 08:10:46'),
 (21, 18, 38, 24, 'Notice', '2020-08-27 11:19:30', '2020-08-27 11:19:30'),
-(22, 18, 38, 24, 'test2', '2020-08-27 11:19:57', '2020-08-27 11:19:57');
+(22, 18, 38, 24, 'test2', '2020-08-27 11:19:57', '2020-08-27 11:19:57'),
+(23, 18, 42, 25, 'Notice', '2020-09-07 15:06:40', '2020-09-07 15:06:40');
 
 -- --------------------------------------------------------
 
@@ -204,7 +208,8 @@ INSERT INTO `community_photo` (`id`, `name`, `type`, `created_at`, `updated_at`)
 (39, 'profile_city.jpg', '', '2020-08-20 22:07:42', '2020-08-20 22:07:42'),
 (40, 'profile_city.jpg', '', '2020-08-20 23:22:03', '2020-08-20 23:22:03'),
 (41, 'profile_city.jpg', '', '2020-08-20 23:40:52', '2020-08-20 23:40:52'),
-(42, 'profile_city.jpg', '', '2020-08-20 23:57:21', '2020-08-20 23:57:21');
+(42, 'profile_city.jpg', '', '2020-08-20 23:57:21', '2020-08-20 23:57:21'),
+(43, 'profile_city.jpg', '', '2020-09-07 22:26:51', '2020-09-07 22:26:51');
 
 -- --------------------------------------------------------
 
@@ -362,6 +367,20 @@ INSERT INTO `post_comments` (`id`, `user_id`, `post_id`, `content`, `created_at`
 (28, 18, 220, 'a:3:{s:4:\"time\";s:13:\"1599232390914\";s:6:\"blocks\";a:1:{i:0;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:12:\"test comment\";}}}s:7:\"version\";s:6:\"2.18.0\";}', '2020-09-04 23:13:11', '2020-09-04 23:13:11'),
 (29, 18, 220, 'a:3:{s:4:\"time\";s:13:\"1599232420254\";s:6:\"blocks\";a:1:{i:0;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:4:\"test\";}}}s:7:\"version\";s:6:\"2.18.0\";}', '2020-09-04 23:13:40', '2020-09-04 23:13:40'),
 (30, 18, 220, 'a:1:{i:0;a:2:{s:4:\"type\";s:9:\"paragraph\";s:4:\"data\";a:1:{s:4:\"text\";s:4:\"test\";}}}', '2020-09-06 13:24:50', '2020-09-06 13:24:50');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `post_comment_replies`
+--
+
+CREATE TABLE `post_comment_replies` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `post_id` int(11) DEFAULT NULL,
+  `comment` text DEFAULT NULL,
+  `date_posted` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='This table is connected to the "post comments" table. ';
 
 -- --------------------------------------------------------
 
@@ -743,6 +762,12 @@ ALTER TABLE `post_comments`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `post_comment_replies`
+--
+ALTER TABLE `post_comment_replies`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `post_photo`
 --
 ALTER TABLE `post_photo`
@@ -816,7 +841,7 @@ ALTER TABLE `user_settings`
 -- AUTO_INCREMENT for table `community`
 --
 ALTER TABLE `community`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `community_ac_settings`
@@ -834,19 +859,19 @@ ALTER TABLE `community_banned_users`
 -- AUTO_INCREMENT for table `community_category`
 --
 ALTER TABLE `community_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `community_category_subclass`
 --
 ALTER TABLE `community_category_subclass`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `community_photo`
 --
 ALTER TABLE `community_photo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `cover_photo`
@@ -883,6 +908,12 @@ ALTER TABLE `join_community_files`
 --
 ALTER TABLE `post_comments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT for table `post_comment_replies`
+--
+ALTER TABLE `post_comment_replies`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `post_photo`
