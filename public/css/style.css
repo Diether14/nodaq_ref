@@ -22,11 +22,12 @@ footer {
 .main {
     min-height: 100vh;
     margin-top: 6%;
-    background-color: #ebebeb !important;
+    background-color: #fff !important;
 }
 
 .main .container {
-    background-color: #fff!important;
+    /* background-color: #fff!important; */
+    min-height: 100vh;
 }
 
 .container.bg-white.card {
@@ -144,7 +145,7 @@ h3.community-title {
 }
 
 ul.nav.nav-pills.community-tab-opts li.nav-item a.active {
-    background: #ffffff!important;
+    background: #e3e3e3!important;
     border-radius: 5px 4px 0 0;
 }
 
@@ -388,6 +389,92 @@ button.btn.btn-primary {
     background-color: #6A4E9C !important;
 }
 
+.community-create-post .modal-dialog.modal-dialog-centered.modal-lg {
+    width: 80vw !important;
+    min-width: 90vw;
+    min-height: 100vh;
+    margin: auto !important;
+}
+
+.carousel-inner .carousel-item img {
+    height: 50vh !important;
+    object-fit: cover;
+}
+
+.community-sidebar {
+    min-width: 360px;
+    max-width: 360px;
+    margin-top: 70px;
+    border-right: 2px solid #ced0d4;
+}
+
+.community-feed {
+    width: calc(100% - 360px);
+}
+
+.community-sidebar .list-group-item.active {
+    background-color: #EAE5F2;
+    color: #050505;
+}
+
+.community-sidebar .list-group-item {
+    min-height: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.row {
+    margin-left: unset !important;
+    margin-right: unset !important;
+}
+
+.community_managed_section,
+.community_header,
+.community_new,
+.community_joined {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+h4.community_subtitle {
+    font-weight: 600;
+}
+
+.community_hr {
+    border-bottom: 1px solid #ced0d4;
+    width: 90%;
+    margin: auto;
+}
+
+.community_new_btn {
+    color: #896FB7 !important;
+    border: 1px solid #896FB7 !important;
+}
+/* Dark Mode*/
+body.dm_activated,body.dm_activated input, body.dm_activated i{
+    color:#fff !important
+}
+body.dm_activated .dm_text-white{
+color: #fff !important
+}
+body.dm_activated .main{
+background-color: #fff !important
+}
+body.dm_activated .main{
+    background-color: #1c1e21 !important;
+}
+body.dm_activated .dm_bg-dark, body.dm_activated .dm_card-bg-dark, body.dm_activated .dropdown-menu {
+
+background-color: #242526 !important;
+}
+body.dm_activated .dm_bg-dark2{
+    background-color: #18191A !important;
+}
+body.dm_activated form#search_form #search_icon,body.dm_activated form#search_form #search_input{
+ color: #fff !important
+}
+/*End of Dark Mode*/
+
 
 /*Media Queries*/
 
@@ -400,4 +487,3 @@ button.btn.btn-primary {
         margin: 0 auto;
     }
 }
-

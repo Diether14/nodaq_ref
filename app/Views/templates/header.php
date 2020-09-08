@@ -39,19 +39,14 @@
         background-position: center center;
         background-size: cover;
     }
-
-    #editorjs{
-      border: 1px solid #333;
-      border-radius: 5px;
-    }
     </style>
 
 <?php if(session()->get('isLoggedIn')): ?>
-<body class="profile-page sidebar-collapse" id="noodaq-body">
+<body class="profile-page sidebar-collapse" id="nodaq-body">
     <?php 
       $uri = service('uri');
     ?>
-    <nav id="main-nav" class="navbar  fixed-top navbar-expand-lg p-0 m-0">
+    <nav id="main-nav" class="navbar dm_bg-dark  fixed-top navbar-expand-lg p-0 m-0">
         <div class="container">
             <div class="navbar-translate">
                 <a class="navbar-brand" href="<?= base_url(); ?>/community-home">
@@ -89,9 +84,9 @@
                         </a>
                     
 
-              
+  -->
             <!-- Topbar Search -->
-            <form action="<?= base_url() ?>/search/all" class="d-none d-sm-inline-block form-inline ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <form id="search_form" action="<?= base_url() ?>/search/all" class="d-none d-sm-inline-block form-inline ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                 <div class="input-group">
                 <input type="text" class="form-control " name="q" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                 <div class="input-group-append">
