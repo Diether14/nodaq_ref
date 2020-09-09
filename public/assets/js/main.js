@@ -1,8 +1,22 @@
 $(document).ready(function(){
-    initSample();
-    
+    // initSample();
+
+    var readURL = function(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('.avatar').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 
 
+    $(".file-upload").on('change', function() {
+        readURL(this);
+    });
     
 
     // $(".update-anounymous").click(function(){
@@ -253,7 +267,7 @@ $(document).ready(function(){
         readURL(this);
     });
 
-    console.log($("input").val());
+    // console.log($("input").val());
     
 
     // $("input").val();
