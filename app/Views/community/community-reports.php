@@ -137,28 +137,140 @@
                 </ol>
             </nav>
 
-            <div class="container d-flex  p-0 community-join_inner ">
+            <div class="container ">
 
-                <div class="col-lg-12 bg-gray p-0">
+                <div class="col-lg-12  p-0">
                     <div class="community-section">
 
 
-                        <?php if (session('msg')) : ?>
-                        <div class="alert alert-info">
-                            <div class="container">
-                                <div class="alert-icon">
-                                    <i class="material-icons">info_outline</i>
+                    <?php if(session('msg')): ?>
+                                <div class="alert alert-success" role="alert">
+                                    <?= session('msg') ?>
                                 </div>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true"><i class="material-icons">clear</i></span>
-                                    </button>
-                                <b>Info alert:</b>
-                                <?= session('msg') ?>
-                            </div>
-                        </div>
-                        <br>
-                        <?php endif; ?>
-                        
+                                <?php endif; ?>
+                                <!-- Users in community -->
+                                <h2 class="pl-3">Reported Posts</h2>
+                             
+                                <!-- <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add_ac">Add Assistant Manager</button> -->
+                                <div class="row">
+
+
+                                    <div class="table-responsive">
+                                        <table id="myTable" class="table table-striped table-bordered"
+                                            style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>Reported By</th>
+                                                    <th>Post Title</th>
+                                                    <th>Reported Details</th>
+                                                    <th>Action</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php foreach ($reported_posts as $key => $value): ?>
+                                                <tr>
+                                                    <td><?= $value->nickname ?></td>
+                                                    <td><?= $value->title ?></td>
+                                                    <td><?= $value->report_content ?></td>
+                                                    <td>
+                                                        <button class="btn btn-primary btn-sm" data-toggle="modal"
+                                                            data-target="#view<?= $key ?>"> View</button>
+                                                        <button class="btn btn-danger btn-sm" data-toggle="modal"
+                                                            data-target="#ban_user<?= $key ?>"> Ban User</button>
+
+                                                    </td>
+
+                                                </tr>
+
+                                                <div class="modal fade" id="view<?= $key ?>" tabindex="-1"
+                                                    role="dialog">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div
+                                                                class="modal-header bg-primary py-3 text-white align-items-center">
+                                                                <h5 class="modal-title">Report info</h5>
+                                                                <button type="button"
+                                                                    class="close bg-danger text-white btn-link p-2 rounded-circle"
+                                                                    data-dismiss="modal" aria-label="Close">
+                                                                    <i class="material-icons">clear</i>
+                                                                </button>
+                                                            </div>
+
+                                                            <div class="modal-body">
+                                                                <label>Post Title</label><br>
+                                                                <h6><?= $value->title ?></h6><br>
+                                                                <label>Report Content</label><br>
+                                                                <h6><?= $value->report_content ?></h6><br>
+                                                            </div>
+                                                            <div class="modal-footer">
+
+                                                                <button type="button"
+                                                                    class="btn bg-danger text-white btn-link float-right"
+                                                                    data-dismiss="modal">Close</button>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--  End Modal -->
+
+                                                <!-- Classic Modal -->
+                                                <div class="modal fade" id="ban_user<?= $key ?>" tabindex="-1"
+                                                    role="dialog">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div
+                                                                class="modal-header bg-primary py-3 align-items-center">
+                                                                <h5
+                                                                    class="create-post-title modal-title w-100 fw600 m-0 text-white">
+                                                                    Reason</h5>
+                                                                <button type="button"
+                                                                    class="close bg-danger text-white btn-link p-2 rounded-circle"
+                                                                    data-dismiss="modal" aria-label="Close">
+                                                                    <i class="material-icons">clear</i>
+                                                                </button>
+                                                            </div>
+                                                            <form class="contact-form"
+                                                                action="<?= base_url(); ?>/ban_user" method="post"
+                                                                accept-charset="utf-8" enctype="multipart/form-data">
+                                                                <div class="modal-body">
+                                                                    <div class="form-group row">
+                                                                        <div class="col-lg-12">
+                                                                            <div class="form-group row">
+                                                                                <div class="col-lg-12">
+                                                                                    <textarea name="ban_reason"
+                                                                                        class="form-control" value=""
+                                                                                        required rows="5" placeholder="Something else"></textarea>
+                                                                                    <input type="hidden"
+                                                                                        name="community_id"
+                                                                                        value="<?= $value->community_id; ?>">
+                                                                                    <input type="hidden" name="id"
+                                                                                        value="<?= $value->id; ?>">
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+
+                                                                    <button type="submit"
+                                                                        class="btn bg-success text-white btn-link float-left">Save</button>
+                                                                    <!-- 
+                                                                    <button type="button"
+                                                                        class="btn bg-danger text-white btn-link float-left"
+                                                                        data-dismiss="modal">Close</button> -->
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                     </div>
                 </div>
             </div>

@@ -13,7 +13,6 @@ use App\Models\UserssharedpostModel;
 use App\Models\UsersvoteModel;
 use App\Models\CommunityassistantmanagersModel;
 use App\Models\PostcommentsModel;
-use App\Models\PostcommentrepliesModel;
 use App\Models\SharedcommentsModel;
 use App\Models\JoincommunityfilesModel;
 use App\Models\CommunitycategoryModel;
@@ -719,6 +718,22 @@ class Community extends BaseController
 
         $data['community_category'] = $categories;
 
+        
+        $db      = \Config\Database::connect();
+        $builder = $db->table('users_community');
+        $builder->select('users_community.id, users_community.user_id, users_community.community_id, users_community.status, users_community.anounymous, users.nickname, users.email, profile_photo.name, users_community.answer, 
+        community_ac_settings.remove_comments,community_ac_settings.remove_posts,community_ac_settings.punish_users,community_ac_settings.remove_posts_from_hotboard,
+        community_ac_settings.edit_cover_photo, community_ac_settings.edit_categories, community_ac_settings.edit_subclass, community_ac_settings.notice,
+        community_ac_settings.general, community_ac_settings.politic');
+        $builder->where(['users_community.community_id' => $id]);
+        $builder->where('users_community.status !=', '3');
+        $builder->join('users', 'users_community.user_id = users.id');
+        $builder->join('profile_photo', 'users_community.user_id = profile_photo.user_id', 'left');
+        $builder->join('community_ac_settings', 'users_community.user_id = community_ac_settings.user_id', 'left');
+        
+        $query   = $builder->get();
+        $data['users'] = $query->getResult();
+
         echo view('templates/header', $data);
         echo view('community/community-members', $data);
         echo view('templates/footer', $data);
@@ -766,6 +781,19 @@ class Community extends BaseController
             $categories[$key]['subclass'] = $subclass;
 
         }
+        $data['community_id'] = $id;
+
+        $db      = \Config\Database::connect();
+        $builder = $db->table('users_report');
+        $builder->select('users_report.id, users_report.reported_by_user_id, users_report.community_id, users_report.post_id, users_report.user_id, users_report.report_content, users_report.created_at,
+        users.nickname,users.email, users_post.title, users_post.content, community.title as community_title');
+        $builder->where(['users_report.community_id' => $id]);
+        $builder->join('users', 'users.id = users_report.reported_by_user_id');
+        $builder->join('users_post', 'users_post.id = users_report.post_id');
+        $builder->join('community', 'community.id = users_report.community_id');
+
+        $query   = $builder->get();
+        $data['reported_posts'] = $query->getResult();
 
         $data['community_category'] = $categories;
 
@@ -819,6 +847,24 @@ class Community extends BaseController
 
         $data['community_category'] = $categories;
 
+        $data['community_id'] = $id;
+        
+        $db      = \Config\Database::connect();
+        $builder = $db->table('users_community');
+        $builder->select('users_community.id, users_community.user_id, users_community.community_id, users_community.ban_reason, users_community.post, users_community.comment, users_community.share, users_community.report, users_community.upvote_devote,users_community.status, users_community.anounymous, users.nickname, users.email, profile_photo.name, 
+        community_ac_settings.remove_comments,community_ac_settings.remove_posts,community_ac_settings.punish_users,community_ac_settings.remove_posts_from_hotboard,
+        community_ac_settings.edit_cover_photo, community_ac_settings.edit_categories, community_ac_settings.edit_subclass, community_ac_settings.notice,
+        community_ac_settings.general, community_ac_settings.politic');
+        $builder->where(['users_community.community_id' => $id]);
+        $builder->where('users_community.status =', '3');
+        $builder->join('users', 'users_community.user_id = users.id');
+        $builder->join('profile_photo', 'users_community.user_id = profile_photo.user_id', 'left');
+        $builder->join('community_ac_settings', 'users_community.user_id = community_ac_settings.user_id', 'left');
+        
+        $query   = $builder->get();
+        $data['users'] = $query->getResult();
+
+
         echo view('templates/header', $data);
         echo view('community/community-block-users', $data);
         echo view('templates/footer', $data);
@@ -867,6 +913,33 @@ class Community extends BaseController
         }
 
         $data['community_category'] = $categories;
+
+        $data['community_id'] = $id;
+
+        $db      = \Config\Database::connect();
+        $builder = $db->table('users_report');
+        $builder->select('*');
+        $builder->where(['users_report.community_id' => $id]);
+        
+        // $builder->where('users_community.status !=', '3');
+        // AND users_report.user_id = users.id
+        // $builder->join('users', 'users_report.reported_by_user_id = users.id', 'left');
+        // $builder->join('profile_photo', 'users_community.user_id = profile_photo.user_id', 'left');
+        // $builder->join('community_ac_settings', 'users_community.user_id = community_ac_settings.user_id', 'left');
+        
+        $query   = $builder->get();
+        $data['reported_posts'] = $query->getResult();
+        // echo '<pre>';
+        // var_dump($data['reported_posts']);exit;
+
+        $builder1 = $db->table('community');
+    
+        $builder1->select('community.id, community.user_id, community.com_photo_id, community.title, community.upvote_name, community.devote_name,community.community_type, community.content, community.updated_at, community.color , community.text_color, community_photo.name, users.nickname, community.status, community.questions');
+        $builder1->where('community.id', $id);
+        $builder1->join('community_photo', 'community_photo.id = community.com_photo_id');
+        $builder1->join('users', 'community.user_id = users.id');
+        $query1   = $builder1->get();
+        $data['community'] = $query1->getResult();
 
         echo view('templates/header', $data);
         echo view('community/community-settings', $data);
@@ -1392,7 +1465,6 @@ class Community extends BaseController
             $builder->join('user_settings', 'users.id = user_settings.user_id' );
             $query = $builder->get();
             $data['post_comments'] = $query->getResult();
-
     
             $report = new UsersreportModel();
     
@@ -1427,12 +1499,7 @@ class Community extends BaseController
 
             $report_model = new ReportOptionsModel();
 
-            $commentRepliesModel = new PostcommentrepliesModel;
             $data['report_options'] = $report_model->findAll();
-
-            $db = \Config\Database::connect();
-            $data['post_comment_replies'] = $commentRepliesModel->where('post_id', $data["blog"]["id"])->get()->getResult();
-            
 
             $data['vote_totals'] = $voteModel->where('post_id', $id)->where('community_id', $data['blog']['community_id'])->where('status', '1')->countAllResults();
     
@@ -1444,17 +1511,17 @@ class Community extends BaseController
         
     public function add_comment(){
         ini_set('display_errors', 1);
-        
+  
         $data = [];
         helper(['form']);
-        
+
         $model = new PostcommentsModel;
         $post_id = $this->request->getPost('post_id');
-        $content = $_POST['content'];
+        $content = $_POST['content']['blocks'];
         $data = [
             'user_id' => session()->get('id'),
             'post_id' => $post_id,
-            'content' => $content
+            'content' => serialize($content)
         ];
 
         if($model->save($data)){
@@ -1462,7 +1529,7 @@ class Community extends BaseController
                 'success' => false,
                 'data' => $data,
                 'msg' => "Commented!"
-            ];
+               ];
             
         }else{
             $response = [
@@ -1473,30 +1540,6 @@ class Community extends BaseController
         }
         return $this->response->setJSON($response);
 
-    }
-
-    
-
-    public function add_comment_reply(){
-        ini_set('display_errors', 1);
-        $model = new PostcommentrepliesModel;
-        // echo "watdaef";
-        // var_dump($this->request->getPost());
-        // exit;
-        if($model->save($this->request->getPost())){
-            $response = [
-                'success' => false,
-                'data' => $this->request->getPost(),
-                'msg' => "Commented!"
-            ];
-        }else{
-            $response = [
-                'success' => false,
-                'data' => '',
-                'msg' => "There is an error!"
-               ];
-        }
-        return $this->response->setJSON($response);
     }
 }
 
