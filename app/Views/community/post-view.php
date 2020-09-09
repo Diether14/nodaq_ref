@@ -263,7 +263,7 @@
 
                                 <?php if(empty($users_community)) : ?>
 
-                                <a href="#comments" class="btn btn-link not_joined h6"><i class="fa fa-comment pr-1"></i>
+                                    <a href="#comments" class="btn btn-link not_joined h6"><i class="fa fa-comment pr-1"></i>
                                     <?php 
                                               if(1000 >= 1000){ 
                                                 echo round((1200/1000),1). 'K'; 
@@ -275,8 +275,8 @@
                                     Comments</a>
                            
                                 <?php else: ?>
-                                <a href="#comments" class="btn btn-link text-primary h6"><i class="fa fa-comment pr-1"></i>
-                                    <?php 
+                                    <a href="#comments" class="btn btn-link text-primary h6"><i class="fa fa-comment pr-1"></i>
+                                        <?php 
                                               if(1000 >= 1000){ 
                                                 echo round((1200/1000),1). 'K'; 
                                               }elseif(1000000 >= 1000000){
@@ -394,7 +394,60 @@
                                                 
                                                 <?= $value->content?>
                                                 <br/>
-                                                <button class="btn btn-sm btn-link"><i class="fa fa-reply"></i> Reply</button>
+                                                <button id="reply-button-<?= $key?>" class="btn btn-sm btn-link"><i class="fa fa-reply"></i> Reply</button>
+                                                <div id="reply-box-<?=$key?>" class="reply-box" style="display: none" >
+                                                    <div class="d-flex w-100">
+                                                        <div class="profile-photo-small mr-2">
+                                                            <?php if(!empty($value->name)): ?>
+                                                                <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $value->name ?>" alt="Circle Image" class="rounded-circle1 img-fluid">
+                                                            <?php else: ?>
+                                                                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image" class="img-raised rounded-circle1 img-fluid  z-depth-2" alt="avatar">
+                                                            <?php endif; ?>
+                                                        </div>
+                                                        <div class="form-group w-100 p-0">
+                                                            <textarea name="txtReplyBox-<?= $key?>" id="txtReplyBox-<?= $key?>" class="form-control" cols="30" rows="3" placeholder="Leave a reply to this comment.."></textarea>
+                                                            <button id="btnSendComment-<?= $key?>" type="button" class="btn btn-sm btn-primary" onclick="sendComment(<?= $key?>, <?= $value->id ?>)"><i class="fa fa-send"></i> Send</button>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="alert ">
+                                                        <?php foreach($post_comment_replies as $replyKey => $reply){
+                                                            if($reply->comment_id == $value->id){
+                                                                ?>
+                                                                    <div class="blockquote">
+                                                                        <div class="d-flex w-100">
+                                                                            <div class="profile-photo-small mr-2">
+                                                                                <?php if(!empty($value->name)): ?>
+                                                                                    <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $value->name ?>" alt="Circle Image" class="rounded-circle1 img-fluid">
+                                                                                <?php else: ?>
+                                                                                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image" class="img-raised rounded-circle1 img-fluid  z-depth-2" alt="avatar">
+                                                                                <?php endif; ?>
+                                                                            </div>
+                                                                            <div class="d-flex w-100">
+                                                                                <div>
+                                                                                    <span class="heading"><strong>User</strong> <time class="timeago text-muted" datetime=" <?= $reply->date_posted ?>"></time></span>
+                                                                                    <br/>
+                                                                                    <span><?= $reply->comment?></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                <?php
+                                                            }
+                                                        }?>
+                                                </div>
+                                                
+                                                <script>
+                                                    document.querySelector(`#reply-button-<?= $key?>`).addEventListener("click", () => {
+                                                        const replyBoxes = document.querySelectorAll('.reply-box');
+                                                        for(let i = 0 ; i < replyBoxes.length; i++){
+                                                            replyBoxes[i].style.display = "none";
+                                                        }
+                                                        document.querySelector('#reply-box-<?=$key?>').style.display = "block";
+                                                    })
+                                                </script>
+
                                             </div>
                                             <time class="timeago" datetime=" <?= $value->created_at ?>"></time>
 
@@ -413,8 +466,9 @@
         </div>
     </div>
 
-        <!-- Classic Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+
+    <!-- Classic Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -448,7 +502,31 @@
     </div>
     <!--  End Modal -->
 
+
 <script type="text/javascript">
+
+    sendComment = (key, commentId) => {
+        let data = {
+            "post_id": <?= json_encode($blog)?>.id,            
+            "user_id": <?= session()->get('id')?>,
+            "comment_id": commentId,            
+            "comment": document.querySelector(`#txtReplyBox-${key}`).value
+        }
+        $.ajax({
+            url: `<?= base_url()?>/add_comment_reply`,
+            method: 'post',
+            data: data,
+            dataType: "JSON",
+            success: function(){
+                document.querySelector(`#txtReplyBox-${key}`).value = "";
+                window.alert("Reply successfully sent");
+            },
+            error: function(){
+                window.alert("Error sending reply to this comment");
+            }
+        });
+    }
+
     document.querySelector("#saveButton").addEventListener('click', function () {
         
         // cPreview.show(savedData, document.getElementById("output"));
