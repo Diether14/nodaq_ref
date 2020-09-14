@@ -20,8 +20,11 @@
     <link href="<?= base_url(); ?>/public/assets/scss/main.css" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="<?= base_url(); ?>/public/user/assets/demo/demo.css" rel="stylesheet" />
+    
+    <!-- mention js -->
+    <link href="<?= base_url(); ?>/public/user/assets/js/plugins/mentionjs/recommended-styles.css" rel="stylesheet" />
+    
     <!-- tags input plugin -->
-
     <link href="<?= base_url(); ?>/public/assets/taginput/tagsinput.css" rel="stylesheet" type="text/css">
 
     <!-- editor.js -->

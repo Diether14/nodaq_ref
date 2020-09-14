@@ -42,11 +42,11 @@
         font-size: 1.3rem;
     }
 
-    #txtUserComment{
+    /* #txtUserComment{
         border: 1px solid #999;
         padding: 10px;
         border-radius: 5px;
-    }
+    } */
 </style>
 <div class="page-header header-filter m-auto" data-parallax="true" style="background-image: url(<?= base_url(); ?>/public/admin/uploads/community/<?= $community_current[0]->name; ?>)">
     <div class="container">
@@ -273,36 +273,33 @@
                                                 echo '50';
                                               } ?>
                                     Comments</a>
-                           
+
                                 <?php else: ?>
                                     <a href="#comments" class="btn btn-link text-primary h6"><i class="fa fa-comment pr-1"></i>
                                         <?php 
-                                              if(1000 >= 1000){ 
+                                            if(1000 >= 1000){ 
                                                 echo round((1200/1000),1). 'K'; 
-                                              }elseif(1000000 >= 1000000){
+                                            }elseif(1000000 >= 1000000){
                                                 echo round((1000000/1000000),1). 'M';
-                                              }else{
+                                            }else{
                                                 echo '50';
-                                              } ?>
-                                    Comments</a>
-                                <!-- <a href="#" data-toggle="modal" data-target="#share" class="btn btn-link h6"><i
-                                        class="fa fa-share pr-1"></i>
-                                    <?php 
-                                              if(1000 >= 1000){ 
-                                                echo round((1200/1000),1). 'K'; 
-                                              }elseif(1000000 >= 1000000){
-                                                echo round((1000000/1000000),1). 'M';
-                                              }else{
-                                                echo '50';
-                                              } ?>
-                                    Share Post</a> -->
+                                            }
+                                        ?>
+                                        Comments
+                                    </a>
 
-                                <?php if(empty($report)): ?>
-                                <a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-link h6" class="btn btn-link"><i class="fa fa-exclamation pr-1"></i> Report Post</a>
-                                <?php else: ?>
 
-                                <a href="#" class="btn btn-link h6 text-danger"><i class="text-danger fa fa-exclamation pr-1"></i> Reported</a>
-                                <?php endif; ?>
+                                    <button type="button" data-toggle="modal" data-target="#share-modal" class="btn btn-link h6">
+                                        <i class="fa fa-share pr-1"></i>
+                                        Share Post
+                                    </button>
+
+                                    <?php if(empty($report)): ?>
+                                        <a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-link"><i class="fa fa-exclamation pr-1"></i> Report Post</a>
+                                    <?php else: ?>
+
+                                    <a href="#" class="btn btn-link h6 text-danger"><i class="text-danger fa fa-exclamation pr-1"></i> Reported</a>
+                                    <?php endif; ?>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -503,7 +500,34 @@
     <!--  End Modal -->
 
 
+    <div class="modal fade" id="share-modal" tabindex="5">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-title text-white">
+                        Share Post
+                    </span>
+                    <button type="button" data-dismiss="modal" class="btn btn-link btn-sm">
+                        <i class="fa fa-close text-white"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span>Which community would you like to share to?</span>
+                    <div class="community-list">
+                        <div class="card">
+                            <div class="card-body">
+                                <i class="fa fa-people"></i> Community
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 <script type="text/javascript">
+
 
     sendComment = (key, commentId) => {
         let data = {
