@@ -1,3 +1,4 @@
+
 <!-- <footer class="footer footer-default bg-dark w-footer" style="color:#ffffff">
     <div class="container">
       <nav class="float-left">
@@ -51,15 +52,18 @@
 
   </div>
 
-  <script src="<?= base_url(); ?>/public/user/assets/js/core/jquery.min.js" type="text/javascript"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <!-- <script src="<?= base_url(); ?>/public/user/assets/js/core/jquery.min.js" type="text/javascript"></script> -->
   <script src="<?= base_url(); ?>/public/user/assets/js/core/popper.min.js" type="text/javascript"></script>
   <script src="<?= base_url(); ?>/public/user/assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
+  <script src="<?= base_url(); ?>/public/user/assets/js/plugins/mentionjs/bootstrap-typeahead.js" type="text/javascript"></script>
+  <script src="<?= base_url(); ?>/public/user/assets/js/plugins/mentionjs/mention.js" type="text/javascript"></script>
   <script src="<?= base_url(); ?>/public/user/assets/js/plugins/moment.min.js"></script>
-  <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
   <script src="<?= base_url(); ?>/public/user/assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
   <script src="<?= base_url(); ?>/public/user/assets/js/plugins/jquery.timeago.js" type="text/javascript"></script>
-  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
   <script src="<?= base_url(); ?>/public/user/assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+  
+  
   <!--  Google Maps Plugin    -->
   <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
   <script src="<?= base_url(); ?>/public/user/assets/js/material-kit.js?v=2.0.7" type="text/javascript"></script>
@@ -70,23 +74,23 @@
 
   <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
-<!-- Load Tools -->
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script><!-- Header -->
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script><!-- Image -->
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest"></script><!-- Delimiter -->
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script><!-- List -->
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/checklist@latest"></script><!-- Checklist -->
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script><!-- Quote -->
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script><!-- Code -->
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script><!-- Embed -->
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script><!-- Table -->
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/link@latest"></script><!-- Link -->
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/warning@latest"></script><!-- Warning -->
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/marker@latest"></script><!-- Marker -->
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest"></script><!-- Inline Code -->
+  <!-- Load Tools -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script><!-- Header -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script><!-- Image -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest"></script><!-- Delimiter -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script><!-- List -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/checklist@latest"></script><!-- Checklist -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script><!-- Quote -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script><!-- Code -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script><!-- Embed -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script><!-- Table -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/link@latest"></script><!-- Link -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/warning@latest"></script><!-- Warning -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/marker@latest"></script><!-- Marker -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest"></script><!-- Inline Code -->
 
-<!-- Load Editor.js's Core -->
-<script src="<?= base_url(); ?>/public/editorjs/dist/editor.js"></script>
+  <!-- Load Editor.js's Core -->
+  <script src="<?= base_url(); ?>/public/editorjs/dist/editor.js"></script>
 
 <!-- Initialization -->
 <script>
@@ -335,7 +339,29 @@
     $(document).ready( function () {
         $('#myTable').DataTable();
         jQuery("time.timeago").timeago();
-                                            
+        
+        $('#txtUserComment').mention({
+          delimiter: '@',
+          users: [{
+              username: "sarah",
+              name: "Sarah Jones",
+              image: "http://placekitten.com/25/25"
+          }, { 
+              username: "bigCat",
+              name: "Scott Pfaff",
+              image: "http://placekitten.com/25/25"
+          }, { 
+              username: "coderDude",
+              name: "Roger Penn",
+              image: "http://placekitten.com/25/25"
+          }],
+          typeaheadOpts: { // Settings for Typeahead
+              matcher: _matcher, // Mention.js's custom matcher function, don't change
+              updater: _updater, // Mention.js's custom updater function, don't change
+              sorter: _sorter, // Mention.js's custom sorter function, don't change
+          }
+          });
+
     } );
   </script>
 </body>
