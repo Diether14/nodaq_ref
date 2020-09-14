@@ -182,6 +182,7 @@ $routes->get('/delete_category/(:num)/(:num)', 'Community::delete_category/$1/$2
 $routes->match(['get','post'],'update_category', 'Community::update_category');
 $routes->match(['get', 'post'], 'add_subclass', 'Community::add_subclass');
 $routes->match(['get', 'post'], 'update_subclass', 'Community::update_subclass');
+$routes->match(['get', 'post'], 'add_comment_reply', 'Community::add_comment_reply');
 $routes->get('/delete_subclass/(:num)/(:num)', 'Community::delete_subclass/$1/$2', ['filter' => 'auth']);
 $routes->get('post-view/(:num)', 'Community::post_view/$1', ['filter' => 'auth']);
 $routes->match(['get','post'],'upvote', 'Community::upvote', ['filter' => 'auth']);

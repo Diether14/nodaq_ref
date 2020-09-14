@@ -18,6 +18,7 @@ use App\Models\JoincommunityfilesModel;
 use App\Models\CommunitycategoryModel;
 use App\Models\CommunitysubclassModel;
 use App\Models\ReportOptionsModel;
+use App\Models\PostcommentrepliesModel;
 
 class Community extends BaseController
 {
@@ -1478,8 +1479,6 @@ class Community extends BaseController
             $builder1->join('community_photo', 'community_photo.id = community.com_photo_id');
             $query1 = $builder1->get();
             $data['community'] = $query1->getResult();
-            // echo '<pre>';
-            // var_dump( session()->get('id'));exit;
     
             $db2 = \Config\Database::connect();
             $builder2 = $db1->table('community');
@@ -1495,14 +1494,18 @@ class Community extends BaseController
             $voteModel = new UsersvoteModel(); 
     
             $data['upvote'] = $voteModel->where('user_id', session()->get('id'))->where('post_id', $id)->where('community_id', $data['blog']['community_id'])->first();
-            // var_dump($data['upvote']);exit;
+            
+            $comments = new PostcommentsModel();
+            $data['comments_total'] = $comments->where('post_id', $id)->countAllResults();
 
             $report_model = new ReportOptionsModel();
 
             $data['report_options'] = $report_model->findAll();
 
             $data['vote_totals'] = $voteModel->where('post_id', $id)->where('community_id', $data['blog']['community_id'])->where('status', '1')->countAllResults();
-    
+            $commentRepliesModel = new PostcommentrepliesModel;
+            $data['post_comment_replies'] = $commentRepliesModel->where('post_id', $id)->get()->getResult();
+           
             echo view('templates/header', $data);
             echo view('community/post-view', $data);
             echo view('templates/footer', $data);
@@ -1511,17 +1514,17 @@ class Community extends BaseController
         
     public function add_comment(){
         ini_set('display_errors', 1);
-  
+
         $data = [];
         helper(['form']);
 
         $model = new PostcommentsModel;
         $post_id = $this->request->getPost('post_id');
-        $content = $_POST['content']['blocks'];
+        $content = $this->request->getPost('content');
         $data = [
             'user_id' => session()->get('id'),
             'post_id' => $post_id,
-            'content' => serialize($content)
+            'content' => $content
         ];
 
         if($model->save($data)){
@@ -1540,6 +1543,29 @@ class Community extends BaseController
         }
         return $this->response->setJSON($response);
 
+    }
+
+    
+    public function add_comment_reply(){
+        ini_set('display_errors', 1);
+        $model = new PostcommentrepliesModel;
+        // echo "watdaef";
+        // var_dump($this->request->getPost());
+        // exit;
+        if($model->save($this->request->getPost())){
+            $response = [
+                'success' => false,
+                'data' => $this->request->getPost(),
+                'msg' => "Commented!"
+            ];
+        }else{
+            $response = [
+                'success' => false,
+                'data' => '',
+                'msg' => "There is an error!"
+               ];
+        }
+        return $this->response->setJSON($response);
     }
 }
 
