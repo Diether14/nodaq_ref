@@ -512,13 +512,27 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <div class="form-group">
+                        <label for="#txtShareContent">Write Post</label>
+                        <textarea name="txtShareContent" id="txtShareContent" cols="30" rows="3" class="form-control" placeholder="Say something about this post"></textarea>
+                    </div>
                     <span>Which community would you like to share to?</span>
                     <div class="community-list">
-                        <div class="card">
-                            <div class="card-body">
-                                <i class="fa fa-people"></i> Community
-                            </div>
-                        </div>
+                        <?php 
+                            foreach($communities as $cKey => $item){
+                                if($item["user_id"] == $community[0]->user_id){
+                                    ?>
+                                        <div class="card m-0" onclick="sharePost(<?= $item["id"]?>)">
+                                            <div class="card-body">
+                                                <strong>
+                                                    <i class="fa fa-newspaper"></i> <?= $item["title"]?><?= ($item["id"] == $community[0]->id)?" (current)":""?>
+                                                </strong>
+                                            </div>
+                                        </div>
+                                    <?php
+                                }
+                            }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -528,6 +542,28 @@
 
 <script type="text/javascript">
 
+    sharePost = postId => {
+        // let data = <?=json_encode($community)?>[0];
+        let data = {
+            'community_id': <?= $community[0]->id?>,
+            'post_id': <?= $blog['id']?>,
+            'share_content': document.querySelector('#txtShareContent').value
+        }
+        
+        $.ajax({
+            url: `<?= base_url()?>/share_post`,
+            method: 'post',
+            data: data,
+            dataType: "JSON",
+            success: function(){
+                // document.querySelector(`#txtReplyBox-${key}`).value = "";
+                window.alert("Post Shared");
+            },
+            error: function(){
+                window.alert("Unable to share post due to an error.");
+            }
+        });
+    }
 
     sendComment = (key, commentId) => {
         let data = {
