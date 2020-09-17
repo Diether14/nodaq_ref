@@ -1176,6 +1176,7 @@ class Community extends BaseController
         $data = [];
         helper(['form', 'url']);
 
+        
         $model = new UserssharedpostModel;
 
         $community_id = $this->request->getPost('community_id');
@@ -1438,8 +1439,10 @@ class Community extends BaseController
             $model = new UserspostModel();
             $user = new UserModel();
             $share = new UserssharedpostModel();
-  
+            $communityModel = new CommunityModel();
+            
     
+            $data['communities'] = $communityModel->find();
             $data['blog'] = $model->where('id', $id)->first();
             $data['shared'] = $share->where('post_id', $id)->where('community_id', $data['blog']['community_id'])->first();
     
@@ -1567,6 +1570,9 @@ class Community extends BaseController
         }
         return $this->response->setJSON($response);
     }
+    
+
+
 }
 
 

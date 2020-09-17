@@ -301,19 +301,10 @@
                                                                                 <?= character_limiter($value->title, 40) ?>
                                                                             </h4>
 
-                                                                            <?php if ($value->tags) : ?>
-                                                                                <?php
-                                                                                                $tags = explode(",", $value->tags);
-                                                                                                ?>
-                                                                                <?php foreach ($tags as $key1 => $value1) : ?>
-                                                                                    <span class="badge badge-pill badge-info"><?= $value1 ?></span>
-                                                                                <?php endforeach; ?>
-                                                                            <?php endif; ?>
-
-                                                                            <h6 class=" text-muted ">Posted By: <a href="#"><?= $value->nickname; ?></a>
+                                                                            <h6 class=" text-muted "> <a href="#"><?= $value->nickname; ?></a>
                                                                             </h6>
                                                                             <h6 class="card-subtitle mb-2 text-muted">
-                                                                                <?= $value->updated_at ?>
+                                                                                <?= date('M d, Y',strtotime($value->updated_at)) ?>
                                                                             </h6>
                                                                             <a href="<?= base_url(); ?>/post-view/<?= $value->id ?>" class=" btn btn-primary btn-sm stretched-link">
                                                                                 Read More
