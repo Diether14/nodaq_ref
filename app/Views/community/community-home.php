@@ -85,7 +85,7 @@
                                     <div class="col-lg-6">
                                         <a href="#">
                                             <img class="img-fluid rounded" src="<?= base_url(); ?>/public/admin/uploads/community/<?= $value->name ?>" alt="">
-                                        </a>
+                                        </a>  
                                     </div>
                                     <div class="col-lg-6">
                                         <a href="<?= base_url(); ?>/community-manage/<?= $value->id ?>">
