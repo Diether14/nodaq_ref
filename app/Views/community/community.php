@@ -45,6 +45,13 @@
                     <i class="fa fa-lock"></i>
                     <small class="community-status fw-600">Public Community </small>
                 <?php endif; ?>
+                <div class="text-center">
+                    <?php if(): ?>
+                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal">Join In</button>
+                    <?php else: ?>
+                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal">Join In</button> 
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
 
@@ -154,19 +161,7 @@
                                     <i class="fa fa-align-justify"></i>
                                 </a>
                             </li>
-                            <li class="nav-item ">
-                                <div class="team-player create-post">
-                                    <div class="card bg-white custom-card card-body justify-content-center m-0 p-0">
-                                        <?php if (!empty($users_community)) : ?>
-                                            <a class="nav-link rounded-0" data-toggle="modal" data-target="#myModal">
-                                                <i class="fa fa-plus"></i></a>
-                                        <?php else : ?>
-                                            <a id="not_joined" class="btn btn-link">
-                                                <i class="fa fa-plus"></i> </a>
-                                        <?php endif; ?>
-                                    </div>
-                                </div>
-                            </li>
+                           
                         </ul>
                     </div>
 
@@ -503,44 +498,27 @@
             </div>
 
             <!-- Classic Modal -->
-            <div class="modal  fade community-create-post" id="myModal" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal  fade " id="myModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered " role="document">
                     <div class="modal-content ">
                         <div class="modal-header bg-primary py-3 align-items-center">
-                            <h5 class="create-post-title modal-title w-100 fw600 m-0 text-white">Create Post</h5>
+                            <h5 class="create-post-title modal-title w-100 fw600 m-0 text-white">Join In</h5>
                             <button type="button " class="close bg-danger text-white btn-link p-2 rounded-circle" data-dismiss="modal" aria-label="Close">
                                 <i class="material-icons">clear</i>
                             </button>
                         </div>
 
                         <div class="modal-body ">
-                            <input type="hidden" name="base" value="<?= base_url(); ?>">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="pb-1">
-                                        <div class="input-group">
-                                            <input type="text" id="title" name="title" class="form-control" placeholder="Add Your Heading Text Here" value="" required>
-                                        </div>
-                                    </div>
-                                </div>
-
+                        <form class="contact-form" action="<?= base_url(); ?>/join_community" method="post">
+                            <div class="form-group">
+                                <label>Why do you want to join?</label>
+                                <textarea name="answer" class="form-control" cols="30" rows="10"></textarea>
                             </div>
-
-                            <div class="ce-example__content _ce-example__content--small" style="padding-bottom: 0px !important;">
-                                <div id="editorjs"></div>
-                            </div>
-
-                            <div class="">
-                                <input type="text" data-role="tagsinput" class="form-control" id="tags" name="tags" placeholder="Tags">
-                            </div>
-                            <div>
-                            </div>
-                            <input type="hidden" name="category_id" value="<?= $subclass['category_id']; ?>">
-                            <input type="hidden" name="subclass_id" value="<?= $subclass['id']; ?>">
-                            <input type="hidden" name="community_id" id="community-id" value="<?= $community_list[0]->id; ?>">
-                            <div class="ce-example__button" id="saveButton">
-                                Save Post
-                            </div>
+                            <input type="hidden" name="community_id" value="<?= $community_list[0]->id; ?>">
+                            <button type="submit" class="btn btn-primary btn-raised btn-sm">
+                            Submit
+                            </button>
+                        </form>
                         </div>
 
                         <div class="modal-footer d-block">
