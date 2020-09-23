@@ -237,7 +237,7 @@ class Community extends BaseController
         // var_dump($data['category']);exit;
 
         echo view('templates/header', $data);
-        echo view('community/community', $data);
+        echo view('community/view', $data);
         echo view('templates/footer', $data); 
     }
 
@@ -495,7 +495,7 @@ class Community extends BaseController
 
 
         echo view('templates/header', $data);
-        echo view('community/community-home', $data);
+        echo view('community/home', $data);
         echo view('templates/footer', $data);
 
     }
@@ -546,7 +546,7 @@ class Community extends BaseController
 
 
         echo view('templates/header', $data);
-        echo view('community/communities', $data);
+        echo view('community/list', $data);
         echo view('templates/footer', $data);
     }
 
@@ -670,7 +670,7 @@ class Community extends BaseController
         $data['community_category'] = $categories;
 
         echo view('templates/header', $data);
-        echo view('community/community-manage', $data);
+        echo view('community/manage', $data);
         echo view('templates/footer', $data); 
     }
 
@@ -736,7 +736,7 @@ class Community extends BaseController
         $data['users'] = $query->getResult();
 
         echo view('templates/header', $data);
-        echo view('community/community-members', $data);
+        echo view('community/list-members', $data);
         echo view('templates/footer', $data);
     }
     
@@ -799,7 +799,7 @@ class Community extends BaseController
         $data['community_category'] = $categories;
 
         echo view('templates/header', $data);
-        echo view('community/community-reports', $data);
+        echo view('community/manage-reports', $data);
         echo view('templates/footer', $data);
     }
 
@@ -867,7 +867,7 @@ class Community extends BaseController
 
 
         echo view('templates/header', $data);
-        echo view('community/community-block-users', $data);
+        echo view('community/list-users-blocked', $data);
         echo view('templates/footer', $data);
     }
     public function manage_settings($id = null){
@@ -943,7 +943,7 @@ class Community extends BaseController
         $data['community'] = $query1->getResult();
 
         echo view('templates/header', $data);
-        echo view('community/community-settings', $data);
+        echo view('community/settings', $data);
         echo view('templates/footer', $data);
     }
 
@@ -1426,7 +1426,7 @@ class Community extends BaseController
            
     
     
-            return redirect()->to( 'community-home')->with('msg', $msg);
+            return redirect()->to( 'home')->with('msg', $msg);
      
         }
 
