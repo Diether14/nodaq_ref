@@ -9,7 +9,12 @@
 .login-container{
   width: 100%;
   height: 100vh;
-  padding: 35%;
+  padding: 20%;
+}
+
+.login-card{
+  width: 500px;
+  padding: 4em 3em;
 }
 
 .login-image{
@@ -24,8 +29,8 @@
       <img class="login-image" src="<?= base_url()?>/public/images/login-wallpaper.jpg" alt="">
     </div>
     <div class="col-sm-12 col-md-6 m-0 p-0">
-      <div class="bg-primary login-container px-5">
-        <div class="card card-login rounded-0 m-0">
+      <div class="bg-primary login-container px-5 d-flex justify-content-center">
+        <div class="card card-login rounded-0 m-0 login-card">
           <form class="user" action="<?= base_url(); ?>/login" method="post">
             <div class="text-center my-3 site-title">
               <img src="<?= base_url(); ?>/public/images/weendi.png" alt="" width="300" > </a>
