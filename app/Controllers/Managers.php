@@ -102,7 +102,7 @@ class Managers extends BaseController
                 ]
                 
             ]);
-            $community_id = $this->request->getPost('community_id');
+
             $msg = 'Please select a valid file!';
             if ($validated) {
                 $avatar = $this->request->getFile('file');
@@ -126,7 +126,7 @@ class Managers extends BaseController
         
     
       }
-      return redirect()->to( base_url('/manage-community/community-settings/'.$community_id) )->with('msg', $msg);
+      return redirect()->back()->with('msg', $msg);
     }
 
     public function users($id = null){
@@ -624,10 +624,10 @@ class Managers extends BaseController
 
         if($model->save($data)){
             $msg = 'User has been removed from the assistant manager!';
-            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+            return redirect()->back()->with('msg', $msg);
         }else{
             $msg = 'Failed to remove!';
-            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+            return redirect()->back()->with('msg', $msg);
         }
     }
     public function ban_user(){
@@ -645,10 +645,10 @@ class Managers extends BaseController
 
         if($model->save($data)){
             $msg = 'User has been removed from the assistant manager!';
-            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+            return redirect()->back()->with('msg', $msg);
         }else{
             $msg = 'Failed to remove!';
-            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+            return redirect()->back()->with('msg', $msg);
         }
     }
 
@@ -751,10 +751,10 @@ class Managers extends BaseController
     
             if($model->save($data)){
                 $msg = 'Assistant Manager Settings has been updated!';
-                return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+                return redirect()->back()->with('msg', $msg);
             }else{
                 $msg = 'Failed to update!';
-                return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+                return redirect()->back()->with('msg', $msg);
             }
             
         }else{
@@ -778,10 +778,10 @@ class Managers extends BaseController
     
             if($model->save($data)){
                 $msg = 'Assistant Manager Settings has been updated!';
-                return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+                return redirect()->back()->with('msg', $msg);
             }else{
                 $msg = 'Failed to update!';
-                return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+                return redirect()->back()->with('msg', $msg);
             }
         }
 
@@ -805,10 +805,10 @@ class Managers extends BaseController
 
         if($remove->update($this->post->request('id'), $data)){
             $msg = 'Community has been deleted!';
-            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+            return redirect()->back()->with('msg', $msg);
         }else{
             $msg = 'Failed to remove!';
-            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+            return redirect()->back()->with('msg', $msg);
         }
 
     }
@@ -818,22 +818,19 @@ class Managers extends BaseController
         $community = new CommunityModel();
 
         $data = [];
-        echo '<pre>';
-
 
         $community_id = $this->request->getPost('community_id');
         $data = [
             'id' => $this->request->getPost('community_id'),
             'questions' => $this->request->getPost('questions')
         ];
-
        
         if($community->update($data['id'], $data)){
             $msg = 'Community question has been save!';
-            return redirect()->to( base_url().'/manage-community/community-settings/'.$community_id)->with('msg', $msg);
+            return redirect()->back()->with('msg', $msg);
         }else{
             $msg = 'Failed to save!';
-            return redirect()->to( base_url().'/manage-community/community-settings/'.$community_id)->with('msg', $msg);
+            return redirect()->back()->with('msg', $msg);
         }
 
 

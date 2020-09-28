@@ -161,7 +161,11 @@
                                     <i class="fa fa-align-justify"></i>
                                 </a>
                             </li>
+<<<<<<< HEAD
                            
+=======
+                          
+>>>>>>> 4dca251d50a7cb938711f27461348e54996339e5
                         </ul>
                     </div>
 
@@ -497,6 +501,7 @@
                 </div>
             </div>
 
+<<<<<<< HEAD
             <!-- Classic Modal -->
             <div class="modal  fade " id="myModal" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-dialog-centered " role="document">
@@ -528,6 +533,8 @@
                     </div>
                 </div>
             </div>
+=======
+>>>>>>> 4dca251d50a7cb938711f27461348e54996339e5
         </div>
     </div> 
 

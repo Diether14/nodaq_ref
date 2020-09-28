@@ -22,7 +22,16 @@
     max-height: 200px;
     height: 400px;
   }
+  
+  .rounded-circle:hover {
+    opacity: 0.9;
+    cursor: pointer;
+}
 
+.img-cover:hover {
+    opacity: 0.9;
+    cursor: pointer;
+}
   /* .card .card-body,
     .card .card-footer {
         padding: 0 !important;
@@ -228,7 +237,7 @@
 
   <div class="community-feed">
 
-    <div class="page-header header-filter m-auto"
+    <div class="page-header header-filter m-auto img-cover" data-toggle="modal" data-target="#cover"
       style="background-image: url('<?= base_url(); ?>/public/admin/uploads/community/<?= $community_list[0]->name; ?>')">
     </div>
 
@@ -300,3 +309,39 @@
       </div>
     </div>
     <!--  End Modal -->
+
+
+    <!-- Classic Modal -->
+    <div class="modal fade" id="cover" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Cover Picture</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="material-icons">clear</i>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="text-center">
+                    <img src="" class="avatar img-circle img-thumbnail">
+                    <h6>Upload a different photo...</h6>
+                    <form action="<?php echo base_url('/update_community_cover');?>"  method="post"
+                        accept-charset="utf-8" enctype="multipart/form-data">
+                        <input type="hidden" value="<?= $community_list[0]->com_photo_id; ?>" name="com_photo_id" >
+                        <input type="file" name="file" class="text-center center-block file-upload"
+                            accept=".png, .jpg, .jpeg">
+                        <div class="form-group"><br>
+                            <hr>
+                            <button type="submit" id="send_form" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+
+                </div>
+                </hr><br>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--  End Modal -->

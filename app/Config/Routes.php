@@ -44,8 +44,7 @@ $routes->match(['get','post'],'update_profile_info', 'Users::update_profile_info
 $routes->match(['get','post'],'edit_post', 'Users::edit_post', ['filter' => 'auth']);
 $routes->match(['get','post'],'edit_shared_post', 'Users::edit_shared_post', ['filter' => 'auth']);
 $routes->match(['get','post'],'add_comment', 'Community::add_comment', ['filter' => 'auth']);
-$routes->match(['get','post'],'add_comment_reply', 'Community::add_comment_reply', ['filter' => 'auth']);
-$routes->match(['get','post'],'add_shared_comment', 'Users::add_shared_comment1', ['filter' => 'auth']);
+$routes->match(['get','post'],'add_shared_comment', 'Users::add_shared_comment', ['filter' => 'auth']);
 $routes->match(['get','post'],'join_community', 'Community::join_community', ['filter' => 'auth']);
 $routes->match(['get','post'],'report_post', 'Community::report_post', ['filter' => 'auth']);
 $routes->match(['get','post'],'share_post', 'Community::share_post', ['filter' => 'auth']);
@@ -183,6 +182,7 @@ $routes->get('/delete_category/(:num)/(:num)', 'Community::delete_category/$1/$2
 $routes->match(['get','post'],'update_category', 'Community::update_category');
 $routes->match(['get', 'post'], 'add_subclass', 'Community::add_subclass');
 $routes->match(['get', 'post'], 'update_subclass', 'Community::update_subclass');
+$routes->match(['get', 'post'], 'add_comment_reply', 'Community::add_comment_reply');
 $routes->get('/delete_subclass/(:num)/(:num)', 'Community::delete_subclass/$1/$2', ['filter' => 'auth']);
 $routes->get('post-view/(:num)', 'Community::post_view/$1', ['filter' => 'auth']);
 $routes->match(['get','post'],'upvote', 'Community::upvote', ['filter' => 'auth']);

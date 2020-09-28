@@ -252,11 +252,11 @@
                                  <input name="community_id" type="hidden" value="<?= $blog['community_id'] ?>">
                                 <?php if($upvote == NULL): ?>   
                                     <button type="submit" class="btn btn-link not_joined h6"><i class="fa fa-chevron-up pr-1 "></i>
-                                    Upvote
+                                    <?= $vote_totals ?> Upvote
                                     </button>
                                 <?php else: ?>
                                     <button type="submit" class="btn btn-link text-success not_joined h6"><i class="fa fa-chevron-up pr-1 text-success"></i>
-                                    Upvote
+                                    <?= $vote_totals ?> Upvote
                                     </button>
                                 <?php endif; ?>
                             </form>
@@ -264,27 +264,20 @@
                                 <?php if(empty($users_community)) : ?>
 
                                     <a href="#comments" class="btn btn-link not_joined h6"><i class="fa fa-comment pr-1"></i>
-                                    <?php 
+                                    <!-- <php 
                                               if(1000 >= 1000){ 
                                                 echo round((1200/1000),1). 'K'; 
                                               }elseif(1000000 >= 1000000){
                                                 echo round((1000000/1000000),1). 'M';
                                               }else{
                                                 echo '50';
-                                              } ?>
+                                              } ?> -->
+                                    <?= $comments_total ?>
                                     Comments</a>
 
                                 <?php else: ?>
-                                    <a href="#comments" class="btn btn-link text-primary h6"><i class="fa fa-comment pr-1"></i>
-                                        <?php 
-                                            if(1000 >= 1000){ 
-                                                echo round((1200/1000),1). 'K'; 
-                                            }elseif(1000000 >= 1000000){
-                                                echo round((1000000/1000000),1). 'M';
-                                            }else{
-                                                echo '50';
-                                            }
-                                        ?>
+                                    <a href="#comments" class="btn btn-link h6"><i class="fa fa-comment pr-1"></i>
+                                        <?= $comments_total ?>
                                         Comments
                                     </a>
 
@@ -295,7 +288,7 @@
                                     </button>
 
                                     <?php if(empty($report)): ?>
-                                        <a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-link"><i class="fa fa-exclamation pr-1"></i> Report Post</a>
+                                        <a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-link h6"><i class="fa fa-exclamation -1"></i> Report Post</a>
                                     <?php else: ?>
 
                                     <a href="#" class="btn btn-link h6 text-danger"><i class="text-danger fa fa-exclamation pr-1"></i> Reported</a>
