@@ -56,8 +56,8 @@
   <!-- <script src="<?= base_url(); ?>/public/user/assets/js/core/jquery.min.js" type="text/javascript"></script> -->
   <script src="<?= base_url(); ?>/public/user/assets/js/core/popper.min.js" type="text/javascript"></script>
   <script src="<?= base_url(); ?>/public/user/assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
-  <script src="<?= base_url(); ?>/public/user/assets/js/plugins/mentionjs/bootstrap-typeahead.js" type="text/javascript"></script>
-  <script src="<?= base_url(); ?>/public/user/assets/js/plugins/mentionjs/mention.js" type="text/javascript"></script>
+  <!-- <script src="<?= base_url(); ?>/public/user/assets/js/plugins/mentionjs/bootstrap-typeahead.js" type="text/javascript"></script> -->
+  <!-- <script src="<?= base_url(); ?>/public/user/assets/js/plugins/mentionjs/mention.js" type="text/javascript"></script> -->
   <script src="<?= base_url(); ?>/public/user/assets/js/plugins/moment.min.js"></script>
   <script src="<?= base_url(); ?>/public/user/assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>
   <script src="<?= base_url(); ?>/public/user/assets/js/plugins/jquery.timeago.js" type="text/javascript"></script>
@@ -88,6 +88,13 @@
   <script src="https://cdn.jsdelivr.net/npm/@editorjs/warning@latest"></script><!-- Warning -->
   <script src="https://cdn.jsdelivr.net/npm/@editorjs/marker@latest"></script><!-- Marker -->
   <script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest"></script><!-- Inline Code -->
+
+
+  <!-- emojis  -->
+  <script src="<?= base_url()?>/public/assets/js/emoji-picker/config.js"></script>
+  <script src="<?= base_url()?>/public/assets/js/emoji-picker/util.js"></script>
+  <script src="<?= base_url()?>/public/assets/js/emoji-picker/jquery.emojiarea.js"></script>
+  <script src="<?= base_url()?>/public/assets/js/emoji-picker/emoji-picker.js"></script>
 
   <!-- Load Editor.js's Core -->
   <script src="<?= base_url(); ?>/public/editorjs/dist/editor.js"></script>
@@ -335,34 +342,6 @@
    */
 </script>
 
-<script>
-    $(document).ready( function () {
-        $('#myTable').DataTable();
-        jQuery("time.timeago").timeago();
-        
-        $('#txtUserComment').mention({
-          delimiter: '@',
-          users: [{
-              username: "sarah",
-              name: "Sarah Jones",
-              image: "http://placekitten.com/25/25"
-          }, { 
-              username: "bigCat",
-              name: "Scott Pfaff",
-              image: "http://placekitten.com/25/25"
-          }, { 
-              username: "coderDude",
-              name: "Roger Penn",
-              image: "http://placekitten.com/25/25"
-          }],
-          typeaheadOpts: { // Settings for Typeahead
-              matcher: _matcher, // Mention.js's custom matcher function, don't change
-              updater: _updater, // Mention.js's custom updater function, don't change
-              sorter: _sorter, // Mention.js's custom sorter function, don't change
-          }
-          });
 
-    } );
-  </script>
 </body>
 </html>

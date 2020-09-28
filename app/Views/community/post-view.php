@@ -299,12 +299,13 @@
                         <hr>
                         <div id="comments" class=" my-4">
                             <h5 class="card-title p-3 m-0">Leave a Comment:</h5>
-                            
                             <div class="card-body">  
-                                <input type="hidden" name="post_id" value="<?= $blog['id']?>">
+                                <input type="hidden" name="post_id" value="<?= $blog['id']?>" >
                                 <div class="ce-example__content _ce-example__content--small" style="padding-bottom: 0px !important;">
                                 <div class="form-group">
-                                    <textarea name="txtUserComment" id="txtUserComment" class=" w-100" placeholder="Place your comments here" cols="30" rows="5" ></textarea>
+                                    <p class=" emoji-picker-container">
+                                        <textarea name="txtUserComment" id="txtUserComment" class="w-100" placeholder="Place your comments here" cols="30" rows="5" data-emojiable="true" data-emoji-input="unicode"></textarea>
+                                    </p>
                                 </div>
                                 <div class="text-right">
                                     <button class="btn btn-primary text-right" id="saveButton">Comment</button>
@@ -534,6 +535,27 @@
 
 
 <script type="text/javascript">
+    // $(function() {
+    //     // Initializes and creates emoji set from sprite sheet
+    //     window.emojiPicker = new EmojiPicker({
+    //         emojiable_selector: '[data-emojiable=true]',
+    //         assetsPath: '<?= base_url()?>/assets/img/',
+    //         popupButtonClasses: 'fa fa-smile-o'
+    //     });
+    //     // Finds all elements with `emojiable_selector` and converts them to rich emoji input fields
+    //     // You may want to delay this step if you have dynamically created input fields that appear later in the loading process
+    //     // It can be called as many times as necessary; previously converted input fields will not be converted again
+    //     window.emojiPicker.discover();
+    // });
+    
+    window.onload = () => {
+        window.emojiPicker = new EmojiPicker({
+            emojiable_selector: '[data-emojiable=true]',
+            assetsPath: '<?= base_url()?>/public/assets/img/emoji-picker',
+            popupButtonClasses: 'fa fa-smile-o'
+        });
+        window.emojiPicker.discover();
+    }
 
     sharePost = postId => {
         // let data = <?=json_encode($community)?>[0];

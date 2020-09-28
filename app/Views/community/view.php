@@ -89,7 +89,7 @@
                                         <?php foreach ($value['subclass'] as $key1 => $value1) : ?>
                                             <div class="d-flex p-3 bg-light align-items-center col-sm-12">
                                                 <div class="col-sm-11 p-0" id="headingOne">
-                                                    <a href="<?= base_url(); ?>/community/<?= $community_list[0]->id ?>/<?= $value1['id'] ?>" class="d-block text-left">
+                                                    <a href="<?= base_url(); ?>/play/<?= $community_list[0]->id ?>/<?= $value1['id'] ?>" class="d-block text-left">
                                                         <b><?= $value1['subclass'] ?></b></a>
                                                 </div>
                                             </div>
@@ -97,7 +97,7 @@
                                     <?php else : ?>
                                         <div class="d-flex p-3 bg-light align-items-center col-sm-12">
                                             <div class="col-sm-11 p-0" id="headingOne">
-                                                <a href="<?= base_url(); ?>/community/<?= $community_list[0]->id ?>/<?= $value['id'] ?>" class="d-block text-left">
+                                                <a href="<?= base_url(); ?>/play/<?= $community_list[0]->id ?>/<?= $value['id'] ?>" class="d-block text-left">
                                                     <b>Notice</b></a>
                                             </div>
                                         </div>

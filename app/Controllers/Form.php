@@ -44,7 +44,7 @@ class Form extends Controller
           $save = $builder->insert($data);
           $msg = 'File has been uploaded';
         }
-       return redirect()->to( 'weendi/form' )->with('msg', $msg);
+       return redirect()->to( base_url().'/form' )->with('msg', $msg);
  
     }
 }

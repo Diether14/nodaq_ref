@@ -173,7 +173,7 @@ class Community extends BaseController
         $builder1->join('community_category', 'community_category.id = users_post.category_id', 'left');
         $builder1->join('community_category_subclass', 'community_category_subclass.id = users_post.subclass_id', 'left');
         $query1  = $builder1->get();
-        $data['posts'][] = $query1->getResult();  
+        $data['posts'] = $query1->getResult();  
         
         // echo '<pre>';
         // var_dump(unserialize($data['posts'][0][2]->content)); exit;
@@ -237,6 +237,9 @@ class Community extends BaseController
         // var_dump($data['category']);exit;
 
         echo view('templates/header', $data);
+        // echo "<pre>";
+        // var_dump($data);
+        // exit;
         echo view('community/view', $data);
         echo view('templates/footer', $data); 
     }
@@ -500,9 +503,10 @@ class Community extends BaseController
 
     }
 
+    // user landing homepage
     public function communities(){
         ini_set('display_errors', 1);
-       
+
         $data = [];
         helper(['form']);
         helper(['text']);
@@ -526,7 +530,7 @@ class Community extends BaseController
         $builder->join('community', 'community.id = users_community.community_id');
         $builder->join('users', 'community.user_id = users.id');
         $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
-       
+
         $builder->join('community_category_subclass', 'community.id = community_category_subclass.community_id');
         $query   = $builder->get();
         $data['your_communities'] = $query->getResult();
@@ -549,6 +553,9 @@ class Community extends BaseController
         echo view('community/list', $data);
         echo view('templates/footer', $data);
     }
+
+
+    
 
     public function manage_community($id = null){
         ini_set('display_errors', 1);

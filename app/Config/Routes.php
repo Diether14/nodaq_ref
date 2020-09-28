@@ -110,7 +110,8 @@ $routes->match(['get','post'],'community-create-admin', 'Admin::community_create
 // $routes->match(['get','post'],'save_community', 'Admin::save_community', ['filter' => 'auth']);
 
 //emoticon store
-$routes->get('/emoticon-store', 'Emoticonstore::index', ['filter' => 'auth']);
+// $routes->get('/emoticon-store', 'Emoticonstore::index', ['filter' => 'auth']); @lx
+$routes->get('/store/emoticon', 'Emoticonstore::index', ['filter' => 'auth']);
 $routes->get('/my-emoticon-store', 'Emoticonstore::my_emoticon_store', ['filter' => 'auth']);
 $routes->get('/emoticon-store-list/(:num)', 'Emoticonstore::my_emoticon_store_list/$1', ['filter' => 'auth']);
 $routes->get('/delete-single-sticker/(:num)/(:num)', 'Emoticonstore::delete_single_sticker/$1/$2', ['filter' => 'auth']);
@@ -165,12 +166,12 @@ $routes->get('/unblock/(:num)/(:num)', 'Managers::unblock/$1/$2', ['filter' => '
 
 
 
-//community
-$routes->get('play/(:any)/(:num)/(:num)', 'Community::play/$1/$2/$3', ['filter' => 'auth']);
+//community pages
+$routes->get('play/(:any)/(:num)', 'Community::play/$1/$2', ['filter' => 'auth']);
 // $routes->get('community/(:num)/(:num)', 'Community::community_join/$1/$2', ['filter' => 'auth']);
 $routes->match(['get', 'post'], 'community/upload-picture', 'Community::upload_picture');
 $routes->match(['get','post'],'user_save_community', 'Community::save_community', ['filter' => 'auth']);
-$routes->get('community-home', 'Community::community_home', ['filter' => 'auth']);
+$routes->get('home', 'Community::community_home', ['filter' => 'auth']);
 $routes->get('communities', 'Community::communities', ['filter' => 'auth']);
 $routes->get('community-manage/(:num)', 'Community::manage_community/$1', ['filter' => 'auth']);
 $routes->match(['get','post'],'add_category', 'Community::add_category');
