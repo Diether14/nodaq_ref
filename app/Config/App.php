@@ -21,7 +21,7 @@ class App extends BaseConfig
 	| environments.
 	|
 	*/
-	public $baseURL = 'http://localhost/weendi/';
+	public $baseURL = 'http://34.84.190.89/';
 
 	/*
 	|--------------------------------------------------------------------------
