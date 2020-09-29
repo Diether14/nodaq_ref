@@ -342,7 +342,7 @@
                                                             <?php endforeach; ?>
                                                         </div>
                                                     <?php else : ?>
-                                                        <div class="col-lg-4  mb-4">
+                                                        <div class="col-lg-12  mb-4">
                                                             <div class="card justify-content-center text-center" style="height:30vh;">
                                                                 <div class="card-bod">
                                                                     <h4 class="card-title justify-content-center">No Post Yet</h4>
@@ -395,7 +395,7 @@
 
                                                         <?php endforeach; ?>
                                                     <?php else : ?>
-                                                        <div class="col-lg-4  mb-4">
+                                                        <div class="col-lg-12  mb-4">
                                                             <div class="card justify-content-center text-center" style="height:30vh;">
                                                                 <div class="card-bod">
                                                                     <h4 class="card-title justify-content-center">No Post Yet</h4>
@@ -444,7 +444,7 @@
 
                                                         <?php endforeach; ?>
                                                     <?php else : ?>
-                                                        <div class="col-lg-4  mb-4">
+                                                        <div class="col-lg-12  mb-4">
                                                             <div class="card justify-content-center text-center" style="height:30vh;">
                                                                 <div class="card-bod">
                                                                     <h4 class="card-title justify-content-center">No Post Yet</h4>
@@ -492,7 +492,7 @@
                                                             </tbody>
                                                         </table>
                                                     <?php else : ?>
-                                                        <div class="col-lg-4  mb-4">
+                                                        <div class="col-lg-12  mb-4">
                                                             <div class="card justify-content-center text-center" style="height:30vh;">
                                                                 <div class="card-bod">
                                                                     <h4 class="card-title justify-content-center">No Post Yet</h4>

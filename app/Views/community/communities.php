@@ -224,7 +224,7 @@
                                             
                                                 <div class="col-10 community-title  ">
                                                     <h6>
-                                                    <a href="<?= base_url(); ?>/play/<?= $value->slug ?>/<?= $value->id;  ?>/<?= $value->subclass_id ?>"
+                                                    <a href="<?= base_url(); ?>/play/<?= $value->slug ?>/<?= $value->community_id;  ?>/<?= $value->subclass_id ?>"
                                                             style="color: <?= $value->text_color; ?>"><?= character_limiter($value->title, 20) ?>
                                                         </a>
                                                     </h6>
@@ -356,8 +356,8 @@
                         <textarea name="content" class="form-control" cols="5" rows="5"
                             placeholder="Content"></textarea>
                     </div>
-                    <div class="d-flex align-items-center">
-                        <div class="col-12">
+                    <div class="d-flex align-items-center" >
+                        <div class="col-12" style="display: none">
                             <div class="togglebutton d-flex align-items-center">
                                 <label>
                                     <input type="checkbox" name="community_type"
