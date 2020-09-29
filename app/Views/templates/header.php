@@ -54,7 +54,7 @@
     <?php 
       $uri = service('uri');
 
-    //   include('main-navbar.php');
+      include('main-navbar.php');
       
     ?>
 

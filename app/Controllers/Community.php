@@ -1579,6 +1579,19 @@ class Community extends BaseController
     }
     
 
+    // @Lxp
+    public function searchCommunity(){
+        
+        $db1 = \Config\Database::connect();
+        $builder = $db1->table('community');
+        $builder->select('*')
+        $builder->like('title', $this->request->getPost()->searchQuery);
+        $query = $builder->get();
+        var_dump($query);
+        exit;
+
+    }
+
 
 }
 
