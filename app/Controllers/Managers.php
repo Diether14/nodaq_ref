@@ -544,10 +544,10 @@ class Managers extends BaseController
 
         if($model->save($data)){
             $msg = 'User has been accepted!';
-            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+            return redirect()->back()->with('msg', $msg);
         }else{
             $msg = 'Failed to accept!';
-            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+            return redirect()->back()->with('msg', $msg);
         }
     }
 
@@ -565,10 +565,10 @@ class Managers extends BaseController
 
         if($model->save($data)){
             $msg = 'User has been unblock!';
-            return redirect()->to( base_url().'/manage-community/block-list/'.$community_id)->with('msg', $msg);
+            return redirect()->back()->with('msg', $msg);
         }else{
             $msg = 'Failed to unblock!';
-            return redirect()->to( base_url().'/manage-community/block-list/'.$community_id)->with('msg', $msg);
+            return redirect()->back()->with('msg', $msg);
         }
     }
     
@@ -582,10 +582,10 @@ class Managers extends BaseController
 
         if($delete){
             $msg = 'Category has been deleted!';
-            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+            return redirect()->back()->with('msg', $msg);
         }else{
             $msg = 'Failed to delete!';
-            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+            return redirect()->back()->with('msg', $msg);
         }
     }
 
@@ -603,10 +603,10 @@ class Managers extends BaseController
 
         if($model->save($data)){
             $msg = 'User has been accepted!';
-            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+            return redirect()->back()->with('msg', $msg);
         }else{
             $msg = 'Failed to accept!';
-            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+            return redirect()->back()->with('msg', $msg);
         }
     }
     public function remove_ac(){
@@ -843,10 +843,10 @@ class Managers extends BaseController
 
         if($remove->reset($this->post->request('id'))){
             $msg = 'Community has been reset!';
-            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+            return redirect()->back()->with('msg', $msg);
         }else{
             $msg = 'Failed to remove!';
-            return redirect()->to( base_url().'/manage-community/users/'.$community_id)->with('msg', $msg);
+            return redirect()->back()->with('msg', $msg);
         }
     }
 
