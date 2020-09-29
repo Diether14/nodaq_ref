@@ -47,10 +47,10 @@
                 <?php endif; ?>
                 <div class="text-center">
                 <?php if(!empty($users_community[0])): ?>
-                    <?php if($users_community[0]->community_type == 0): ?>
+                    <?php if($users_community[0]->status == 0): ?>
                         <button class="btn btn-sm btn-primary">Requested</button>
-                    <?php elseif($users_community[0]->community_type == 1): ?> 
-                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal">Joined</button>
+                    <?php elseif($users_community[0]->status == 1): ?> 
+                        <button class="btn btn-sm btn-primary">Joined</button>
                     <?php endif; ?>
                 <?php else: ?> 
                     <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal">Join In</button> 
@@ -171,8 +171,9 @@
 
                 </div>
                 <hr/>
+
                 <?php if (!empty($users_community[0])) : ?>
-                    <?php if($users_community[0]->community_type == 1): ?>           
+                    <?php if($users_community[0]->status == 1): ?>           
                         <div class="accordion border border-light rounded p-3" id="create_post_accordion">
                             <div class="">
                                 <div class="" id="create_post_header">
