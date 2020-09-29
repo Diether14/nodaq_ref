@@ -1362,28 +1362,14 @@ class Community extends BaseController
             helper(['form', 'url']);
 
             $community_photo = new CommunityphotoModel();
-     
-            //  $validated = $this->validate([
-            //     'file' => [
-            //         'uploaded[file]',
-            //         'mime_in[file,image/jpg,image/jpeg,image/gif,image/png]',
-            //         'max_size[file,4096]',
-            //     ],
-            // ]);
-    
+         
             $rules = [
                 'title' => 'required|min_length[3]|max_length[100]',
                 'content' => 'required|min_length[3]|max_length[500]',
-                ''
+                'community_slug' => 'required|min_length[3]|max_length[500]',
             ];
     
             $msg = 'Please select a valid file';
-        // if(! $this->validate($rules)){
-        //     $msg = $this->validator;
-        // }else{
-            // if ($validated ) {
-                // $avatar = $this->request->getFile('file');
-                // $avatar->move('public/admin/uploads/community');
      
                 $data = [
                     'name' =>  'profile_city.jpg'
@@ -1410,21 +1396,36 @@ class Community extends BaseController
                         ];
                     
                     if($model->insert($newData)){
-                        $last_id = $model->insertID();
+                        $community_last_id = $model->insertID();
 
-                        $msg = 'Successfully added!';   
+                        $category = new CommunitycategoryModel;
+
+                        $category_data = [
+                            'user_id' => session()->get('id'),
+                            'community_id' => $community_last_id,
+                            'category_name' => 'Category' 
+                        ];
+
+                        if($category->insert($category_data)){
+                            $category_last_id = $category->insertID();
+
+                            $subclass = new CommunitysubclassModel;
+
+                            $subclass_data = [
+                                'user_id' => session()->get('id'),
+                                'community_id' => $community_last_id,
+                                'category_id' => $category_last_id,
+                                'subclass' => 'Notice'
+                            ];
+
+                            $subclass->insert($subclass_data);
+                            
+                        }
+                        $msg = 'Successfully added!';
                     }
                 }else{
                     $msg = 'There is an error!';
                 }
-    
-                
-            // }
-    
-        // }
-    
-           
-    
     
             return redirect()->to( 'community-home')->with('msg', $msg);
      

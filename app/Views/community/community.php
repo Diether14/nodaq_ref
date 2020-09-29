@@ -46,11 +46,11 @@
                     <small class="community-status fw-600">Public Community </small>
                 <?php endif; ?>
                 <div class="text-center">
-                    <?php if(): ?>
+                    <!-- <php if(): ?> -->
                         <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal">Join In</button>
-                    <?php else: ?>
-                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal">Join In</button> 
-                    <?php endif; ?>
+                    <!-- <php else: ?> -->
+                        <!-- <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal">Join In</button>  -->
+                    <!-- <php endif; ?> -->
                 </div>
             </div>
         </div>
@@ -161,11 +161,6 @@
                                     <i class="fa fa-align-justify"></i>
                                 </a>
                             </li>
-<<<<<<< HEAD
-                           
-=======
-                          
->>>>>>> 4dca251d50a7cb938711f27461348e54996339e5
                         </ul>
                     </div>
 
@@ -501,7 +496,6 @@
                 </div>
             </div>
 
-<<<<<<< HEAD
             <!-- Classic Modal -->
             <div class="modal  fade " id="myModal" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-dialog-centered " role="document">
@@ -516,7 +510,7 @@
                         <div class="modal-body ">
                         <form class="contact-form" action="<?= base_url(); ?>/join_community" method="post">
                             <div class="form-group">
-                                <label>Why do you want to join?</label>
+                                <label></label>
                                 <textarea name="answer" class="form-control" cols="30" rows="10"></textarea>
                             </div>
                             <input type="hidden" name="community_id" value="<?= $community_list[0]->id; ?>">
@@ -533,8 +527,6 @@
                     </div>
                 </div>
             </div>
-=======
->>>>>>> 4dca251d50a7cb938711f27461348e54996339e5
         </div>
     </div> 
 

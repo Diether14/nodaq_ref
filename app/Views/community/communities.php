@@ -1,9 +1,4 @@
 <style>
-/* .custom-card {
-    min-height: 300px;
-    max-height: 300px;
-
-} */
 
 .card-img-top {
     max-height: 160px;
@@ -322,11 +317,11 @@
                     </div>
                 </div>
                 <!-- <ul class="pagination pagination-primary mx-auto">
-            <li class="page-item"><a href="javascript:void(0);" class="page-link"> prev</a></li>
-            <li class="active page-item"><a href="javascript:void(0);" class="page-link">1</a></li>
-    
-            <li class="page-item"><a href="javascript:void(0);" class="page-link">next </a></li>
-        </ul> -->
+                    <li class="page-item"><a href="javascript:void(0);" class="page-link"> prev</a></li>
+                    <li class="active page-item"><a href="javascript:void(0);" class="page-link">1</a></li>
+            
+                    <li class="page-item"><a href="javascript:void(0);" class="page-link">next </a></li>
+                </ul> -->
             </div>
         </div>
 
