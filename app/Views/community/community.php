@@ -46,11 +46,16 @@
                     <small class="community-status fw-600">Public Community </small>
                 <?php endif; ?>
                 <div class="text-center">
-                    <!-- <php if(): ?> -->
-                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal">Join In</button>
-                    <!-- <php else: ?> -->
-                        <!-- <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal">Join In</button>  -->
-                    <!-- <php endif; ?> -->
+                <?php if(!empty($users_community[0])): ?>
+                    <?php if($users_community[0]->community_type == 0): ?>
+                        <button class="btn btn-sm btn-primary">Requested</button>
+                    <?php elseif($users_community[0]->community_type == 1): ?> 
+                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal">Joined</button>
+                    <?php endif; ?>
+                <?php else: ?> 
+                    <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal">Join In</button> 
+                <?php endif; ?>
+                
                 </div>
             </div>
         </div>
@@ -166,6 +171,8 @@
 
                 </div>
                 <hr/>
+                <?php if (!empty($users_community[0])) : ?>
+                    <?php if($users_community[0]->community_type == 1): ?>           
                         <div class="accordion border border-light rounded p-3" id="create_post_accordion">
                             <div class="">
                                 <div class="" id="create_post_header">
@@ -206,7 +213,29 @@
                             </div>
 
                         </div>
-
+                    <?php else: ?>
+                        <script type="text/javascript">
+                            alertify.warning('You are not joined to this community!');
+                        </script>
+                    <?php endif; ?>
+                <?php else: ?>
+                    <!-- <div class="alert alert-info">
+                                        <div class="container">
+                                            <div class="alert-icon">
+                                                <i class="material-icons">info_outline</i>
+                                            </div>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                                            </button>
+                                            <b>Info alert:</b> You are not joined to this community!
+                                        </div>
+                                    </div>
+                                                                         -->
+                                <script type="text/javascript">
+                                    alertify.warning('You are not joined to this community!');
+                                </script>
+              
+                <?php endif; ?>
                 <div class="container d-flex  p-0 community-join_inner">
 
                     <div class="col-lg-12 bg-gray p-0">
@@ -231,21 +260,9 @@
                             <?php if (empty($users_community) && $community_list[0]->community_type == '1') : ?>
                             <?php else : ?>
                                 <div class="col-md-12 px-0 of-hidden">
-                                    <?php if (empty($users_community)) : ?>
-                                        <div class="alert alert-info">
-                                            <div class="container">
-                                                <div class="alert-icon">
-                                                    <i class="material-icons">info_outline</i>
-                                                </div>
-                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                    <span aria-hidden="true"><i class="material-icons">clear</i></span>
-                                                </button>
-                                                <b>Info alert:</b> You must join to the community first, inorder to be able to add post and add comments.
-                                            </div>
-                                        </div>
-                                    <?php endif; ?>
-                                    <!-- <div class="row py-2" style="background-color:<?= $community_list[0]->color; ?>"> -->
-                                    <div class="pt-2 community-info m-0">
+                                    
+                                    <!-- <div class="row py-2" style="background-color:"> -->
+                                    <!-- <div class="pt-2 community-info m-0">
                                         <div class="d-flex col-12 px-0 community-after-options justify-content-center">
 
                                             <ul class="nav nav-pills nav-pills-icons justify-content-center community-tab-opts px-0" role="tablist">
@@ -266,7 +283,8 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                    </div>
+                                    </div> -->
+                                  
 
                                     <div class="d-flex">
                                         <div class="tab-content bg-white pt-0 mt-0 col-lg-12">
@@ -510,7 +528,7 @@
                         <div class="modal-body ">
                         <form class="contact-form" action="<?= base_url(); ?>/join_community" method="post">
                             <div class="form-group">
-                                <label></label>
+                                <label>Reason</label>
                                 <textarea name="answer" class="form-control" cols="30" rows="10"></textarea>
                             </div>
                             <input type="hidden" name="community_id" value="<?= $community_list[0]->id; ?>">

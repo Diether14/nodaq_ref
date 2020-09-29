@@ -160,7 +160,7 @@ class Community extends BaseController
 
         $query   = $builder->get();
         $data['users_community'] = $query->getResult();
-        
+
         $data['community_id'] = $id;
 
         $data['posts'] = array();
@@ -1144,8 +1144,7 @@ class Community extends BaseController
         }
 
         
-        
-        return redirect()->to( base_url().'/community/'.$community_id)->with('msg', $msg);
+        return redirect()->back()->with('msg', $msg);
     }
 
     public function report_post(){

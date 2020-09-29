@@ -30,8 +30,18 @@
     <!-- editor.js -->
     <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
     <link href="<?= base_url(); ?>/public/editorjs/assets/demo.css" rel="stylesheet">
+    
+
     <script src="<?= base_url(); ?>/public/editorjs/assets/json-preview.js"></script>
   
+    <!-- include alertify.css -->
+    <link rel="stylesheet" href="<?= base_url(); ?>/public/alertify/css/alertify.css">
+
+    <!-- include boostrap theme  -->
+    <link rel="stylesheet" href="<?= base_url(); ?>/public/alertify/css/themes/bootstrap.css">
+
+    <!-- include alertify script -->
+    <script src="<?= base_url(); ?>/public/alertify/alertify.js"></script>
 
     <style>
     .rounded-circle {
