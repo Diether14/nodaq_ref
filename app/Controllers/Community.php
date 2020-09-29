@@ -439,7 +439,7 @@ class Community extends BaseController
 
     public function community_home(){
         ini_set('display_errors', 1);
-       
+
         $data = [];
         helper(['form']);
         helper(['text']);
@@ -1581,15 +1581,15 @@ class Community extends BaseController
 
     // @Lxp
     public function searchCommunity(){
-        
-        $db1 = \Config\Database::connect();
-        $builder = $db1->table('community');
-        $builder->select('*')
-        $builder->like('title', $this->request->getPost()->searchQuery);
+        // echo "sup";
+        // var_dump($this->request->getPost()["searchQuery"]);
+        $db = \Config\Database::connect();
+        $builder = $db->table('community');
+        $builder->like('title', $this->request->getPost()["searchQuery"]);
         $query = $builder->get();
-        var_dump($query);
+        
+        echo json_encode($query->getResult());
         exit;
-
     }
 
 
