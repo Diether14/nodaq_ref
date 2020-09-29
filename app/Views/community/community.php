@@ -31,6 +31,7 @@
     height: 42px !important;
   } */
 </style>
+
 <div class="row">
     <div class="community-sidebar dm_bg-dark" data-parallax="true">
         <div class="community_header row align-items-center">

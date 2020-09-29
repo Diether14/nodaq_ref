@@ -212,7 +212,7 @@
                         <div class="team px-3">
 
                             <div class="row">
-
+                                
                                 <?php foreach ($your_communities as $key => $value) : ?>
 
                                 <div class="col-lg-4">

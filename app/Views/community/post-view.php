@@ -68,18 +68,18 @@
     <div class="container px-0 m-auto">
         <div class="community-single">
             <div class="col-sm-12">
-                <?php if(empty($users_community)) : ?>
-                <div class="alert alert-info">
-                    <div class="container">
-                        <div class="alert-icon">
-                            <i class="material-icons">info_outline</i>
-                        </div>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true"><i class="material-icons">clear</i></span>
-                        </button> You must join to the community first, inorder to be able to add post and add comments.
-                    </div>
-                </div>
+               
+            <?php if (!empty($community[0])) : ?>    
+                <?php if($community[0]->status == 0): ?>
+                    <script type="text/javascript">
+                        alertify.warning('You are not joined to this community!');
+                    </script>
                 <?php endif; ?>
+                <?php else: ?>
+                    <script type="text/javascript">
+                        alertify.warning('You are not joined to this community!');
+                    </script>
+            <?php endif; ?>
             </div>
             <div class="col-sm-12 px-0">
                 <div class="community-single-card card rounded-0 p-4 my-0">
@@ -246,7 +246,7 @@
                             <button type="button" class="btn "><i class="fa fa-chevron-circle-down"></i></button>
                         </div> -->
                             <div class="col-sm-12 d-flex    justify-content-center">
-                           
+                            <?php if($community[0]->status == 1): ?>
                             <form action="<?= base_url() ?>/upvote" method="POST">
                                  <input name="post_id" type="hidden" value="<?= $blog['id'] ?>">
                                  <input name="community_id" type="hidden" value="<?= $blog['community_id'] ?>">
@@ -260,22 +260,8 @@
                                     </button>
                                 <?php endif; ?>
                             </form>
-
-                                <?php if(empty($users_community)) : ?>
-
-                                    <a href="#comments" class="btn btn-link not_joined h6"><i class="fa fa-comment pr-1"></i>
-                                    <!-- <php 
-                                              if(1000 >= 1000){ 
-                                                echo round((1200/1000),1). 'K'; 
-                                              }elseif(1000000 >= 1000000){
-                                                echo round((1000000/1000000),1). 'M';
-                                              }else{
-                                                echo '50';
-                                              } ?> -->
-                                    <?= $comments_total ?>
-                                    Comments</a>
-
-                                <?php else: ?>
+                                    
+                                  
                                     <a href="#comments" class="btn btn-link h6"><i class="fa fa-comment pr-1"></i>
                                         <?= $comments_total ?>
                                         Comments
@@ -293,7 +279,26 @@
 
                                     <a href="#" class="btn btn-link h6 text-danger"><i class="text-danger fa fa-exclamation pr-1"></i> Reported</a>
                                     <?php endif; ?>
-                                <?php endif; ?>
+
+                            <?php else: ?>
+                                    <button type="submit" class="btn btn-link text-link not_joined h6"><i class="fa fa-chevron-up pr-1 "></i>Upvote</button>
+                                  
+                                    <button class="btn btn-link h6 not_joined"><i class="fa fa-comment pr-1"></i>
+                                        <?= $comments_total ?>
+                                        Comments
+                                    </button>
+
+
+                                    <button type="button" class="btn btn-link h6 not_joined">
+                                        <i class="fa fa-share pr-1"></i>
+                                        Share Post
+                                    </button>
+
+                                    <button class="btn btn-link h6 not_joined"><i class="fa fa-exclamation -1"></i> Report Post</button>
+                                   
+                            <?php endif; ?>
+
+
                             </div>
                         </div>
                         <hr>
@@ -307,7 +312,11 @@
                                     <textarea name="txtUserComment" id="txtUserComment" class=" w-100" placeholder="Place your comments here" cols="30" rows="5" ></textarea>
                                 </div>
                                 <div class="text-right">
+                                <?php if($community[0]->status == 1): ?>
                                     <button class="btn btn-primary text-right" id="saveButton">Comment</button>
+                                <?php else: ?>
+                                    <button class="btn btn-primary text-right not_joined" >Comment</button>
+                                <?php endif; ?>
                                 </div>
                                 <!-- <div id="editorjs" class="cdx-block"></div> -->
                                 <input type="hidden" name="base" value="<?= base_url(); ?>">

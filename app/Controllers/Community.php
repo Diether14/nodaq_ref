@@ -1476,13 +1476,13 @@ class Community extends BaseController
     
             $db1 = \Config\Database::connect();
             $builder1 = $db1->table('community');
-            $builder1->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.updated_at, community_photo.name');
+            $builder1->select('community.id, community.user_id, community.com_photo_id, community.title, community.status , community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.updated_at, community_photo.name');
             $builder1->where('users_community.user_id', session()->get('id'));
             $builder1->join('users_community', 'users_community.community_id = community.id');
             $builder1->join('community_photo', 'community_photo.id = community.com_photo_id');
             $query1 = $builder1->get();
             $data['community'] = $query1->getResult();
-    
+
             $db2 = \Config\Database::connect();
             $builder2 = $db1->table('community');
             $builder2->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.updated_at, community_photo.name');
@@ -1491,6 +1491,7 @@ class Community extends BaseController
             $query2 = $builder2->get();
             $data['community_current'] = $query2->getResult();
        
+    
             $com = new CommunityModel();
             $data['com'] = $com->where('id', $data['blog']['community_id'])->first();
             // var_dump($data['com']);exit;
