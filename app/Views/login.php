@@ -28,7 +28,7 @@
         <div class="card card-login rounded-0 m-0">
           <form class="user" action="<?= base_url(); ?>/login" method="post">
             <div class="text-center my-3 site-title">
-              <img src="<?= base_url(); ?>/public/images/weendi.png" alt="" width="300" > </a>
+              <img src="<?= base_url(); ?>/public/images/nodaq.png" alt="" width="300" > </a>
             </div>
             <!-- <p class="lead text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> -->
             <div class="card-body my-5">
@@ -72,7 +72,7 @@
               </div>
               <div class="col-sm-12  d-block">
                 
-                <p>Don't have an account? <a class="" href="/weendi/register" class="btn btn-primary btn-link btn-wd btn-lg h3">Register here</a></p>
+                <p>Don't have an account? <a class="" href="/register" class="btn btn-primary btn-link btn-wd btn-lg h3">Register here</a></p>
               </div>
             </div>
           </form>
