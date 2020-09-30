@@ -322,12 +322,7 @@
                             </div>
                         </div>
                             <div class="">
-                                <?php if (session('msg')) : ?>
-                                 <script type="text/javascript">
-                                    alertify.warning('<?= session('msg') ?>');
-                                </script>
-                                
-                                <?php endif ?>
+                               
 
                                 <h5 class="title py-4 m-0">Comments</h5>
                                 <div class="col-sm-12">
@@ -542,6 +537,11 @@
         </div>
     </div>
 
+<?php if (session('msg')) : ?>
+<script type="text/javascript">
+    alertify.warning('<?= session('msg') ?>');
+</script>                                
+<?php endif ?>
 
 <script type="text/javascript">
 
@@ -560,7 +560,8 @@
             dataType: "JSON",
             success: function(){
                 // document.querySelector(`#txtReplyBox-${key}`).value = "";
-                window.alert("Post Shared");
+                alertify.success('Post Shared');
+                location.reload();
             },
             error: function(){
                 window.alert("Unable to share post due to an error.");
@@ -582,7 +583,8 @@
             dataType: "JSON",
             success: function(){
                 document.querySelector(`#txtReplyBox-${key}`).value = "";
-                window.alert("Reply successfully sent");
+                alertify.success('Reply successfully sent');
+                location.reload();
             },
             error: function(){
                 window.alert("Error sending reply to this comment");
@@ -614,7 +616,7 @@
             dataType: "JSON",  
             success: function(data)
             {
-                alert(data.msg);
+                alertify.success(data.msg);
                 location.reload();
             },
             error: function (jqXHR, textStatus, errorThrown)
