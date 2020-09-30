@@ -68,7 +68,7 @@
     <div class="container px-0 m-auto">
         <div class="community-single">
             <div class="col-sm-12">
-               
+            
             <?php if (!empty($community[0])) : ?>    
                 <?php if($community[0]->status == 0): ?>
                     <script type="text/javascript">
@@ -251,17 +251,16 @@
                                  <input name="post_id" type="hidden" value="<?= $blog['id'] ?>">
                                  <input name="community_id" type="hidden" value="<?= $blog['community_id'] ?>">
                                 <?php if($upvote == NULL): ?>   
-                                    <button type="submit" class="btn btn-link not_joined h6"><i class="fa fa-chevron-up pr-1 "></i>
+                                    <button type="submit" class="btn btn-link h6"><i class="fa fa-chevron-up pr-1 "></i>
                                     <?= $vote_totals ?> Upvote
                                     </button>
                                 <?php else: ?>
-                                    <button type="submit" class="btn btn-link text-success not_joined h6"><i class="fa fa-chevron-up pr-1 text-success"></i>
+                                    <button type="submit" class="btn btn-link text-success h6"><i class="fa fa-chevron-up pr-1 text-success"></i>
                                     <?= $vote_totals ?> Upvote
                                     </button>
                                 <?php endif; ?>
                             </form>
-                                    
-                                  
+
                                     <a href="#comments" class="btn btn-link h6"><i class="fa fa-comment pr-1"></i>
                                         <?= $comments_total ?>
                                         Comments
@@ -324,10 +323,12 @@
                         </div>
                             <div class="">
                                 <?php if (session('msg')) : ?>
-                                <div class="alert alert-success" role="alert">
-                                    <?= session('msg') ?>
-                                </div>
+                                 <script type="text/javascript">
+                                    alertify.warning('<?= session('msg') ?>');
+                                </script>
+                                
                                 <?php endif ?>
+
                                 <h5 class="title py-4 m-0">Comments</h5>
                                 <div class="col-sm-12">
                                     <?php if(empty($post_comments)): ?>

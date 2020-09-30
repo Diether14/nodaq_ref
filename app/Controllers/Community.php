@@ -1253,18 +1253,18 @@ class Community extends BaseController
 
             if($insert){
                 $msg = 'Upvoted';
-                return redirect()->to( base_url(). '/post-view/'. $post_id)->with('vote', $msg);
+                return redirect()->back()->with('msg', $msg);
             }else{
                 $msg = 'Failed to Upvote';
-                return redirect()->to( base_url(). '/post-view/'. $post_id)->with('vote', $msg);
+                return redirect()->back()->with('msg', $msg);
+            
             }
         
         }else{
             
-
             $update = $model->delete($user_vote['id']);
 
-            $msg = 'Upvoted';
+            $msg = 'Devoted';
             return redirect()->back()->with('msg', $msg);
 
         }
@@ -1476,7 +1476,7 @@ class Community extends BaseController
     
             $db1 = \Config\Database::connect();
             $builder1 = $db1->table('community');
-            $builder1->select('community.id, community.user_id, community.com_photo_id, community.title, community.status , community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.updated_at, community_photo.name');
+            $builder1->select('community.id, community.user_id, community.com_photo_id, community.title, users_community.status , community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.updated_at, community_photo.name');
             $builder1->where('users_community.user_id', session()->get('id'));
             $builder1->join('users_community', 'users_community.community_id = community.id');
             $builder1->join('community_photo', 'community_photo.id = community.com_photo_id');

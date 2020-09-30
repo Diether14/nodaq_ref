@@ -180,7 +180,7 @@
                                 <div class="" id="create_post_header">
                                     <h2 class="m-0">
                                         <button class="btn btn-link btn-block text-left m-0" type="button" data-toggle="collapse" data-target="#create_post_body" aria-expanded="false" aria-controls="collapseOne">
-                                            Write new post <i class="fa fa-"></i>
+                                            Write new post <i class="fa fa-news"></i>
                                         </button>
                                     </h2>
                                 </div>
