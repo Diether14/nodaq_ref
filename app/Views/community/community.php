@@ -102,7 +102,8 @@
                                         <?php foreach ($value['subclass'] as $key1 => $value1) : ?>
                                             <div class="d-flex p-3 bg-light align-items-center col-sm-12">
                                                 <div class="col-sm-11 p-0" id="headingOne">
-                                                    <a href="<?= base_url(); ?>/community/<?= $community_list[0]->id ?>/<?= $value1['id'] ?>" class="d-block text-left">
+                                                    <a href="<?= base_url(); ?>/play/<?= $community_list[0]->slug ?>/<?= $community_list[0]->id;  ?>/<?= $value1['id'] ?>">
+                                                   
                                                         <b><?= $value1['subclass'] ?></b></a>
                                                 </div>
                                             </div>
@@ -245,19 +246,9 @@
 
 
                             <?php if (session('msg')) : ?>
-                                <div class="alert alert-info">
-                                    <div class="container">
-                                        <div class="alert-icon">
-                                            <i class="material-icons">info_outline</i>
-                                        </div>
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true"><i class="material-icons">clear</i></span>
-                                        </button>
-                                        <b>Info alert:</b>
-                                        <?= session('msg') ?>
-                                    </div>
-                                </div>
-                                <br>
+                                <script type="text/javascript">
+                                    alertify.success('<?= session('msg') ?>');
+                               </script>            
                             <?php endif; ?>
                             <?php if (empty($users_community) && $community_list[0]->community_type == '1') : ?>
                             <?php else : ?>
@@ -612,7 +603,7 @@
                         data: data,
                         dataType: "JSON",
                         success: function(data) {
-                            alert(data.msg);
+                            alertify.success(data.msg);
                             location.reload();
                         },
                         error: function(jqXHR, textStatus, errorThrown) {

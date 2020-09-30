@@ -610,7 +610,7 @@
                 alert('Please fill out the fields!');
         }else{
             $.ajax({
-            type: "POST",
+            type: "POST",s
             url  : base_url + '/add_comment',
             data:  data, 
             dataType: "JSON",  

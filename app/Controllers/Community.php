@@ -131,7 +131,7 @@ class Community extends BaseController
         $db      = \Config\Database::connect();
         $builder = $db->table('community');
         $builder->where('community.id', $id);
-        $builder->select('community.id, community.user_id, community.com_photo_id,community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.category, community.status, community.questions, community_photo.name, community.questions');
+        $builder->select('community.id, community.slug ,community.user_id, community.com_photo_id,community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.category, community.status, community.questions, community_photo.name, community.questions');
         $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
         
         $query   = $builder->get();
@@ -167,6 +167,7 @@ class Community extends BaseController
         $db1      = \Config\Database::connect();
         $builder1 = $db1->table('users_post');
         $builder1->where('users_post.community_id', $id);
+        $builder1->where('users_post.subclass_id', $subclass_id);
         $builder1->select('users_post.id,users_post.user_id, users_post.community_id, users_post.title, users_post.content, users_post.updated_at, users_post.tags, users_post.category_id, users_post.subclass_id, users.nickname, profile_photo.name, community_category.category_name, community_category_subclass.subclass'  );
         $builder1->join('users', 'users.id = users_post.user_id');
         $builder1->join('profile_photo', 'users.id = profile_photo.user_id');
@@ -175,9 +176,6 @@ class Community extends BaseController
         $query1  = $builder1->get();
         $data['posts'][] = $query1->getResult();  
         
-        // echo '<pre>';
-        // var_dump(unserialize($data['posts'][0][2]->content)); exit;
-
         // $db2      = \Config\Database::connect();
         // $builder2 = $db2->table('users_shared_posts');
         // $builder2->select('users_shared_posts.post_id, users_post.id, users_shared_posts.content ,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.updated_at, users.nickname,profile_photo.name, user_settings.user_mode');
