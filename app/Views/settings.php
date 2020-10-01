@@ -49,7 +49,7 @@
                   </div>
                   <?php endif; ?>
 
-                  <form class="contact-form" action="/weendi/update_mode" method="post">
+                  <form class="contact-form" action="<?= base_url() ?>/update_mode" method="post">
 
                     <div class="togglebutton">
                       <label>
@@ -102,7 +102,7 @@
                   <?= session()->get('success') ?>
                 </div>
                 <?php endif; ?>
-                <form class="contact-form" action="<?php base_url(); ?>/weendi/update_profile_info" method="post">
+                <form class="contact-form" action="<?php base_url(); ?>/update_profile_info" method="post">
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
@@ -161,7 +161,7 @@
                   <?= session()->get('success') ?>
                 </div>
                 <?php endif; ?>
-                <form class="contact-form" action="/weendi/settings" method="post">
+                <form class="contact-form" action="<?= base_url() ?>/settings" method="post">
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">

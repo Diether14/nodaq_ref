@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Weendi - Admin</title>
+  <title>Nodaq - Admin</title>
 
   <!-- Custom fonts for this template-->
   <link href="<?= base_url(); ?>/public/admin/template/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -40,7 +40,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-globe"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Weendi</div>
+        <div class="sidebar-brand-text mx-3">Nodaq</div>
       </a>
 
       <!-- Divider -->

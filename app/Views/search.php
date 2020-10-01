@@ -287,7 +287,7 @@
 
             <div class="modal-body">
                 <div class="text-center">
-                    <form class="contact-form" action="/weendi/update_mode" method="post">
+                    <form class="contact-form" action="<?= base_url() ?>/update_mode" method="post">
                         <div class="togglebutton">
                             <label>
                                 <input type="checkbox" name="mode"

@@ -36,9 +36,11 @@
     <div class="community-sidebar dm_bg-dark" data-parallax="true">
         <div class="community_header row align-items-center">
             <div class="community_title text-center col-sm">
+                <a href="<?= base_url(); ?>/play/<?= $community_list[0]->slug; ?>/<?= $community_list[0]->id; ?>">
                 <h3 class="community-title my-2">
                     <?= $community_list[0]->title; ?>
                 </h3>
+                </a>
                 <?php if ($community_list['community_type'] == '1') : ?>
                     <i class="fa fa-lock"></i>
                     <small class="community-status fw-600">Private Community </small>

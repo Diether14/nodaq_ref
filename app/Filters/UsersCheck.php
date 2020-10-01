@@ -10,9 +10,9 @@ class UsersCheck implements FilterInterface{
         $uri = service('uri');
         if($uri->getSegment(1) == 'users'){
             if($uri->getSegment(2) == '')
-                $segment = '/weendi';
+                $segment = base_url();
             else
-                $segment = '/weendi'.$uri->getSegment(2);
+                $segment = base_url().$uri->getSegment(2);
         
             return redirect()->to($segment);
         }

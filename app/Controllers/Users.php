@@ -89,15 +89,15 @@ class Users extends BaseController
                     return redirect()->to('admin');
                 }elseif($user['user_type'] == '0'){
                     $session->setFlashdata('success', 'Login Successfully!');
-                    return redirect()->to('/weendi/community-home');
+                    return redirect()->to( base_url() . '/community-home');
                 }else{
                     $session->setFlashdata('success', 'Invalid Username or Password!');
-                    return redirect()->to('weendi/');
+                    return redirect()->to( base_url() );
                 }
 
                 
             }else{
-                return redirect()->to('weendi/');
+                return redirect()->to(base_url());
             }
             
         }
@@ -155,7 +155,7 @@ class Users extends BaseController
                 $model->save($newData);
                 $session = session();
                 $session->setFlashdata('success', 'Successful Registration');
-                return redirect()->to('/weendi');
+                return redirect()->to(base_url());
             
             }
         }
@@ -201,7 +201,7 @@ class Users extends BaseController
                 $model->save($newData);
                 // $session = session();
                 session()->setFlashdata('success', 'Successful Updated');
-                return redirect()->to('/weendi/settings');
+                return redirect()->to(base_url(). '/settings');
             
             }
         }
@@ -391,7 +391,7 @@ class Users extends BaseController
                 $model->save($newData);
                 // $session = session();
                 session()->setFlashdata('success', 'Successful Updated');
-                return redirect()->to('/weendi/profile');
+                return redirect()->to(base_url() .'/profile');
             
             }
         }        
@@ -399,7 +399,7 @@ class Users extends BaseController
 
     public function logout(){
         session()->destroy();
-        return redirect()->to('/weendi');
+        return redirect()->to(base_url());
     }
 
     public function post(){
@@ -689,7 +689,7 @@ class Users extends BaseController
             }
 
            
-            return redirect()->to('/weendi/settings');
+            return redirect()->to(base_url().'/settings');
         
         }
     }
