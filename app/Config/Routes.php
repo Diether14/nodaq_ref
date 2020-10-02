@@ -174,6 +174,8 @@ $routes->match(['get','post'],'user_save_community', 'Community::save_community'
 $routes->get('community-home', 'Community::community_home', ['filter' => 'auth']);
 $routes->get('communities', 'Community::communities', ['filter' => 'auth']);
 $routes->get('community-manage/(:num)', 'Community::manage_community/$1', ['filter' => 'auth']);
+$routes->get('community-manage/(:num)/(:num)', 'Community::manage_community_subclass/$1/$2', ['filter' => 'auth']);
+
 $routes->match(['get','post'],'add_category', 'Community::add_category');
 
 $routes->get('community-manage/members/(:num)', 'Community::manage_members/$1', ['filter' => 'auth']);
