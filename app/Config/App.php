@@ -21,11 +21,7 @@ class App extends BaseConfig
 	| environments.
 	|
 	*/
-<<<<<<< HEAD
 	public $baseURL = 'http://localhost/nodaq_com_project/';
-=======
-	public $baseURL = 'http://localhost/weendi/';
->>>>>>> master
 
 	/*
 	|--------------------------------------------------------------------------
