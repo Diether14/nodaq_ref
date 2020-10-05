@@ -35,7 +35,7 @@
             </div>
 
 
-            
+            <?php $uri = service('uri'); ?>
               <div id="accordion-sidebar" class="w-100">
                 <div class="btn-group-vertical w-100">
                   <?php foreach ($community_category as $key => $value) : ?>
@@ -56,19 +56,20 @@
                         <?php endif; ?>
                       </div>
                     </button>
-                    <div id="collapseCategory<?= $key ?>" class="collapse <?= ($key == 0)? "show":"" ?> w-100" data-parent="#accordion-sidebar">
-                      
+                     
+                    <div id="collapseCategory<?= $key ?>" class="collapse w-100" data-parent="#accordion-sidebar">
+
                     <?php foreach ($value['subclass'] as $key1 => $value1) : ?>
-                      <div class="d-flex p-3 bg-light align-items-center col-sm-12">
+                      <div class="d-flex p-3 align-items-center col-sm-12 ">
 
                         <div class="col-sm-11 p-0" id="headingOne">
-                        <a href="<?= base_url(); ?>/community-manage/<?= $value['community_id'] ?>/<?= $value1['id'] ?>" class="d-block text-left" >
+                        <a href="<?= base_url(); ?>/community-manage/<?= $value['community_id'] ?>/<?= $value['id'] ?>/<?= $value1['id'] ?>" class="d-block text-left " >
                             <b><?= $value1['subclass'] ?></b>
                         </a>
                         </div>
 
                         <div class="col-sm">
-                          <div class="dropdown float-right">
+                          <div class="dropdown">
                             <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                               aria-haspopup="true" aria-expanded="false">
                               <!-- <i class="fa fa-cog"></i> -->
@@ -159,7 +160,7 @@
                 </div>
               </div>
           </div>
-          <?php $uri = service('uri'); ?>
+
           <div class="community_hr my-2"></div>
           <div class="row mb-2">
             <div class="col-12">

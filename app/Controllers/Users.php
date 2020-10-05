@@ -89,7 +89,7 @@ class Users extends BaseController
                     return redirect()->to('admin');
                 }elseif($user['user_type'] == '0'){
                     $session->setFlashdata('success', 'Login Successfully!');
-                    return redirect()->to( base_url() . '/community-home');
+                    return redirect()->to( base_url() . '/home');
                 }else{
                     $session->setFlashdata('success', 'Invalid Username or Password!');
                     return redirect()->to( base_url() );

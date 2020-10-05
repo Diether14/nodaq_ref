@@ -66,7 +66,7 @@
     <nav id="main-nav" class="navbar dm_bg-dark  fixed-top navbar-expand-lg p-0 m-0">
         <div class="container">
             <div class="navbar-translate">
-                <a class="navbar-brand" href="<?= base_url(); ?>/community-home">
+                <a class="navbar-brand" href="<?= base_url(); ?>/home">
                     <img src="<?= base_url(); ?>/public/images/nodaq.png" alt="" width="100" > </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false"
                     aria-label="Toggle navigation">

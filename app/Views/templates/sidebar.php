@@ -35,10 +35,11 @@
                 </div>
             </div>
             <?php $uri = service('uri'); ?>
+            <?php var_dump($uri->getSegment(2));exit; ?>
             <div id="community-sidebar" class="d-block">
                 <div class="list-group">
-                    <a href="<?= base_url(); ?>/community-home">
-                        <button type="button" class="list-group-item list-group-item-action <?= ($uri->getSegment(2) ==  'community-home' ? 'active': null)?>"> Recommended</button>
+                    <a href="<?= base_url(); ?>/home">
+                        <button type="button" class="list-group-item list-group-item-action <?= ($uri->getSegment(2) ==  'home' ? 'active': null)?>"> Recommended</button>
                     </a>
                     <a href="<?= base_url(); ?>/communities">
                         <button type="button" class="list-group-item list-group-item-action <?= ($uri->getSegment(2) ==  'communities' ? 'active': null)?>">Communities</button>

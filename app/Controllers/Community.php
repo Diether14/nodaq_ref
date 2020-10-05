@@ -228,12 +228,12 @@ class Community extends BaseController
         // var_dump($data['category']);exit;
 
         echo view('templates/header', $data);
-        echo view('community/community', $data);
+        echo view('community/view', $data);
         echo view('templates/footer', $data); 
 
     }
 
-    public function play($slug = null, $id = null, $subclass_id = null){
+    public function play($slug = null, $id = null, $category_id = null, $subclass_id = null){
         ini_set('display_errors', 1);
       
         $data = [];
@@ -295,7 +295,7 @@ class Community extends BaseController
         $builder1->join('community_category', 'community_category.id = users_post.category_id', 'left');
         $builder1->join('community_category_subclass', 'community_category_subclass.id = users_post.subclass_id', 'left');
         $query1  = $builder1->get();
-        $data['posts'] = $query1->getResult();  
+        $data['postsContent'] = $query1->getResult();  
         
         // $db2      = \Config\Database::connect();
         // $builder2 = $db2->table('users_shared_posts');
@@ -721,14 +721,8 @@ class Community extends BaseController
         $query1  = $builder1->get();
         $data['posts'][] = $query1->getResult();  
 
-        echo '<pre>';
-        var_dump($data['posts']);exit;
 
         $users_community_count = new UserscommunityModel();
-
-        foreach ($variable as $key => $value) {
-            # code...
-        }
 
         // $data['users_community'] = $users_community_count->where('community_id', $id)->countAllResults();
         
@@ -777,11 +771,11 @@ class Community extends BaseController
         $data['community_category'] = $categories;
 
         echo view('templates/header', $data);
-        echo view('community/community-manage', $data);
+        echo view('community/manage', $data);
         echo view('templates/footer', $data); 
     }
 
-    public function manage_community_subclass($id = null, $subclass_id = null){
+    public function manage_community_subclass($id = null, $category_id = null,$subclass_id = null){
         ini_set('display_errors', 1);
         $data = [];
         helper(['form']);
@@ -1640,7 +1634,7 @@ class Community extends BaseController
                     $msg = 'There is an error!';
                 }
     
-            return redirect()->to( 'community-home')->with('msg', $msg);
+            return redirect()->to( 'home')->with('msg', $msg);
      
         }
 

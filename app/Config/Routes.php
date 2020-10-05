@@ -167,7 +167,7 @@ $routes->get('/unblock/(:num)/(:num)', 'Managers::unblock/$1/$2', ['filter' => '
 
 
 //community
-$routes->get('play/(:any)/(:num)/(:num)', 'Community::play/$1/$2/$3', ['filter' => 'auth']);
+$routes->get('play/(:any)/(:num)/(:num)/(:num)', 'Community::play/$1/$2/$3/$4', ['filter' => 'auth']);
 $routes->get('play/(:any)/(:num)', 'Community::play_home/$1/$2', ['filter' => 'auth']);
 
 //community pages - lex
@@ -179,7 +179,7 @@ $routes->match(['get','post'],'user_save_community', 'Community::save_community'
 $routes->get('home', 'Community::community_home', ['filter' => 'auth']);
 $routes->get('communities', 'Community::communities', ['filter' => 'auth']);
 $routes->get('community-manage/(:num)', 'Community::manage_community/$1', ['filter' => 'auth']);
-$routes->get('community-manage/(:num)/(:num)', 'Community::manage_community_subclass/$1/$2', ['filter' => 'auth']);
+$routes->get('community-manage/(:num)/(:num)/(:num)', 'Community::manage_community_subclass/$1/$2/$3', ['filter' => 'auth']);
 
 $routes->match(['get','post'],'add_category', 'Community::add_category');
 
