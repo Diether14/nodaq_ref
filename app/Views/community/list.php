@@ -1,9 +1,4 @@
 <style>
-/* .custom-card {
-    min-height: 300px;
-    max-height: 300px;
-
-} */
 
 .card-img-top {
     max-height: 160px;
@@ -126,7 +121,7 @@
                         <div class="team px-3">
 
                             <div class="row">
-
+                                
                                 <?php foreach ($your_communities as $key => $value) : ?>
 
                                 <div class="col-lg-4">
@@ -138,7 +133,7 @@
                                             
                                                 <div class="col-10 community-title  ">
                                                     <h6>
-                                                    <a href="<?= base_url(); ?>/play/<?= $value->slug ?>/<?= $value->id;  ?>/<?= $value->subclass_id ?>"
+                                                    <a href="<?= base_url(); ?>/play/<?= $value->slug ?>/<?= $value->community_id;  ?>/<?= $value->subclass_id ?>"
                                                             style="color: <?= $value->text_color; ?>"><?= character_limiter($value->title, 20) ?>
                                                         </a>
                                                     </h6>
@@ -231,11 +226,11 @@
                     </div>
                 </div>
                 <!-- <ul class="pagination pagination-primary mx-auto">
-            <li class="page-item"><a href="javascript:void(0);" class="page-link"> prev</a></li>
-            <li class="active page-item"><a href="javascript:void(0);" class="page-link">1</a></li>
-    
-            <li class="page-item"><a href="javascript:void(0);" class="page-link">next </a></li>
-        </ul> -->
+                    <li class="page-item"><a href="javascript:void(0);" class="page-link"> prev</a></li>
+                    <li class="active page-item"><a href="javascript:void(0);" class="page-link">1</a></li>
+            
+                    <li class="page-item"><a href="javascript:void(0);" class="page-link">next </a></li>
+                </ul> -->
             </div>
         </div>
 
@@ -270,8 +265,8 @@
                         <textarea name="content" class="form-control" cols="5" rows="5"
                             placeholder="Content"></textarea>
                     </div>
-                    <div class="d-flex align-items-center">
-                        <div class="col-12">
+                    <div class="d-flex align-items-center" >
+                        <div class="col-12" style="display: none">
                             <div class="togglebutton d-flex align-items-center">
                                 <label>
                                     <input type="checkbox" name="community_type"

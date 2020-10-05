@@ -190,11 +190,11 @@ $(document).ready(function(){
     });
 
     $( "#not_joined").click(function(){
-        alert('You must join to the community first!');
+        alertify.warning('You are not joined to this community!');
     });
 
     $( ".not_joined").click(function(){
-        alert('You must join to the community first!');
+        alertify.warning('You are not joined to this community!');
     });
 
 

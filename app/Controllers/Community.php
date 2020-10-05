@@ -160,7 +160,7 @@ class Community extends BaseController
 
         $query   = $builder->get();
         $data['users_community'] = $query->getResult();
-        
+
         $data['community_id'] = $id;
 
         $data['posts'] = array();
@@ -1151,8 +1151,7 @@ class Community extends BaseController
         }
 
         
-        
-        return redirect()->to( base_url().'/community/'.$community_id)->with('msg', $msg);
+        return redirect()->back()->with('msg', $msg);
     }
 
     public function report_post(){
@@ -1369,28 +1368,14 @@ class Community extends BaseController
             helper(['form', 'url']);
 
             $community_photo = new CommunityphotoModel();
-     
-            //  $validated = $this->validate([
-            //     'file' => [
-            //         'uploaded[file]',
-            //         'mime_in[file,image/jpg,image/jpeg,image/gif,image/png]',
-            //         'max_size[file,4096]',
-            //     ],
-            // ]);
-    
+         
             $rules = [
                 'title' => 'required|min_length[3]|max_length[100]',
                 'content' => 'required|min_length[3]|max_length[500]',
-                ''
+                'community_slug' => 'required|min_length[3]|max_length[500]',
             ];
     
             $msg = 'Please select a valid file';
-        // if(! $this->validate($rules)){
-        //     $msg = $this->validator;
-        // }else{
-            // if ($validated ) {
-                // $avatar = $this->request->getFile('file');
-                // $avatar->move('public/admin/uploads/community');
      
                 $data = [
                     'name' =>  'profile_city.jpg'
@@ -1417,9 +1402,32 @@ class Community extends BaseController
                         ];
                     
                     if($model->insert($newData)){
-                        $last_id = $model->insertID();
+                        $community_last_id = $model->insertID();
 
-                        $msg = 'Successfully added!';   
+                        $category = new CommunitycategoryModel;
+
+                        $category_data = [
+                            'user_id' => session()->get('id'),
+                            'community_id' => $community_last_id,
+                            'category_name' => 'Category' 
+                        ];
+
+                        if($category->insert($category_data)){
+                            $category_last_id = $category->insertID();
+
+                            $subclass = new CommunitysubclassModel;
+
+                            $subclass_data = [
+                                'user_id' => session()->get('id'),
+                                'community_id' => $community_last_id,
+                                'category_id' => $category_last_id,
+                                'subclass' => 'Notice'
+                            ];
+
+                            $subclass->insert($subclass_data);
+                            
+                        }
+                        $msg = 'Successfully added!';
                     }
                 }else{
                     $msg = 'There is an error!';
@@ -1483,13 +1491,13 @@ class Community extends BaseController
     
             $db1 = \Config\Database::connect();
             $builder1 = $db1->table('community');
-            $builder1->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.updated_at, community_photo.name');
+            $builder1->select('community.id, community.user_id, community.com_photo_id, community.title, community.status , community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.updated_at, community_photo.name');
             $builder1->where('users_community.user_id', session()->get('id'));
             $builder1->join('users_community', 'users_community.community_id = community.id');
             $builder1->join('community_photo', 'community_photo.id = community.com_photo_id');
             $query1 = $builder1->get();
             $data['community'] = $query1->getResult();
-    
+
             $db2 = \Config\Database::connect();
             $builder2 = $db1->table('community');
             $builder2->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.updated_at, community_photo.name');
@@ -1498,6 +1506,7 @@ class Community extends BaseController
             $query2 = $builder2->get();
             $data['community_current'] = $query2->getResult();
        
+    
             $com = new CommunityModel();
             $data['com'] = $com->where('id', $data['blog']['community_id'])->first();
             // var_dump($data['com']);exit;

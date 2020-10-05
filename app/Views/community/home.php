@@ -282,7 +282,7 @@
                             <input type="file" name="file" class="text-center center-block file-upload form-control"
                                 accept=".png, .jpg, .jpeg">
                         </div> -->
-                        <div class="col-12">
+                        <div class="col-12" style="display:none">
                             <div class="togglebutton d-flex align-items-center">
                                 <label>
                                     <input type="checkbox" name="community_type"

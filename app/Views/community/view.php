@@ -31,6 +31,7 @@
     height: 42px !important;
   } */
 </style>
+
 <div class="row">
     <div class="community-sidebar dm_bg-dark" data-parallax="true">
         <div class="community_header row align-items-center">
@@ -45,6 +46,18 @@
                     <i class="fa fa-lock"></i>
                     <small class="community-status fw-600">Public Community </small>
                 <?php endif; ?>
+                <div class="text-center">
+                <?php if(!empty($users_community[0])): ?>
+                    <?php if($users_community[0]->status == 0): ?>
+                        <button class="btn btn-sm btn-primary">Requested</button>
+                    <?php elseif($users_community[0]->status == 1): ?> 
+                        <button class="btn btn-sm btn-primary">Joined</button>
+                    <?php endif; ?>
+                <?php else: ?> 
+                    <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal">Join In</button> 
+                <?php endif; ?>
+                
+                </div>
             </div>
         </div>
 
@@ -154,12 +167,14 @@
                                     <i class="fa fa-align-justify"></i>
                                 </a>
                             </li>
-                          
                         </ul>
                     </div>
 
                 </div>
                 <hr/>
+
+                <?php if (!empty($users_community[0])) : ?>
+                    <?php if($users_community[0]->status == 1): ?>           
                         <div class="accordion border border-light rounded p-3" id="create_post_accordion">
                             <div class="">
                                 <div class="" id="create_post_header">
@@ -200,7 +215,29 @@
                             </div>
 
                         </div>
-
+                    <?php else: ?>
+                        <script type="text/javascript">
+                            alertify.warning('You are not joined to this community!');
+                        </script>
+                    <?php endif; ?>
+                <?php else: ?>
+                    <!-- <div class="alert alert-info">
+                                        <div class="container">
+                                            <div class="alert-icon">
+                                                <i class="material-icons">info_outline</i>
+                                            </div>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true"><i class="material-icons">clear</i></span>
+                                            </button>
+                                            <b>Info alert:</b> You are not joined to this community!
+                                        </div>
+                                    </div>
+                                                                         -->
+                                <script type="text/javascript">
+                                    alertify.warning('You are not joined to this community!');
+                                </script>
+              
+                <?php endif; ?>
                 <div class="container d-flex  p-0 community-join_inner">
 
                     <div class="col-lg-12 bg-gray p-0">
@@ -225,21 +262,9 @@
                             <?php if (empty($users_community) && $community_list[0]->community_type == '1') : ?>
                             <?php else : ?>
                                 <div class="col-md-12 px-0 of-hidden">
-                                    <?php if (empty($users_community)) : ?>
-                                        <div class="alert alert-info">
-                                            <div class="container">
-                                                <div class="alert-icon">
-                                                    <i class="material-icons">info_outline</i>
-                                                </div>
-                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                    <span aria-hidden="true"><i class="material-icons">clear</i></span>
-                                                </button>
-                                                <b>Info alert:</b> You must join to the community first, inorder to be able to add post and add comments.
-                                            </div>
-                                        </div>
-                                    <?php endif; ?>
-                                    <!-- <div class="row py-2" style="background-color:<?= $community_list[0]->color; ?>"> -->
-                                    <div class="pt-2 community-info m-0">
+                                    
+                                    <!-- <div class="row py-2" style="background-color:"> -->
+                                    <!-- <div class="pt-2 community-info m-0">
                                         <div class="d-flex col-12 px-0 community-after-options justify-content-center">
 
                                             <ul class="nav nav-pills nav-pills-icons justify-content-center community-tab-opts px-0" role="tablist">
@@ -260,7 +285,8 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                    </div>
+                                    </div> -->
+                                  
 
                                     <div class="d-flex">
                                         <div class="tab-content bg-white pt-0 mt-0 col-lg-12">
@@ -318,7 +344,7 @@
                                                             <?php endforeach; ?>
                                                         </div>
                                                     <?php else : ?>
-                                                        <div class="col-lg-4  mb-4">
+                                                        <div class="col-lg-12  mb-4">
                                                             <div class="card justify-content-center text-center" style="height:30vh;">
                                                                 <div class="card-bod">
                                                                     <h4 class="card-title justify-content-center">No Post Yet</h4>
@@ -371,7 +397,7 @@
 
                                                         <?php endforeach; ?>
                                                     <?php else : ?>
-                                                        <div class="col-lg-4  mb-4">
+                                                        <div class="col-lg-12  mb-4">
                                                             <div class="card justify-content-center text-center" style="height:30vh;">
                                                                 <div class="card-bod">
                                                                     <h4 class="card-title justify-content-center">No Post Yet</h4>
@@ -420,7 +446,7 @@
 
                                                         <?php endforeach; ?>
                                                     <?php else : ?>
-                                                        <div class="col-lg-4  mb-4">
+                                                        <div class="col-lg-12  mb-4">
                                                             <div class="card justify-content-center text-center" style="height:30vh;">
                                                                 <div class="card-bod">
                                                                     <h4 class="card-title justify-content-center">No Post Yet</h4>
@@ -468,7 +494,7 @@
                                                             </tbody>
                                                         </table>
                                                     <?php else : ?>
-                                                        <div class="col-lg-4  mb-4">
+                                                        <div class="col-lg-12  mb-4">
                                                             <div class="card justify-content-center text-center" style="height:30vh;">
                                                                 <div class="card-bod">
                                                                     <h4 class="card-title justify-content-center">No Post Yet</h4>
@@ -490,8 +516,39 @@
                 </div>
             </div>
 
+            <!-- Classic Modal -->
+            <div class="modal  fade " id="myModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered " role="document">
+                    <div class="modal-content ">
+                        <div class="modal-header bg-primary py-3 align-items-center">
+                            <h5 class="create-post-title modal-title w-100 fw600 m-0 text-white">Join In</h5>
+                            <button type="button " class="close bg-danger text-white btn-link p-2 rounded-circle" data-dismiss="modal" aria-label="Close">
+                                <i class="material-icons">clear</i>
+                            </button>
+                        </div>
+
+                        <div class="modal-body ">
+                        <form class="contact-form" action="<?= base_url(); ?>/join_community" method="post">
+                            <div class="form-group">
+                                <label>Reason</label>
+                                <textarea name="answer" class="form-control" cols="30" rows="10"></textarea>
+                            </div>
+                            <input type="hidden" name="community_id" value="<?= $community_list[0]->id; ?>">
+                            <button type="submit" class="btn btn-primary btn-raised btn-sm">
+                            Submit
+                            </button>
+                        </form>
+                        </div>
+
+                        <div class="modal-footer d-block">
+                            <button type="button" class="btn bg-danger text-white btn-link float-right" data-dismiss="modal">Close</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </div> 
 
     <script>
         var viewLayout = 0
