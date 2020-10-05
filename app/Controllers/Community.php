@@ -295,7 +295,7 @@ class Community extends BaseController
         $builder1->join('community_category', 'community_category.id = users_post.category_id', 'left');
         $builder1->join('community_category_subclass', 'community_category_subclass.id = users_post.subclass_id', 'left');
         $query1  = $builder1->get();
-        $data['posts'][] = $query1->getResult();  
+        $data['posts'] = $query1->getResult();  
         
         // $db2      = \Config\Database::connect();
         // $builder2 = $db2->table('users_shared_posts');
@@ -356,7 +356,10 @@ class Community extends BaseController
         // var_dump($data['category']);exit;
 
         echo view('templates/header', $data);
-        echo view('community/community', $data);
+        // echo "<pre>";
+        // var_dump($data);
+        // exit;
+        echo view('community/view', $data);
         echo view('templates/footer', $data); 
     }
 
@@ -555,7 +558,7 @@ class Community extends BaseController
 
     public function community_home(){
         ini_set('display_errors', 1);
-       
+
         $data = [];
         helper(['form']);
         helper(['text']);
@@ -606,14 +609,15 @@ class Community extends BaseController
         $data['communities_you_manage'] = $query1->getResult();
 
         echo view('templates/header', $data);
-        echo view('community/community-home', $data);
+        echo view('community/home', $data);
         echo view('templates/footer', $data);
 
     }
 
+    // user landing homepage
     public function communities(){
         ini_set('display_errors', 1);
-       
+
         $data = [];
         helper(['form']);
         helper(['text']);
@@ -656,9 +660,12 @@ class Community extends BaseController
 
 
         echo view('templates/header', $data);
-        echo view('community/communities', $data);
+        echo view('community/list', $data);
         echo view('templates/footer', $data);
     }
+
+
+    
 
     public function manage_community($id = null){
         ini_set('display_errors', 1);
@@ -878,7 +885,7 @@ class Community extends BaseController
         $data['community_category'] = $categories;
 
         echo view('templates/header', $data);
-        echo view('community/community-manage', $data);
+        echo view('community/manage', $data);
         echo view('templates/footer', $data); 
     }
 
@@ -945,7 +952,7 @@ class Community extends BaseController
         $data['users'] = $query->getResult();
 
         echo view('templates/header', $data);
-        echo view('community/community-members', $data);
+        echo view('community/list-members', $data);
         echo view('templates/footer', $data);
     }
     
@@ -1008,7 +1015,7 @@ class Community extends BaseController
         $data['community_category'] = $categories;
 
         echo view('templates/header', $data);
-        echo view('community/community-reports', $data);
+        echo view('community/manage-reports', $data);
         echo view('templates/footer', $data);
     }
 
@@ -1076,7 +1083,7 @@ class Community extends BaseController
 
 
         echo view('templates/header', $data);
-        echo view('community/community-block-users', $data);
+        echo view('community/list-users-blocked', $data);
         echo view('templates/footer', $data);
     }
     public function manage_settings($id = null){
@@ -1150,7 +1157,7 @@ class Community extends BaseController
         $data['community'] = $query1->getResult();
 
         echo view('templates/header', $data);
-        echo view('community/community-settings', $data);
+        echo view('community/settings', $data);
         echo view('templates/footer', $data);
     }
 
@@ -1779,6 +1786,19 @@ class Community extends BaseController
         return $this->response->setJSON($response);
     }
     
+
+    // @Lxp
+    public function searchCommunity(){
+        // echo "sup";
+        // var_dump($this->request->getPost()["searchQuery"]);
+        $db = \Config\Database::connect();
+        $builder = $db->table('community');
+        $builder->like('title', $this->request->getPost()["searchQuery"]);
+        $query = $builder->get();
+        
+        echo json_encode($query->getResult());
+        exit;
+    }
 
 
 }

@@ -44,7 +44,8 @@ $routes->match(['get','post'],'update_profile_info', 'Users::update_profile_info
 $routes->match(['get','post'],'edit_post', 'Users::edit_post', ['filter' => 'auth']);
 $routes->match(['get','post'],'edit_shared_post', 'Users::edit_shared_post', ['filter' => 'auth']);
 $routes->match(['get','post'],'add_comment', 'Community::add_comment', ['filter' => 'auth']);
-$routes->match(['get','post'],'add_shared_comment', 'Users::add_shared_comment', ['filter' => 'auth']);
+$routes->match(['get','post'],'add_comment_reply', 'Community::add_comment_reply', ['filter' => 'auth']);
+$routes->match(['get','post'],'add_shared_comment', 'Users::add_shared_comment1', ['filter' => 'auth']);
 $routes->match(['get','post'],'join_community', 'Community::join_community', ['filter' => 'auth']);
 $routes->match(['get','post'],'report_post', 'Community::report_post', ['filter' => 'auth']);
 $routes->match(['get','post'],'share_post', 'Community::share_post', ['filter' => 'auth']);
@@ -109,7 +110,8 @@ $routes->match(['get','post'],'community-create-admin', 'Admin::community_create
 // $routes->match(['get','post'],'save_community', 'Admin::save_community', ['filter' => 'auth']);
 
 //emoticon store
-$routes->get('/emoticon-store', 'Emoticonstore::index', ['filter' => 'auth']);
+// $routes->get('/emoticon-store', 'Emoticonstore::index', ['filter' => 'auth']); @lx
+$routes->get('/store/emoticon', 'Emoticonstore::index', ['filter' => 'auth']);
 $routes->get('/my-emoticon-store', 'Emoticonstore::my_emoticon_store', ['filter' => 'auth']);
 $routes->get('/emoticon-store-list/(:num)', 'Emoticonstore::my_emoticon_store_list/$1', ['filter' => 'auth']);
 $routes->get('/delete-single-sticker/(:num)/(:num)', 'Emoticonstore::delete_single_sticker/$1/$2', ['filter' => 'auth']);
@@ -168,10 +170,13 @@ $routes->get('/unblock/(:num)/(:num)', 'Managers::unblock/$1/$2', ['filter' => '
 $routes->get('play/(:any)/(:num)/(:num)', 'Community::play/$1/$2/$3', ['filter' => 'auth']);
 $routes->get('play/(:any)/(:num)', 'Community::play_home/$1/$2', ['filter' => 'auth']);
 
+//community pages - lex
+// $routes->get('play/(:any)/(:num)', 'Community::play/$1/$2', ['filter' => 'auth']);
+
 // $routes->get('community/(:num)/(:num)', 'Community::community_join/$1/$2', ['filter' => 'auth']);
 $routes->match(['get', 'post'], 'community/upload-picture', 'Community::upload_picture');
 $routes->match(['get','post'],'user_save_community', 'Community::save_community', ['filter' => 'auth']);
-$routes->get('community-home', 'Community::community_home', ['filter' => 'auth']);
+$routes->get('home', 'Community::community_home', ['filter' => 'auth']);
 $routes->get('communities', 'Community::communities', ['filter' => 'auth']);
 $routes->get('community-manage/(:num)', 'Community::manage_community/$1', ['filter' => 'auth']);
 $routes->get('community-manage/(:num)/(:num)', 'Community::manage_community_subclass/$1/$2', ['filter' => 'auth']);
@@ -186,11 +191,14 @@ $routes->get('/delete_category/(:num)/(:num)', 'Community::delete_category/$1/$2
 $routes->match(['get','post'],'update_category', 'Community::update_category');
 $routes->match(['get', 'post'], 'add_subclass', 'Community::add_subclass');
 $routes->match(['get', 'post'], 'update_subclass', 'Community::update_subclass');
-$routes->match(['get', 'post'], 'add_comment_reply', 'Community::add_comment_reply');
 $routes->get('/delete_subclass/(:num)/(:num)', 'Community::delete_subclass/$1/$2', ['filter' => 'auth']);
 $routes->get('post-view/(:num)', 'Community::post_view/$1', ['filter' => 'auth']);
 $routes->match(['get','post'],'upvote', 'Community::upvote', ['filter' => 'auth']);
 // $routes->get('/remove_ac/(:num)/(:num)', 'Managers::remove_ac/$1/$2', ['filter' => 'auth']);
+
+
+/* ALEX'S ROUTES */
+$routes->match(['get','post'],'community/search', 'Community::searchCommunity');
 
 
 // $routes->group('users', function($routes)

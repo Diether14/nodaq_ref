@@ -1,4 +1,10 @@
 <style>
+    /* .custom-card {
+    min-height: 300px;
+    max-height: 300px;
+
+} */
+
     .card-img-top {
         max-height: 160px;
         min-height: 160px;
@@ -19,7 +25,7 @@
 
 <div class="main mt-0 w-dt ndDT" style="margin-top: 6%;">
     <div class="row">
-    <?= view('templates/sidebar'); ?>
+    <?= view('templates/main-sidebar'); ?>
         <!-- Community Feed-->
         <div class="community-feed">
             <div id="carouselExampleIndicators" class="carousel slide col-12 px-0" data-ride="carousel"
@@ -120,7 +126,7 @@
 
                             <div class="row">
 
-                                <?php foreach ($your_communities as $key => $value) : ?>
+                                <?php foreach ($recommended_community as $key => $value) : ?>
 
                                 <div class="col-lg-4">
                                     <div class="team-player">
@@ -131,7 +137,7 @@
 
                                                 <div class="col-10 community-title  ">
                                                     <h6>
-                                                        <a href="<?= base_url(); ?>/play/<?= $value->slug ?>/<?= $value->community_id;  ?>"
+                                                        <a href="<?= base_url(); ?>/play/<?= $value->slug ?>/<?= $value->id;  ?>"
                                                             style="color: <?= $value->text_color; ?>"><?= character_limiter($value->title, 20) ?>
                                                         </a>
                                                     </h6>
@@ -154,26 +160,25 @@
                                             <p class="text-muted mx-3 mt-2">
                                                 <?= character_limiter($value->content, 70); ?></p>
 
-                                            <div class="card-footer justify-content-center p-0 my-3">
-                                                <div class="togglebutton d-flex w-100 text-center">
+                                            <div class="card-footer justify-content-center p-0 my-2">
+                                                <div class="togglebutton d-flex w-100">
 
-                                                    <div class="col-sm-12">
+                                                    <div class="float-right col-sm-8 ">
                                                         <?php if($value->community_type == '0'): ?>
                                                         <span class="badge badge-pill badge-secondary">Public</span>
                                                         <?php else: ?>
                                                         <span class="badge badge-pill badge-dark">Private</span>
                                                         <?php endif; ?>
-                                                        <?php if($value->status == '0'): ?>
-                                                        <span class="badge badge-pill badge-success">Pending</span>
-                                                        <?php elseif($value->status == '1'): ?>
-                                                        <span class="badge badge-pill badge-primary">Joined</span>
-                                                        <?php elseif($value->status == '2'): ?>
-                                                        <span class="badge badge-pill badge-info">AC</span>
-                                                        <?php elseif($value->status == '3'): ?>
-                                                        <span class="badge badge-pill badge-danger">Banned</span>
-                                                        <?php endif; ?>
+                                                        <!-- <php if($value->status == '0'): ?>
+                                    <span class="badge badge-pill badge-success">Pending</span>
+                                    <php elseif($value->status == '1'): ?>
+                                    <span class="badge badge-pill badge-primary">Joined</span>
+                                    <php elseif($value->status == '2'): ?>
+                                    <span class="badge badge-pill badge-info">AC</span>
+                                    <php elseif($value->status == '3'): ?>
+                                    <span class="badge badge-pill badge-danger">Banned</span>
+                                    <php endif; ?> -->
                                                     </div>
-
 
                                                 </div>
                                             </div>
@@ -198,16 +203,24 @@
                                             <div class="modal-body">
                                                 <div class="text-center">
                                                     <!-- <h3>Created by: <strong><?= $value->nickname ?></strong></h3> -->
-
-                                                    <!-- </strong></p> -->
-                                                    <!-- <p>Type: <strong>
+                                                    <!-- <p>Status: <strong>
+                                        <php if($value->status == '0'): ?>
+                                        Pending
+                                        <php elseif($value->status == '1'): ?>
+                                        Joined
+                                        <php elseif($value->status == '2'): ?>
+                                        AC
+                                        <php elseif($value->status == '3'): ?>
+                                        Banned
+                                        <php endif; ?> -->
+                                                    <!-- </strong></p>
+                                                    <p>Type: <strong>
                                                             <?php if($value->community_type == '0'): ?>
                                                             Public
                                                             <?php else: ?>
                                                             Private
                                                             <?php endif; ?>
                                                         </strong></p> -->
-
 
                                                     <p>Date Created:
                                                         <strong><?= date("F j, Y g:i A",strtotime($value->created_at)) ?></strong>
@@ -219,7 +232,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <?php endforeach; ?>
 
                             </div>
@@ -227,11 +239,11 @@
                     </div>
                 </div>
                 <!-- <ul class="pagination pagination-primary mx-auto">
-                    <li class="page-item"><a href="javascript:void(0);" class="page-link"> prev</a></li>
-                    <li class="active page-item"><a href="javascript:void(0);" class="page-link">1</a></li>
-            
-                    <li class="page-item"><a href="javascript:void(0);" class="page-link">next </a></li>
-                </ul> -->
+            <li class="page-item"><a href="javascript:void(0);" class="page-link"> prev</a></li>
+            <li class="active page-item"><a href="javascript:void(0);" class="page-link">1</a></li>
+    
+            <li class="page-item"><a href="javascript:void(0);" class="page-link">next </a></li>
+        </ul> -->
             </div>
         </div>
 
@@ -257,18 +269,24 @@
                     accept-charset="utf-8" enctype="multipart/form-data">
 
                     <div class="form-group col-sm-12">
-                        <input type="text" name="title" class="form-control" placeholder="Title">
+                        <input type="text" name="title" class="form-control" placeholder="Title" required>
                     </div>
                     <div class="form-group col-sm-12">
                         <input type="text" name="community_slug" class="form-control" placeholder="Community URL"
-                            minlength="4" maxlength="20">
+                            minlength="4" maxlength="20" required>
                     </div>
                     <div class="form-group col-sm-12">
-                        <textarea name="content" class="form-control" cols="5" rows="5"
-                            placeholder="Content"></textarea>
+                        <textarea name="content" class="form-control" cols="5" rows="5" placeholder="Details"
+                            required></textarea>
                     </div>
                     <div class="d-flex align-items-center">
-                        <div class="col-12" style="display: none">
+                        <!-- 
+                        <div class="col-sm-6">
+                            <label for="">Community Photo</label>
+                            <input type="file" name="file" class="text-center center-block file-upload form-control"
+                                accept=".png, .jpg, .jpeg">
+                        </div> -->
+                        <div class="col-12" style="display:none">
                             <div class="togglebutton d-flex align-items-center">
                                 <label>
                                     <input type="checkbox" name="community_type"
@@ -280,6 +298,46 @@
                         </div>
                     </div>
                     <hr>
+                    <!-- <div class="d-flex align-items-center">
+                        <div class="col-sm-6 d-flex">
+                          <div class="col-sm-8 pl-0">
+
+                            <label for="color">Select your theme color:</label>
+                          </div>
+                          <div class="col-sm-4">
+                            <input type="hidden" name="color" value="#FFFFFF" class="myField">
+                        </div>
+                                </div>
+                                <div class="col-sm-6 d-flex">
+                          <div class="col-sm-8 pl-0">
+
+                          <label for="color">Select your text color:</label>
+                          </div>
+                            <div class="col-sm-4">
+                                <input type="color" name="text_color" value="#555555">
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <hr> -->
+                    <!-- <div class="form-group row col-sm-12">
+                        <div class="col-lg-6">
+                            <label>Upvote Name</label>
+                            <input type="text" name="upvote" class="form-control">
+                        </div>
+
+                        <div class="col-lg-6">
+                            <label>Devote Name</label>
+                            <input type="text" name="devote" class="form-control">
+                        </div>
+
+                    </div> -->
+                    <!-- <div class="form-group row col-sm-12"> 
+                        <div class="col-lg-12">
+                            <label>Join In Question (set question when user join in)</label>
+                            <input type="text" name="questions" class="form-control">
+                        </div>
+                    </div> -->
+
                     <button type="submit" class="btn btn-primary float-right">CREATE</button>
 
                 </form>
