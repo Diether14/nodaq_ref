@@ -111,129 +111,8 @@ class Community extends BaseController
         echo view('settings-gallery1', $data);
         echo view('templates/footer', $data); 
     }
-    public function play_home($slug = null, $id = null){
-        ini_set('display_errors', 1);
-
-        $data = [];
-        helper(['form']);
-        helper('text');
-
-        $profile_photo = new ProfilephotoModel();
-        $data['profile_photo'] = $profile_photo->where('user_id', session()->get('id'))
-            ->first();
-
-        $db      = \Config\Database::connect();
-        $builder = $db->table('community');
-        $builder->where('community.id', $id);
-        $builder->select('community.id, community.slug ,community.user_id, community.com_photo_id,community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.category, community.status, community.questions, community_photo.name, community.questions');
-        $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
-        
-        $query   = $builder->get();
-        $data['community_list'] = $query->getResult();
-
-        // echo '<pre>';
-        // var_dump($data['community_list']);exit;
-
-        // $model = new UserscommunityModel;
-
-        // $data['users_community'] = $model->where(['user_id' => session()->get('id'), 'community_id' => $id])->first();
-
-        $db      = \Config\Database::connect();
-        $builder = $db->table('users_community');
-    
-        $builder->select('users_community.id, users_community.user_id, users_community.community_id, users_community.status, users_community.anounymous,users_community.ban_reason,users_community.remove_ac_reason, users_community.created_at,
-        community.com_photo_id,community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.category, community.status as community_status, community.questions,
-        users.nickname, users.email, users.status as users_status,
-        community_photo.name
-        ');
-        $builder->where('users_community.user_id', session()->get('id'));
-        $builder->where('users_community.community_id', $id);
-        $builder->join('community', 'community.id = users_community.community_id');
-        $builder->join('users', 'community.user_id = users.id');
-        $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
-
-        $query   = $builder->get();
-        $data['users_community'] = $query->getResult();
-
-        $data['community_id'] = $id;
-
-        $data['posts'] = array();
-        $db1      = \Config\Database::connect();
-        $builder1 = $db1->table('users_post');
-        $builder1->where('users_post.community_id', $id);
-        $builder1->select('users_post.id,users_post.user_id, users_post.community_id, users_post.title, users_post.content, users_post.updated_at, users_post.tags, users_post.category_id, users_post.subclass_id, users.nickname, profile_photo.name, community_category.category_name, community_category_subclass.subclass'  );
-        $builder1->join('users', 'users.id = users_post.user_id');
-        $builder1->join('profile_photo', 'users.id = profile_photo.user_id');
-        $builder1->join('community_category', 'community_category.id = users_post.category_id', 'left');
-        $builder1->join('community_category_subclass', 'community_category_subclass.id = users_post.subclass_id', 'left');
-        $query1  = $builder1->get();
-        $data['posts'][] = $query1->getResult();  
-        
-        // $db2      = \Config\Database::connect();
-        // $builder2 = $db2->table('users_shared_posts');
-        // $builder2->select('users_shared_posts.post_id, users_post.id, users_shared_posts.content ,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.updated_at, users.nickname,profile_photo.name, user_settings.user_mode');
-        // $builder2->where('users_shared_posts.community_id', $id );
-        
-        // $builder2->join('users', 'users.id = users_shared_posts.user_id');
-        // $builder2->join('users_post', 'users_post.id = users_shared_posts.post_id');
-        // $builder2->join('profile_photo', 'users.id = profile_photo.user_id');
-        // $builder2->join('user_settings', 'users.id = user_settings.user_id');
-        
-        // $query2  = $builder2->get();
-
-        // $data['posts'][] = $query2->getResult();  
-        
-        $users_community_count = new UserscommunityModel();
-
-        // $data['users_community'] = $users_community_count->where('community_id', $id)->countAllResults();
-        
-        $db3      = \Config\Database::connect();
-        $builder3 = $db3->table('users_community');
-        $builder3->where('users_community.community_id', $id);
-        $builder3->select('users_community.id, users.nickname, users_community.user_id, profile_photo.name');
-        $builder3->join('users', 'users_community.user_id = users.id');
-        $builder3->join('profile_photo', 'profile_photo.user_id = users.id');
-        $query3   = $builder3->get();
-        $data['users'] = $query3->getResult();
-        
-        // echo '<pre>';
-        // var_dump($data['users']);exit;
-
-        $model = new CommunitysubclassModel;
-        
-        $db      = \Config\Database::connect();
-        $builder = $db->table('community_category');
-        $builder->select('community_category.id, community_category.user_id, community_category.community_id,, community_category.category_name, community_category.updated_at');
-        $builder->where(['community_category.community_id' => $id]);
-        // $builder->join('community_category_subclass', 'community_category_subclass.category_id = community_category.id');                
-        $query   = $builder->get();
-        $data['community_category'] = $query->getResult();
-
-
-        $category = new CommunitycategoryModel;
-        $categories = $category->where('community_id', $id)->findAll();
-
-        foreach ($categories as $key => $value) {
-            $subclass = $model->where('category_id', $value['id'])
-            ->findAll();
-
-            $categories[$key]['subclass'] = $subclass;
-
-        }
- 
-        $data['community_category'] = $categories;
-
-
-        // echo '<pre>';
-        // var_dump($data['category']);exit;
-
-        echo view('templates/header', $data);
-        echo view('community/view', $data);
-        echo view('templates/footer', $data); 
-
-    }
-
-    public function play($slug = null, $id = null, $category_id = null, $subclass_id = null){
+  
+    public function square($slug = null, $id = null, $category_id = null, $subclass_id = null){
         ini_set('display_errors', 1);
       
         $data = [];
@@ -258,8 +137,6 @@ class Community extends BaseController
         $query   = $builder->get();
         $data['community_list'] = $query->getResult();
 
-        // echo '<pre>';
-        // var_dump($data['community_list']);exit;
 
         // $model = new UserscommunityModel;
 
@@ -565,7 +442,6 @@ class Community extends BaseController
 
         $model = new UserspostModel();
 
-
         $profile_photo = new ProfilephotoModel();
         $data['profile_photo'] = $profile_photo->where('user_id', session()->get('id'))
             ->first();
@@ -583,6 +459,7 @@ class Community extends BaseController
         $query   = $builder->get();
         $data['recommended_community'] = $query->getResult();
 
+
         $db      = \Config\Database::connect();
         $builder = $db->table('users_community');
         $builder->select('users_community.id, users_community.user_id, users_community.community_id, users_community.status, users_community.anounymous,users_community.ban_reason,users_community.remove_ac_reason, users_community.created_at,
@@ -598,6 +475,11 @@ class Community extends BaseController
         $query   = $builder->get();
         $data['your_communities'] = $query->getResult();
         
+        foreach ($data['your_communities'] as $key => $value) {
+            $YCSubclassModel = new CommunitysubclassModel;
+            $data['your_communities_subclass'][] = $YCSubclassModel->where('community_id', $value->community_id)->first();            
+        }
+
         $builder1 = $db->table('community');
     
         $builder1->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.updated_at, community.color , community.text_color, community_photo.name, users.nickname, community.slug');
@@ -607,6 +489,11 @@ class Community extends BaseController
         
         $query1   = $builder1->get();
         $data['communities_you_manage'] = $query1->getResult();
+
+        foreach ($data['communities_you_manage'] as $key => $value) {
+            $subclassModel = new CommunitysubclassModel;
+            $data['communities_you_manage_subclass'][] = $subclassModel->where('community_id', $value->id)->first();      
+        }
 
         echo view('templates/header', $data);
         echo view('community/home', $data);
@@ -665,117 +552,7 @@ class Community extends BaseController
     }
 
 
-    
-
-    public function manage_community($id = null){
-        ini_set('display_errors', 1);
-        $data = [];
-        helper(['form']);
-        helper('text');
-
-        $profile_photo = new ProfilephotoModel();
-        $data['profile_photo'] = $profile_photo->where('user_id', session()->get('id'))
-            ->first();
-
-        $db      = \Config\Database::connect();
-        $builder = $db->table('community');
-        $builder->where('community.id', $id);
-        $builder->select('community.id, community.slug ,community.user_id, community.com_photo_id,community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.category, community.status, community.questions, community_photo.name, community.questions');
-        $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
-        
-        $query   = $builder->get();
-        $data['community_list'] = $query->getResult();
-
-        // $model = new UserscommunityModel;
-
-        // $data['users_community'] = $model->where(['user_id' => session()->get('id'), 'community_id' => $id])->first();
-
-        $db      = \Config\Database::connect();
-        $builder = $db->table('users_community');
-    
-        $builder->select('users_community.id, users_community.user_id, users_community.community_id, users_community.status, users_community.anounymous,users_community.ban_reason,users_community.remove_ac_reason, users_community.created_at,
-        community.com_photo_id,community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.category, community.status as community_status, community.questions,
-        users.nickname, users.email, users.status as users_status,
-        community_photo.name
-        ');
-        $builder->where('users_community.user_id', session()->get('id'));
-        $builder->where('users_community.community_id', $id);
-        $builder->join('community', 'community.id = users_community.community_id');
-        $builder->join('users', 'community.user_id = users.id');
-        $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
-
-        $query   = $builder->get();
-        $data['users_community'] = $query->getResult();
-        
-        $data['community_id'] = $id;
-
-        $data['posts'] = array();
-        $db1      = \Config\Database::connect();
-        $builder1 = $db1->table('users_post');
-        $builder1->where('users_post.community_id', $id);
-        $builder1->select('users_post.id,users_post.user_id, users_post.community_id, users_post.title, users_post.updated_at, users_post.tags, users_post.category_id, users_post.subclass_id, users.nickname, profile_photo.name, community_category.category_name, community_category_subclass.subclass'  );
-        $builder1->join('users', 'users.id = users_post.user_id');
-        $builder1->join('profile_photo', 'users.id = profile_photo.user_id');
-        $builder1->join('community_category', 'community_category.id = users_post.category_id', 'left');
-        $builder1->join('community_category_subclass', 'community_category_subclass.id = users_post.subclass_id', 'left');
-        $query1  = $builder1->get();
-        $data['posts'][] = $query1->getResult();  
-
-
-        $users_community_count = new UserscommunityModel();
-
-        // $data['users_community'] = $users_community_count->where('community_id', $id)->countAllResults();
-        
-        $db3      = \Config\Database::connect();
-        $builder3 = $db3->table('users_community');
-        $builder3->where('users_community.community_id', $id);
-        $builder3->select('users_community.id, users.nickname, users_community.user_id, profile_photo.name');
-        $builder3->join('users', 'users_community.user_id = users.id');
-        $builder3->join('profile_photo', 'profile_photo.user_id = users.id');
-        $query3   = $builder3->get();
-        $data['users'] = $query3->getResult();
-        
-        // echo '<pre>';
-        // var_dump($data['users']);exit;
-
-        $category = \Config\Database::connect();
-        $builderCategory = $category->table('community_category');
-        $builderCategory->where('community_id', $id);
-        $builderCategory->select('*');
-        $queryCategory = $builderCategory->get();
-        $data['category'] = $queryCategory->getResult();
-
-        // echo '<pre>';
-        // var_dump($data['category']);exit;
-        $model = new CommunitysubclassModel;
-        
-        $db      = \Config\Database::connect();
-        $builder = $db->table('community_category');
-        $builder->select('community_category.id, community_category.user_id, community_category.community_id,, community_category.category_name, community_category.updated_at');
-        $builder->where(['community_category.community_id' => $id]);
-        // $builder->join('community_category_subclass', 'community_category_subclass.category_id = community_category.id', 'left');                
-        $query   = $builder->get();
-        $data['community_category'] = $query->getResult();
-    
-        $category = new CommunitycategoryModel;
-        $categories = $category->where('community_id', $id)->findAll();
-
-        foreach ($categories as $key => $value) {
-            $subclass = $model->where('category_id', $value['id'])
-            ->findAll();
-
-            $categories[$key]['subclass'] = $subclass;
-
-        }
-
-        $data['community_category'] = $categories;
-
-        echo view('templates/header', $data);
-        echo view('community/manage', $data);
-        echo view('templates/footer', $data); 
-    }
-
-    public function manage_community_subclass($id = null, $category_id = null,$subclass_id = null){
+    public function manage_community($id = null, $category_id = null,$subclass_id = null){
         ini_set('display_errors', 1);
         $data = [];
         helper(['form']);

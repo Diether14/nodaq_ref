@@ -37,11 +37,9 @@
     <div class="community-sidebar dm_bg-dark" data-parallax="true">
         <div class="community_header row align-items-center">
             <div class="community_title text-center col-sm">
-                <a href="<?= base_url(); ?>/play/<?= $community_list[0]->slug; ?>/<?= $community_list[0]->id; ?>">
                     <h3 class="community-title my-2">
                         <?= $community_list[0]->title; ?>
                     </h3>
-                </a>
                 <?php if ($community_list['community_type'] == '1') : ?>
                 <i class="fa fa-lock"></i>
                 <small class="community-status fw-600">Private Community </small>
@@ -79,18 +77,20 @@
             <?php $uri = service('uri'); ?>
               <div id="accordion-sidebar" class="w-100">
                 <div class="btn-group-vertical w-100">
-                  <?php foreach ($community_category as $key => $value) : ?>
+
+                  <?php foreach ($community_category as $key => $value) : ?> 
                 
                     <button class="btn btn-block m-0 text-left" data-toggle="collapse" data-target="#collapseCategory<?= $key ?>">
                       <?= $value["category_name"]?>
                     </button>
-                    <div id="collapseCategory<?= $key ?>" class="collapse w-100" data-parent="#accordion-sidebar">
+                    
+                    <div id="collapseCategory<?= $key ?>" class="collapse w-100 <?= $uri->getSegment(5) == $value['id'] ? 'show' : null ?>" data-parent="#accordion-sidebar">
 
                     <?php foreach ($value['subclass'] as $key1 => $value1) : ?>
-                      <div class="d-flex p-3 align-items-center col-sm-12 ">
-
+                      <div class="d-flex p-3 align-items-center col-sm-12  <?= $uri->getSegment(6) == $value1['id'] ? 'bg-light' : null ?>">
+                  
                         <div class="col-sm-11 p-0" id="headingOne">
-                            <a href="<?= base_url(); ?>/play/<?= $community_list[0]->slug ?>/<?= $community_list[0]->id;  ?>/<?= $value['id'] ?>/<?= $value1['id'] ?>"  class="d-block text-left ">
+                            <a href="<?= base_url(); ?>/square/<?= $community_list[0]->slug ?>/<?= $community_list[0]->id;  ?>/<?= $value['id'] ?>/<?= $value1['id'] ?>"  class="d-block text-left ">
                             <b><?= $value1['subclass'] ?></b>
                             </a>
                         </div>

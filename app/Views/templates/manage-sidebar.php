@@ -1,11 +1,9 @@
 <div class="community-sidebar overflow-auto" >
     <div class="community_header row align-items-center">
       <div class="community_title text-center col-sm">
-        <a href="<?= base_url() ?>/community-manage/<?= $community_list[0]->id ?>">
-            <h3 class="community-title my-2">
-            <?= $community_list[0]->title; ?>
-            </h3>
-        </a>
+        <h3 class="community-title my-2">
+          <?= $community_list[0]->title; ?>
+        </h3>
         <?php if($community_list['community_type'] == '1'): ?>
         <i class="fa fa-lock"></i>
         <small class="community-status fw-600">Private Community </small>
@@ -56,11 +54,12 @@
                         <?php endif; ?>
                       </div>
                     </button>
-                     
-                    <div id="collapseCategory<?= $key ?>" class="collapse w-100" data-parent="#accordion-sidebar">
+   
+                    <?= ($uri->getSegment(2) ==  'home' ? 'active': null)?>
+                    <div id="collapseCategory<?= $key ?>" class="collapse w-100 <?= $uri->getSegment(4) == $value['id'] ? 'show': null ?>" data-parent="#accordion-sidebar">
 
                     <?php foreach ($value['subclass'] as $key1 => $value1) : ?>
-                      <div class="d-flex p-3 align-items-center col-sm-12 ">
+                      <div class="d-flex p-3 align-items-center col-sm-12 <?= $uri->getSegment(5) == $value1['id'] ? 'bg-light': null ?>">
 
                         <div class="col-sm-11 p-0" id="headingOne">
                         <a href="<?= base_url(); ?>/community-manage/<?= $value['community_id'] ?>/<?= $value['id'] ?>/<?= $value1['id'] ?>" class="d-block text-left " >

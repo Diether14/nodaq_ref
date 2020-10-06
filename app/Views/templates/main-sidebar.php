@@ -35,18 +35,19 @@
                 <h4 class="community_subtitle">
                     Communities You Manage
                 </h4>
+                
                 <?php foreach ($communities_you_manage as $key => $value) : ?>
                 <div class="row mb-4">
                     <script>console.log(<?= json_encode($value)?>)</script>
                     <div class="col-sm-12">
                         <div class="row">
                             <div class="col-lg-6">
-                                <a href="<?= base_url()?>/play/<?=$value->slug?>/<?= $value->id?>">
+                                <a href="<?= base_url()?>/square/<?=$value->slug?>/<?= $value->id?>">
                                     <img class="img-fluid rounded" src="<?= base_url(); ?>/public/admin/uploads/community/<?= $value->name ?>" alt="">
                                 </a>
                             </div>
                             <div class="col-lg-6">
-                                <a href="<?= base_url(); ?>/community-manage/<?= $value->id ?>">
+                                <a href="<?= base_url(); ?>/community-manage/<?= $value->id ?>/<?= $communities_you_manage_subclass[$key]['category_id'] ?>/<?= $communities_you_manage_subclass[$key]['id'] ?>">
                                     <p class="card-title"><?= character_limiter($value->title, 20); ?></p>
                                 </a>
                                 <?php if($value->community_type == '0'): ?>
@@ -81,8 +82,10 @@
                                     <img class="img-fluid rounded" src="<?= base_url(); ?>/public/admin/uploads/community/<?= $value->name ?>" alt="">
                                 </a>
                             </div>
+                            <!-- 20/16 -->
+                            
                             <div class="col-lg-6">
-                                <a href="<?= base_url(); ?>/community-manage/<?= $value->id ?>">
+                                <a href="<?= base_url(); ?>/square/<?= $value->slug ?>/<?= $value->community_id ?>/<?= $your_communities_subclass[$key]['category_id'] ?>/<?= $your_communities_subclass[$key]['id'] ?>">
                                     <p class="card-title"><?= character_limiter($value->title, 20); ?></p>
                                 </a>
                                 <?php if($value->community_type == '0'): ?>
