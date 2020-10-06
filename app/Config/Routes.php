@@ -201,6 +201,14 @@ $routes->match(['get','post'],'upvote', 'Community::upvote', ['filter' => 'auth'
 $routes->match(['get','post'],'community/search', 'Community::searchCommunity');
 
 
+// notifications
+
+$routes->match(['get','post'],'notifications/get/(:any)/(:any)', 'Notifications::selectNotifications/$1/$2');
+
+// $routes->match(['get', 'post'], 'notifications/add', 'Notifications::add', ['filter' => 'auth']);
+
+
+
 // $routes->group('users', function($routes)
 // {
 //         // $routes->add('users/create', 'Crud\Users::create');
