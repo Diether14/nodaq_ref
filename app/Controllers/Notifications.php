@@ -42,29 +42,30 @@ class Notifications extends BaseController{
             
     }
     
-    public function add(){
+    public function addNotification(){
         ini_set('display_errors', 1);
         helper(['form']);
         $data = $this->request->getPost('notificationData');
-        var_dump($data);
+        
+        $model = new NotificationsModel();
+        $save = $model->insert($data);
+        if($save){
+            $response = [
+                'success' => true,
+                'data' => $save,
+                'msg' => "Blog has been posted!"
+            ];
+        }else{
+            $response = [
+                'success' => false,
+                'data' => $save,
+                'msg' => "There is an error!"
+            ];
+        }
+        return $this->response->setJSON($response);        
     }
 
 
 }
 
-
-
-
-
-
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
-
->>>>>>> master
 ?>

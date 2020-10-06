@@ -235,7 +235,7 @@ class Community extends BaseController
 
     public function play($slug = null, $id = null, $category_id = null, $subclass_id = null){
         ini_set('display_errors', 1);
-      
+
         $data = [];
         helper(['form']);
         helper('text');
@@ -1634,17 +1634,6 @@ class Community extends BaseController
                     $msg = 'There is an error!';
                 }
     
-<<<<<<< HEAD
-                
-            // }
-    
-        // }
-    
-           
-    
-    
-=======
->>>>>>> master
             return redirect()->to( 'home')->with('msg', $msg);
      
         }
