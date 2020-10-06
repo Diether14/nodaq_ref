@@ -131,7 +131,7 @@
 
                                                 <div class="col-10 community-title  ">
                                                     <h6>
-                                                        <a href="<?= base_url(); ?>/square/<?= $value->slug ?>/<?= $value->community_id;  ?>"
+                                                        <a href="<?= base_url(); ?>/square/<?= $value->slug ?>/<?= $value->community_id;  ?>/<?= $your_communities_subclass[$key]['category_id'] ?>/<?= $your_communities_subclass[$key]['id'] ?>"
                                                             style="color: <?= $value->text_color; ?>"><?= character_limiter($value->title, 20) ?>
                                                         </a>
                                                     </h6>

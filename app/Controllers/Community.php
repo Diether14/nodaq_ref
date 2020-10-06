@@ -459,6 +459,10 @@ class Community extends BaseController
         $query   = $builder->get();
         $data['recommended_community'] = $query->getResult();
 
+        foreach ($data['recommended_community'] as $key => $value) {
+            $RCSubclassModel = new CommunitysubclassModel;
+            $data['recommended_community_subclass'][] = $RCSubclassModel->where('community_id', $value->id)->first();            
+        }
 
         $db      = \Config\Database::connect();
         $builder = $db->table('users_community');
@@ -532,8 +536,10 @@ class Community extends BaseController
         $query   = $builder->get();
         $data['your_communities'] = $query->getResult();
 
-        // echo '<pre>';
-        // var_dump($data['community_list']);exit;
+        foreach ($data['your_communities'] as $key => $value) {
+            $YCSubclassModel = new CommunitysubclassModel;
+            $data['your_communities_subclass'][] = $YCSubclassModel->where('community_id', $value->community_id)->first();            
+        }
 
         $builder1 = $db->table('community');
     
@@ -545,7 +551,11 @@ class Community extends BaseController
         $query1   = $builder1->get();
         $data['communities_you_manage'] = $query1->getResult();
 
-
+        foreach ($data['communities_you_manage'] as $key => $value) {
+            $CYMSubclassModel = new CommunitysubclassModel;
+            $data['communities_you_manage_subclass'][] = $CYMSubclassModel->where('community_id', $value->id)->first();            
+        }
+        
         echo view('templates/header', $data);
         echo view('community/list', $data);
         echo view('templates/footer', $data);
