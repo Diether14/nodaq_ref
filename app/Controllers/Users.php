@@ -89,10 +89,10 @@ class Users extends BaseController
                     return redirect()->to('admin');
                 }elseif($user['user_type'] == '0'){
                     $session->setFlashdata('success', 'Login Successfully!');
-                    return redirect()->to(base_url().'/home');
+                    return redirect()->to( base_url() . '/home');
                 }else{
                     $session->setFlashdata('success', 'Invalid Username or Password!');
-                    return redirect()->to(base_url());
+                    return redirect()->to( base_url() );
                 }
 
                 
@@ -201,7 +201,7 @@ class Users extends BaseController
                 $model->save($newData);
                 // $session = session();
                 session()->setFlashdata('success', 'Successful Updated');
-                return redirect()->to(base_url().'/settings');
+                return redirect()->to(base_url(). '/settings');
             
             }
         }
@@ -391,7 +391,7 @@ class Users extends BaseController
                 $model->save($newData);
                 // $session = session();
                 session()->setFlashdata('success', 'Successful Updated');
-                return redirect()->to(base_url().'/profile');
+                return redirect()->to(base_url() .'/profile');
             
             }
         }        

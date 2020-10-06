@@ -1,26 +1,26 @@
 <style>
-/* .custom-card {
+    /* .custom-card {
     min-height: 300px;
     max-height: 300px;
 
 } */
 
-.card-img-top {
-    max-height: 160px;
-    min-height: 160px;
-    border-radius: 0%;
-    object-fit: cover;
-}
+    .card-img-top {
+        max-height: 160px;
+        min-height: 160px;
+        border-radius: 0%;
+        object-fit: cover;
+    }
 
-.modal-backdrop {
-    z-index: 1040 !important;
-    display: none;
-}
+    .modal-backdrop {
+        z-index: 1040 !important;
+        display: none;
+    }
 
-.modal-dialog {
-    margin: 80px auto;
-    z-index: 1100 !important;
-}
+    .modal-dialog {
+        margin: 80px auto;
+        z-index: 1100 !important;
+    }
 </style>
 
 <div class="main mt-0 w-dt ndDT" style="margin-top: 6%;">
@@ -39,7 +39,8 @@
                 <div class="carousel-inner">
 
                     <div class="carousel-item active ">
-                        <img class="d-block w-100 " src="<?= base_url(); ?>/public/user/assets/img/profile_city.jpg" alt="First slide">
+                        <img class="d-block w-100 " src="<?= base_url(); ?>/public/user/assets/img/profile_city.jpg"
+                            alt="First slide">
                         <div class="carousel-caption d-none d-md-block text-left">
                             <h2 class="my-0">
                                 Test Community1
@@ -119,8 +120,8 @@
             </div>
             <div class="container rounded-0 px-0">
 
-                
-                <div class="team px-3">      
+
+                <div class="team px-3">
                     <div class="tab-pane active show" id="recomCommunities">
                         <div class="team px-3">
 
@@ -132,12 +133,12 @@
                                     <div class="team-player">
 
                                         <div class="card h-100 custom-card ">
-                                        <div class="row m-0 align-items-center"
+                                            <div class="row m-0 align-items-center"
                                                 style="background-color: <?= $value->color; ?>">
-                                            
+
                                                 <div class="col-10 community-title  ">
                                                     <h6>
-                                                        <a href="<?= base_url(); ?>/play/<?= $value->slug ?>/<?= $value->id;  ?>/<?= $value->subclass_id ?>"
+                                                        <a href="<?= base_url(); ?>/play/<?= $value->slug ?>/<?= $value->id;  ?>"
                                                             style="color: <?= $value->text_color; ?>"><?= character_limiter($value->title, 20) ?>
                                                         </a>
                                                     </h6>
@@ -157,8 +158,9 @@
                                                     <div class="mask rgba-white-slight"></div>
                                                 </a>
                                             </div>
-                                            <p class="text-muted mx-3 mt-2"><?= character_limiter($value->content, 70); ?></p>
-                
+                                            <p class="text-muted mx-3 mt-2">
+                                                <?= character_limiter($value->content, 70); ?></p>
+
                                             <div class="card-footer justify-content-center p-0 my-2">
                                                 <div class="togglebutton d-flex w-100">
 
@@ -221,7 +223,9 @@
                                                             <?php endif; ?>
                                                         </strong></p> -->
 
-                                                        <p>Date Created: <strong><?= date("F j, Y g:i A",strtotime($value->created_at)) ?></strong></p>
+                                                    <p>Date Created:
+                                                        <strong><?= date("F j, Y g:i A",strtotime($value->created_at)) ?></strong>
+                                                    </p>
                                                 </div>
                                                 </hr><br>
                                             </div>
@@ -269,14 +273,15 @@
                         <input type="text" name="title" class="form-control" placeholder="Title" required>
                     </div>
                     <div class="form-group col-sm-12">
-                        <input type="text" name="community_slug" class="form-control" placeholder="Community URL" minlength="4" maxlength="20" required>
+                        <input type="text" name="community_slug" class="form-control" placeholder="Community URL"
+                            minlength="4" maxlength="20" required>
                     </div>
                     <div class="form-group col-sm-12">
-                        <textarea name="content" class="form-control" cols="5" rows="5"
-                            placeholder="Details" required></textarea>
+                        <textarea name="content" class="form-control" cols="5" rows="5" placeholder="Details"
+                            required></textarea>
                     </div>
                     <div class="d-flex align-items-center">
-<!-- 
+                        <!-- 
                         <div class="col-sm-6">
                             <label for="">Community Photo</label>
                             <input type="file" name="file" class="text-center center-block file-upload form-control"
@@ -345,28 +350,28 @@
 <!--  End Modal -->
 
 <script type="text/javascript">
-function myFunction() {
-    var input, filter, cards, cardContainer, h5, title, i;
-    input = document.getElementById("myFilter");
-    filter = input.value.toUpperCase();
-    cardContainer = document.getElementById("myItems");
-    cards = cardContainer.getElementsByClassName("card");
-    for (i = 0; i < cards.length; i++) {
-        title = cards[i].querySelector(".card-body h5.card-title");
-        if (title.innerText.toUpperCase().indexOf(filter) > -1) {
-            cards[i].style.display = "";
-        } else {
-            cards[i].style.display = "none";
+    function myFunction() {
+        var input, filter, cards, cardContainer, h5, title, i;
+        input = document.getElementById("myFilter");
+        filter = input.value.toUpperCase();
+        cardContainer = document.getElementById("myItems");
+        cards = cardContainer.getElementsByClassName("card");
+        for (i = 0; i < cards.length; i++) {
+            title = cards[i].querySelector(".card-body h5.card-title");
+            if (title.innerText.toUpperCase().indexOf(filter) > -1) {
+                cards[i].style.display = "";
+            } else {
+                cards[i].style.display = "none";
+            }
         }
     }
-}
 
-$(".myField").simpleSwatchPicker();
-// $("#myField1").simpleSwatchPicker();
-// $("#myField2").simpleSwatchPicker();
-$('document').ready(function() {
-    $("#btnSubmit").attr("disabled", true);
+    $(".myField").simpleSwatchPicker();
+    // $("#myField1").simpleSwatchPicker();
+    // $("#myField2").simpleSwatchPicker();
+    $('document').ready(function () {
+        $("#btnSubmit").attr("disabled", true);
 
-});
+    });
 
 </script>

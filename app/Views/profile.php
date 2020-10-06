@@ -726,7 +726,7 @@
                     <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"
                         alt="avatar">
                     <h6>Upload a different photo...</h6>
-                    <form class="contact-form" action="/weendi/change_profile" method="post" accept-charset="utf-8"
+                    <form class="contact-form" action="<?= base_url() ?>/change_profile" method="post" accept-charset="utf-8"
                         enctype="multipart/form-data">
 
                         <input type="file" name="file" class="text-center center-block file-upload"
@@ -795,7 +795,7 @@
 
             <div class="modal-body">
                 <div class="text-center">
-                    <form class="contact-form" action="/weendi/update_profile" method="post">
+                    <form class="contact-form" action="<?= base_url() ?>/update_profile" method="post">
                         <!-- <h2 class="text-center title">Update Profile</h2> -->
 
 

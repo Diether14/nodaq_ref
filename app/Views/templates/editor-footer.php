@@ -4,7 +4,7 @@
         <ul>
           <li>
             <a href="#">
-              Weendi
+              Nodaq
             </a>
           </li>
           <li>
@@ -25,7 +25,7 @@
         <script>
           document.write(new Date().getFullYear())
         </script>, 
-        <a href="#" target="_blank">Weendi</a>
+        <a href="#" target="_blank">Nodaq</a>
       </div>
     </div>
   </footer>

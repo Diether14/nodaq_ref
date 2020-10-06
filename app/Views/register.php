@@ -17,7 +17,7 @@
               </div>
                   <div class="h4 text-left mb-2">Register</div>
                 </div>
-                <form class="user" action="/weendi/register" method="post">
+                <form class="user" action="<?= base_url() ?>/register" method="post">
 
                   <div class="form-group row">
                     <div class="col-sm-12 mb-3 mb-sm-0">
@@ -129,7 +129,7 @@
                 <hr style="margin-top: 0px; width: 90%">
                 <div class="text-center">
                   <a class="small" href="#">Forgot Password?</a><br>
-                  <a class="small" href="/weendi">Already have an account? Login!</a>
+                  <a class="small" href="<?= base_url() ?>">Already have an account? Login!</a>
                 </div>
               </div>
             </div>

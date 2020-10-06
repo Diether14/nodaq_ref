@@ -243,7 +243,7 @@ class Admin extends BaseController
             $msg = 'There is an error!';
         }
         
-        return redirect()->to( '/weendi/community-table')->with('msg', $msg);
+        return redirect()->to( base_url().'/community-table')->with('msg', $msg);
     }
 
     public function reports_list(){
@@ -350,7 +350,7 @@ class Admin extends BaseController
             $msg = 'User has been banned!';
         }
 
-        return redirect()->to( '/weendi/community-table')->with('msg', $msg);
+        return redirect()->to( base_url(). '/community-table')->with('msg', $msg);
 
     }
 
@@ -404,7 +404,7 @@ class Admin extends BaseController
                 $model->save($newData);
                 $session = session();
                 $session->setFlashdata('success', 'Successful Registration');
-                return redirect()->to('/weendi/community-create-admin');
+                return redirect()->to(base_url().'/community-create-admin');
             
             }
         }
@@ -438,7 +438,7 @@ class Admin extends BaseController
             if($model->update($this->request->getPost('user_id'), $newData)){
                 $session = session();
                 $session->setFlashdata('success', 'Update Successfully');
-                return redirect()->to('/weendi/users-list');
+                return redirect()->to(base_url().'/users-list');
             }
         }
 

@@ -166,14 +166,21 @@ $routes->get('/unblock/(:num)/(:num)', 'Managers::unblock/$1/$2', ['filter' => '
 
 
 
-//community pages
-$routes->get('play/(:any)/(:num)', 'Community::play/$1/$2', ['filter' => 'auth']);
+//community
+$routes->get('play/(:any)/(:num)/(:num)/(:num)', 'Community::play/$1/$2/$3/$4', ['filter' => 'auth']);
+$routes->get('play/(:any)/(:num)', 'Community::play_home/$1/$2', ['filter' => 'auth']);
+
+//community pages - lex
+// $routes->get('play/(:any)/(:num)', 'Community::play/$1/$2', ['filter' => 'auth']);
+
 // $routes->get('community/(:num)/(:num)', 'Community::community_join/$1/$2', ['filter' => 'auth']);
 $routes->match(['get', 'post'], 'community/upload-picture', 'Community::upload_picture');
 $routes->match(['get','post'],'user_save_community', 'Community::save_community', ['filter' => 'auth']);
 $routes->get('home', 'Community::community_home', ['filter' => 'auth']);
 $routes->get('communities', 'Community::communities', ['filter' => 'auth']);
 $routes->get('community-manage/(:num)', 'Community::manage_community/$1', ['filter' => 'auth']);
+$routes->get('community-manage/(:num)/(:num)/(:num)', 'Community::manage_community_subclass/$1/$2/$3', ['filter' => 'auth']);
+
 $routes->match(['get','post'],'add_category', 'Community::add_category');
 
 $routes->get('community-manage/members/(:num)', 'Community::manage_members/$1', ['filter' => 'auth']);
@@ -195,8 +202,12 @@ $routes->match(['get','post'],'community/search', 'Community::searchCommunity');
 
 
 // notifications
+
 $routes->match(['get','post'],'notifications/get/(:any)/(:any)', 'Notifications::selectNotifications/$1/$2');
+
 // $routes->match(['get', 'post'], 'notifications/add', 'Notifications::add', ['filter' => 'auth']);
+
+
 
 // $routes->group('users', function($routes)
 // {

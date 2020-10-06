@@ -17,16 +17,14 @@
         </div>
         <input type="text" name="txtSearchCommunity" id="txtSearchCommunity" class="form-control" placeholder="Search..">
     </div>
-
-
+    <?php $uri = service('uri'); ?>
     <div id="sidebar-main">
         <div class="list-group">
-            <a href="<?= base_url(); ?>/home"><button type="button" class="list-group-item list-group-item-action  ">
-                Recommended
-            </button>
+            <a href="<?= base_url(); ?>/home">
+                <button type="button" class="list-group-item list-group-item-action <?= ($uri->getSegment(2) ==  'home' ? 'active': null)?>"> Recommended</button>
             </a>
             <a href="<?= base_url(); ?>/communities">
-            <button type="button" class="list-group-item list-group-item-action">Communities</button>
+                <button type="button" class="list-group-item list-group-item-action <?= ($uri->getSegment(2) ==  'communities' ? 'active': null)?>">Communities</button>
             </a>
         </div>
         <!-- communities you manage -->
@@ -48,7 +46,9 @@
                                 </a>
                             </div>
                             <div class="col-lg-6">
-                                <p class="card-title"><?= character_limiter($value->title, 20); ?></p>
+                                <a href="<?= base_url(); ?>/community-manage/<?= $value->id ?>">
+                                    <p class="card-title"><?= character_limiter($value->title, 20); ?></p>
+                                </a>
                                 <?php if($value->community_type == '0'): ?>
                                     <span class="badge badge-pill badge-secondary">Public</span>
                                 <?php else: ?>
@@ -82,7 +82,9 @@
                                 </a>
                             </div>
                             <div class="col-lg-6">
-                                <p class="card-title"><?= character_limiter($value->title, 20); ?></p>
+                                <a href="<?= base_url(); ?>/community-manage/<?= $value->id ?>">
+                                    <p class="card-title"><?= character_limiter($value->title, 20); ?></p>
+                                </a>
                                 <?php if($value->community_type == '0'): ?>
                                     <span class="badge badge-pill badge-secondary">Public</span>
                                 <?php else: ?>

@@ -863,7 +863,7 @@ class Managers extends BaseController
             $msg = 'Community has been deleted!';
             $delete = $community->delete($data['id']);
         
-            return redirect()->to( base_url().'/community-home')->with('msg', $msg);
+            return redirect()->to( base_url().'/home')->with('msg', $msg);
         }else{
             $msg = 'Failed to delete!';
 
