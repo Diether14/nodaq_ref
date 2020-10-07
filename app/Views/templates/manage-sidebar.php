@@ -56,10 +56,10 @@
                     </button>
    
                     <?= ($uri->getSegment(2) ==  'home' ? 'active': null)?>
-                    <div id="collapseCategory<?= $key ?>" class="collapse w-100 <?= $uri->getSegment(4) == $value['id'] ? 'show': null ?>" data-parent="#accordion-sidebar">
+                    <div id="collapseCategory<?= $key ?>" class="collapse w-100 <?= $uri->getSegment(5) == $value['id'] ? 'show': null ?>" data-parent="#accordion-sidebar">
 
                     <?php foreach ($value['subclass'] as $key1 => $value1) : ?>
-                      <div class="d-flex p-3 align-items-center col-sm-12 <?= $uri->getSegment(5) == $value1['id'] ? 'bg-light': null ?>">
+                      <div class="d-flex p-3 align-items-center col-sm-12 <?= $uri->getSegment(6) == $value1['id'] ? 'bg-light': null ?>">
 
                         <div class="col-sm-11 p-0" id="headingOne">
                         <a href="<?= base_url(); ?>/community-manage/<?= $value['community_id'] ?>/<?= $value['id'] ?>/<?= $value1['id'] ?>" class="d-block text-left " >

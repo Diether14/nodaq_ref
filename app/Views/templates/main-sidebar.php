@@ -47,7 +47,7 @@
                                 </a>
                             </div>
                             <div class="col-lg-6">
-                                <a href="<?= base_url(); ?>/community-manage/<?= $value->id ?>/<?= $communities_you_manage_subclass[$key]['category_id'] ?>/<?= $communities_you_manage_subclass[$key]['id'] ?>">
+                                <a href="<?= base_url(); ?>/community-manage/<?= $value->slug ?>/<?= $value->id ?>/<?= $communities_you_manage_subclass[$key]['category_id'] ?>/<?= $communities_you_manage_subclass[$key]['id'] ?>">
                                     <p class="card-title"><?= character_limiter($value->title, 20); ?></p>
                                 </a>
                                 <?php if($value->community_type == '0'): ?>

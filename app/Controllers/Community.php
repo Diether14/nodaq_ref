@@ -176,7 +176,7 @@ class Community extends BaseController
         
         // $db2      = \Config\Database::connect();
         // $builder2 = $db2->table('users_shared_posts');
-        // $builder2->select('users_shared_posts.post_id, users_post.id, users_shared_posts.content ,users_post.user_id, users_post.community_id, users_post.title, users_post.description, users_post.updated_at, users.nickname,profile_photo.name, user_settings.user_mode');
+        // $builder2->select('users_shared_posts.post_id, users_post.id, users_shared_posts.content ,users_post.user_id, users_post.community_id, users_post.title,  users_post.updated_at, users.nickname,profile_photo.name, user_settings.user_mode');
         // $builder2->where('users_shared_posts.community_id', $id );
         
         // $builder2->join('users', 'users.id = users_shared_posts.user_id');
@@ -187,7 +187,8 @@ class Community extends BaseController
         // $query2  = $builder2->get();
 
         // $data['posts'][] = $query2->getResult();  
-        
+
+
         $users_community_count = new UserscommunityModel();
 
         // $data['users_community'] = $users_community_count->where('community_id', $id)->countAllResults();
@@ -228,9 +229,6 @@ class Community extends BaseController
  
         $data['community_category'] = $categories;
 
-
-        // echo '<pre>';
-        // var_dump($data['category']);exit;
 
         echo view('templates/header', $data);
         // echo "<pre>";
@@ -562,7 +560,7 @@ class Community extends BaseController
     }
 
 
-    public function manage_community($id = null, $category_id = null,$subclass_id = null){
+    public function manage_community($slug = null, $id = null, $category_id = null,$subclass_id = null){
         ini_set('display_errors', 1);
         $data = [];
         helper(['form']);
@@ -671,7 +669,7 @@ class Community extends BaseController
     }
 
 
-    public function manage_members($id = null){
+    public function manage_members($slug = null, $id = null, $category_id = null, $subclass_id = null){
         ini_set('display_errors', 1);
         $data = [];
         helper(['form']);
@@ -731,13 +729,12 @@ class Community extends BaseController
         
         $query   = $builder->get();
         $data['users'] = $query->getResult();
-
         echo view('templates/header', $data);
         echo view('community/list-members', $data);
         echo view('templates/footer', $data);
     }
     
-    public function manage_reports($id = null){
+    public function manage_reports($slug = null, $id = null, $category_id = null, $subclass_id = null){
         ini_set('display_errors', 1);
         $data = [];
         helper(['form']);
@@ -800,7 +797,7 @@ class Community extends BaseController
         echo view('templates/footer', $data);
     }
 
-    public function manage_blocked_users($id = null){
+    public function manage_blocked_users($slug = null, $id = null, $category_id = null, $subclass_id = null){
         ini_set('display_errors', 1);
         $data = [];
         helper(['form']);
@@ -867,12 +864,12 @@ class Community extends BaseController
         echo view('community/list-users-blocked', $data);
         echo view('templates/footer', $data);
     }
-    public function manage_settings($id = null){
+    public function manage_settings($slug = null, $id = null, $category_id = null, $subclass_id = null){
         ini_set('display_errors', 1);
         $data = [];
         helper(['form']);
         helper('text');
-
+     
         $db      = \Config\Database::connect();
         $builder = $db->table('community');
         $builder->where('community.id', $id);

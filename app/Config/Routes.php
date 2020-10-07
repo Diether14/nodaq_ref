@@ -177,14 +177,14 @@ $routes->match(['get', 'post'], 'community/upload-picture', 'Community::upload_p
 $routes->match(['get','post'],'user_save_community', 'Community::save_community', ['filter' => 'auth']);
 $routes->get('home', 'Community::community_home', ['filter' => 'auth']);
 $routes->get('communities', 'Community::communities', ['filter' => 'auth']);
-$routes->get('community-manage/(:num)/(:num)/(:num)', 'Community::manage_community/$1/$2/$3', ['filter' => 'auth']);
+$routes->get('community-manage/(:any)/(:num)/(:num)/(:num)', 'Community::manage_community/$1/$2/$3/$4', ['filter' => 'auth']);
 
 $routes->match(['get','post'],'add_category', 'Community::add_category');
 
-$routes->get('community-manage/members/(:num)', 'Community::manage_members/$1', ['filter' => 'auth']);
-$routes->get('community-manage/reports/(:num)', 'Community::manage_reports/$1', ['filter' => 'auth']);
-$routes->get('community-manage/blocked-users/(:num)', 'Community::manage_blocked_users/$1', ['filter' => 'auth']);
-$routes->get('community-manage/settings/(:num)', 'Community::manage_settings/$1', ['filter' => 'auth']);
+$routes->get('community-manage/members/(:any)/(:num)/(:num)/(:num)', 'Community::manage_members/$1/$2/$3/$4', ['filter' => 'auth']);
+$routes->get('community-manage/reports/(:any)/(:num)/(:num)/(:num)', 'Community::manage_reports/$1/$2/$3/$4', ['filter' => 'auth']);
+$routes->get('community-manage/blocked-users/(:any)/(:num)/(:num)/(:num)', 'Community::manage_blocked_users/$1/$2/$3/$4', ['filter' => 'auth']);
+$routes->get('community-manage/settings/(:any)/(:num)/(:num)/(:num)', 'Community::manage_settings/$1/$2/$3/$4', ['filter' => 'auth']);
 $routes->get('/delete_category/(:num)/(:num)', 'Community::delete_category/$1/$2', ['filter' => 'auth']);
 $routes->match(['get','post'],'update_category', 'Community::update_category');
 $routes->match(['get', 'post'], 'add_subclass', 'Community::add_subclass');

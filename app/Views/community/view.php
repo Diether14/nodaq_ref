@@ -343,9 +343,10 @@
                                         <div class="tab-pane fade show active" id="grid" role="tabpanel"
                                             aria-labelledby="community-grid-tab">
                                             <div id="grid-layout" class="card-body pt-0">
-                                                <?php if (!empty($posts[0])) : ?>
+                                            
+                                                <?php if (!empty($postsContent)) : ?>
                                                 <div class="row">
-                                                    <?php foreach ($posts[0] as $key => $value) : ?>
+                                                    <?php foreach ($postsContent as $key => $value) : ?>
 
 
                                                     <div class="col-xs-12 col-sm-6 col-md-3">
