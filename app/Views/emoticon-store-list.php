@@ -41,13 +41,14 @@
                   </button>
                 </form>
                 </div>
-    <h2 class="title"><?= $emoticon_list[0]->title ?> Stickers</h2>
+                  <h2 class="title"><?= $emoticon_list[0]->title ?> Stickers</h2>
       <?php if (session('msg')) : ?>
                 <div class="mx-auto my-auto alert alert-primary alert-dismissible">
                   <?= session('msg') ?>
                   <button type="button" class="close" data-dismiss="alert"><span>×</span></button>
                 </div>
                 <?php endif ?>
+                <button class="btn btn-sm btn-primary">Buy ($4.99)</button>
       <div class="team">
         <div class="row">
 
