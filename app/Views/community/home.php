@@ -25,7 +25,8 @@
 
 <div class="main mt-0 w-dt ndDT" style="margin-top: 6%;">
     <div class="row">
-    <?= view('templates/main-sidebar'); ?>
+    
+        <?php include('app/Views/templates/main-sidebar.php')?>
         <!-- Community Feed-->
         <div class="community-feed">
             <div id="carouselExampleIndicators" class="carousel slide col-12 px-0" data-ride="carousel"

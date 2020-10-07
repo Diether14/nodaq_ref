@@ -31,9 +31,10 @@
     <!-- editor.js -->
     <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
     <link href="<?= base_url(); ?>/public/editorjs/assets/demo.css" rel="stylesheet">
-    
     <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet"> -->
-    
+
+
+
     <script src="<?= base_url(); ?>/public/editorjs/assets/json-preview.js"></script>
   
     <!-- include alertify.css -->

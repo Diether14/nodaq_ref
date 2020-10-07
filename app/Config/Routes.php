@@ -202,8 +202,8 @@ $routes->match(['get','post'],'community/search', 'Community::searchCommunity');
 // notifications
 
 $routes->match(['get','post'],'notifications/get/(:any)/(:any)', 'Notifications::selectNotifications/$1/$2');
+$routes->match(['get', 'post'], 'notifications/add', 'Notifications::addNotification');
 
-// $routes->match(['get', 'post'], 'notifications/add', 'Notifications::add', ['filter' => 'auth']);
 
 
 
