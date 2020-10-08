@@ -62,48 +62,65 @@
                 </div>
                 <?php endif ?>
       <div class="team">
-        <div class="row">
+        <ul class="nav nav-pills nav-pills-rose">
+          <li class="nav-item ">
+            <a href="#stickerStore" class="nav-link active" data-toggle="tab">Store</a>
+          </li>
+          <li class="nav-item">
+            <a href="#stickerPersonal" class="nav-link" data-toggle="tab">Your Stickers</a>
+          </li>
+        </ul>
 
-      
-        <?php foreach ($emoticon_list as $key => $value): ?>
-       
-          <div class="col-md-3 ">
-            <div class="team-player">
+        <div class="tab-content tab-space">
+          <div class="tab-pane fade show active" id="stickerStore">
+            <div class="row">
 
-              <div class="card  custom-card ">
-
-                <h4 class="card-title p-3 my-0" style="background-color: ">
-
-                  <!-- <a href="#" data-toggle="modal"  data-target="#edit_<= $key ?>"><i class="fa fa-cog pl-1 pt-1"
-                      style="float:left;"></i></a> -->
-                      <a href="<?= base_url(); ?>/emoticon-store-list/<?= $value->id ?>">
-                  <?= character_limiter($value->title, 15) ?>
-                  </a>
-                </h4>
-                <div class="view overlay">
-                  <img class="card-img-top rounded-0" src="public/user/uploads/stickers/<?= $value->name ?>" alt="Card image cap">
-                  <a href="#!">
-                    <div class="mask rgba-white-slight"></div>
-                  </a>
-                </div>
-
-                <div class="card-footer justify-content-center">
-
-                  <div style="float-right">
-                    <p class="text">By: <b><?= $value->nickname ?></b></p>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        
           
-     <?php endforeach; ?>
+              <?php foreach ($emoticon_list as $key => $value): ?>
+                
+                    <div class="col-md-3 ">
+                      <div class="team-player">
 
-        
+                        <div class="card  custom-card ">
 
+                          <h4 class="card-title p-3 my-0" style="background-color: ">
+
+                            <!-- <a href="#" data-toggle="modal"  data-target="#edit_<= $key ?>"><i class="fa fa-cog pl-1 pt-1"
+                                style="float:left;"></i></a> -->
+                                <a href="<?= base_url(); ?>/emoticon-store-list/<?= $value->id ?>">
+                            <?= character_limiter($value->title, 15) ?>
+                            </a>
+                          </h4>
+                          <div class="view overlay">
+                            <img class="card-img-top rounded-0" src="public/user/uploads/stickers/<?= $value->name ?>" alt="Card image cap">
+                            <a href="#!">
+                              <div class="mask rgba-white-slight"></div>
+                            </a>
+                          </div>
+
+                          <div class="card-footer justify-content-center">
+
+                            <div style="float-right">
+                              <p class="text">By: <b><?= $value->nickname ?></b></p>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  
+                    
+              <?php endforeach; ?>
+
+            </div>
+          
+          </div>
+          <div class="tab-pane fade " id="stickerPersonal">
+                No stickers
+          </div>
         </div>
+      
+      
       </div>
     </div>
 

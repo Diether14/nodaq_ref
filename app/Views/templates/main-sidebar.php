@@ -28,79 +28,89 @@
             </a>
         </div>
         <!-- communities you manage -->
-        <?php if(!empty($communities_you_manage)): ?>
-        <div class="community_hr my-4"></div>
-        <div class="community_managed_section">
-            <div class="community_managed_row">
-                <h4 class="community_subtitle">
-                    Communities You Manage
-                </h4>
-                
-                <?php foreach ($communities_you_manage as $key => $value) : ?>
-                <div class="row mb-4">
-                    <script>console.log(<?= json_encode($value)?>)</script>
-                    <div class="col-sm-12">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <a href="<?= base_url()?>/square/<?=$value->slug?>/<?= $value->id?>">
-                                    <img class="img-fluid rounded" src="<?= base_url(); ?>/public/admin/uploads/community/<?= $value->name ?>" alt="">
-                                </a>
+            <div class="community_hr my-4"></div>
+            <div class="community_managed_section">
+                <div class="justify-content-center">
+                    <ul class="nav nav-pills nav-pills-icons" data-tabs="tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active"  href="#tabManagedCommunities" data-toggle="tab">Managed</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link "  href="#tabPersonalCommunities" data-toggle="tab">Personal</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div id="tabManagedCommunities" class="tab-pane active">
+                        <?php if(!empty($communities_you_manage)): ?>
+                            <?php foreach ($communities_you_manage as $key => $value) : ?>
+                                <div class="row mb-4">
+                                    <script>console.log(<?= json_encode($value)?>)</script>
+                                    <div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <a href="<?= base_url(); ?>/community-manage/<?= $value->slug ?>/<?= $value->id ?>/<?= $communities_you_manage_subclass[$key]['category_id'] ?>/<?= $communities_you_manage_subclass[$key]['id'] ?>">
+                                                    <img class="img-fluid rounded" src="<?= base_url(); ?>/public/admin/uploads/community/<?= $value->name ?>" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <a href="<?= base_url(); ?>/community-manage/<?= $value->slug ?>/<?= $value->id ?>/<?= $communities_you_manage_subclass[$key]['category_id'] ?>/<?= $communities_you_manage_subclass[$key]['id'] ?>">
+                                                    <p class="card-title"><?= character_limiter($value->title, 20); ?></p>
+                                                </a>
+                                                <?php if($value->community_type == '0'): ?>
+                                                    <span class="badge badge-pill badge-secondary">Public</span>
+                                                <?php else: ?>
+                                                    <span class="badge badge-pill badge-dark">Private</span>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </div>
+                    <div id="tabPersonalCommunities" class="tab-pane">
+                        <?php if(!empty($your_communities)): ?>
+                            <div class="community_joined">
+                                <div class="community_joined_row">
+                                
+                                    <?php foreach ($your_communities as $key => $value) : ?>
+                                    <div class="row mb-4">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <a href="#">
+                                                        <img class="img-fluid rounded" src="<?= base_url(); ?>/public/admin/uploads/community/<?= $value->name ?>" alt="">
+                                                    </a>
+                                                </div>
+                                                <!-- 20/16 -->
+                                                
+                                                <div class="col-lg-6">
+                                                    <a href="<?= base_url(); ?>/square/<?= $value->slug ?>/<?= $value->community_id ?>/<?= $your_communities_subclass[$key]['category_id'] ?>/<?= $your_communities_subclass[$key]['id'] ?>">
+                                                        <p class="card-title"><?= character_limiter($value->title, 20); ?></p>
+                                                    </a>
+                                                    <?php if($value->community_type == '0'): ?>
+                                                        <span class="badge badge-pill badge-secondary">Public</span>
+                                                    <?php else: ?>
+                                                        <span class="badge badge-pill badge-dark">Private</span>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php endforeach; ?>
+                                </div>
                             </div>
-                            <div class="col-lg-6">
-                                <a href="<?= base_url(); ?>/community-manage/<?= $value->slug ?>/<?= $value->id ?>/<?= $communities_you_manage_subclass[$key]['category_id'] ?>/<?= $communities_you_manage_subclass[$key]['id'] ?>">
-                                    <p class="card-title"><?= character_limiter($value->title, 20); ?></p>
-                                </a>
-                                <?php if($value->community_type == '0'): ?>
-                                    <span class="badge badge-pill badge-secondary">Public</span>
-                                <?php else: ?>
-                                    <span class="badge badge-pill badge-dark">Private</span>
-                                <?php endif; ?>
-                            </div>
-                        </div>
+                        <?php endif; ?>
                     </div>
                 </div>
-                <?php endforeach; ?>
+                
+                
             </div>
-        </div>
-        <?php endif; ?>
         <!-- end of communities you manage -->
         
         <!-- communities you manage -->
-        <?php if(!empty($your_communities)): ?>
-        <div class="community_hr my-4"></div>
-        <div class="community_joined">
-            <div class="community_joined_row">
-                <h4 class="community_subtitle">
-                    Your Communities
-                </h4>
-                <?php foreach ($your_communities as $key => $value) : ?>
-                <div class="row mb-4">
-                    <div class="col-12">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <a href="#">
-                                    <img class="img-fluid rounded" src="<?= base_url(); ?>/public/admin/uploads/community/<?= $value->name ?>" alt="">
-                                </a>
-                            </div>
-                            <!-- 20/16 -->
-                            
-                            <div class="col-lg-6">
-                                <a href="<?= base_url(); ?>/square/<?= $value->slug ?>/<?= $value->community_id ?>/<?= $your_communities_subclass[$key]['category_id'] ?>/<?= $your_communities_subclass[$key]['id'] ?>">
-                                    <p class="card-title"><?= character_limiter($value->title, 20); ?></p>
-                                </a>
-                                <?php if($value->community_type == '0'): ?>
-                                    <span class="badge badge-pill badge-secondary">Public</span>
-                                <?php else: ?>
-                                    <span class="badge badge-pill badge-dark">Private</span>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
-        <?php endif; ?>
+        
         
     </div>
     
