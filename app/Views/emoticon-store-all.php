@@ -62,60 +62,110 @@
                 </div>
                 <?php endif ?>
       <div class="team">
-        <div class="row">
+      <div class="w-100 text-center">
+        <ul class="nav nav-pills nav-pills-rose">
+          <li class="nav-item ">
+            <a href="#stickerStore" class="nav-link active" data-toggle="tab">Store</a>
+          </li>
+          <li class="nav-item">
+            <a href="#stickerPersonal" class="nav-link" data-toggle="tab">Your Stickers</a>
+          </li>
+        </ul>
+      </div>
 
-      
-        <?php foreach ($emoticon_list as $key => $value): ?>
-       
-          <div class="col-md-3 ">
-            <div class="team-player">
+        <div class="tab-content tab-space">
+          <div class="tab-pane fade show active" id="stickerStore">
+            <div class="row">
 
-              <div class="card  custom-card ">
-
-                <h4 class="card-title p-3 my-0" style="background-color: ">
-
-                  <!-- <a href="#" data-toggle="modal"  data-target="#edit_<= $key ?>"><i class="fa fa-cog pl-1 pt-1"
-                      style="float:left;"></i></a> -->
-                      <a href="<?= base_url(); ?>/emoticon-store-list/<?= $value->id ?>">
-                  <?= character_limiter($value->title, 15) ?>
-                  </a>
-                </h4>
-                <div class="view overlay">
-                  <img class="card-img-top rounded-0" src="public/user/uploads/stickers/<?= $value->name ?>" alt="Card image cap">
-                  <a href="#!">
-                    <div class="mask rgba-white-slight"></div>
-                  </a>
-                </div>
-
-                <div class="card-footer justify-content-center">
-
-                  <div style="float-right">
-                    <p class="text">By: <b><?= $value->nickname ?></b></p>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        
           
-     <?php endforeach; ?>
+              <?php foreach ($emoticon_list as $key => $value): ?>
+                
+                    <div class="col-md-3 ">
+                      <div class="team-player">
 
-        
+                        <div class="card  custom-card ">
 
+                          <h4 class="card-title p-3 my-0" style="background-color: ">
+
+                            <!-- <a href="#" data-toggle="modal"  data-target="#edit_<= $key ?>"><i class="fa fa-cog pl-1 pt-1"
+                                style="float:left;"></i></a> -->
+                                <a href="<?= base_url(); ?>/emoticon-store-list/<?= $value->id ?>">
+                            </a>
+                          </h4>
+                          <div class="view overlay">
+                            <img class="card-img-top rounded-0" src="<?= base_url()?>/public/assets/placeholders/emoticon-sticker.png" alt="Card image cap">
+                            <!-- <img class="card-img-top rounded-0" src="public/user/uploads/stickers/<?= $value->name ?>" alt="Card image cap"> -->
+                            <a href="#!">
+                              <div class="mask rgba-white-slight"></div>
+                            </a>
+                          </div>
+
+                          <div class="card-footer justify-content-center">
+
+                            <div style="float-right">
+                              <strong class="h5">
+                                <?= character_limiter($value->title, 15) ?>
+                              </strong>
+                              <p class="text">By: <b><?= $value->nickname ?></b></p>
+                              <button class="btn btn-primary" onclick="selectBuyingSticker(<?=$key?>)" data-toggle="modal" data-target="#modalConfirmPurchase">Buy($4.99)</button>
+                              <button class="btn btn-link">View more</button>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  
+                    
+              <?php endforeach; ?>
+
+            </div>
+          
+          </div>
+          <div class="tab-pane fade " id="stickerPersonal">
+                No stickers
+          </div>
         </div>
+      
+      
       </div>
     </div>
 
+  </div>
+
+  <div class="modal fade " id="modalConfirmPurchase">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title text-white">Confirm Purchase</h3>
+        </div>
+        <div class="modal-body">
+                <p>You are about to buy this bundle. By buying this bundle, you agree to the Terms and Conditions listed. Buying this item will automatically place these stickers to your sticker stash, which are ready to use.</p>
+          <div class="text-center">
+            <div class="d-block w-100 justify-content-between">
+              <img src="<?= base_url()?>/public/assets/placeholders/emoticon-sticker.png" style="height: auto; width: 100px" alt="sticker">
+              <img src="<?= base_url()?>/public/assets/placeholders/emoticon-sticker.png" style="height: auto; width: 100px" alt="sticker">
+              <img src="<?= base_url()?>/public/assets/placeholders/emoticon-sticker.png" style="height: auto; width: 100px" alt="sticker">
+              <img src="<?= base_url()?>/public/assets/placeholders/emoticon-sticker.png" style="height: auto; width: 100px" alt="sticker">
+              <img src="<?= base_url()?>/public/assets/placeholders/emoticon-sticker.png" style="height: auto; width: 100px" alt="sticker">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button data-dismiss="modal" class="btn btn-link">I want to choose a different one</button>
+          <button class="btn btn-primary">Purchase</button>
+        </div>
+      </div>
+    </div>
   </div>
 
 </div>
 
 
 <script>
+  let selectedSticker = null;
+
   $(document).ready(function () {
-
-
     var readURL = function (input) {
       if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -135,6 +185,10 @@
 
   });
 
+  selectBuyingSticker = id => {
+    selectedSticker = id;
+    console.log("asdfasdf");
+  }
 
 // function readURL(input, id) {
 //     id = id || '#blah';

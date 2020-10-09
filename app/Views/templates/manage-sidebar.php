@@ -1,4 +1,4 @@
-<div class="community-sidebar overflow-auto" >
+<div class="community-sidebar h-100" >
     <div class="community_header row align-items-center">
       <div class="community_title text-center col-sm">
         <h3 class="community-title my-2">
@@ -17,9 +17,13 @@
     <div class="community_hr my-2"></div>
       <div class="community_joined">
         <div class="community_joined_row">
-          <h4 class="community_subtitle">
-            Community Settings
-          </h4>
+
+          <div class="btn-group">
+            <a href="<?= base_url(); ?>/community-manage/members/<?= $community_list[0]->id; ?>" class="btn btn-round btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Members (10)"><i class="fa fa-users"></i></a>
+            <a href="<?= base_url(); ?>/community-manage/reports/<?= $community_list[0]->id; ?>" class="btn btn-round btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Reports"><i class="fa fa-chart-bar"></i></a>
+            <a href="<?= base_url(); ?>/community-manage/blocked-users/<?= $community_list[0]->id; ?>" class="btn btn-round btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Blocked Users"><i class="fa fa-user-slash"></i></a>
+            <a href="<?= base_url(); ?>/community-manage/settings/<?= $community_list[0]->id; ?>" class="btn btn-round btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Settings"><i class="fa fa-cog"></i></a>
+          </div>
 
           <div class="row mb-2">
             <div class="col-12 row align-items-center">
@@ -160,39 +164,7 @@
               </div>
           </div>
 
-          <div class="community_hr my-2"></div>
-          <div class="row mb-2">
-            <div class="col-12">
-              
-              <a href="<?= base_url(); ?>/community-manage/members/<?= $community_list[0]->id; ?>">
-                <h5 class="m-0 list-group-item list-group-item-action <?= ($uri->getSegment(3) ==  'members' ? 'active': null)?>">Members</h5>
-              </a>
-            </div>
-          </div>
-          <div class="community_hr my-2"></div>
-          <div class="row mb-2">
-            <div class="col-12">
-              <a href="<?= base_url(); ?>/community-manage/reports/<?= $community_list[0]->id; ?>">
-                <h5 class="m-0 list-group-item list-group-item-action <?= ($uri->getSegment(3) ==  'reports' ? 'active': null)?>">Reports</h5>
-              </a>
-            </div>
-          </div>
-          <div class="community_hr my-2"></div>
-          <div class="row mb-2">
-            <div class="col-12">
-              <a href="<?= base_url(); ?>/community-manage/blocked-users/<?= $community_list[0]->id; ?>">
-                <h5 class="m-0 list-group-item list-group-item-action <?= ($uri->getSegment(3) ==  'blocked-users' ? 'active': null)?>" >Blocked Users</h5>
-              </a>
-            </div>
-          </div>
-          <div class="community_hr my-2"></div>
-          <div class="row mb-2">
-            <div class="col-12">
-              <a href="<?= base_url(); ?>/community-manage/settings/<?= $community_list[0]->id; ?>">
-                <h5 class="m-0 list-group-item list-group-item-action <?= ($uri->getSegment(3) ==  'settings' ? 'active': null)?>">Settings</h5>
-              </a>
-            </div>
-          </div>
+
         </div>
       </div>
   </div>
