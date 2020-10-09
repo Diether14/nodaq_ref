@@ -3,7 +3,15 @@
 
 <head>
     <meta charset="utf-8">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6TN03K0EBL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-6TN03K0EBL');
+</script>
     <link rel="stylesheet" href="<?= base_url(); ?>/public/assets/css/style.css">
     <title>Nodaq</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
