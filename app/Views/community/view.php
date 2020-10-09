@@ -608,9 +608,12 @@
                                 <i class="material-icons">clear</i>
                             </button>
                         </div>
-
+                        
                         <div class="modal-body ">
                             <form class="contact-form" action="<?= base_url(); ?>/join_community" method="post">
+                            <?php if($community_list[0]->questions != NULL): ?>
+                                <h6><?= $community_list[0]->questions ?></h6>
+                            <?php endif; ?>
                                 <div class="form-group">
                                     <label>Reason</label>
                                     <textarea name="answer" class="form-control" cols="30" rows="10"></textarea>
