@@ -127,7 +127,7 @@
 
                 </div>
                 <div class="card card-body mt-0">
-                  <h6>Community Join in Question</h6>
+                  <h6>Join in Question</h6>
 
                   <div class="form-group">
                     <form action="<?= base_url(); ?>/community_questions" method="post">
@@ -139,6 +139,21 @@
                   </div>
                 </div>
 
+                <div class="card card-body mt-0">
+                  <h6>Slug URL</h6>
+                  <div class="form-group">
+                    <form action="<?= base_url(); ?>/update_slug" method="post">
+                      <label>URL</label>
+                      <input type="text" name="slug" class="form-control" value="<?= $community_list[0]->slug ?>">
+                      <input type="hidden" name="category_id" class="form-control"
+                        value="<?= $community_category[0]['id'] ?>">
+                      <input type="hidden" name="sub_id" class="form-control"
+                        value="<?= $community_category[0]['subclass'][0]['id'] ?> ?>">
+                      <input type="hidden" name="community_id" class="form-control" value="<?= $community[0]->id ?>">
+                      <button type="submit" class="btn btn-primary btn-sm"> Save</button>
+                    </form>
+                  </div>
+                </div>
 
                 <div class="card card-body mt-0">
                   <h6>Settings</h6>

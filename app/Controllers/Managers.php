@@ -837,6 +837,33 @@ class Managers extends BaseController
 
     }
 
+    public function update_slug(){
+        ini_set('display_errors', 1);
+        $community = new CommunityModel();
+
+        $data = [];
+        $category_id = $this->request->getPost('category_id');
+        $sub_id = $this->request->getPost('sub_id');
+
+        $community_id = $this->request->getPost('community_id');
+        $data = [
+            'id' => $this->request->getPost('community_id'),
+            'slug' => $this->request->getPost('slug')
+        ];
+
+        if($community->update($data['id'], $data)){
+            $msg = 'Slug has been saved!';
+            return redirect()->back()->with('msg', $msg);
+            return redirect()->to( base_url().'/manage-settings/'.$data['slug'] . '/' .$data['id'] .'/'. $category_id . '/'. $sub_id)->with('msg', $msg);
+        }else{
+            $msg = 'Failed to save!';
+            return redirect()->back()->with('msg', $msg);
+        }
+
+
+
+    }
+
 
     public function reset_community(){
         $community = new CommunityModel();

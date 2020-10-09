@@ -678,7 +678,7 @@ class Community extends BaseController
         $db      = \Config\Database::connect();
         $builder = $db->table('community');
         $builder->where('community.id', $id);
-        $builder->select('community.id, community.user_id, community.com_photo_id,community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.category, community.status, community.questions, community_photo.name, community.questions');
+        $builder->select('community.id, community.slug ,community.user_id, community.com_photo_id,community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.category, community.status, community.questions, community_photo.name, community.questions');
         $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
 
         $query   = $builder->get();
@@ -743,7 +743,7 @@ class Community extends BaseController
         $db      = \Config\Database::connect();
         $builder = $db->table('community');
         $builder->where('community.id', $id);
-        $builder->select('community.id, community.user_id, community.com_photo_id,community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.category, community.status, community.questions, community_photo.name, community.questions');
+        $builder->select('community.id,community.slug, community.user_id, community.com_photo_id,community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.category, community.status, community.questions, community_photo.name, community.questions');
         $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
         
         $query   = $builder->get();
@@ -806,7 +806,7 @@ class Community extends BaseController
         $db      = \Config\Database::connect();
         $builder = $db->table('community');
         $builder->where('community.id', $id);
-        $builder->select('community.id, community.user_id, community.com_photo_id,community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.category, community.status, community.questions, community_photo.name, community.questions');
+        $builder->select('community.id,community.slug, community.user_id, community.com_photo_id,community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.category, community.status, community.questions, community_photo.name, community.questions');
         $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
         
         $query   = $builder->get();
@@ -873,7 +873,7 @@ class Community extends BaseController
         $db      = \Config\Database::connect();
         $builder = $db->table('community');
         $builder->where('community.id', $id);
-        $builder->select('community.id, community.user_id, community.com_photo_id,community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.category, community.status, community.questions, community_photo.name, community.questions');
+        $builder->select('community.id,community.slug, community.user_id, community.com_photo_id,community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.category, community.status, community.questions, community_photo.name, community.questions');
         $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
         
         $query   = $builder->get();
