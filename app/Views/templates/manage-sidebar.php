@@ -13,16 +13,15 @@
         <?php endif; ?>
       </div>
     </div>
-
+    
     <div class="community_hr my-2"></div>
       <div class="community_joined">
         <div class="community_joined_row">
-
           <div class="btn-group">
-            <a href="<?= base_url(); ?>/community-manage/members/<?= $community_list[0]->id; ?>" class="btn btn-round btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Members (10)"><i class="fa fa-users"></i></a>
-            <a href="<?= base_url(); ?>/community-manage/reports/<?= $community_list[0]->id; ?>" class="btn btn-round btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Reports"><i class="fa fa-chart-bar"></i></a>
-            <a href="<?= base_url(); ?>/community-manage/blocked-users/<?= $community_list[0]->id; ?>" class="btn btn-round btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Blocked Users"><i class="fa fa-user-slash"></i></a>
-            <a href="<?= base_url(); ?>/community-manage/settings/<?= $community_list[0]->id; ?>" class="btn btn-round btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Settings"><i class="fa fa-cog"></i></a>
+            <a href="<?= base_url(); ?>/manage-members/<?= $community_list[0]->slug; ?>/<?= $community_list[0]->id; ?>/<?= $community_category[0]['id'] ?>/<?= $community_category[0]['subclass'][0]['id'] ?>" class="btn btn-round btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Members (10)"><i class="fa fa-users"></i></a>
+            <a href="<?= base_url(); ?>/manage-reports/<?= $community_list[0]->slug; ?>/<?= $community_list[0]->id; ?>/<?= $community_category[0]['id'] ?>/<?= $community_category[0]['subclass'][0]['id'] ?>" class="btn btn-round btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Reports"><i class="fa fa-chart-bar"></i></a>
+            <a href="<?= base_url(); ?>/manage-blocked-users/<?= $community_list[0]->slug; ?>/<?= $community_list[0]->id; ?>/<?= $community_category[0]['id'] ?>/<?= $community_category[0]['subclass'][0]['id'] ?>" class="btn btn-round btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Blocked Users"><i class="fa fa-user-slash"></i></a>
+            <a href="<?= base_url(); ?>/manage-settings/<?= $community_list[0]->slug; ?>/<?= $community_list[0]->id; ?>/<?= $community_category[0]['id'] ?>/<?= $community_category[0]['subclass'][0]['id'] ?>" class="btn btn-round btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Settings"><i class="fa fa-cog"></i></a>
           </div>
 
           <div class="row mb-2">

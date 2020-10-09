@@ -156,7 +156,7 @@ $routes->match(['get', 'post'], '/manager/save-community', 'Managers::save_commu
 $routes->match(['get', 'post'], 'update_community_cover', 'Managers::update_community_cover');
 $routes->match(['get', 'post'], 'community_questions', 'Managers::community_questions');
 $routes->match(['get', 'post'], 'remove_community', 'Managers::remove_community');
-
+$routes->match(['get','post'],'update_slug', 'Managers::update_slug');
 
 
 $routes->get('/accept_user/(:num)/(:num)', 'Managers::accept_user/$1/$2', ['filter' => 'auth']);
@@ -181,10 +181,10 @@ $routes->get('community-manage/(:any)/(:num)/(:num)/(:num)', 'Community::manage_
 
 $routes->match(['get','post'],'add_category', 'Community::add_category');
 
-$routes->get('community-manage/members/(:any)/(:num)/(:num)/(:num)', 'Community::manage_members/$1/$2/$3/$4', ['filter' => 'auth']);
-$routes->get('community-manage/reports/(:any)/(:num)/(:num)/(:num)', 'Community::manage_reports/$1/$2/$3/$4', ['filter' => 'auth']);
-$routes->get('community-manage/blocked-users/(:any)/(:num)/(:num)/(:num)', 'Community::manage_blocked_users/$1/$2/$3/$4', ['filter' => 'auth']);
-$routes->get('community-manage/settings/(:any)/(:num)/(:num)/(:num)', 'Community::manage_settings/$1/$2/$3/$4', ['filter' => 'auth']);
+$routes->get('manage-members/(:any)/(:num)/(:num)/(:num)', 'Community::manage_members/$1/$2/$3/$4', ['filter' => 'auth']);
+$routes->get('manage-reports/(:any)/(:num)/(:num)/(:num)', 'Community::manage_reports/$1/$2/$3/$4', ['filter' => 'auth']);
+$routes->get('manage-blocked-users/(:any)/(:num)/(:num)/(:num)', 'Community::manage_blocked_users/$1/$2/$3/$4', ['filter' => 'auth']);
+$routes->get('manage-settings/(:any)/(:num)/(:num)/(:num)', 'Community::manage_settings/$1/$2/$3/$4', ['filter' => 'auth']);
 $routes->get('/delete_category/(:num)/(:num)', 'Community::delete_category/$1/$2', ['filter' => 'auth']);
 $routes->match(['get','post'],'update_category', 'Community::update_category');
 $routes->match(['get', 'post'], 'add_subclass', 'Community::add_subclass');
