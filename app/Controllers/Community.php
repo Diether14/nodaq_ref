@@ -1422,6 +1422,92 @@ class Community extends BaseController
      
         }
 
+        public function post_edit($id = NULL){
+            ini_set('display_errors', 1);
+    
+            $data = [];
+            helper(['form', 'url']);
+    
+            $model = new UserspostModel();
+            $user = new UserModel();
+            $share = new UserssharedpostModel();
+            $communityModel = new CommunityModel();
+            
+    
+            $data['communities'] = $communityModel->find();
+            $data['blog'] = $model->where('id', $id)->first();
+            $data['shared'] = $share->where('post_id', $id)->where('community_id', $data['blog']['community_id'])->first();
+    
+            $data['users_community'] = $model->where('user_id', session()->get('id'))->where('community_id', $data['blog']['community_id'])->first();
+    
+            $profile_photo = new ProfilephotoModel();
+            $data['profile_photo1'] = $profile_photo->where('user_id',$data['blog']['user_id'])
+                ->first();
+            
+            $data['user'] = $user->where('id',$data['blog']['user_id'])
+                ->first();
+ 
+    
+            $data['profile_photo'] = $profile_photo->where('user_id', session()->get('id'))
+                ->first();   
+            
+
+            $db = \Config\Database::connect();
+            $builder = $db->table('post_comments');
+            $builder->where('post_comments.post_id', $id);
+            $builder->select('post_comments.id, post_comments.user_id, post_comments.post_id, post_comments.content, post_comments.updated_at, users.nickname, profile_photo.name, user_settings.user_mode');
+            $builder->join('users', 'users.id = post_comments.user_id');
+            $builder->join('profile_photo', 'users.id = profile_photo.user_id');
+            $builder->join('user_settings', 'users.id = user_settings.user_id' );
+            $query = $builder->get();
+            $data['post_comments'] = $query->getResult();
+    
+            $report = new UsersreportModel();
+    
+            $data['report'] = $report->where(['user_id' => session()->get('id'),  'post_id' => $id])->first();
+    
+            $db1 = \Config\Database::connect();
+            $builder1 = $db1->table('community');
+            $builder1->select('community.id, community.user_id, community.com_photo_id, community.title, users_community.status , community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.updated_at, community_photo.name');
+            $builder1->where('users_community.user_id', session()->get('id'));
+            $builder1->join('users_community', 'users_community.community_id = community.id');
+            $builder1->join('community_photo', 'community_photo.id = community.com_photo_id');
+            $query1 = $builder1->get();
+            $data['community'] = $query1->getResult();
+
+            $db2 = \Config\Database::connect();
+            $builder2 = $db1->table('community');
+            $builder2->select('community.id, community.user_id, community.com_photo_id, community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.updated_at, community_photo.name');
+            $builder2->where('community.id', $data['blog']['community_id']);
+            $builder2->join('community_photo', 'community_photo.id = community.com_photo_id');
+            $query2 = $builder2->get();
+            $data['community_current'] = $query2->getResult();
+       
+    
+            $com = new CommunityModel();
+            $data['com'] = $com->where('id', $data['blog']['community_id'])->first();
+            // var_dump($data['com']);exit;
+            $voteModel = new UsersvoteModel(); 
+    
+            $data['upvote'] = $voteModel->where('user_id', session()->get('id'))->where('post_id', $id)->where('community_id', $data['blog']['community_id'])->first();
+            
+            $comments = new PostcommentsModel();
+            $data['comments_total'] = $comments->where('post_id', $id)->countAllResults();
+
+            $report_model = new ReportOptionsModel();
+
+            $data['report_options'] = $report_model->findAll();
+
+            $data['vote_totals'] = $voteModel->where('post_id', $id)->where('community_id', $data['blog']['community_id'])->where('status', '1')->countAllResults();
+            $commentRepliesModel = new PostcommentrepliesModel;
+            $data['post_comment_replies'] = $commentRepliesModel->where('post_id', $id)->get()->getResult();
+           
+            echo view('templates/header', $data);
+            echo view('community/post-edit', $data);
+            echo view('templates/footer', $data);
+        }
+
+
         public function post_view($id = NULL){
             ini_set('display_errors', 1);
     

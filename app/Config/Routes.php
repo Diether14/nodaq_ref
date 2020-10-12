@@ -191,6 +191,7 @@ $routes->match(['get', 'post'], 'add_subclass', 'Community::add_subclass');
 $routes->match(['get', 'post'], 'update_subclass', 'Community::update_subclass');
 $routes->get('/delete_subclass/(:num)/(:num)', 'Community::delete_subclass/$1/$2', ['filter' => 'auth']);
 $routes->get('post-view/(:num)', 'Community::post_view/$1', ['filter' => 'auth']);
+$routes->get('post-edit/(:num)', 'Community::post_edit/$1', ['filter' => 'auth']);
 $routes->match(['get','post'],'upvote', 'Community::upvote', ['filter' => 'auth']);
 // $routes->get('/remove_ac/(:num)/(:num)', 'Managers::remove_ac/$1/$2', ['filter' => 'auth']);
 

@@ -96,6 +96,16 @@
                                 </li>
                             </ol>
                         </nav>
+                        <div class="dropdown float-right">
+                            <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-cog"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" data-toggle="modal" data-target="#edit_post">Edit</a>
+                                <a class="dropdown-item" data-toggle="modal" data-target="#delete_post">Delete</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-sm-12 community-single-card_title">
                         <div class="community-single-card_profile">
@@ -537,6 +547,60 @@
             </div>
         </div>
     </div>
+
+    <!-- Classic Modal -->
+    <div class="modal fade" id="edit_post" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Edit Post</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <i class="material-icons">clear</i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form class="contact-form" action="" method="post" accept-charset="utf-8"
+              enctype="multipart/form-data">
+              <label>Are you sure do you want edit this post?</label>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn bg-secondary text-white btn-link">Edit</button>
+            <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Cancel</button>
+            </form>
+            <!-- <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--  End Modal -->
+
+    <!-- Classic Modal -->
+    <div class="modal fade" id="delete_post" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Delete Post</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <i class="material-icons">clear</i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form class="contact-form" action="" method="post" accept-charset="utf-8"
+              enctype="multipart/form-data">
+              <label>Are you sure do you want to delete this post?</label>
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn bg-danger text-white btn-link">Delete</button>
+            <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Cancel</button>
+            </form>
+            <!-- <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--  End Modal -->
 
 <?php if (session('msg')) : ?>
 <script type="text/javascript">
