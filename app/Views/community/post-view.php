@@ -68,7 +68,7 @@
     <div class="container px-0 m-auto">
         <div class="community-single">
             <div class="col-sm-12">
-            
+    
             <?php if (!empty($community[0])) : ?>    
                 <?php if($community[0]->status == 0): ?>
                     <script type="text/javascript">
@@ -558,15 +558,14 @@
               <i class="material-icons">clear</i>
             </button>
           </div>
+          
           <div class="modal-body">
-            <form class="contact-form" action="" method="post" accept-charset="utf-8"
-              enctype="multipart/form-data">
               <label>Are you sure do you want edit this post?</label>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn bg-secondary text-white btn-link">Edit</button>
-            <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Cancel</button>
-            </form>
+            <a href="<?= base_url(); ?>/post-edit/<?=  $blog['id'] ?>"><button type="button" class="btn bg-secondary text-white btn-link">Edit</button></a>
+            <button type="button" class="btn btn-danger btn-link" daxta-dismiss="modal">Cancel</button>
+            
             <!-- <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button> -->
           </div>
         </div>
@@ -585,14 +584,12 @@
             </button>
           </div>
           <div class="modal-body">
-            <form class="contact-form" action="" method="post" accept-charset="utf-8"
+            <form class="contact-form" action="<?= base_url(); ?>/delete-post/<?=  $blog['id'] ?>/<?= $community_current[0]->id ?>" method="post" accept-charset="utf-8"
               enctype="multipart/form-data">
               <label>Are you sure do you want to delete this post?</label>
-
-
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn bg-danger text-white btn-link">Delete</button>
+            <button type="submit" class="btn bg-danger text-white btn-link">Delete</button>
             <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Cancel</button>
             </form>
             <!-- <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button> -->

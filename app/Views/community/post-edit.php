@@ -57,7 +57,6 @@
                     <h1 class="title">
                         <?= $community_current[0]->title; ?>
                     </h1>
-
                     <a href="<?= base_url(); ?>/community/<?= $blog['community_id'] ?>"><button
                             class="btn btn-primary btn-raised btn-lg">View Community</button></a>
                 </div>
@@ -69,7 +68,6 @@
     <div class="container px-0 m-auto">
         <div class="community-single">
             <div class="col-sm-12">
-
                 <?php if (!empty($community[0])) : ?>
                 <?php if($community[0]->status == 0): ?>
                 <script type="text/javascript">
@@ -141,8 +139,9 @@
                                     <div class="pb-1">
                                         <div class="input-group">
                                             <input type="text" id="title" name="title" class="form-control"
-                                                placeholder="Add Your Heading Text Here" value="" required>
+                                                placeholder="Add Your Heading Text Here" value="<?= $blog['title'] ?>" required>
                                         </div>
+                           
                                     </div>
                                 </div>
                             </div>
@@ -153,44 +152,19 @@
 
                             <div class="">
                                 <input type="text" data-role="tagsinput" class="form-control" id="tags" name="tags"
-                                    placeholder="Tags">
+                                    placeholder="Tags" value="<?= $blog['tags'] ?>">
                             </div>
                             <div>
                             </div>
-                            <input type="hidden" name="category_id" value="<?= $subclass['category_id']; ?>">
-                            <input type="hidden" name="subclass_id" value="<?= $subclass['id']; ?>">
+                            <input type="hidden" name="category_id" value="<?= $blog['category_id']; ?>">
+                            <input type="hidden" name="subclass_id" value="<?= $blog['subclass_id']; ?>">
                             <input type="hidden" name="community_id" id="community-id"
-                                value="<?= $community_list[0]->id; ?>">
+                                value="<?= $blog['community_id']; ?>">
                             <div class="ce-example__button" id="saveButton">
                                 Save Post
                             </div>
                         </div>
-                        <!-- <div class="community-single-post-title card-body py-0"> -->
-                            <!-- <div class="header-title col-sm-12 py-0">
-                                <h2 class="title py-0">
-                                    <= $blog['title'] ?>
-                                </h2>
-                            </div> -->
-                            <!-- <div class="col-sm-12"> -->
-                                
-                                <!-- <div class="collapse-content" contenteditable="false">
-
-                                    <div id="blog-content" class="container-fluid">
-                                         <pre> <php
-                                            $content = unserialize($blog['content']);
-                                            // var_dump($content);
-                                           
-                                        >
-                                    </div>
-
-                                </div> -->
-                                <!-- <p>
-                                    <span class="badge badge-pill badge-info"><?= $blog['description']; ?></span>
-                                </p>
-                            </div> -->
-                        <!-- </div> -->
-                        
-
+                  
                     </div>
                 </div>
             </div>
@@ -262,12 +236,14 @@
                     'subclass_id': subclass_id
                 };
 
+                console.log('test');return;
+
                 if (title == '' || content == '' || community_id == '' || tags == '' || category_id == '' || subclass_id == '') {
                     alert('Please fill out the fields!');
                 } else {
                     $.ajax({
                         type: "POST",
-                        url: base_url + '/save_post',
+                        url: base_url + '/edit_post',
                         data: data,
                         dataType: "JSON",
                         success: function (data) {
@@ -280,5 +256,6 @@
                     });
                 }
             });
+
         });
     </script>

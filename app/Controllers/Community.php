@@ -1185,38 +1185,66 @@ class Community extends BaseController
         }
 
     }
+
     
-    public function delete_shared_post($id = null){
+    public function edit_post($id = null){
+        echo '<pre>';
+        var_dump($id);exit;
 
         ini_set('display_errors', 1);
-        $data = [];
         helper(['form', 'url']);
+        $model = new UserspostModel();
        
-        $model = new UserssharedpostModel();
+        $data = array(
+            'id' => $this->request->getPost('id'),
+            'title' => $this->request->getPost('title'),
+            'content' => $this->request->getPost('content'),
+            'description' => $this->request->getPost('description')
+        );
 
-        $query = $model->where('id', $id)->delete();
-
-        if($query){
-            $msg = 'Post Deleted!';
-            return redirect()->to( base_url().'/profile')->with('msg', $msg);
-        }
+        $update = $model->save($data);
+        echo json_encode(array("status" => TRUE));
     }
 
-    public function delete_post($id = null){
+    public function delete_post($id = null, $community_id = null){
 
         ini_set('display_errors', 1);
         $data = [];
         helper(['form', 'url']);
        
         $model = new UserspostModel();
-
+        
         $query = $model->where('id', $id)->delete();
 
+        
+        if($query){
+            $postCommentReplies = new PostcommentrepliesModel(); 
+            $postComments = new PostcommentsModel();
+      
+            $deleteReplies = $postCommentReplies->where('post_id', $id)->delete();
+            $deleteComments = $postComments->where('post_id', $id)->delete();
+
+            $msg = 'Post Deleted!';
+            return redirect()->to( base_url().'/home')->with('msg', $msg);
+        }
+    }
+
+    public function delete_shared_post($id = null){
+
+        ini_set('display_errors', 1);
+        $data = [];
+        helper(['form', 'url']);
+       
+        $model = new PostcommentsModel();
+
+        $query = $model->where('id', $id)->delete();
+      
         if($query){
             $msg = 'Post Deleted!';
             return redirect()->to( base_url().'/profile')->with('msg', $msg);
         }
     }
+
 
     public function upvote(){
         ini_set('display_errors', 1);

@@ -52,6 +52,9 @@ $routes->match(['get','post'],'share_post', 'Community::share_post', ['filter' =
 $routes->match(['get','post'],'save_post', 'Community::save_post', ['filter' => 'auth']);
 
 $routes->get('delete-shared-post/(:num)', 'Community::delete_shared_post/$1', ['filter' => 'auth']);
+$routes->match(['get','post'],'delete-post/(:num)/(:num)', 'Community::delete_post/$1/$2', ['filter' => 'auth']);
+$routes->match(['get','post'],'update-post/(:num)', 'Community::update_post/$1', ['filter' => 'auth']);
+
 // $routes->match(['get', 'post'], 'Search::search', ['filter' => 'auth']);
 
 //search

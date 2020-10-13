@@ -120,9 +120,7 @@
      * Tools list
      */
     tools: {
-
       
-
       paragraph: {
         config: {
           placeholder: "Enter something"
@@ -333,7 +331,18 @@
     /**
      * Initial Editor data
      */
-   
+
+    data: {
+      blocks: <?= json_encode(unserialize($blog['content'])); ?>
+    },
+
+    // data: {
+    //   blocks: [
+    //     <= json_encode(unserialize($blog['content'])); ?>
+    //   ]
+    // },
+
+    
    
   });
 

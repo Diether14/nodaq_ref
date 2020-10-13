@@ -417,23 +417,6 @@ class Users extends BaseController
     }
 
 
-    public function edit_post(){
-     
-
-        ini_set('display_errors', 1);
-        helper(['form', 'url']);
-        $model = new UserspostModel();
-       
-        $data = array(
-            'id' => $this->request->getPost('id'),
-            'title' => $this->request->getPost('title'),
-            'content' => $this->request->getPost('content'),
-            'description' => $this->request->getPost('description')
-        );
-
-        $update = $model->save($data);
-        echo json_encode(array("status" => TRUE));
-    }
 
     public function edit_shared_post(){
 
