@@ -158,9 +158,10 @@
                             </div>
                             <input type="hidden" name="category_id" value="<?= $blog['category_id']; ?>">
                             <input type="hidden" name="subclass_id" value="<?= $blog['subclass_id']; ?>">
+                            <input type="hidden" name="post_id" value="<?= $blog['id']; ?>">
                             <input type="hidden" name="community_id" id="community-id"
                                 value="<?= $blog['community_id']; ?>">
-                            <div class="ce-example__button" id="saveButton">
+                            <div class="ce-example__button" id="editPost">
                                 Save Post
                             </div>
                         </div>
@@ -183,7 +184,8 @@
 </script>
 <?php endif ?>
 
-    <script>
+    <script type="text/javascript">
+        
         var viewLayout = 0
         window.onload = () => {
             console.log("page onload function")
@@ -215,47 +217,46 @@
         }
         toggleView(0);
 
-        document.querySelector("#saveButton").addEventListener('click', function () {
-            editor.save().then((savedData) => {
-                // cPreview.show(savedData, document.getElementById("output"));
-                console.log(savedData.blocks);
-                var base_url = $('input[name=base]').val();
-                var title = $("input[name=title]").val();
-                var community_id = $("input[name=community_id]").val();
-                var content = savedData;
-                var tags = $("input[name=tags]").val();
-                var category_id = $("input[name=category_id]").val();
-                var subclass_id = $("input[name=subclass_id]").val();
+        // document.querySelector("#saveButton").addEventListener('click', function () {
+        //     editor.save().then((savedData) => {
+        //         // cPreview.show(savedData, document.getElementById("output"));
+        //         console.log(savedData.blocks);
+        //         var base_url = $('input[name=base]').val();
+        //         var title = $("input[name=title]").val();
+        //         var community_id = $("input[name=community_id]").val();
+        //         var content = savedData;
+        //         var tags = $("input[name=tags]").val();
+        //         var category_id = $("input[name=category_id]").val();
+        //         var subclass_id = $("input[name=subclass_id]").val();
 
-                var data = {
-                    'content': content,
-                    'title': title,
-                    'community_id': community_id,
-                    'tags': tags,
-                    'category_id': category_id,
-                    'subclass_id': subclass_id
-                };
+        //         var data = {
+        //             'content': content,
+        //             'title': title,
+        //             'community_id': community_id,
+        //             'tags': tags,
+        //             'category_id': category_id,
+        //             'subclass_id': subclass_id
+        //         };
 
-                console.log('test');return;
 
-                if (title == '' || content == '' || community_id == '' || tags == '' || category_id == '' || subclass_id == '') {
-                    alert('Please fill out the fields!');
-                } else {
-                    $.ajax({
-                        type: "POST",
-                        url: base_url + '/edit_post',
-                        data: data,
-                        dataType: "JSON",
-                        success: function (data) {
-                            alertify.success(data.msg);
-                            location.reload();
-                        },
-                        error: function (jqXHR, textStatus, errorThrown) {
-                            alert('There is an error!');
-                        }
-                    });
-                }
-            });
+        //         if (title == '' || content == '' || community_id == '' || tags == '' || category_id == '' || subclass_id == '') {
+        //             alert('Please fill out the fields!');
+        //         } else {
+        //             $.ajax({
+        //                 type: "POST",
+        //                 url: base_url + '/edit_post',
+        //                 data: data,
+        //                 dataType: "JSON",
+        //                 success: function (data) {
+        //                     alertify.success(data.msg);
+        //                     location.reload();
+        //                 },
+        //                 error: function (jqXHR, textStatus, errorThrown) {
+        //                     alert('There is an error!');
+        //                 }
+        //             });
+        //         }
+        //     });
 
-        });
+        // });
     </script>

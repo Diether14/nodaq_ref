@@ -41,7 +41,7 @@ $routes->match(['get','post'],'update_profile', 'Users::update_profile', ['filte
 $routes->match(['get','post'],'update_mode', 'Users::update_mode', ['filter' => 'auth']);
 $routes->match(['get','post'],'update_profile_info', 'Users::update_profile_info', ['filter' => 'auth']);
 
-$routes->match(['get','post'],'edit_post', 'Users::edit_post', ['filter' => 'auth']);
+$routes->match(['get','post'],'edit_post/(:num)', 'Community::edit_post/$1', ['filter' => 'auth']);
 $routes->match(['get','post'],'edit_shared_post', 'Users::edit_shared_post', ['filter' => 'auth']);
 $routes->match(['get','post'],'add_comment', 'Community::add_comment', ['filter' => 'auth']);
 $routes->match(['get','post'],'add_comment_reply', 'Community::add_comment_reply', ['filter' => 'auth']);

@@ -275,7 +275,49 @@ $(document).ready(function(){
 
 
 
+    document.querySelector("#editPost").addEventListener('click', function () {
+    
+        editor.save().then((savedData) => {
+            // cPreview.show(savedData, document.getElementById("output"));
+            console.log(savedData.blocks);
+            var base_url = $('input[name=base]').val();
+            var title = $("input[name=title]").val();
+            var community_id = $("input[name=community_id]").val();
+            var content = savedData;
+            var tags = $("input[name=tags]").val();
+            var category_id = $("input[name=category_id]").val();
+            var subclass_id = $("input[name=subclass_id]").val();
+            var post_id = $("input[name=post_id]").val();
 
+            var data = {
+                'content': content,
+                'title': title,
+                'community_id': community_id,
+                'tags': tags,
+                'category_id': category_id,
+                'subclass_id': subclass_id,
+                'post_id': post_id,
+            };
+
+            if (post_id == '' || title == '' || content == '' || community_id == '' || tags == '' || category_id == '' || subclass_id == '') {
+                alertify.error('Pleas fill out the fields!');
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url: base_url + '/edit_post/' + post_id,
+                    data: data,
+                    dataType: "JSON",
+                    success: function (data) {
+                        alertify.success(data.msg);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert('There is an error!');
+                    }
+                });
+            }
+        });
+
+    });
 
 
 
