@@ -65,7 +65,7 @@
                       <div class="d-flex p-3 align-items-center col-sm-12 <?= $uri->getSegment(6) == $value1['id'] ? 'bg-light': null ?>">
 
                         <div class="col-sm-11 p-0" id="headingOne">
-                        <a href="<?= base_url(); ?>/community-manage/<?= $value['community_id'] ?>/<?= $value['id'] ?>/<?= $value1['id'] ?>" class="d-block text-left " >
+                        <a href="<?= base_url(); ?>/community-manage/<?= $community_list[0]->slug; ?>/<?= $value['community_id'] ?>/<?= $value['id'] ?>/<?= $value1['id'] ?>" class="d-block text-left " >
                             <b><?= $value1['subclass'] ?></b>
                         </a>
                         </div>

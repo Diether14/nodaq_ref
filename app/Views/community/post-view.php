@@ -96,16 +96,18 @@
                                 </li>
                             </ol>
                         </nav>
-                        <div class="dropdown float-right">
-                            <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-cog"></i>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" data-toggle="modal" data-target="#edit_post">Edit</a>
-                                <a class="dropdown-item" data-toggle="modal" data-target="#delete_post">Delete</a>
+                        <?php if($blog['user_id'] == session()->get('id')): ?>
+                            <div class="dropdown float-right">
+                                <a class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-cog"></i>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" data-toggle="modal" data-target="#edit_post">Edit</a>
+                                    <a class="dropdown-item" data-toggle="modal" data-target="#delete_post">Delete</a>
+                                </div>
                             </div>
-                        </div>
+                        <?php endif; ?>
                     </div>
                     <div class="col-sm-12 community-single-card_title">
                         <div class="community-single-card_profile">
