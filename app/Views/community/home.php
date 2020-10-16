@@ -25,7 +25,7 @@
 
 <div class="main mt-0 w-dt ndDT" style="margin-top: 6%;">
     <div class="row">
-    
+
         <?php include('app/Views/templates/main-sidebar.php')?>
         <!-- Community Feed-->
         <div class="community-feed">

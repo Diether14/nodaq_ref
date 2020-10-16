@@ -38,7 +38,8 @@
                                 <?php foreach ($community_list as $key => $value): ?>
 
                                 <div class="col-md-8 m-auto">
-                                    <div class="tab-pane fade active show" id="list" role="tabpanel" aria-labelledby="community-bars-tab">
+                                    <div class="tab-pane fade active show" id="list" role="tabpanel"
+                                        aria-labelledby="community-bars-tab">
                                         <div class="col-sm-12">
 
                                             <div class="card my-2 col-sm-12">
@@ -60,7 +61,8 @@
                                                             <a href="#" data-toggle="modal" data-target="#myModal"><i
                                                                     class="fa fa-ellipsis-h pl-3"
                                                                     style="float: right;"></i></a>
-                                                            <a href="#communityInfo<?= $key ?>" data-toggle="modal" data-target="#communityInfo<?= $key ?>"><i
+                                                            <a href="#communityInfo<?= $key ?>" data-toggle="modal"
+                                                                data-target="#communityInfo<?= $key ?>"><i
                                                                     class="fa fa-info-circle p-0"
                                                                     style="float:right;"></i></a>
                                                         </h4>
@@ -96,10 +98,13 @@
 
                                             <?php if(!empty($value->name)): ?>
 
-                                            <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $value->name ?>" alt="Circle Image" class="rounded-circle img-fluid z-depth-2">
+                                            <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $value->name ?>"
+                                                alt="Circle Image" class="rounded-circle img-fluid z-depth-2">
 
                                             <?php else: ?>
-                                            <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image" class="img-raised rounded-circle img-fluid  z-depth-2" alt="avatar">
+                                            <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                                                alt="Circle Image"
+                                                class="img-raised rounded-circle img-fluid  z-depth-2" alt="avatar">
 
                                             <?php endif; ?>
 
@@ -138,7 +143,8 @@
                                 <?php foreach ($community_list as $key => $value): ?>
 
                                 <div class="col-md-8 m-auto">
-                                    <div class="tab-pane fade active show" id="list" role="tabpanel" aria-labelledby="community-bars-tab">
+                                    <div class="tab-pane fade active show" id="list" role="tabpanel"
+                                        aria-labelledby="community-bars-tab">
                                         <div class="col-sm-12">
 
                                             <div class="card my-2 col-sm-12">
@@ -160,7 +166,8 @@
                                                             <a href="#" data-toggle="modal" data-target="#myModal"><i
                                                                     class="fa fa-ellipsis-h pl-3"
                                                                     style="float: right;"></i></a>
-                                                            <a href="#communityInfo<?= $key ?>" data-toggle="modal" data-target="#communityInfo<?= $key ?>"><i
+                                                            <a href="#communityInfo<?= $key ?>" data-toggle="modal"
+                                                                data-target="#communityInfo<?= $key ?>"><i
                                                                     class="fa fa-info-circle p-0"
                                                                     style="float:right;"></i></a>
                                                         </h4>
@@ -197,10 +204,13 @@
 
                                             <?php if(!empty($value->name)): ?>
 
-                                            <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $value->name ?>" alt="Circle Image" class="rounded-circle img-fluid z-depth-2">
+                                            <img src="<?= base_url(); ?>/public/user/uploads/profiles/<?= $value->name ?>"
+                                                alt="Circle Image" class="rounded-circle img-fluid z-depth-2">
 
                                             <?php else: ?>
-                                            <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Circle Image" class="img-raised rounded-circle img-fluid  z-depth-2" alt="avatar">
+                                            <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                                                alt="Circle Image"
+                                                class="img-raised rounded-circle img-fluid  z-depth-2" alt="avatar">
 
                                             <?php endif; ?>
                                             <div class="m-0 p-0">
@@ -215,7 +225,7 @@
                                             </div>
                                         </div>
                                         <hr>
-                                     
+
 
                                         <div class="card-body  m-0 p-0">
                                             <p class="m-0 p-0 card-description">
@@ -237,40 +247,6 @@
 
         </div>
 
-        <!-- <div class="section text-center">
-      <div class="row">
-        <div class="col-md-12 ml-auto mr-auto">
-          <h2 class="title">Trending Posts</h2>
-
-          <div class="row">
-            <div class="col-md-12 ml-auto mr-auto">
-
-
-              <div class="row">
-                <php foreach ($blog as $key => $value): ?>
-                <a href="/weendi/post-view/<= $value['id']; ?>">
-                  <div class="col-lg-4 mb-4">
-                    <div class="card h-100 text-center">
-                      <img class="card-img-top" src="http://placehold.it/750x450" alt="">
-                      <div class="card-body">
-                        <h4 class="card-title"><= $value['title'] ?></h4>
-                        <h6 class="card-subtitle mb-2 text-muted">Position</h6>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut
-                          mollitia eum ipsum fugiat odio officiis odit.</p>
-                      </div>
-                      <div class="card-footer">
-                        <a href="#">name@example.com</a>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-                <php endforeach; ?>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
     </div>
 </div>
 
