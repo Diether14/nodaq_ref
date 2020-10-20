@@ -575,16 +575,12 @@ class Community extends BaseController
         $db      = \Config\Database::connect();
         $builder = $db->table('community');
         $builder->where('community.id', $id);
+        $builder->where('community.user_id', session()->get('id'));
         $builder->select('community.id, community.slug ,community.user_id, community.com_photo_id,community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.category, community.status, community.questions, community_photo.name, community.questions');
         $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
         
         $query   = $builder->get();
         $data['community_list'] = $query->getResult();
-
-
-        // $model = new UserscommunityModel;
-
-        // $data['users_community'] = $model->where(['user_id' => session()->get('id'), 'community_id' => $id])->first();
 
         $db      = \Config\Database::connect();
         $builder = $db->table('users_community');
@@ -618,24 +614,7 @@ class Community extends BaseController
         $query1  = $builder1->get();
         $data['postsContent'] = $query1->getResult();  
         
-        // $db2      = \Config\Database::connect();
-        // $builder2 = $db2->table('users_shared_posts');
-        // $builder2->select('users_shared_posts.post_id, users_post.id, users_shared_posts.content ,users_post.user_id, users_post.community_id, users_post.title,  users_post.updated_at, users.nickname,profile_photo.name, user_settings.user_mode');
-        // $builder2->where('users_shared_posts.community_id', $id );
-        
-        // $builder2->join('users', 'users.id = users_shared_posts.user_id');
-        // $builder2->join('users_post', 'users_post.id = users_shared_posts.post_id');
-        // $builder2->join('profile_photo', 'users.id = profile_photo.user_id');
-        // $builder2->join('user_settings', 'users.id = user_settings.user_id');
-        
-        // $query2  = $builder2->get();
-
-        // $data['posts'][] = $query2->getResult();  
-
-
         $users_community_count = new UserscommunityModel();
-
-        // $data['users_community'] = $users_community_count->where('community_id', $id)->countAllResults();
         
         $db3      = \Config\Database::connect();
         $builder3 = $db3->table('users_community');
@@ -646,9 +625,6 @@ class Community extends BaseController
         $query3   = $builder3->get();
         $data['users'] = $query3->getResult();
         
-        // echo '<pre>';
-        // var_dump($data['users']);exit;
-
         $model = new CommunitysubclassModel;
         
         $db      = \Config\Database::connect();
@@ -672,10 +648,13 @@ class Community extends BaseController
         }
  
         $data['community_category'] = $categories;
-
-        echo view('templates/header', $data);
-        echo view('community/manage', $data);
-        echo view('templates/footer', $data); 
+        if($data['community_list'][0]->user_id == session()->get('id')){
+            echo view('templates/header', $data);
+            echo view('community/manage', $data);
+            echo view('templates/footer', $data); 
+        }else{
+            echo view('errors/html/error_404');
+        }
     }
 
 
@@ -688,6 +667,7 @@ class Community extends BaseController
         $db      = \Config\Database::connect();
         $builder = $db->table('community');
         $builder->where('community.id', $id);
+        $builder->where('community.user_id', session()->get('id'));
         $builder->select('community.id, community.slug ,community.user_id, community.com_photo_id,community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.category, community.status, community.questions, community_photo.name, community.questions');
         $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
 
@@ -739,9 +719,14 @@ class Community extends BaseController
         
         $query   = $builder->get();
         $data['users'] = $query->getResult();
-        echo view('templates/header', $data);
-        echo view('community/list-members', $data);
-        echo view('templates/footer', $data);
+
+        if($data['community_list'][0]->user_id == session()->get('id')){
+            echo view('templates/header', $data);
+            echo view('community/list-members', $data);
+            echo view('templates/footer', $data);
+        }else{
+            echo view('errors/html/error_404');
+        }
     }
     
     public function manage_reports($slug = null, $id = null, $category_id = null, $subclass_id = null){
@@ -753,6 +738,7 @@ class Community extends BaseController
         $db      = \Config\Database::connect();
         $builder = $db->table('community');
         $builder->where('community.id', $id);
+        $builder->where('community.user_id', session()->get('id'));
         $builder->select('community.id,community.slug, community.user_id, community.com_photo_id,community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.category, community.status, community.questions, community_photo.name, community.questions');
         $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
         
@@ -802,9 +788,13 @@ class Community extends BaseController
 
         $data['community_category'] = $categories;
 
-        echo view('templates/header', $data);
-        echo view('community/manage-reports', $data);
-        echo view('templates/footer', $data);
+        if($data['community_list'][0]->user_id == session()->get('id')){
+            echo view('templates/header', $data);
+            echo view('community/manage-reports', $data);
+            echo view('templates/footer', $data);
+        }else{
+            echo view('errors/html/error_404');
+        }
     }
 
     public function manage_blocked_users($slug = null, $id = null, $category_id = null, $subclass_id = null){
@@ -816,6 +806,7 @@ class Community extends BaseController
         $db      = \Config\Database::connect();
         $builder = $db->table('community');
         $builder->where('community.id', $id);
+        $builder->where('community.user_id', session()->get('id'));
         $builder->select('community.id,community.slug, community.user_id, community.com_photo_id,community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.category, community.status, community.questions, community_photo.name, community.questions');
         $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
         
@@ -847,7 +838,6 @@ class Community extends BaseController
             ->findAll();
 
             $categories[$key]['subclass'] = $subclass;
-
         }
 
         $data['community_category'] = $categories;
@@ -869,10 +859,13 @@ class Community extends BaseController
         $query   = $builder->get();
         $data['users'] = $query->getResult();
 
-
-        echo view('templates/header', $data);
-        echo view('community/list-users-blocked', $data);
-        echo view('templates/footer', $data);
+        if($data['community_list'][0]->user_id == session()->get('id')){
+            echo view('templates/header', $data);
+            echo view('community/list-users-blocked', $data);
+            echo view('templates/footer', $data);
+        }else{
+            echo view('errors/html/error_404');
+        }
     }
     public function manage_settings($slug = null, $id = null, $category_id = null, $subclass_id = null){
         ini_set('display_errors', 1);
@@ -883,6 +876,7 @@ class Community extends BaseController
         $db      = \Config\Database::connect();
         $builder = $db->table('community');
         $builder->where('community.id', $id);
+        $builder->where('community.user_id', session()->get('id'));
         $builder->select('community.id,community.slug, community.user_id, community.com_photo_id,community.title, community.community_type, community.content, community.color, community.text_color, community.upvote_name, community.devote_name, community.category, community.status, community.questions, community_photo.name, community.questions');
         $builder->join('community_photo', 'community_photo.id = community.com_photo_id');
         
@@ -926,12 +920,6 @@ class Community extends BaseController
         $builder->select('*');
         $builder->where(['users_report.community_id' => $id]);
         
-        // $builder->where('users_community.status !=', '3');
-        // AND users_report.user_id = users.id
-        // $builder->join('users', 'users_report.reported_by_user_id = users.id', 'left');
-        // $builder->join('profile_photo', 'users_community.user_id = profile_photo.user_id', 'left');
-        // $builder->join('community_ac_settings', 'users_community.user_id = community_ac_settings.user_id', 'left');
-        
         $query   = $builder->get();
         $data['reported_posts'] = $query->getResult();
 
@@ -944,9 +932,13 @@ class Community extends BaseController
         $query1   = $builder1->get();
         $data['community'] = $query1->getResult();
 
-        echo view('templates/header', $data);
-        echo view('community/settings', $data);
-        echo view('templates/footer', $data);
+        if($data['community_list'][0]->user_id == session()->get('id')){
+            echo view('templates/header', $data);
+            echo view('community/settings', $data);
+            echo view('templates/footer', $data);
+        }else{
+            echo view('errors/html/error_404');
+        }
     }
 
     public function add_category(){
@@ -1480,11 +1472,10 @@ class Community extends BaseController
             $share = new UserssharedpostModel();
             $communityModel = new CommunityModel();
             
-    
             $data['communities'] = $communityModel->find();
             $data['blog'] = $model->where('id', $id)->first();
             $data['shared'] = $share->where('post_id', $id)->where('community_id', $data['blog']['community_id'])->first();
-    
+
             $data['users_community'] = $model->where('user_id', session()->get('id'))->where('community_id', $data['blog']['community_id'])->first();
     
             $profile_photo = new ProfilephotoModel();
@@ -1494,11 +1485,9 @@ class Community extends BaseController
             $data['user'] = $user->where('id',$data['blog']['user_id'])
                 ->first();
  
-    
             $data['profile_photo'] = $profile_photo->where('user_id', session()->get('id'))
                 ->first();   
             
-
             $db = \Config\Database::connect();
             $builder = $db->table('post_comments');
             $builder->where('post_comments.post_id', $id);
@@ -1530,7 +1519,7 @@ class Community extends BaseController
             $query2 = $builder2->get();
             $data['community_current'] = $query2->getResult();
        
-    
+            
             $com = new CommunityModel();
             $data['com'] = $com->where('id', $data['blog']['community_id'])->first();
             // var_dump($data['com']);exit;
@@ -1548,10 +1537,14 @@ class Community extends BaseController
             $data['vote_totals'] = $voteModel->where('post_id', $id)->where('community_id', $data['blog']['community_id'])->where('status', '1')->countAllResults();
             $commentRepliesModel = new PostcommentrepliesModel;
             $data['post_comment_replies'] = $commentRepliesModel->where('post_id', $id)->get()->getResult();
-           
-            echo view('templates/header', $data);
-            echo view('community/post-edit', $data);
-            echo view('templates/footer', $data);
+            
+            if($data['blog']['user_id'] == session()->get('id')){
+                echo view('templates/header', $data);
+                echo view('community/post-edit', $data);
+                echo view('templates/footer', $data);
+            }else{
+                echo view('errors/html/error_404');
+            }
         }
 
 
@@ -1569,6 +1562,7 @@ class Community extends BaseController
     
             $data['communities'] = $communityModel->find();
             $data['blog'] = $model->where('id', $id)->first();
+        
             $data['shared'] = $share->where('post_id', $id)->where('community_id', $data['blog']['community_id'])->first();
     
             $data['users_community'] = $model->where('user_id', session()->get('id'))->where('community_id', $data['blog']['community_id'])->first();

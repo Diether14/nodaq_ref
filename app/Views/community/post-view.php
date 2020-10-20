@@ -148,6 +148,7 @@
                                 <h2 class="title py-0">
                                     <?= $blog['title'] ?>
                                 </h2>
+                                
                             </div>
                             <div class="col-sm-12">
                                 <div class="collapse-content" contenteditable="false">
@@ -246,9 +247,16 @@
                                     </div>
                                     
                                 </div>
-                                <p>
-                                    <span class="badge badge-pill badge-info"><?= $blog['description']; ?></span>
-                                </p>
+                                <br>
+                                <?php 
+                                    $str = explode(",",$blog['tags']);    
+                                    foreach ($str as $key => $value): 
+                                ?>
+                                    <span class="badge badge-pill badge-info">
+                                    <?= $value; ?>
+                                    </span>
+                                
+                                <?php endforeach; ?>
                             </div>
                         </div>
                         <hr>
