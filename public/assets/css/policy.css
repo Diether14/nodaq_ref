@@ -1,0 +1,22 @@
+.policy-wrapper {
+    margin: 10% auto;
+}
+
+.policy-title {
+    width: 100;
+    text-align: center;
+    text-decoration: underline;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.policy-heading {
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.policy-text {
+    line-height: 25px;
+    text-align: justify;
+    font-size: 15px;
+}

@@ -209,7 +209,13 @@ $routes->match(['get','post'],'notifications/get/(:any)/(:any)', 'Notifications:
 $routes->match(['get', 'post'], 'notifications/add', 'Notifications::addNotification');
 
 
-
+// policy pages routes
+$routes->get('disclaimer-for-intelectual-property', 'PolicyController::disclaimerForIntelectualProperty');
+$routes->get('terms-and-conditions', 'PolicyController::termsAndConditions');
+$routes->get('gdpr-privacy-notice', 'PolicyController::gdprPrivacyNotice');
+$routes->get('privacy-policy', 'PolicyController::privacyPolicy');
+$routes->get('cookie-policy', 'PolicyController::cookiePolicy');
+$routes->get('ccpa-for-nodaq', 'PolicyController::ccpaForNodaq');
 
 // $routes->group('users', function($routes)
 // {
