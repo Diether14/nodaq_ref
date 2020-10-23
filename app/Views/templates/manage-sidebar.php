@@ -54,6 +54,11 @@
                             <a class="dropdown-item" data-toggle="modal" data-target="#edit_category<?= $key ?>">Edit</a>
                             <a class="dropdown-item" data-toggle="modal" data-target="#delete_category<?= $key ?>">Delete</a>
                           </div>
+                        <?php else: ?>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item " data-toggle="modal" data-target="#add_subclass<?= $key ?>">Add Subclass</a>
+                            <a class="dropdown-item" data-toggle="modal" data-target="#edit_category<?= $key ?>">Edit</a>
+                          </div>
                         <?php endif; ?>
                       </div>
                     </button>
@@ -157,7 +162,108 @@
                     <?php endforeach; ?>
 
                     </div>
+                    <div class="modal fade" id="add_subclass<?= $key ?>" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Add Subclass</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class="material-icons">clear</i>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <form action="<?= base_url(); ?>/add_subclass" method="post">
+                            <div class="form-group row">
+                              <div class="col-lg-12">
 
+                                <div id="new_chq">
+
+                                </div>
+
+                                <div id="sub">
+
+                                </div>
+                                <input type="hidden" value="<?= $value['community_id'] ?>" name="community_id">
+                                <input type="hidden" value="<?= $value['id'] ?>" name="category_id">
+                                <input class='form-control' name='subclass' type='text' placeholder='Enter Subclass'>
+                              </div>
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="submit" class="btn bg-success text-white btn-link">Add</button>
+                          </form>
+                          <!-- <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--  End Modal -->
+
+
+
+                  <!-- Classic Modal -->
+                  <div class="modal fade" id="edit_category<?= $key ?>" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Edit Category</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class="material-icons">clear</i>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <form class="contact-form" action="<?= base_url(); ?>/update_category" method="post"
+                            accept-charset="utf-8" enctype="multipart/form-data">
+                            <div class="form-group row">
+                              <div class="col-lg-12">
+                                <label>Category Name</label>
+                                <input type="text" name="category_name" class="form-control"
+                                  value="<?= $value['category_name'] ?>">
+                                <input type="hidden" name="community_id" value="<?= $value['community_id']; ?>">
+                                <input type="hidden" name="id" value="<?= $value['id']; ?>">
+                              </div>
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="submit" class="btn bg-success text-white btn-link">Submit</button>
+                          </form>
+                          <!-- <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--  End Modal -->
+                  <!-- Classic Modal -->
+                  <div class="modal fade" id="delete_category<?= $key ?>" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Delete Category</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class="material-icons">clear</i>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="form-group row">
+                            <div class="col-lg-12">
+                              <h6 class="text">Are you sure do you want to delete?</h6>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <a href="<?= base_url() ?>/delete_category/<?= $value['id'] ?>/<?= $value['community_id'] ?>">
+                            <button type="submit" class="btn bg-success text-white btn-link">Confirm</button>
+                          </a>
+                          <!-- <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--  End Modal -->
                   <?php endforeach;?>
                 </div>
               </div>

@@ -119,8 +119,8 @@
         class: ImageTool,
         config: {
           endpoints: {
-            byFile: '<?= base_url(); ?>/community/upload-picture', // Your backend file uploader endpoint
-            byUrl: '<?= base_url(); ?>/community/upload-picture', // Your endpoint that provides uploading by Url
+            byFile: '<?= base_url(); ?>/public/editorjs/upload.php', // Your backend file uploader endpoint
+            byUrl: '<?= base_url(); ?>/public/editorjs/upload.php', // Your endpoint that provides uploading by Url
           }
         }
       },
