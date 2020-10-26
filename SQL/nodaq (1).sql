@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.7
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 07, 2020 at 05:44 PM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.4.8
+-- Host: db-mysql-sgp1-85996-do-user-8143823-0.a.db.ondigitalocean.com:25060
+-- Generation Time: Oct 24, 2020 at 09:24 AM
+-- Server version: 8.0.20
+-- PHP Version: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `weendi`
+-- Database: `nodaq`
 --
 
 -- --------------------------------------------------------
@@ -28,23 +29,23 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `community` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `com_photo_id` int(11) NOT NULL,
+  `id` int UNSIGNED NOT NULL,
+  `user_id` int NOT NULL,
+  `com_photo_id` int NOT NULL,
   `title` varchar(255) NOT NULL,
-  `community_type` int(11) NOT NULL COMMENT '0 = public, 1 = private',
+  `community_type` int NOT NULL COMMENT '0 = public, 1 = private',
   `content` varchar(255) NOT NULL,
   `color` varchar(255) NOT NULL,
   `text_color` varchar(255) NOT NULL,
   `upvote_name` varchar(255) NOT NULL,
   `devote_name` varchar(255) NOT NULL,
   `category` varchar(1000) NOT NULL,
-  `status` int(11) NOT NULL COMMENT '1 = remove, 2 = reset',
+  `status` int NOT NULL COMMENT '1 = remove, 2 = reset',
   `questions` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `community`
@@ -64,22 +65,22 @@ INSERT INTO `community` (`id`, `user_id`, `com_photo_id`, `title`, `community_ty
 --
 
 CREATE TABLE `community_ac_settings` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `community_id` int(11) NOT NULL,
-  `remove_comments` int(11) NOT NULL COMMENT '0 = false, 1 = true',
-  `remove_posts` int(11) NOT NULL COMMENT '0 = false, 1 = true',
-  `punish_users` int(11) NOT NULL COMMENT '0 = false, 1 = true',
-  `remove_posts_from_hotboard` int(11) NOT NULL COMMENT '0 = false, 1 = true',
-  `edit_cover_photo` int(11) NOT NULL COMMENT '0 = false, 1 = true',
-  `edit_categories` int(11) NOT NULL COMMENT '0 = false, 1 = true',
-  `edit_subclass` int(11) NOT NULL COMMENT '0 = false, 1 = true',
-  `notice` int(11) NOT NULL COMMENT '0 = false, 1 = true',
-  `general` int(11) NOT NULL COMMENT '0 = false, 1 = true',
-  `politic` int(11) NOT NULL COMMENT '0 = false, 1 = true',
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `update_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int UNSIGNED NOT NULL,
+  `user_id` int NOT NULL,
+  `community_id` int NOT NULL,
+  `remove_comments` int NOT NULL COMMENT '0 = false, 1 = true',
+  `remove_posts` int NOT NULL COMMENT '0 = false, 1 = true',
+  `punish_users` int NOT NULL COMMENT '0 = false, 1 = true',
+  `remove_posts_from_hotboard` int NOT NULL COMMENT '0 = false, 1 = true',
+  `edit_cover_photo` int NOT NULL COMMENT '0 = false, 1 = true',
+  `edit_categories` int NOT NULL COMMENT '0 = false, 1 = true',
+  `edit_subclass` int NOT NULL COMMENT '0 = false, 1 = true',
+  `notice` int NOT NULL COMMENT '0 = false, 1 = true',
+  `general` int NOT NULL COMMENT '0 = false, 1 = true',
+  `politic` int NOT NULL COMMENT '0 = false, 1 = true',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `community_ac_settings`
@@ -95,20 +96,20 @@ INSERT INTO `community_ac_settings` (`id`, `user_id`, `community_id`, `remove_co
 --
 
 CREATE TABLE `community_banned_users` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `community_id` int(11) NOT NULL,
+  `id` int UNSIGNED NOT NULL,
+  `user_id` int NOT NULL,
+  `community_id` int NOT NULL,
   `reason` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `community_banned_users`
 --
 
-INSERT INTO `community_banned_users` (`id`, `user_id`, `community_id`, `reason`, `created_at`, `updated_at`) VALUES
-(1, 18, 23, 'test community user', '2020-05-15 03:47:28', '2020-05-15 03:47:28');
+INSERT INTO `community_banned_users` (`id`, `user_id`, `community_id`, `reason`) VALUES
+(1, 18, 23, 'test community user');
 
 -- --------------------------------------------------------
 
@@ -117,13 +118,13 @@ INSERT INTO `community_banned_users` (`id`, `user_id`, `community_id`, `reason`,
 --
 
 CREATE TABLE `community_category` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `community_id` int(11) NOT NULL,
+  `id` int UNSIGNED NOT NULL,
+  `user_id` int NOT NULL,
+  `community_id` int NOT NULL,
   `category_name` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `community_category`
@@ -152,14 +153,14 @@ INSERT INTO `community_category` (`id`, `user_id`, `community_id`, `category_nam
 --
 
 CREATE TABLE `community_category_subclass` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `community_id` int(11) NOT NULL,
-  `category_id` int(11) NOT NULL,
+  `id` int UNSIGNED NOT NULL,
+  `user_id` int NOT NULL,
+  `community_id` int NOT NULL,
+  `category_id` int NOT NULL,
   `subclass` varchar(255) NOT NULL,
-  `createad_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `update_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `createad_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `community_category_subclass`
@@ -193,12 +194,12 @@ INSERT INTO `community_category_subclass` (`id`, `user_id`, `community_id`, `cat
 --
 
 CREATE TABLE `community_photo` (
-  `id` int(11) NOT NULL COMMENT 'Primary Key',
+  `id` int UNSIGNED NOT NULL,
   `name` varchar(100) NOT NULL COMMENT 'Name',
   `type` varchar(255) NOT NULL COMMENT 'file type',
-  `created_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'Created date',
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='demo table';
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created date',
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='demo table';
 
 --
 -- Dumping data for table `community_photo`
@@ -218,12 +219,12 @@ INSERT INTO `community_photo` (`id`, `name`, `type`, `created_at`, `updated_at`)
 --
 
 CREATE TABLE `cover_photo` (
-  `id` int(11) NOT NULL COMMENT 'Primary Key',
-  `user_id` int(11) NOT NULL,
+  `id` int UNSIGNED NOT NULL,
+  `user_id` int NOT NULL,
   `name` varchar(100) NOT NULL COMMENT 'Name',
   `type` varchar(255) NOT NULL COMMENT 'file type',
-  `created_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'Created date'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='demo table';
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created date'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='demo table';
 
 --
 -- Dumping data for table `cover_photo`
@@ -239,14 +240,14 @@ INSERT INTO `cover_photo` (`id`, `user_id`, `name`, `type`, `created_at`) VALUES
 --
 
 CREATE TABLE `emoticon_store` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `id` int UNSIGNED NOT NULL,
+  `user_id` int NOT NULL,
   `title` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `emoticon_store`
@@ -264,14 +265,14 @@ INSERT INTO `emoticon_store` (`id`, `user_id`, `title`, `name`, `type`, `created
 --
 
 CREATE TABLE `emoticon_store_files` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `emoticon_store_id` int(11) NOT NULL,
+  `id` int UNSIGNED NOT NULL,
+  `user_id` int NOT NULL,
+  `emoticon_store_id` int NOT NULL,
   `files` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `emoticon_store_files`
@@ -287,13 +288,13 @@ INSERT INTO `emoticon_store_files` (`id`, `user_id`, `emoticon_store_id`, `files
 --
 
 CREATE TABLE `files` (
-  `id` int(11) NOT NULL COMMENT 'Primary Key',
+  `id` int UNSIGNED NOT NULL,
   `p_type` varchar(255) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `user_id` int NOT NULL,
   `name` varchar(100) NOT NULL COMMENT 'Name',
   `type` varchar(255) NOT NULL COMMENT 'file type',
-  `created_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'Created date'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='demo table';
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created date'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='demo table';
 
 --
 -- Dumping data for table `files`
@@ -310,14 +311,14 @@ INSERT INTO `files` (`id`, `p_type`, `user_id`, `name`, `type`, `created_at`) VA
 --
 
 CREATE TABLE `join_community_files` (
-  `id` int(11) NOT NULL,
+  `id` int UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `type` varchar(244) NOT NULL,
-  `community_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `createad_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `update_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `community_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `createad_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `join_community_files`
@@ -334,13 +335,13 @@ INSERT INTO `join_community_files` (`id`, `name`, `type`, `community_id`, `user_
 --
 
 CREATE TABLE `post_comments` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `post_id` int(11) NOT NULL,
+  `id` int UNSIGNED NOT NULL,
+  `user_id` int NOT NULL,
+  `post_id` int NOT NULL,
   `content` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `post_comments`
@@ -375,12 +376,12 @@ INSERT INTO `post_comments` (`id`, `user_id`, `post_id`, `content`, `created_at`
 --
 
 CREATE TABLE `post_comment_replies` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `post_id` int(11) DEFAULT NULL,
-  `comment` text DEFAULT NULL,
-  `date_posted` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='This table is connected to the "post comments" table. ';
+  `id` int UNSIGNED NOT NULL,
+  `user_id` int DEFAULT NULL,
+  `post_id` int DEFAULT NULL,
+  `comment` text,
+  `date_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='This table is connected to the "post comments" table. ';
 
 -- --------------------------------------------------------
 
@@ -389,13 +390,13 @@ CREATE TABLE `post_comment_replies` (
 --
 
 CREATE TABLE `post_photo` (
-  `id` int(11) NOT NULL COMMENT 'Primary Key',
-  `user_id` int(11) NOT NULL,
-  `post_id` int(11) NOT NULL,
+  `id` int UNSIGNED NOT NULL,
+  `user_id` int NOT NULL,
+  `post_id` int NOT NULL,
   `name` varchar(100) NOT NULL COMMENT 'Name',
   `type` varchar(255) NOT NULL COMMENT 'file type',
-  `created_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'Created date'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='demo table';
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created date'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='demo table';
 
 -- --------------------------------------------------------
 
@@ -404,13 +405,13 @@ CREATE TABLE `post_photo` (
 --
 
 CREATE TABLE `profile_photo` (
-  `id` int(11) NOT NULL COMMENT 'Primary Key',
-  `user_id` int(11) NOT NULL,
-  `post_id` int(11) NOT NULL,
+  `id` int UNSIGNED NOT NULL,
+  `user_id` int NOT NULL,
+  `post_id` int NOT NULL,
   `name` varchar(100) NOT NULL COMMENT 'Name',
   `type` varchar(255) NOT NULL COMMENT 'file type',
-  `created_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'Created date'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='demo table';
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Created date'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='demo table';
 
 --
 -- Dumping data for table `profile_photo`
@@ -427,22 +428,22 @@ INSERT INTO `profile_photo` (`id`, `user_id`, `post_id`, `name`, `type`, `create
 --
 
 CREATE TABLE `report_options` (
-  `id` int(11) NOT NULL,
-  `users_id` int(11) NOT NULL,
+  `id` int UNSIGNED NOT NULL,
+  `users_id` int NOT NULL,
   `content` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `report_options`
 --
 
-INSERT INTO `report_options` (`id`, `users_id`, `content`, `created_at`, `updated_at`) VALUES
-(1, 1, 'test', '2020-08-31 14:05:11', '2020-08-31 14:05:11'),
-(2, 1, 'test2', '2020-08-31 14:05:11', '2020-08-31 14:05:11'),
-(3, 1, 'test3', '2020-08-31 14:05:29', '2020-08-31 14:05:29'),
-(4, 1, 'test4', '2020-08-31 14:05:29', '2020-08-31 14:05:29');
+INSERT INTO `report_options` (`id`, `users_id`, `content`, `updated_at`) VALUES
+(1, 1, 'test', '2020-08-31 14:05:11'),
+(2, 1, 'test2', '2020-08-31 14:05:11'),
+(3, 1, 'test3', '2020-08-31 14:05:29'),
+(4, 1, 'test4', '2020-08-31 14:05:29');
 
 -- --------------------------------------------------------
 
@@ -451,20 +452,20 @@ INSERT INTO `report_options` (`id`, `users_id`, `content`, `created_at`, `update
 --
 
 CREATE TABLE `users` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `pk` int(11) NOT NULL,
+  `id` int UNSIGNED NOT NULL,
+  `pk` int NOT NULL,
   `nickname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `birthdate` varchar(255) NOT NULL,
   `gender` varchar(255) NOT NULL COMMENT '1 = male, 2 = female',
   `password` varchar(255) NOT NULL,
-  `user_type` int(11) NOT NULL COMMENT '0 = users | 1 = manager | 2 assistant manager | 3 = admin',
-  `status` int(11) NOT NULL,
-  `auth` int(11) NOT NULL,
-  `prof` int(11) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `user_type` int NOT NULL COMMENT '0 = users | 1 = manager | 2 assistant manager | 3 = admin',
+  `status` int NOT NULL,
+  `auth` int NOT NULL,
+  `prof` int NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
@@ -490,22 +491,22 @@ INSERT INTO `users` (`id`, `pk`, `nickname`, `email`, `birthdate`, `gender`, `pa
 --
 
 CREATE TABLE `users_community` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `community_id` int(11) NOT NULL,
-  `status` int(11) NOT NULL COMMENT '0 = not yet accepted, 1 = accepted, 2 = assistant manage, 3 = ban user ',
-  `anounymous` int(11) NOT NULL COMMENT '0 = public, 1 = anounymous',
+  `id` int UNSIGNED NOT NULL,
+  `user_id` int NOT NULL,
+  `community_id` int NOT NULL,
+  `status` int NOT NULL COMMENT '0 = not yet accepted, 1 = accepted, 2 = assistant manage, 3 = ban user ',
+  `anounymous` int NOT NULL COMMENT '0 = public, 1 = anounymous',
   `ban_reason` varchar(255) NOT NULL,
   `remove_ac_reason` varchar(255) NOT NULL,
-  `post` int(11) NOT NULL,
-  `comment` int(11) NOT NULL,
-  `share` int(11) NOT NULL,
-  `report` int(11) NOT NULL,
-  `upvote_devote` int(11) NOT NULL,
+  `post` int NOT NULL,
+  `comment` int NOT NULL,
+  `share` int NOT NULL,
+  `report` int NOT NULL,
+  `upvote_devote` int NOT NULL,
   `answer` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users_community`
@@ -533,12 +534,12 @@ INSERT INTO `users_community` (`id`, `user_id`, `community_id`, `status`, `anoun
 --
 
 CREATE TABLE `users_ip` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `id` int UNSIGNED NOT NULL,
+  `user_id` int NOT NULL,
   `ip` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users_ip`
@@ -561,19 +562,19 @@ INSERT INTO `users_ip` (`id`, `user_id`, `ip`, `created_at`, `updated_at`) VALUE
 --
 
 CREATE TABLE `users_post` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `community_id` int(11) NOT NULL,
+  `id` int UNSIGNED NOT NULL,
+  `user_id` int NOT NULL,
+  `community_id` int NOT NULL,
   `title` varchar(255) NOT NULL,
   `content` varchar(10000) NOT NULL,
-  `status` int(11) NOT NULL,
+  `status` int NOT NULL,
   `reason` varchar(255) NOT NULL,
   `tags` varchar(255) NOT NULL,
-  `category_id` int(11) NOT NULL,
-  `subclass_id` int(11) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `category_id` int NOT NULL,
+  `subclass_id` int NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users_post`
@@ -593,16 +594,16 @@ INSERT INTO `users_post` (`id`, `user_id`, `community_id`, `title`, `content`, `
 --
 
 CREATE TABLE `users_report` (
-  `id` int(11) NOT NULL,
-  `reported_by_user_id` int(11) NOT NULL,
-  `community_id` int(11) NOT NULL,
-  `post_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `id` int UNSIGNED NOT NULL,
+  `reported_by_user_id` int NOT NULL,
+  `community_id` int NOT NULL,
+  `post_id` int NOT NULL,
+  `user_id` int NOT NULL,
   `report_content` varchar(255) NOT NULL,
-  `report_option_id` int(11) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `report_option_id` int NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users_report`
@@ -621,14 +622,14 @@ INSERT INTO `users_report` (`id`, `reported_by_user_id`, `community_id`, `post_i
 --
 
 CREATE TABLE `users_shared_posts` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `community_id` int(11) NOT NULL,
-  `post_id` int(11) NOT NULL,
+  `id` int UNSIGNED NOT NULL,
+  `user_id` int NOT NULL,
+  `community_id` int NOT NULL,
+  `post_id` int NOT NULL,
   `content` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users_shared_posts`
@@ -644,14 +645,14 @@ INSERT INTO `users_shared_posts` (`id`, `user_id`, `community_id`, `post_id`, `c
 --
 
 CREATE TABLE `users_vote` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `post_id` int(11) NOT NULL,
-  `community_id` int(11) NOT NULL,
-  `status` int(11) NOT NULL COMMENT '0 = devote, 1 = upvote',
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int UNSIGNED NOT NULL,
+  `user_id` int NOT NULL,
+  `post_id` int NOT NULL,
+  `community_id` int NOT NULL,
+  `status` int NOT NULL COMMENT '0 = devote, 1 = upvote',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users_vote`
@@ -668,13 +669,13 @@ INSERT INTO `users_vote` (`id`, `user_id`, `post_id`, `community_id`, `status`, 
 --
 
 CREATE TABLE `user_settings` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `user_mode` int(11) NOT NULL COMMENT '0 = static, 1 = anonoymous',
-  `user_nickname` int(11) NOT NULL COMMENT '1 = hide nickname, 0 show nickname',
-  `created_at` datetime DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id` int UNSIGNED NOT NULL,
+  `user_id` int NOT NULL,
+  `user_mode` int NOT NULL COMMENT '0 = static, 1 = anonoymous',
+  `user_nickname` int NOT NULL COMMENT '1 = hide nickname, 0 show nickname',
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `user_settings`
@@ -699,7 +700,7 @@ ALTER TABLE `community`
 -- Indexes for table `community_ac_settings`
 --
 ALTER TABLE `community_ac_settings`
-  ADD PRIMARY KEY (`id`) USING BTREE;
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `community_banned_users`
@@ -832,154 +833,6 @@ ALTER TABLE `users_vote`
 --
 ALTER TABLE `user_settings`
   ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `community`
---
-ALTER TABLE `community`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
-
---
--- AUTO_INCREMENT for table `community_ac_settings`
---
-ALTER TABLE `community_ac_settings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `community_banned_users`
---
-ALTER TABLE `community_banned_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `community_category`
---
-ALTER TABLE `community_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
-
---
--- AUTO_INCREMENT for table `community_category_subclass`
---
-ALTER TABLE `community_category_subclass`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
---
--- AUTO_INCREMENT for table `community_photo`
---
-ALTER TABLE `community_photo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=44;
-
---
--- AUTO_INCREMENT for table `cover_photo`
---
-ALTER TABLE `cover_photo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=16;
-
---
--- AUTO_INCREMENT for table `emoticon_store`
---
-ALTER TABLE `emoticon_store`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `emoticon_store_files`
---
-ALTER TABLE `emoticon_store_files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT for table `files`
---
-ALTER TABLE `files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT for table `join_community_files`
---
-ALTER TABLE `join_community_files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `post_comments`
---
-ALTER TABLE `post_comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
-
---
--- AUTO_INCREMENT for table `post_comment_replies`
---
-ALTER TABLE `post_comment_replies`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `post_photo`
---
-ALTER TABLE `post_photo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key';
-
---
--- AUTO_INCREMENT for table `profile_photo`
---
-ALTER TABLE `profile_photo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key', AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `report_options`
---
-ALTER TABLE `report_options`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
-
---
--- AUTO_INCREMENT for table `users_community`
---
-ALTER TABLE `users_community`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
---
--- AUTO_INCREMENT for table `users_ip`
---
-ALTER TABLE `users_ip`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT for table `users_post`
---
-ALTER TABLE `users_post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=223;
-
---
--- AUTO_INCREMENT for table `users_report`
---
-ALTER TABLE `users_report`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `users_shared_posts`
---
-ALTER TABLE `users_shared_posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT for table `users_vote`
---
-ALTER TABLE `users_vote`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
--- AUTO_INCREMENT for table `user_settings`
---
-ALTER TABLE `user_settings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

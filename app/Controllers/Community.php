@@ -239,17 +239,47 @@ class Community extends BaseController
         ini_set('display_errors', 1);
         helper(['form']);
 
-        $target_dir = base_url()."/public/editorjs/uploads/";
-        $target_file = $target_dir . basename($_FILES["image"]["name"]);
-        $url = base_url().'/public/editorjs/uploads/'.basename($_FILES["image"]["name"]);
-        $file = $this->request->getFile('image');
-       
-        if ($file->move('public/editorjs/uploads')) {
+        // Create a blank image and add some text
+        // $withoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $_FILES['image']['name']);
+        // $target_dir = base_url()."/public/editorjs/uploads/";
+        // $target_file = $target_dir . basename($_FILES["image"]["name"]);
+        // $url = base_url().'/public/editorjs/uploads/'.basename($_FILES["image"]["name"]);
+        // $file = $this->request->getFile('image');
+        // $file->move('public/editorjs/uploads');
+        
+        // $name =  basename($_FILES["image"]["name"]);
+        // $newName = $withoutExt . '.webp';
+        $name = 'xmFj7k.png';
+        $ext = pathinfo($name, PATHINFO_EXTENSION);
+        $newName = 'test.webp';
+
+        // Create and save
+        if($ext == 'png'){
+            $img = imagecreatefrompng( base_url().'/public/editorjs/uploads/' . $name);
+        }elseif($ext == 'webp'){
+            $img = imagecreatefromwebp( base_url().'/public/editorjs/uploads/' . $name);
+        }elseif($ext == 'jpg'){
+            $img = imagecreatefromjpg( base_url().'/public/editorjs/uploads/' . $name);
+        }elseif($ext == 'jpeg'){
+            $img = imagecreatefromjpeg( base_url().'/public/editorjs/uploads/' . $name);
+        }
+        // Create and save
+        imagepalettetotruecolor($img);
+        imagealphablending($img, true);
+        imagesavealpha($img, true);
+        
+        if (imagewebp($img, base_url().'/public/editorjs/uploads/' . $newName, 100)) {
+            imagedestroy($img); 
+            unlink($dir . $name);
+            
             $data = ['success' => 1, 
             'file' => ['url' => $url] 
             ];
             echo json_encode($data);
         } else {
+            imagedestroy($img); 
+            unlink($dir . $name);
+            
             $data = ['success' => 0, 
             'file' => ['url' => $url] 
             ];
@@ -970,7 +1000,7 @@ class Community extends BaseController
             $subclass_model->insert($data);
 
             $msg = 'Category has been added!';
-            return redirect()->to( base_url().'/community-manage/'.$community_id)->with('msg', $msg);
+            return redirect()->back()->with('msg', $msg);
         }
     }
    
