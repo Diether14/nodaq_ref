@@ -1,0 +1,9 @@
+#cookieConsentWrapper {
+    height: min-content;
+    position: fixed;
+    z-index: 1050;
+    bottom: 0;
+}
+#btnAcceptCookie {
+    background-color: #5384ec !important;
+}

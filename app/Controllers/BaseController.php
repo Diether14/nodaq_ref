@@ -36,11 +36,34 @@ class BaseController extends Controller
 		// Do Not Edit This Line
 		parent::initController($request, $response, $logger);
 
+
+		$this->page_links = [
+            'disclaimerForIntelectualProperty'  => '/disclaimer-for-intelectual-property',
+            'termsAndConditions'                => '/terms-and-conditions',
+            'gdprPrivacyNotice'                 => '/gdpr-privacy-notice',
+            'privacyNotice'                     => '/privacy-notice',
+            'cookiePolicy'                      => '/cookie-policy',
+            'customerSupport'                   => '/customer-support',
+            'ccpaForNodaq'                      => '/ccpa-for-nodaq',
+        ];
+
 		//--------------------------------------------------------------------
 		// Preload any models, libraries, etc, here.
 		//--------------------------------------------------------------------
 		// E.g.:
 		// $this->session = \Config\Services::session();
+		helper('iptracker');
+		// for testing purposes only. remove param on getUserContinentCode on line 60
+		if(!isset($_SERVER['HTTP_X_REQUESTED_WITH']) && empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) !== 'xmlhttprequest')
+		{
+			if(!isset($_COOKIE['cookie-consent'])){
+				$continentCode = getUserContinentCode(true);
+				if($continentCode == 'EU'){
+					echo view('cookie-consent', $this->page_links);
+				}
+
+			}
+		}
 	}
 
 }

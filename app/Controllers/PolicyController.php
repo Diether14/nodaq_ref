@@ -6,15 +6,6 @@ class PolicyController extends BaseController
 {
 
     public function __construct() {
-        $this->page_links = [
-            'disclaimerForIntelectualProperty'  => '/disclaimer-for-intelectual-property',
-            'termsAndConditions'                => '/terms-and-conditions',
-            'gdprPrivacyNotice'                 => '/gdpr-privacy-notice',
-            'privacyNotice'                     => '/privacy-notice',
-            'cookiePolicy'                      => '/cookie-policy',
-            'customerSupport'                   => '/customer-support',
-            'ccpaForNodaq'                      => '/ccpa-for-nodaq',
-        ];
     }
 
     public function index()
