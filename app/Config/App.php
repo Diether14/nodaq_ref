@@ -21,7 +21,7 @@ class App extends BaseConfig
 	| environments.
 	|
 	*/
-	public $baseURL = 'http://nodaq.com';
+	public $baseURL = 'http://dev.nodaq.com';
 	/*
 	|--------------------------------------------------------------------------
 	| Index File
