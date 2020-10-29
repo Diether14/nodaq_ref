@@ -55,7 +55,7 @@
                     <button class="btn btn-sm btn-primary">Joined</button>
                     <?php endif; ?>
                     <?php else: ?>
-                    <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal">Join In</button>
+                    <button class="btn btn-sm btn-primary" onclick="handleJoin(<?= $community_list[0]->community_type ?>, <?= $community_list[0]->id ?>)">Join In</button>
                     <?php endif; ?>
 
                 </div>
@@ -667,7 +667,30 @@
 
         }
         toggleView(0);
-
+        const handleJoin = (community_type, community_id) => {
+            if(community_type) {
+                $('#myModal').modal('toggle')
+            } else {
+                $.ajax({
+                    method: 'POST',
+                    url: '/join_community',
+                    data: {
+                        community_id,
+                        answer: null,
+                        status:  1,
+                    },
+                    success: async () => {
+                        alertify.success('Successfuly joined community.');
+                        setTimeout(() => {
+                            location.reload();
+                        }, 500);
+                    },
+                    error: () => {
+                        alertify.error('Error joining community please try again later.');
+                    }
+                })
+            }
+        }
         document.querySelector("#saveButton").addEventListener('click', function () {
             editor.save().then((savedData) => {
                 // cPreview.show(savedData, document.getElementById("output"));

@@ -54,10 +54,10 @@ class BaseController extends Controller
 		// $this->session = \Config\Services::session();
 		helper('iptracker');
 		// for testing purposes only. remove param on getUserContinentCode on line 60
-		if(!isset($_SERVER['HTTP_X_REQUESTED_WITH']) && empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) !== 'xmlhttprequest')
+		if(!isset($_SERVER['HTTP_X_REQUESTED_WITH']))
 		{
 			if(!isset($_COOKIE['cookie-consent'])){
-				$continentCode = getUserContinentCode(true);
+				$continentCode = getUserContinentCode();
 				if($continentCode == 'EU'){
 					echo view('cookie-consent', $this->page_links);
 				}

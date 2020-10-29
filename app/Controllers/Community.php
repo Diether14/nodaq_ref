@@ -1154,11 +1154,13 @@ class Community extends BaseController
 
         $community_id = $this->request->getPost('community_id');
         $answer = $this->request->getPost('answer');
+        $status = $this->request->getPost('status') ?: 0;
 
         $data = [
             'user_id' => session()->get('id'),
             'community_id' => $community_id,
-            'answer' => $answer
+            'answer' => $answer,
+            'status' => $status
         ];
 
         if($model->save($data)){
