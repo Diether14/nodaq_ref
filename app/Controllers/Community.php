@@ -1165,6 +1165,10 @@ class Community extends BaseController
 
         if($model->save($data)){
             $msg = 'Your request has been sent';
+            if($status) {
+                $msg = 'Successfuly joined community.';
+                return $response->setStatusCode(201)->setJSON(['msg' => $msg]);;
+            }
         }else{
             $msg = 'There is an error';
         }
