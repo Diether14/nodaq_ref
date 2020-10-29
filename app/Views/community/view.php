@@ -679,7 +679,7 @@
                         answer: null,
                         status:  1,
                     },
-                    success: async () => {
+                    success: () => {
                         alertify.success('Successfuly joined community.');
                         setTimeout(() => {
                             location.reload();
