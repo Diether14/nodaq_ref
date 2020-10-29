@@ -685,7 +685,8 @@
                             location.reload();
                         }, 500);
                     },
-                    error: () => {
+                    error: (err) => {
+                        console.log(err);
                         alertify.error('Error joining community please try again later.');
                     }
                 })
