@@ -1167,7 +1167,7 @@ class Community extends BaseController
             $msg = 'Your request has been sent';
             if($status) {
                 $msg = 'Successfuly joined community.';
-                return $response->setStatusCode(201)->setJSON(['msg' => $msg]);;
+                return $this->response->setStatusCode(201)->setJSON(['msg' => $msg]);;
             }
         }else{
             $msg = 'There is an error';
